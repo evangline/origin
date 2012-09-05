@@ -35,9 +35,8 @@ toplevel = gcdGCDUnit_rtl
 
 srcdir = $(basedir)/src
 vsrcs = \
-	$(verilog_cells_dir)/cells.v \
-	../icc-par/current-icc/results/$(toplevel).output.v \
 	$(srcdir)/gcdTestHarness_rtl.v \
+	../icc-par/current-icc/results/$(toplevel).output.v \
 
 #--------------------------------------------------------------------
 # Build rules
@@ -51,6 +50,7 @@ VCS_OPTS = -notice -PP -line +lint=all,noVCDE,noTFIPC,noIWU,noOUDPE +v2k -timesc
 	+neg_tchk +sdfverbose \
 	-sdf typ:$(toplevel):../icc-par/current-icc/results/$(toplevel).output.corrected.sdf \
 
+
 #--------------------------------------------------------------------
 # Build the simulator
 #--------------------------------------------------------------------
@@ -59,8 +59,8 @@ vcs_sim = simv
 $(vcs_sim) : Makefile $(vsrcs) $(vclibsrcs)
 	$(VCS) $(VCS_OPTS) +incdir+$(srcdir) -o $(vcs_sim) \
 	       +define+CLOCK_PERIOD=$(dc_clock_period) \
-	       +incdir+$(vclibdir) $(addprefix -v ,$(vclibsrcs)) $(vsrcs)
-
+	       +incdir+$(vclibdir) $(addprefix -v ,$(vclibsrcs)) \
+               -v $(verilog_cells_dir)/cells.v $(vsrcs)
 #--------------------------------------------------------------------
 # Run
 #--------------------------------------------------------------------
