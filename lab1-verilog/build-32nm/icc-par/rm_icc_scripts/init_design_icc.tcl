@@ -235,7 +235,7 @@ if {$ICC_FLOORPLAN_INPUT == "CREATE"} {
 }
 
 if {$ICC_FLOORPLAN_INPUT == "USER_FILE"} {
-   if {[file exists [which $ICC_IN_FLOORPLAN_USER_FILE]]} { source $ICC_IN_FLOORPLAN_USER_FILE}
+   if {[file exists [which $ICC_IN_FLOORPLAN_USER_FILE]]} { source -echo $ICC_IN_FLOORPLAN_USER_FILE}
 }
 if {$ICC_FLOORPLAN_INPUT == "SKIP"} {
 }

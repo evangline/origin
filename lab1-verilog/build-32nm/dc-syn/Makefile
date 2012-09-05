@@ -72,7 +72,7 @@ vars = \
 	set DESIGN_NAME                 "$(toplevel)";\n \
 	set STRIP_PATH                  "$(testharness)/$(toplevelinst)";\n \
 	set ADDITIONAL_SEARCH_PATH      "$(db_cells_dir) $(UCB_VLSI_HOME)/install/vclib ../$(srcdir)";\n \
-	set TARGET_LIBRARY_FILES        "cells.db cells_cg.db";\n \
+	set TARGET_LIBRARY_FILES        "cells.db";\n \
 	set MW_REFERENCE_LIB_DIRS       "$(mw_cells_dir)/cells.mw";\n \
 	set TECH_FILE                   "$(techfile_dir)/techfile.tf";\n \
 	set MAP_FILE                    "$(techfile_dir)/tech2itf.map";\n \

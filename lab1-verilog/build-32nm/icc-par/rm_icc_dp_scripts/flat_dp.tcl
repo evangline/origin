@@ -103,7 +103,7 @@ if {$ICC_DP_EXPLORE_MODE} {
 
 	## // Baseline mode //
 	## baseline.tcl : Plain script without automation which can be used as a template or starting point
-	source baseline.tcl
+	source -echo baseline.tcl
 
 }
 

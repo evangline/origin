@@ -66,6 +66,7 @@ ic                      := $(cur_build_icc_dir)/ic
 
 vars_tcl                := rm_setup/common_setup.tcl rm_setup/icc_setup.tcl rm_icc_scripts/check_icc_rm_values.tcl
 makegen_tcl             := make_generated_vars.tcl
+floorplan_tcl           := floorplan/floorplan.tcl floorplan/saed_32nm.tpl
 
 init_design_icc_tcl     := rm_icc_scripts/init_design_icc.tcl
 init_design_misc_tcl    := rm_icc_scripts/common_optimization_settings_icc.tcl rm_icc_scripts/common_placement_settings_icc.tcl
@@ -97,7 +98,7 @@ vars = \
 	set DESIGN_NAME                 "$(toplevel)";\n \
 	set STRIP_PATH                  "$(testharness)/$(toplevelinst)";\n \
 	set ADDITIONAL_SEARCH_PATH      "$(db_cells_dir) $(mw_cells_dir) ../$(dc_dir)";\n \
-	set TARGET_LIBRARY_FILES        "cells.db cells_cg.db";\n \
+	set TARGET_LIBRARY_FILES        "cells.db";\n \
 	set MW_REFERENCE_LIB_DIRS       "$(mw_cells_dir)/cells.mw";\n \
 	set TECH_FILE                   "$(techfile_dir)/techfile.tf";\n \
 	set MAP_FILE                    "$(techfile_dir)/tech2itf.map";\n \
@@ -105,7 +106,7 @@ vars = \
 	set TLUPLUS_MIN_FILE            "$(tluplus_cells_dir)/min.tluplus";\n \
 	set REPORTS_DIR                 "$(reports_dir)";\n \
 	set RESULTS_DIR                 "$(results_dir)";\n \
-	set FILLER_CELL_METAL           "SHFILL1 SHFILL2 SHFILL3 SHFILL64 SHFILL128";\n \
+	set FILLER_CELL                 "SHFILL128_RVT SHFILL64_RVT SHFILL3_RVT SHFILL2_RVT SHFILL1_RVT";\n \
 	set REPORTING_EFFORT            "OFF";\n \
 	set PNR_EFFORT                  "low";\n \
 
@@ -113,9 +114,11 @@ iccdp_vars = \
 	set ICC_FLOORPLAN_CEL            "init_design_icc";\n \
 
 icc_vars = \
-	set ICC_FLOORPLAN_CEL            "flat_dp";\n \
+	set ICC_FLOORPLAN_CEL            "init_design_icc";\n \
 
-$(iccdp_timestamp): $(dc_timestamp) $(vars_tcl) $(init_design_icc_tcl) $(init_design_misc_tcl) $(flat_dp_tcl) $(flat_dp_misc_tcl)
+#	set ICC_FLOORPLAN_CEL            "flat_dp";\n \
+
+$(iccdp_timestamp): $(dc_timestamp) $(vars_tcl) $(floorplan_tcl) $(init_design_icc_tcl) $(init_design_misc_tcl) $(flat_dp_tcl) $(flat_dp_misc_tcl)
 	mkdir $(build_iccdp_dir)
 	rm -f $(cur_build_iccdp_dir)
 	ln -s $(build_iccdp_dir) $(cur_build_iccdp_dir)
@@ -123,7 +126,7 @@ $(iccdp_timestamp): $(dc_timestamp) $(vars_tcl) $(init_design_icc_tcl) $(init_de
 	date > $(iccdp_timestamp)
 
 $(init_design_icc): $(iccdp_timestamp)
-	cp $(init_design_icc_tcl) $(init_design_misc_tcl) $(vars_tcl) $(cur_build_iccdp_dir)
+	cp $(init_design_icc_tcl) $(init_design_misc_tcl) $(vars_tcl) $(floorplan_tcl) $(cur_build_iccdp_dir)
 	echo -e '$(vars)' > $(cur_build_iccdp_dir)/$(makegen_tcl)
 	echo -e '$(iccdp_vars)' >> $(cur_build_iccdp_dir)/$(makegen_tcl)
 	cd $(cur_build_iccdp_dir); \

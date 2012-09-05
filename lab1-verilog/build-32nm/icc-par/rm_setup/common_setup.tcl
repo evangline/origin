@@ -53,8 +53,8 @@ set MW_POWER_PORT               "VDD" ;#
 set MW_GROUND_NET               "VSS" ;#
 set MW_GROUND_PORT              "VSS" ;#
 
-set MIN_ROUTING_LAYER            ""   ;# Min routing layer
-set MAX_ROUTING_LAYER            ""   ;# Max routing layer
+set MIN_ROUTING_LAYER            "M2"   ;# Min routing layer
+set MAX_ROUTING_LAYER            "M5"   ;# Max routing layer
 
 set LIBRARY_DONT_USE_FILE        ""   ;# Tcl file with library modifications for dont_use
 

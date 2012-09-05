@@ -81,8 +81,13 @@ create_qor_snapshot -name flat_dp_place -qor -timing -constraint
 #       -synthesize_power_pads
 ## To simulate standard cell rail during PNS, you can use following option
 #       -create_virtual_rails $PNS_VIRTUAL_RAIL_LAYER
-#synthesize_fp_rail -power_budget $PNS_POWER_BUDGET -voltage_supply $PNS_VOLTAGE_SUPPLY -output_directory $PNS_OUTPUT_DIR -nets $PNS_POWER_NETS -synthesize_power_plan
-synthesize_fp_rail -power_budget $PNS_POWER_BUDGET -voltage_supply $PNS_VOLTAGE_SUPPLY -output_directory $PNS_OUTPUT_DIR -nets $PNS_POWER_NETS -synthesize_power_plan -target_voltage_drop $PNS_TARGET_VOLTAGE_DROP -create_virtual_rails $PNS_VIRTUAL_RAIL_LAYER -use_strap_ends_as_pads -synthesize_power_pads
+
+set_fp_rail_constraints -set_global -optimize_tracks
+set_fp_rail_constraints -add_layer -layer M5 -spacing interleaving
+set_fp_rail_constraints -add_layer -layer M4 -spacing interleaving
+set_fp_rail_constraints -set_ring -vertical_ring_layer M4 -horizontal_ring_layer M5 -ring_offset 2
+
+synthesize_fp_rail -power_budget $PNS_POWER_BUDGET -voltage_supply $PNS_VOLTAGE_SUPPLY -output_directory $PNS_OUTPUT_DIR -nets $PNS_POWER_NETS -synthesize_power_plan -target_voltage_drop $PNS_TARGET_VOLTAGE_DROP -create_virtual_rails $PNS_VIRTUAL_RAIL_LAYER -use_strap_ends_as_pads
 commit_fp_rail
 
 ##############################################################################################################################
@@ -106,7 +111,11 @@ commit_fp_rail
 #       -create_virtual_rails $PNS_VIRTUAL_RAIL_LAYER
 ## To use more accurate power consumption of each instance calculated in ICC, you can use the following option
 #	-analyze_power
-analyze_fp_rail -power_budget $PNS_POWER_BUDGET -voltage_supply $PNS_VOLTAGE_SUPPLY -output_directory $PNS_OUTPUT_DIR -nets $PNS_POWER_NETS
+#analyze_fp_rail -power_budget $PNS_POWER_BUDGET -voltage_supply $PNS_VOLTAGE_SUPPLY -output_directory $PNS_OUTPUT_DIR -nets $PNS_POWER_NETS
+
+create_fp_virtual_pad -load_file pna_output/strap_end.VDD.vpad
+create_fp_virtual_pad -load_file pna_output/strap_end.VSS.vpad
+analyze_fp_rail -power_budget $PNS_POWER_BUDGET -voltage_supply $PNS_VOLTAGE_SUPPLY -output_directory $PNS_OUTPUT_DIR -nets $PNS_POWER_NETS -create_virtual_rails $PNS_VIRTUAL_RAIL_LAYER
 
 source common_optimization_settings_icc.tcl
 extract_rc -estimate
