@@ -28,7 +28,6 @@ int main (int argc, char* argv[]) {
 
     dat_t<1> reset = LIT<1>(cycle==0);
 
-
     // Set input ports to test vector values
     c->GCD__io_operands_bits_A = LIT<16>(src[testCount][1]);
     c->GCD__io_operands_bits_B = LIT<16>(src[testCount][0]);
@@ -37,7 +36,7 @@ int main (int argc, char* argv[]) {
     c->GCD__io_operands_val = LIT<1>(testCount < num_tests);
 
     // always ready for output
-//    c->GCD__io_operands_rdy = LIT<1>(1);
+    c->GCD__io_result_rdy = LIT<1>(1);
 
     // Evaluate the data
     // Note: this is the same as a positive edge clock tick occuring
@@ -90,13 +89,13 @@ int main (int argc, char* argv[]) {
     uint32_t operands_val = c->GCD__io_operands_val.lo_word();
     uint32_t operands_rdy = c->GCD__io_operands_rdy.lo_word();
     uint32_t result_val   = c->GCD__io_result_val.lo_word();
-//    uint32_t result_rdy   = c->GCD__io_result_rdy.lo_word();
+    uint32_t result_rdy   = c->GCD__io_result_rdy.lo_word();
     uint32_t result_bits  = c->GCD__io_result_bits_data.lo_word();
     uint32_t A_in         = c->GCD__io_operands_bits_A.lo_word();
     uint32_t B_in         = c->GCD__io_operands_bits_B.lo_word();
 
-    printf("cycle: %d\t operands_val: %d\t operands_rdy: %d\t A_in: %d\t B_in: %d\t result_val: %d\t result_bits: %d\n", \
-        cycle, operands_val, operands_rdy, A_in, B_in, result_val, result_bits);
+    printf("cycle: %d\t operands_val: %d\t operands_rdy: %d\t A_in: %d\t B_in: %d\t result_val: %d\t result_rdy: %d\t result_bits: %d\n", \
+        cycle, operands_val, operands_rdy, A_in, B_in, result_val, result_rdy, result_bits);
 
 //    printf("reset: %d\t operands_val: %d\t operands_rdy: %d\t A_in: %d\t B_in: %d\t result_val: %d\t, result_rdy: %d\t results_bits: %d\t\n", \
         reset.lo_word(), operands_val, operands_rdy, A_in, B_in, result_val, result_rdy, result_bits);
