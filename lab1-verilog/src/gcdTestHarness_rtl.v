@@ -4,7 +4,6 @@
 //
 
 `include "vcTest.v"
-`define functional
 
 module gcdTestHarness_rtl;
 
