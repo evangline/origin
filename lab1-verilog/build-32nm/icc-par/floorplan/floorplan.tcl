@@ -1,20 +1,43 @@
-
-#create_floorplan \
-
-initialize_floorplan \
-        -control_type aspect_ratio \
-  	-core_aspect_ratio 1 \
-        -core_utilization 0.7 \
-  	-row_core_ratio 1 \
-  	-left_io2core 5 \
-  	-bottom_io2core 5 \
-  	-right_io2core 5 \
-  	-top_io2core 5 \
-  	-start_first_row
+#floorplan
 
 derive_pg_connection -power_net VDD -power_pin VDD -create_port top
 derive_pg_connection -ground_net VSS -ground_pin VSS -create_port top
 
+set_preferred_routing_direction   -layers {M1 M3 M5 M7 M9} -direction horizontal
+set_preferred_routing_direction   -layers {M2 M4 M6 M8 MRDL} -direction vertical
+
+create_floorplan \
+        -core_utilization 0.6 \
+        -flip_first_row \
+        -start_first_row \
+  	-left_io2core 5 \
+  	-bottom_io2core 5 \
+  	-right_io2core 5 \
+  	-top_io2core 5 \
+
+cut_row -all
+add_row \
+  -within [get_attr [get_core_area] bbox] \
+  -direction horizontal \
+  -flip_first_row \
+  -tile_name unit
+
+# preroute standard cell rails
+insert_stdcell_filler   \
+        -cell_without_metal "SHFILL128_RVT SHFILL64_RVT SHFILL3_RVT SHFILL2_RVT SHFILL1_RVT" \
+        -connect_to_power {VDD} \
+        -connect_to_ground {VSS}
+
+preroute_standard_cells \
+  -connect horizontal     \
+  -port_filter_mode off   \
+  -cell_master_filter_mode off    \
+  -cell_instance_filter_mode off  \
+  -voltage_area_filter_mode off
+
+remove_stdcell_filler -stdcell
+
+#POWER GRID
 synthesize_fp_rings \
   -nets {VDD VSS} \
   -core \
@@ -26,42 +49,9 @@ synthesize_fp_rings \
 set_power_plan_strategy core \
   -nets {VDD VSS} \
   -core \
-  -template saed_32nm.tpl:m45_mesh(0.15,0.3) \
+  -template saed_32nm.tpl:m45_mesh(0.5,1.0) \
   -extension {stop: outermost_ring}
 
-compile_power_plan -verbose
+compile_power_plan
 
-insert_stdcell_filler   \
-        -cell_without_metal "SHFILL128_RVT SHFILL64_RVT SHFILL3_RVT SHFILL2_RVT SHFILL1_RVT" \
-        -connect_to_power {VDD} \
-        -connect_to_ground {VSS}
-
-set_preroute_drc_strategy  -merge_thin_wires -report_fail -no_design_rul
-
-preroute_standard_cells \
-        -connect horizontal     \
-        -port_filter_mode off   \
-        -cell_master_filter_mode off    \
-        -cell_instance_filter_mode off  \
-        -voltage_area_filter_mode off
-
-set_preroute_drc_strategy
-
-remove_stdcell_filler   \
-        -stdcell
-
-#create_fp_placement
-
-#set_preroute_drc_strategy  -ignore_same_net_check
-#set_preroute_drc_strategy  -merge_thin_wires 
-#set_preroute_drc_strategy  -no_design_rule -merge_thin_wires -report_fail
-#
-#preroute_standard_cells \
-#  -nets {VDD VSS} \
-#  -connect horizontal \
-#  -route_pins_on_layer "M1" \
-#  -fill_empty_sites
-#set_preroute_drc_strategy
-
-verify_pg_nets
 
