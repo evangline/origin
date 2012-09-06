@@ -217,7 +217,17 @@ $(chip_finish_icc): $(icc_timestamp) $(route_opt_icc)
 	$(icc_exec) -f $(notdir $(chip_finish_icc_tcl)) | tee -i $(log_dir)/$(notdir $(chip_finish_icc)).log; \
 	date > $(notdir $(chip_finish_icc))
 
-$(ic): $(icc_timestamp) $(chip_finish_icc)
+$(outputs_icc): $(icc_timestamp) $(chip_finish_icc)
+	cp $(outputs_icc_tcl) $(outputs_misc_tcl) $(vars_tcl) $(cur_build_icc_dir)
+	echo -e '$(vars)' > $(cur_build_icc_dir)/$(makegen_tcl)
+	echo -e '$(icc_vars)' >> $(cur_build_icc_dir)/$(makegen_tcl)
+	cd $(cur_build_icc_dir); \
+	mkdir -p $(reports_dir) $(results_dir) $(log_dir); \
+	$(icc_exec) -f $(notdir $(outputs_icc_tcl)) | tee -i $(log_dir)/$(notdir $(outputs_icc)).log; \
+	sdfcorrect.py results/$(toplevel).output.sdf results/$(toplevel).output.corrected.sdf \
+	date > $(notdir $(outputs_icc))
+
+$(ic): $(icc_timestamp) $(outputs_icc)
 	cd $(cur_build_icc_dir); \
 	date > $(notdir $(ic))
 
