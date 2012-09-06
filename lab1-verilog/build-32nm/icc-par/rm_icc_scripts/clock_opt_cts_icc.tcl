@@ -2,7 +2,7 @@
 # Version: D-2010.03-SP2 (July 6, 2010)
 # Copyright (C) 2007-2010 Synopsys, Inc. All rights reserved.
 ##########################################################################################
-source -echo icc_setup.tcl
+source icc_setup.tcl
 
 ###########################################################
 ## clock_opt_cts_icc: Clock Tree Synthesis and Optimization
@@ -17,13 +17,13 @@ open_mw_cel $ICC_CLOCK_OPT_CTS_CEL
 
 
 ## Optimization Common Session Options - set in all sessions
-source -echo common_optimization_settings_icc.tcl
-source -echo common_placement_settings_icc.tcl
+source common_optimization_settings_icc.tcl
+source common_placement_settings_icc.tcl
 
 
 
 ## Source CTS Options
-source -echo common_cts_settings_icc.tcl
+source common_cts_settings_icc.tcl
 
 
 set_app_var cts_instance_name_prefix CTS

@@ -6,8 +6,8 @@
 ##########################################################################################
 
 # sourcing the common variables
-source -echo -verbose make_generated_vars.tcl
-source -echo common_setup.tcl
+source make_generated_vars.tcl
+source common_setup.tcl
 
 ###############################
 ## General ICC variables

@@ -116,8 +116,6 @@ iccdp_vars = \
 icc_vars = \
 	set ICC_FLOORPLAN_CEL            "init_design_icc";\n \
 
-#	set ICC_FLOORPLAN_CEL            "flat_dp";\n \
-
 $(iccdp_timestamp): $(dc_timestamp) $(vars_tcl) $(floorplan_tcl) $(init_design_icc_tcl) $(init_design_misc_tcl) $(flat_dp_tcl) $(flat_dp_misc_tcl)
 	mkdir $(build_iccdp_dir)
 	rm -f $(cur_build_iccdp_dir)
@@ -219,43 +217,11 @@ $(chip_finish_icc): $(icc_timestamp) $(route_opt_icc)
 	$(icc_exec) -f $(notdir $(chip_finish_icc_tcl)) | tee -i $(log_dir)/$(notdir $(chip_finish_icc)).log; \
 	date > $(notdir $(chip_finish_icc))
 
-# YUNSUP: we skip this part
-$(signoff_opt_icc): $(icc_timestamp) $(chip_finish_icc)
-	cp $(signoff_opt_icc_tcl) $(signoff_opt_misc_tcl) $(vars_tcl) $(cur_build_icc_dir)
-	echo -e '$(vars)' > $(cur_build_icc_dir)/$(makegen_tcl)
-	echo -e '$(icc_vars)' >> $(cur_build_icc_dir)/$(makegen_tcl)
-	cd $(cur_build_icc_dir); \
-	mkdir -p $(reports_dir) $(results_dir) $(log_dir); \
-	$(icc_exec) -f $(notdir $(signoff_opt_icc_tcl)) | tee -i $(log_dir)/$(notdir $(signoff_opt_icc)).log; \
-	date > $(notdir $(signoff_opt_icc))
-
-# YUNSUP: we skip this part
-$(metal_fill_icc): $(icc_timestamp) $(signoff_opt_icc)
-	cp $(metal_fill_icc_tcl) $(metal_fill_misc_tcl) $(vars_tcl) $(cur_build_icc_dir)
-	echo -e '$(vars)' > $(cur_build_icc_dir)/$(makegen_tcl)
-	echo -e '$(icc_vars)' >> $(cur_build_icc_dir)/$(makegen_tcl)
-	cd $(cur_build_icc_dir); \
-	mkdir -p $(reports_dir) $(results_dir) $(log_dir); \
-	$(icc_exec) -f $(notdir $(metal_fill_icc_tcl)) | tee -i $(log_dir)/$(notdir $(metal_fill_icc)).log; \
-	date > $(notdir $(metal_fill_icc))
-
-$(outputs_icc): $(icc_timestamp) $(chip_finish_icc)
-	cp $(outputs_icc_tcl) $(outputs_misc_tcl) $(vars_tcl) $(cur_build_icc_dir)
-	echo -e '$(vars)' > $(cur_build_icc_dir)/$(makegen_tcl)
-	echo -e '$(icc_vars)' >> $(cur_build_icc_dir)/$(makegen_tcl)
-	cd $(cur_build_icc_dir); \
-	mkdir -p $(reports_dir) $(results_dir) $(log_dir); \
-	$(icc_exec) -f $(notdir $(outputs_icc_tcl)) | tee -i $(log_dir)/$(notdir $(outputs_icc)).log; \
-	sdfcorrect.py results/$(toplevel).output.sdf results/$(toplevel).output.corrected.sdf \
-	date > $(notdir $(outputs_icc))
-
-$(ic): $(icc_timestamp) $(outputs_icc)
+$(ic): $(icc_timestamp) $(chip_finish_icc)
 	cd $(cur_build_icc_dir); \
 	date > $(notdir $(ic))
 
 init_design_icc: $(init_design_icc)
-flat_dp: $(flat_dp)
-dp: $(dp)
 
 place_opt_icc: $(place_opt_icc)
 clock_opt_cts_icc: $(clock_opt_cts_icc)
@@ -273,9 +239,9 @@ ic: $(ic)
 # Default make target
 #--------------------------------------------------------------------
 
-.PHONY: init_design_icc flat_dp dp place_opt_icc clock_opt_cts_icc clock_opt_psyn_icc clock_opt_route_icc route_icc route_opt_icc chip_finish_icc signoff_opt_icc metal_fill_icc outputs_icc ic
+.PHONY: init_design_icc place_opt_icc clock_opt_cts_icc clock_opt_psyn_icc clock_opt_route_icc route_icc route_opt_icc chip_finish_icc signoff_opt_icc metal_fill_icc outputs_icc ic
 
-all: dp ic
+all: init_design_icc ic
 
 #--------------------------------------------------------------------
 # Clean up

@@ -3,7 +3,7 @@
 # Copyright (C) 2007-2010 Synopsys, Inc. All rights reserved.
 ##########################################################################################
 
-source -echo icc_setup.tcl
+source icc_setup.tcl
 
 #############################################
 ## clock_opt_route_icc: CLock Tree routing ##
@@ -19,16 +19,16 @@ open_mw_cel $ICC_CLOCK_OPT_ROUTE_CEL
 
 
 ## Optimization Common Session Options - set in all sessions
-source -echo common_optimization_settings_icc.tcl
-source -echo common_placement_settings_icc.tcl
+source common_optimization_settings_icc.tcl
+source common_placement_settings_icc.tcl
 
 
 
 ## Source CTS Options
-source -echo common_cts_settings_icc.tcl
+source common_cts_settings_icc.tcl
 
 ## Source Post CTS Options
-source -echo common_post_cts_timing_settings.tcl
+source common_post_cts_timing_settings.tcl
 
 ## Source Route Options
 source common_route_si_settings_icc.tcl

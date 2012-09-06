@@ -4,7 +4,7 @@
 ##########################################################################################
 
 
-source -echo icc_setup.tcl
+source icc_setup.tcl
 
 ##########################################################################################
 ## place_opt_icc: Placement and Placement Optimizations
@@ -17,11 +17,11 @@ copy_mw_cel -from $ICC_FLOORPLAN_CEL -to $ICC_PLACE_OPT_CEL
 open_mw_cel $ICC_PLACE_OPT_CEL
 
 ## Optimization Common Session options - set in all sessions
-source -echo common_optimization_settings_icc.tcl
-source -echo common_placement_settings_icc.tcl
+source common_optimization_settings_icc.tcl
+source common_placement_settings_icc.tcl
 
 ## Source CTS Options CTS can be run during place_opt
-source -echo common_cts_settings_icc.tcl
+source common_cts_settings_icc.tcl
 
 
 
@@ -34,7 +34,7 @@ source -echo common_cts_settings_icc.tcl
   if {$ICC_APPLY_RM_UNCERTAINTY_PRECTS } {
    if {[file exists [which $ICC_UNCERTAINTY_PRECTS_FILE]] } {
        echo "SCRIPT-Info: Sourcing the pre-cts uncertainty file : $ICC_UNCERTAINTY_PRECTS_FILE"
-       source -echo  $ICC_UNCERTAINTY_PRECTS_FILE
+       source  $ICC_UNCERTAINTY_PRECTS_FILE
    }
   }
 
@@ -204,7 +204,7 @@ if {$ICC_ECO_FLOW == "FREEZE_SILICON"} {
  ## insert_spare_cells -num_cells {ANDa 10 ANDb 20 ANDc 23} -cell_name spares
 
  if {[file exists [which $ICC_SPARE_CELL_FILE]]} {
-   source -echo $ICC_SPARE_CELL_FILE
+   source $ICC_SPARE_CELL_FILE
  }
 
 }
@@ -218,7 +218,7 @@ if {$ICC_ECO_FLOW == "FREEZE_SILICON"} {
 ## Connect Power & Ground for non-MV and MV-mode
 
  if {[file exists [which $CUSTOM_CONNECT_PG_NETS_SCRIPT]]} {
-   source -echo $CUSTOM_CONNECT_PG_NETS_SCRIPT
+   source $CUSTOM_CONNECT_PG_NETS_SCRIPT
  } else {
     derive_pg_connection -power_net $MW_POWER_NET -power_pin $MW_POWER_PORT -ground_net $MW_GROUND_NET -ground_pin $MW_GROUND_PORT
     if {!$ICC_TIE_CELL_FLOW} {derive_pg_connection -power_net $MW_POWER_NET -ground_net $MW_GROUND_NET -tie}

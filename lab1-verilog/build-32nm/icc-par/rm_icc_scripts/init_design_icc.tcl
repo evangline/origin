@@ -8,7 +8,7 @@
 ##########################################################################################
 
 
-source -echo icc_setup.tcl
+source icc_setup.tcl
 
 ########################################################################################
 # Design Creation
@@ -110,7 +110,7 @@ if { [check_error -verbose] != 0} { echo "SCRIPT-Error, flagging ..." }
 
 
   if {$ICC_CTS_INTERCLOCK_BALANCING && [file exists [which $ICC_CTS_INTERCLOCK_BALANCING_OPTIONS_FILE]]} {
-   source -echo $ICC_CTS_INTERCLOCK_BALANCING_OPTIONS_FILE
+   source $ICC_CTS_INTERCLOCK_BALANCING_OPTIONS_FILE
   }
 
 
@@ -170,7 +170,7 @@ if { [check_error -verbose] != 0} { echo "SCRIPT-Error, flagging ..." }
   report_tlu_plus_files
 
   if {$ICC_CTS_UPDATE_LATENCY && [file exists [which $ICC_CTS_LATENCY_OPTIONS_FILE]]} {
-   source -echo $ICC_CTS_LATENCY_OPTIONS_FILE
+   source $ICC_CTS_LATENCY_OPTIONS_FILE
   }
 
 
@@ -257,8 +257,8 @@ if {$ICC_H_CAP_CEL != "" } {
 }
 
 
-source -echo common_optimization_settings_icc.tcl
-source -echo common_placement_settings_icc.tcl
+source common_optimization_settings_icc.tcl
+source common_placement_settings_icc.tcl
 
 ########################################
 #           CONNECT P/G                #

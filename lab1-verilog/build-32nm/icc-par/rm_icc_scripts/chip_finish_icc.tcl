@@ -2,7 +2,7 @@
 # Version: D-2010.03-SP2 (July 6, 2010)
 # Copyright (C) 2007-2010 Synopsys, Inc. All rights reserved.
 ##########################################################################################
-source -echo icc_setup.tcl
+source icc_setup.tcl
 
 ###################################################
 ## chip_finish_icc: Several chipfinishing steps  ##
@@ -17,9 +17,9 @@ copy_mw_cel -from $ICC_ROUTE_OPT_CEL -to $ICC_CHIP_FINISH_CEL
 open_mw_cel $ICC_CHIP_FINISH_CEL
 
 
-source -echo common_optimization_settings_icc.tcl
-source -echo common_placement_settings_icc.tcl
-source -echo common_post_cts_timing_settings.tcl
+source common_optimization_settings_icc.tcl
+source common_placement_settings_icc.tcl
+source common_post_cts_timing_settings.tcl
 
 
 
@@ -27,7 +27,7 @@ source -echo common_post_cts_timing_settings.tcl
 #    LOAD THE ROUTE AND SI SETTINGS    #
 ########################################
 
-source -echo common_route_si_settings_icc.tcl
+source common_route_si_settings_icc.tcl
 
 
 if { [check_error -verbose] != 0} { echo "SCRIPT-Error, flagging ..." }
