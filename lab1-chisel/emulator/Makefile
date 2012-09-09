@@ -1,14 +1,14 @@
 LDFLAGS = -g
-CPPFLAGS = -g -O2 -I./generated-src -I./testbench
+CPPFLAGS = -g -O2 -I./generated-src
 CPP = g++
-INCLUDES = testbench/emulator.h generated-src/GCD.h
+INCLUDES = generated-src/emulator.h generated-src/GCD.h
 
 default : all
 
 GCD.o: generated-src/GCD.cpp $(INCLUDES)
 	$(CPP) $(CPPFLAGS) -c $<
 
-GCD-emulator.o: testbench/GCD-emulator.cpp
+GCD-emulator.o: testbench/GCD-emulator.cpp $(INCLUDES)
 	$(CPP) $(CPPFLAGS) -c $<
 
 GCD-emulator: GCD-emulator.o GCD.o
