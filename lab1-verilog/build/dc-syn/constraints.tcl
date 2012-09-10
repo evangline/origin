@@ -21,3 +21,7 @@ set_load -pin_load 0.004 [all_outputs]
 # reasonable if another block of on-chip logic is driving your inputs.
 
 set_driving_cell -lib_cell INVX1 [all_inputs]
+
+# set constraints on timing of input/output signals
+set_input_delay 0.2 -clock [get_clocks ideal_clock1] [all_inputs]
+set_output_delay 0.2 -clock [get_clocks ideal_clock1] [all_outputs]

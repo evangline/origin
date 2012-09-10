@@ -105,7 +105,7 @@ vars = \
 	set TLUPLUS_MIN_FILE            "$(tluplus_cells_dir)/min.tluplus";\n \
 	set REPORTS_DIR                 "$(reports_dir)";\n \
 	set RESULTS_DIR                 "$(results_dir)";\n \
-	set FILLER_CELL_METAL           "SHFILL1 SHFILL2 SHFILL3 SHFILL64 SHFILL128";\n \
+	set FILLER_CELL                 "SHFILL128 SHFILL64 SHFILL3 SHFILL2 SHFILL1";\n \
 	set REPORTING_EFFORT            "OFF";\n \
 	set PNR_EFFORT                  "low";\n \
 
