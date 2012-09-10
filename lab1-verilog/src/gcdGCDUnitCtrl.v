@@ -46,12 +46,12 @@ always @* begin
 	
 		//IDLE STATE
 		IDLE : begin
+			operands_rdy = 1;
 			if(operands_val == 1'b1) begin
 				nextstate = CALC;
 				A_en = 1;
 				B_en = 1;
 			end else begin
-				operands_rdy = 1;
 				nextstate = IDLE;
 			end
 		
@@ -83,9 +83,8 @@ always @* begin
 			// see if outside is ready to take the result
 			// if so, send it, and say that operands are ready
 			// to take new values
-			if(result_rdy == 1'b1) begin
-				result_val = 1;
-				operands_rdy = 1;
+                        result_val = 1;
+			if (result_rdy == 1'b1) begin
 				nextstate = IDLE;
 			// if not, stay in this state until the outside is ready for the result
 			end else begin
