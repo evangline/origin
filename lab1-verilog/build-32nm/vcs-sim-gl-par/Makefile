@@ -58,7 +58,7 @@ VCS_OPTS = -notice -PP -line +lint=all,noVCDE,noTFIPC,noIWU,noOUDPE +v2k -timesc
 vcs_sim = simv
 $(vcs_sim) : Makefile $(vsrcs) $(vclibsrcs)
 	$(VCS) $(VCS_OPTS) +incdir+$(srcdir) -o $(vcs_sim) \
-	       +define+CLOCK_PERIOD=$(dc_clock_period) \
+	       +define+CLOCK_PERIOD=$(vcs_clock_period) \
 	       +incdir+$(vclibdir) $(addprefix -v ,$(vclibsrcs)) \
                -v $(verilog_cells_dir)/cells.v $(vsrcs)
 #--------------------------------------------------------------------

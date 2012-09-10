@@ -37,13 +37,13 @@ set ICC_ENABLE_CHECKPOINT	  FALSE	       ;# TRUE|FALSE, set TRUE to perform chec
 
 set ICC_TIE_CELL_FLOW             FALSE        ;# TRUE|FALSE, set TRUE if you want TIE-CELLS to be used during opto instead of TIE-nets
 set ICC_LOW_POWER_PLACEMENT	  FALSE	       ;# TRUE|FALSE, when set to TRUE, set_power_options -low_power_placement will be set to true
-set LEAKAGE_POWER                 TRUE	       ;# TRUE|FALSE; set to TRUE to enable leakage optimization flow
+set LEAKAGE_POWER                 FALSE	       ;# TRUE|FALSE; set to TRUE to enable leakage optimization flow
 set DYNAMIC_POWER                 FALSE	       ;# TRUE|FALSE; set to TRUE to enable dynamic power optimization flow
 set DFT                           FALSE	       ;# TRUE|FALSE; set to TRUE to enable scan reordering flow
 # YUNSUP: changed for fast p&r
 set ICC_DBL_VIA                   FALSE        ;# TRUE|FALSE; set to TRUE to enable detail route wire spreading
 set ICC_FIX_ANTENNA               FALSE        ;# TRUE|FALSE: set to TRUE to enable antenna fixing
-set ADD_FILLER_CELL               FALSE        ;# TRUE|FALSE; set to TRUE to enable std cells filler insertion
+set ADD_FILLER_CELL               TRUE         ;# TRUE|FALSE; set to TRUE to enable std cells filler insertion
 # YUNSUP: changed for fast p&r
 set ICC_REDUCE_CRITICAL_AREA      FALSE        ;# TRUE|FALSE; set to TRUE to enable detail route wire spreading
 set ICC_CREATE_MODEL              FALSE        ;# TRUE|FALSE; used for ILM/FRAM creation for the blocks in HRM
