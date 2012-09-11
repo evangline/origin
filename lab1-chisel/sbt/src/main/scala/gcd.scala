@@ -15,10 +15,41 @@ class GCD_io extends Bundle() {
 }
 
 class GCD extends Component {
-  val io = new GCD_io();
+  val io = new GCD_io()
+  val A = Reg(resetVal = io.operands_bits_A)
+  val B = Reg(resetVal = io.operands_bits_B)
+  val state = Reg(resetVal = UFix(2,2)) 
+  val IDLE = UFix(2,2)
+  val CALC = UFix(0,2) 
+  val DONE = UFix(3,2)
+  io.operands_rdy := UFix(0)
+  io.result_val := UFix(0)
+  io.result_bits_data := UFix (0,16)
 
-  // Your code goes here...
+  //IDLE
+  when (state===IDLE){
+    when (io.operands_val === UFix(1)){
+      state:= CALC
+      A := io.operands_bits_A
+      B := io.operands_bits_B
+      io.operands_rdy:=UFix(0)}
+   io.operands_rdy:=UFix(1)}
+//    when (io.operands_val != UFix(1)) {io.operands_rdy:=UFix(1)}}
 
+  //CALC
+  when (state===CALC){
+    when(A>B){A:=A-B}
+    when(A<B){B:=B-A}
+    when(A-B===UFix(0)){state:= DONE
+      io.result_bits_data:=A}}
+
+  //DONE
+  when (state===DONE){
+      when (io.result_rdy === UFix(1)){
+         io.result_bits_data:=A
+//         io.operands_rdy := UFix(1)
+         io.result_val := UFix(1)
+         state := IDLE}}
+//  .otherwise {io.operands_rdy:=UFix(0)}
 }
-
 }
