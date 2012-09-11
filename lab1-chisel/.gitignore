@@ -1,0 +1,6 @@
+sbt/target
+sbt/chisel
+sbt/work
+sbt/project/target
+vlsi/generated-src
+emulator/generated-src

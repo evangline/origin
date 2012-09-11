@@ -1,0 +1,600 @@
+#@ # 
+#@ # Running fm_shell Version G-2012.06 for amd64 -- May 29, 2012
+#@ # Date:   Mon Sep 10 10:59:51 2012
+#@ # Run by: cs250-af@bcom16.EECS.Berkeley.EDU
+#@ 
+
+source /home/ff/cs250/tools/synopsys/fm/current/admin/setup/.synopsys_fm.setup
+#@ # -- Starting source /home/ff/cs250/tools/synopsys/fm/current/admin/setup/.synopsys_fm.setup
+
+#@ #
+#@ # .synopsys_fm.setup: Initialization File for Formality
+#@ #
+#@ 
+#@ 
+#@ #
+#@ # Enable stack trace output on fatal.  Not available for all architectures.
+#@ #
+#@ if { $sh_arch == "sparc" || $sh_arch == "sparcOS5" ||      $sh_arch == "hp700" || $sh_arch == "hpux10" } {
+#@   set_unix_variable SYNOPSYS_TRACE ""
+#@ }
+#@ 
+#@ #
+#@ # Variable settings
+#@ #
+#@ set sh_new_variable_message true
+#@ 
+#@ #
+#@ # Synopsys strongly recommends that you uncomment the following command
+#@ # in order to set sh_command_abbrev_mode to the value "Command-Line-Only".
+#@ # Command abbreviation is intended as an interactive convenience.  Using
+#@ # abbreviations in scripts can cause commands to fail in subsequent releases.
+#@ # 
+#@ #set sh_command_abbrev_mode "Command-Line-Only"
+#@ 
+#@ #
+#@ # Some useful aliases
+#@ #
+#@ alias list_commands		help
+#@ 
+#@ #
+#@ # The alias of q to quit is commented out.  Remove the comment 
+#@ # character if you want this alias.  Some users find that having 
+#@ # this particular alias causes problems when mixed with page-mode
+#@ # for reports - an accidental repeated 'q' not only cancels the
+#@ # output but exits the tool.
+#@ #
+#@ #alias q quit
+#@ # -- End source /home/ff/cs250/tools/synopsys/fm/current/admin/setup/.synopsys_fm.setup
+
+source -echo -verbose fm.tcl
+#@ # -- Starting source fm.tcl
+
+#@ source -echo -verbose dc_setup.tcl
+#@ # -- Starting source dc_setup.tcl
+
+#@ source -echo -verbose make_generated_vars.tcl
+#@ # -- Starting source make_generated_vars.tcl
+
+#@ set DESIGN_NAME                 "gcdGCDUnit_rtl";
+#@ set STRIP_PATH                  "gcdTestHarness_rtl/gcd";
+#@ set ADDITIONAL_SEARCH_PATH      "/home/ff/cs250/stdcells/synopsys-90nm/default/db /home/ff/cs250/install/vclib ../../../src";
+#@ set TARGET_LIBRARY_FILES        "cells.db cells_cg.db";
+#@ set MW_REFERENCE_LIB_DIRS       "/home/ff/cs250/stdcells/synopsys-90nm/default/mw/cells.mw";
+#@ set TECH_FILE                   "/home/ff/cs250/stdcells/synopsys-90nm/default/techfile/techfile.tf";
+#@ set MAP_FILE                    "/home/ff/cs250/stdcells/synopsys-90nm/default/techfile/tech2itf.map";
+#@ set TLUPLUS_MAX_FILE            "/home/ff/cs250/stdcells/synopsys-90nm/default/tluplus/max.tluplus";
+#@ set TLUPLUS_MIN_FILE            "/home/ff/cs250/stdcells/synopsys-90nm/default/tluplus/min.tluplus";
+#@ set ALIB_DIR                    "/home/ff/cs250/stdcells/synopsys-90nm/default/alib";
+#@ set RTL_SOURCE_FILES            "gcdGCDUnitCtrl.v gcdGCDUnitDpath.v gcdGCDUnit_rtl.v";
+#@ set DCRM_CONSTRAINTS_INPUT_FILE "constraints.tcl";
+#@ set REPORTS_DIR                 "reports";
+#@ set RESULTS_DIR                 "results";
+#@ set CLOCK_PERIOD                "0.9";
+#@ 
+#@ # -- End source make_generated_vars.tcl
+
+#@ source -echo -verbose common_setup.tcl
+#@ # -- Starting source common_setup.tcl
+
+#@ ##########################################################################################
+#@ # Variables common to all RM scripts
+#@ # Script: common_setup.tcl
+#@ # Version: D-2010.03-SP1 (May 24, 2010)
+#@ # Copyright (C) 2007-2010 Synopsys, Inc. All rights reserved.
+#@ ##########################################################################################
+#@ 
+#@ #YUNSUP: this is set by make_generated_vars.tcl
+#@ #set DESIGN_NAME                   ""  ;#  The name of the top-level design
+#@ 
+#@ set DESIGN_REF_DATA_PATH          ""  ;#  Absolute path prefix variable for library/design data.
+#@ #  Use this variable to prefix the common absolute path to
+#@ #  the common variables defined below.
+#@ #  Absolute paths are mandatory for hierarchical RM flow.
+#@ 
+#@ ##########################################################################################
+#@ # Hierarchical Flow Design Variables
+#@ ##########################################################################################
+#@ 
+#@ set HIERARCHICAL_DESIGNS           "" ;# List of hierarchical block design names "DesignA DesignB" ...
+#@ set HIERARCHICAL_CELLS             "" ;# List of hierarchical block cell instance names "u_DesignA u_DesignB" ...
+#@ 
+#@ ##########################################################################################
+#@ # Library Setup Variables
+#@ ##########################################################################################
+#@ 
+#@ # For the following variables, use a blank space to separate multiple entries
+#@ # Example: set TARGET_LIBRARY_FILES "lib1.db lib2.db lib3.db"
+#@ 
+#@ #YUNSUP: this is set by make_generated_vars.tcl
+#@ #set ADDITIONAL_SEARCH_PATH        ""  ;#  Additional search path to be added to the default search path
+#@ 
+#@ #YUNSUP: this is set by make_generated_vars.tcl
+#@ #set TARGET_LIBRARY_FILES          ""  ;#  Target technology logical libraries
+#@ set ADDITIONAL_LINK_LIB_FILES     ""  ;#  Extra link logical libraries not included in TARGET_LIBRARY_FILES
+#@ 
+#@ set MIN_LIBRARY_FILES             ""  ;#  List of max min library pairs "max1 min1 max2 min2 max3 min3"...
+#@ 
+#@ #YUNSUP: this is set by make_generated_vars.tcl
+#@ #set MW_REFERENCE_LIB_DIRS         ""  ;#  Milkyway reference libraries (include IC Compiler ILMs here)
+#@ 
+#@ set MW_REFERENCE_CONTROL_FILE     ""  ;#  Reference Control file to define the MW ref libs
+#@ 
+#@ #YUNSUP: this is set by make_generated_vars.tcl
+#@ #set TECH_FILE                     ""  ;#  Milkyway technology file
+#@ #set MAP_FILE                      ""  ;#  Mapping file for TLUplus
+#@ #set TLUPLUS_MAX_FILE              ""  ;#  Max TLUplus file
+#@ #set TLUPLUS_MIN_FILE              ""  ;#  Min TLUplus file
+#@ 
+#@ 
+#@ set MW_POWER_NET                "VDD" ;#
+#@ set MW_POWER_PORT               "VDD" ;#
+#@ set MW_GROUND_NET               "VSS" ;#
+#@ set MW_GROUND_PORT              "VSS" ;#
+#@ 
+#@ set MIN_ROUTING_LAYER            ""   ;# Min routing layer
+#@ set MAX_ROUTING_LAYER            ""   ;# Max routing layer
+#@ 
+#@ set LIBRARY_DONT_USE_FILE        ""   ;# Tcl file with library modifications for dont_use
+#@ 
+#@ ##########################################################################################
+#@ # Multi-Voltage Common Variables
+#@ #
+#@ # Define the following MV common variables for the RM scripts for multi-voltage flows.
+#@ # Use as few or as many of the following definitions as needed by your design.
+#@ ##########################################################################################
+#@ 
+#@ set PD1                          ""           ;# Name of power domain/voltage area  1
+#@ set PD1_CELLS                    ""           ;# Instances to include in power domain/voltage area 1
+#@ set VA1_COORDINATES              {}           ;# Coordinates for voltage area 1
+#@ set MW_POWER_NET1                "VDD1"       ;# Power net for voltage area 1
+#@ set MW_POWER_PORT1               "VDD"        ;# Power port for voltage area 1
+#@ 
+#@ set PD2                          ""           ;# Name of power domain/voltage area  2
+#@ set PD2_CELLS                    ""           ;# Instances to include in power domain/voltage area 2
+#@ set VA2_COORDINATES              {}           ;# Coordinates for voltage area 2
+#@ set MW_POWER_NET2                "VDD2"       ;# Power net for voltage area 2
+#@ set MW_POWER_PORT2               "VDD"        ;# Power port for voltage area 2
+#@ 
+#@ set PD3                          ""           ;# Name of power domain/voltage area  3
+#@ set PD3_CELLS                    ""           ;# Instances to include in power domain/voltage area 3
+#@ set VA3_COORDINATES              {}           ;# Coordinates for voltage area 3
+#@ set MW_POWER_NET3                "VDD3"       ;# Power net for voltage area 3
+#@ set MW_POWER_PORT3               "VDD"        ;# Power port for voltage area 3
+#@ 
+#@ set PD4                          ""           ;# Name of power domain/voltage area  4
+#@ set PD4_CELLS                    ""           ;# Instances to include in power domain/voltage area 4
+#@ set VA4_COORDINATES              {}           ;# Coordinates for voltage area 4
+#@ set MW_POWER_NET4                "VDD4"       ;# Power net for voltage area 4
+#@ set MW_POWER_PORT4               "VDD"        ;# Power port for voltage area 4
+#@ # -- End source common_setup.tcl
+
+#@ source -echo -verbose dc_setup_filenames.tcl
+#@ # -- Starting source dc_setup_filenames.tcl
+
+#@ #################################################################################
+#@ # Design Compiler Reference Methodology Filenames Setup
+#@ # Script: dc_setup_filenames.tcl
+#@ # Version: D-2010.03-SP1 (May 24, 2010)
+#@ # Copyright (C) 2007-2010 Synopsys, Inc. All rights reserved.
+#@ #################################################################################
+#@ 
+#@ #################################################################################
+#@ # Use this file to customize the filenames used in the Design Compiler
+#@ # Reference Methodology scripts.  This file is designed to be sourced at the
+#@ # beginning of the dc_setup.tcl file after sourcing the common_setup.tcl file.
+#@ #
+#@ # Note that the variables presented in this file depend on the type of flow
+#@ # selected when generating the reference methodology files.
+#@ #
+#@ # Example.
+#@ #    If you set DFT flow as FALSE, you will not see DFT related filename
+#@ #    variables in this file.
+#@ #
+#@ # When reusing this file for different flows or newer release, ensure that
+#@ # all the required filename variables are defined.  One way to do this is
+#@ # to source the default dc_setup_filenames.tcl file and then override the
+#@ # default settings as needed for your design.
+#@ #
+#@ # The default values are backwards compatible with older
+#@ # Design Compiler Reference Methodology releases.
+#@ #
+#@ # Note: Care should be taken when modifying the names of output files
+#@ #       that are used in other scripts or tools.
+#@ #################################################################################
+#@ 
+#@ #################################################################################
+#@ # General Flow Files
+#@ #################################################################################
+#@ 
+#@ ##########################
+#@ # Milkyway Library Names #
+#@ ##########################
+#@ 
+#@ set DCRM_MW_LIBRARY_NAME				${DESIGN_NAME}_LIB
+#@ set DCRM_FINAL_MW_CEL_NAME				${DESIGN_NAME}_DCT
+#@ 
+#@ ###############
+#@ # Input Files #
+#@ ###############
+#@ 
+#@ set DCRM_SDC_INPUT_FILE					${DESIGN_NAME}.sdc
+#@ #YUNSUP: this is set by make_generated_vars.tcl
+#@ #set DCRM_CONSTRAINTS_INPUT_FILE				${DESIGN_NAME}.constraints.tcl
+#@ 
+#@ ###########
+#@ # Reports #
+#@ ###########
+#@ 
+#@ set DCRM_CONSISTENCY_CHECK_ENV_FILE			${DESIGN_NAME}.compile_ultra.env
+#@ 
+#@ set DCRM_FINAL_QOR_REPORT				${DESIGN_NAME}.mapped.qor.rpt
+#@ set DCRM_FINAL_TIMING_REPORT				${DESIGN_NAME}.mapped.timing.rpt
+#@ set DCRM_FINAL_AREA_REPORT				${DESIGN_NAME}.mapped.area.rpt
+#@ set DCRM_FINAL_POWER_REPORT				${DESIGN_NAME}.mapped.power.rpt
+#@ set DCRM_FINAL_CLOCK_GATING_REPORT			${DESIGN_NAME}.mapped.clock_gating.rpt
+#@ 
+#@ ################
+#@ # Output Files #
+#@ ################
+#@ 
+#@ set DCRM_ELABORATED_DESIGN_DDC_OUTPUT_FILE 		${DESIGN_NAME}.elab.ddc
+#@ set DCRM_COMPILE_ULTRA_DDC_OUTPUT_FILE			${DESIGN_NAME}.compile_ultra.ddc
+#@ set DCRM_FINAL_DDC_OUTPUT_FILE				${DESIGN_NAME}.mapped.ddc
+#@ set DCRM_FINAL_VERILOG_OUTPUT_FILE			${DESIGN_NAME}.mapped.v
+#@ set DCRM_FINAL_SDC_OUTPUT_FILE				${DESIGN_NAME}.mapped.sdc
+#@ 
+#@ 
+#@ #################################################################################
+#@ # DCT Flow Files
+#@ #################################################################################
+#@ 
+#@ ###################
+#@ # DCT Input Files #
+#@ ###################
+#@ 
+#@ set DCRM_DCT_DEF_INPUT_FILE				${DESIGN_NAME}.def
+#@ set DCRM_DCT_FLOORPLAN_INPUT_FILE			${DESIGN_NAME}.fp
+#@ set DCRM_DCT_PHYSICAL_CONSTRAINTS_INPUT_FILE		${DESIGN_NAME}.physical_constraints.tcl
+#@ 
+#@ 
+#@ ###############
+#@ # DCT Reports #
+#@ ###############
+#@ 
+#@ set DCRM_DCT_PHYSICAL_CONSTRAINTS_REPORT		${DESIGN_NAME}.physical_constraints.rpt
+#@ 
+#@ set DCRM_DCT_FINAL_CONGESTION_REPORT			${DESIGN_NAME}.mapped.congestion.rpt
+#@ set DCRM_DCT_FINAL_CONGESTION_MAP_OUTPUT_FILE		${DESIGN_NAME}.mapped.congestion_map.png
+#@ set DCRM_DCT_FINAL_CONGESTION_MAP_WINDOW_OUTPUT_FILE	${DESIGN_NAME}.mapped.congestion_map_window.png
+#@ 
+#@ ####################
+#@ # DCT Output Files #
+#@ ####################
+#@ 
+#@ set DCRM_DCT_FLOORPLAN_OUTPUT_FILE			${DESIGN_NAME}.fp
+#@ 
+#@ set DCRM_DCT_FINAL_FLOORPLAN_OUTPUT_FILE		${DESIGN_NAME}.mapped.fp
+#@ set DCRM_DCT_FINAL_SPEF_OUTPUT_FILE			${DESIGN_NAME}.mapped.spef
+#@ set DCRM_DCT_FINAL_SDF_OUTPUT_FILE			${DESIGN_NAME}.mapped.sdf
+#@ 
+#@ 
+#@ #################################################################################
+#@ # Formality Flow Files
+#@ #################################################################################
+#@ 
+#@ set DCRM_SVF_OUTPUT_FILE 				${DESIGN_NAME}.mapped.svf
+#@ 
+#@ set FMRM_UNMATCHED_POINTS_REPORT			${DESIGN_NAME}.fmv_unmatched_points.rpt
+#@ 
+#@ set FMRM_FAILING_SESSION_NAME				${DESIGN_NAME}
+#@ set FMRM_FAILING_POINTS_REPORT				${DESIGN_NAME}.fmv_failing_points.rpt
+#@ set FMRM_ABORTED_POINTS_REPORT				${DESIGN_NAME}.fmv_aborted_points.rpt
+#@ set FMRM_ANALYZE_POINTS_REPORT				${DESIGN_NAME}.fmv_analyze_points.rpt
+#@ # -- End source dc_setup_filenames.tcl
+
+#@ 
+#@ #################################################################################
+#@ # Design Compiler Top-Down Reference Methodology Setup
+#@ # Script: dc_setup.tcl
+#@ # Version: D-2010.03-SP1 (May 24, 2010)
+#@ # Copyright (C) 2007-2010 Synopsys, Inc. All rights reserved.
+#@ #################################################################################
+#@ 
+#@ 
+#@ #################################################################################
+#@ # Setup Variables
+#@ #
+#@ # Modify settings in this section to customize your DC-RM run.
+#@ #################################################################################
+#@ 
+#@ # Portions of dc_setup.tcl may be used by other tools so do check for DC only commands
+#@ if {$synopsys_program_name == "dc_shell"}  {
+#@ 
+#@   # Use the set_host_options command to enable multicore optimization to improve runtime.
+#@   # Note that this feature has special usage and license requirements.  Please refer
+#@   # to the "Support for Multicore Technology" section in the Design Compiler User Guide
+#@   # for multicore usage guidelines.
+#@   # Note: This is a DC Ultra feature and is not supported in DC Expert.
+#@ 
+#@   # set_host_options -max_cores 4
+#@ 
+#@   # Change alib_library_analysis_path to point to a central cache of analyzed libraries
+#@   # to save some runtime and disk space.  The following setting only reflects the
+#@   # the default value and should be changed to a central location for best results.
+#@ 
+#@   set_app_var alib_library_analysis_path ${ALIB_DIR}
+#@ 
+#@   # Add any additional DC variables needed here
+#@ }
+#@ 
+#@ #YUNSUP: this is set by make_generated_vars.tcl
+#@ #set RTL_SOURCE_FILES  ""      ;# Enter the list of source RTL files if reading from RTL
+#@ 
+#@ # The following variables are used by scripts in dc_scripts to direct the location
+#@ # of the output files
+#@ 
+#@ #YUNSUP: this is set by make_generated_vars.tcl
+#@ #set REPORTS_DIR "reports"
+#@ #set RESULTS_DIR "results"
+#@ 
+#@ file mkdir ${REPORTS_DIR}
+#@ file mkdir ${RESULTS_DIR}
+#@ 
+#@ #################################################################################
+#@ # Library Setup
+#@ #
+#@ # This section is designed to work with the settings from common_setup.tcl
+#@ # without any additional modification.
+#@ #################################################################################
+#@ 
+#@ # Define all the library variables shared by all the front-end tools
+#@ 
+#@ set_app_var search_path ". ${ADDITIONAL_SEARCH_PATH} $search_path"
+#@ 
+#@ 
+#@ # Milkyway variable settings
+#@ 
+#@ # Make sure to define the following Milkyway library variables
+#@ # mw_logic1_net, mw_logic0_net and mw_design_library are needed by write_milkyway
+#@ 
+#@ set_app_var mw_logic1_net ${MW_POWER_NET}
+#@ set_app_var mw_logic0_net ${MW_GROUND_NET}
+#@ 
+#@ set mw_reference_library ${MW_REFERENCE_LIB_DIRS}
+#@ set mw_design_library ${DCRM_MW_LIBRARY_NAME}
+#@ 
+#@ set mw_site_name_mapping [list CORE unit Core unit core unit]
+#@ 
+#@ # The remainder of the setup below should only be performed in Design Compiler
+#@ if {$synopsys_program_name == "dc_shell"}  {
+#@ 
+#@   # Include all libraries for multi-Vth leakage power optimization
+#@ 
+#@   set_app_var target_library ${TARGET_LIBRARY_FILES}
+#@   set_app_var synthetic_library dw_foundation.sldb
+#@   set_app_var link_library "* $target_library $ADDITIONAL_LINK_LIB_FILES $synthetic_library"
+#@ 
+#@   # Set min libraries if they exist
+#@   foreach {max_library min_library} $MIN_LIBRARY_FILES {
+#@     set_min_library $max_library -min_version $min_library
+#@   }
+#@ 
+#@   if {[shell_is_in_topographical_mode]} {
+#@ 
+#@     # Only create new Milkyway design library if it doesn't already exist
+#@     if {![file isdirectory $mw_design_library ]} {
+#@       create_mw_lib   -technology $TECH_FILE                       -mw_reference_library $mw_reference_library                       $mw_design_library
+#@     } else {
+#@       # If Milkyway design library already exists, ensure that it is consistent with specified Milkyway reference libraries
+#@       set_mw_lib_reference $mw_design_library -mw_reference_library $mw_reference_library
+#@     }
+#@ 
+#@     open_mw_lib     $mw_design_library
+#@ 
+#@     check_library
+#@ 
+#@     set_tlu_plus_files -max_tluplus $TLUPLUS_MAX_FILE                        -min_tluplus $TLUPLUS_MIN_FILE                        -tech2itf_map $MAP_FILE
+#@ 
+#@     check_tlu_plus_files
+#@ 
+#@   }
+#@ 
+#@   #################################################################################
+#@   # Library Modifications
+#@   #
+#@   # Apply library modifications here after the libraries are loaded.
+#@   #################################################################################
+#@ 
+#@   if {[file exists [which ${LIBRARY_DONT_USE_FILE}]]} {
+#@     source -echo -verbose ${LIBRARY_DONT_USE_FILE}
+#@   }
+#@ }
+#@ 
+#@ # -- End source dc_setup.tcl
+
+#@ 
+#@ #################################################################################
+#@ # Formality Verification Script for
+#@ # Design Compiler Reference Methodology Script for Top-Down Flow
+#@ # Script: fm.tcl
+#@ # Version: D-2010.03-SP1 (May 24, 2010)
+#@ # Copyright (C) 2007-2010 Synopsys, Inc. All rights reserved.
+#@ #################################################################################
+#@ 
+#@ #################################################################################
+#@ # Synopsys Auto Setup Mode
+#@ #################################################################################
+#@ 
+#@ set_app_var synopsys_auto_setup true
+#@ 
+#@ # Note: The Synopsys Auto Setup mode is less conservative than the Formality default mode,
+#@ # and is more likely to result in a successful verification out-of-the-box.
+#@ #
+#@ # Using the Setting this variable will change the default values of the variables listed here below
+#@ # You may change any of these variables back to their default settings to be more conservative.
+#@ # Uncomment the appropriate lines below to revert back to their default settings:
+#@ 
+#@ # set_app_var hdlin_ignore_parallel_case true
+#@ # set_app_var hdlin_ignore_full_case true
+#@ # set_app_var verification_verify_directly_undriven_output true
+#@ # set_app_var hdlin_ignore_embedded_configuration false
+#@ # set_app_var svf_ignore_unqualified_fsm_information true
+#@ # set_app_var signature_analysis_allow_subset_match true
+#@ 
+#@ # Other variables with changed default values are described in the next few sections.
+#@ 
+#@ #################################################################################
+#@ # Setup for handling undriven signals in the design
+#@ #################################################################################
+#@ 
+#@ # The Synopsys Auto Setup mode sets undriven signals in the reference design to
+#@ # "0" or "BINARY" (as done by DC), and the undriven signals in the impl design are
+#@ # forced to "BINARY".  This is done with the following setting:
+#@ # set_app_var verification_set_undriven_signals synthesis
+#@ # Uncomment the next line to revert back to the more conservative default setting:
+#@ 
+#@ # set_app_var verification_set_undriven_signals BINARY:X
+#@ 
+#@ #################################################################################
+#@ # Setup for simulation/synthesis mismatch messaging
+#@ #################################################################################
+#@ 
+#@ # The Synopsys Auto Setup mode will produce warning messages, not error messages,
+#@ # when Formality encounters potential differences between simulation and synthesis.
+#@ # Uncomment the next line to revert back to the more conservative default setting:
+#@ 
+#@ # set_app_var hdlin_error_on_mismatch_message true
+#@ 
+#@ #################################################################################
+#@ # Setup for Clock-gating
+#@ #################################################################################
+#@ 
+#@ # The Synopsys Auto Setup mode, along with the SVF file, will appropriately set the clock-gating variable.
+#@ # Otherwise, the user will need to notify Formality of clock-gating by uncommenting the next line:
+#@ 
+#@ # set_app_var verification_clock_gate_hold_mode any
+#@ 
+#@ #################################################################################
+#@ # Setup for instantiated DesignWare or function-inferred DesignWare components
+#@ #################################################################################
+#@ 
+#@ # Set this variable ONLY if your design contains instantiated DW or function-inferred DW
+#@ 
+#@ #set_app_var hdlin_dwroot "" ;# Enter the pathname to the top-level of the DC tree
+#@ 
+#@ #################################################################################
+#@ # Setup for handling missing design modules
+#@ #################################################################################
+#@ 
+#@ # If the design has missing blocks or missing components in both the reference and implementation designs,
+#@ # uncomment the following variable so that Formality can complete linking each design:
+#@ 
+#@ # set_app_var hdlin_unresolved_modules black_box
+#@ 
+#@ #################################################################################
+#@ # Read in the SVF file(s)
+#@ #################################################################################
+#@ 
+#@ # Set this variable to point to individual SVF file(s) or to a directory containing SVF files.
+#@ 
+#@ set_svf ${RESULTS_DIR}/${DCRM_SVF_OUTPUT_FILE}
+#@ 
+#@ #################################################################################
+#@ # Read in the libraries
+#@ #################################################################################
+#@ 
+#@ foreach tech_lib "${TARGET_LIBRARY_FILES} ${ADDITIONAL_LINK_LIB_FILES}" {
+#@   read_db -technology_library $tech_lib
+#@ }
+#@ 
+#@ #################################################################################
+#@ # Read in the Reference Design as verilog/vhdl source code
+#@ #################################################################################
+#@ 
+#@ read_verilog -r ${RTL_SOURCE_FILES} -work_library WORK
+#@ 
+#@ set_top r:/WORK/${DESIGN_NAME}
+#@ 
+#@ #################################################################################
+#@ # Read in the Implementation Design from DC-RM result
+#@ #
+#@ # Choose the format that is used in your flow.
+#@ #################################################################################
+#@ 
+#@ # For Verilog
+#@ #read_verilog -i ${RESULTS_DIR}/${DCRM_FINAL_VERILOG_OUTPUT_FILE}
+#@ 
+#@ # OR
+#@ 
+#@ # For .ddc
+#@ read_ddc -i ${RESULTS_DIR}/${DCRM_FINAL_DDC_OUTPUT_FILE}
+#@ 
+#@ # OR
+#@ 
+#@ # For Milkyway
+#@ 
+#@ # The -no_pg option should be used for MW designs from DC to prevent automatic
+#@ # linking to power aware versions of the cells.
+#@ 
+#@ # read_milkyway -i -no_pg -libname ${mw_design_library} -cell_name ${DCRM_FINAL_MW_CEL_NAME} ${mw_design_library}
+#@ 
+#@ set_top i:/WORK/${DESIGN_NAME}
+#@ 
+#@ #         OR for Milkyway
+#@ # set_top i:/${mw_design_library}/${DESIGN_NAME}
+#@ 
+#@ 
+#@ #################################################################################
+#@ # Configure constant ports
+#@ #
+#@ # When using the Synopsys Auto Setup mode, the SVF file will convey information
+#@ # automatically to Formality about how to disable scan.
+#@ #
+#@ # Otherwise, manually define those ports whose inputs should be assumed constant
+#@ # during verification.
+#@ #
+#@ # Example command format:
+#@ #
+#@ #   set_constant -type port i:/WORK/${DESIGN_NAME}/<port_name> <constant_value>
+#@ #
+#@ #################################################################################
+#@ 
+#@ #################################################################################
+#@ # Report design statistics, design read warning messages, and user specified setup
+#@ #################################################################################
+#@ 
+#@ # report_setup_status will create a report showing all design statistics,
+#@ # design read warning messages, and all user specified setup.  This will allow
+#@ # the user to check all setup before proceeding to run the more time consuming
+#@ # commands "match" and "verify".
+#@ 
+#@ # report_setup_status
+#@ 
+#@ #################################################################################
+#@ # Match compare points and report unmatched points
+#@ #################################################################################
+#@ 
+#@ match
+#@ 
+#@ report_unmatched_points > ${REPORTS_DIR}/${FMRM_UNMATCHED_POINTS_REPORT}
+#@ 
+#@ 
+#@ #################################################################################
+#@ # Verify and Report
+#@ #
+#@ # If the verification is not successful, the session will be saved and reports
+#@ # will be generated to help debug the failed or inconclusive verification.
+#@ #################################################################################
+#@ 
+#@ if { ![verify] }  {
+#@   save_session -replace ${REPORTS_DIR}/${FMRM_FAILING_SESSION_NAME}
+#@   report_failing_points > ${REPORTS_DIR}/${FMRM_FAILING_POINTS_REPORT}
+#@   report_aborted > ${REPORTS_DIR}/${FMRM_ABORTED_POINTS_REPORT}
+#@   # Use analyze_points to help determine the next step in resolving verification
+#@   # issues. It runs heuristic analysis to determine if there are potential causes
+#@   # other than logical differences for failing or hard verification points.
+#@   analyze_points -all > ${REPORTS_DIR}/${FMRM_ANALYZE_POINTS_REPORT}
+#@ }
+#@ 
+#@ exit

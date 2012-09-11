@@ -1,0 +1,26 @@
+****************************************
+Report : annotated_parasitics
+	-check
+	-internal_nets
+	-boundary_nets
+Design : gcdGCDUnit_rtl
+Version: D-2010.06-SP1
+Date   : Mon Sep 10 13:02:33 2012
+****************************************
+
+                    |         |         |         |   RC    |   Not   |
+Net Type            |  Total  | Lumped  |  RC pi  | network |Annotated|
+--------------------+---------+---------+---------+---------+---------+
+Internal nets       |         |         |         |         |         |
+  - Pin to pin nets |     462 |       0 |       0 |     461 |       1 |
+  - Driverless nets |       1 |       0 |       0 |       0 |       1 |
+  - Loadless nets   |       1 |       0 |       0 |       0 |       1 |
+--------------------+---------+---------+---------+---------+---------+
+Boundary/port nets  |         |         |         |         |         |
+  - Pin to pin nets |      54 |       0 |       0 |      54 |       0 |
+  - Driverless nets |       0 |       0 |       0 |       0 |       0 |
+  - Loadless nets   |       0 |       0 |       0 |       0 |       0 |
+--------------------+---------+---------+---------+---------+---------+
+                    |     518 |       0 |       0 |     515 |       3 |
+
+1

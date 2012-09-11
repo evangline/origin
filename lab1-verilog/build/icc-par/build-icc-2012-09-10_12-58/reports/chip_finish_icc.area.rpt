@@ -1,0 +1,45 @@
+ 
+****************************************
+Report : area
+Design : gcdGCDUnit_rtl
+Version: F-2011.09-ICC-SP4
+Date   : Mon Sep 10 13:00:51 2012
+****************************************
+
+Library(s) Used:
+
+    saed90nm_typ (File: /home/ff/cs250/stdcells/synopsys-90nm/default/db/cells.db)
+    saed90nm_typ_cg (File: /home/ff/cs250/stdcells/synopsys-90nm/default/db/cells_cg.db)
+
+Number of ports:                           56
+Number of nets:                            99
+Number of cells:                           37
+Number of combinational cells:             35
+Number of sequential cells:                 0
+Number of buf/inv:                         35
+Number of references:                       5
+
+Combinational area:       3044.966421
+Noncombinational area:    1124.352417
+Net Interconnect area:     183.587792  
+
+Total cell area:          4169.318838
+Total area:               4352.906629
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area          Local cell area
+                                  ------------------  ---------------------------- 
+Hierarchical cell                 Absolute   Percent  Combi-     Noncombi-  Black
+                                  Total      Total    national   national   boxes   Design
+--------------------------------  ---------  -------  ---------  ---------  ------  ------------------------------------------
+gcdGCDUnit_rtl                    4169.3188    100.0   414.7200     0.0000  0.0000  gcdGCDUnit_rtl
+GCDctrl0                           258.0480      6.2   208.2816    49.7664  0.0000  gcdGCDUnitCtrl
+GCDdpath0                         3496.5508     83.9  2421.9648  1032.1920  0.0000  gcdGCDUnitDpath_W16
+GCDdpath0/clk_gate_A_reg_reg        21.1970      0.5     0.0000    21.1970  0.0000  SNPS_CLOCK_GATE_HIGH_gcdGCDUnitDpath_W16_1
+GCDdpath0/clk_gate_B_reg_reg        21.1970      0.5     0.0000    21.1970  0.0000  SNPS_CLOCK_GATE_HIGH_gcdGCDUnitDpath_W16_0
+--------------------------------  ---------  -------  ---------  ---------  ------  ------------------------------------------
+Total                                                 3044.9664  1124.3524  0.0000
+
+1

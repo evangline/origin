@@ -1,0 +1,41 @@
+****************************************
+Report : Averaged Power
+	-hierarchy
+	-verbose
+	-nosplit
+Design : GCD
+Version: D-2010.06-SP1
+Date   : Tue Sep 11 00:06:03 2012
+****************************************
+
+Library(s) Used:
+
+    saed90nm_typ (File: /home/ff/cs250/stdcells/synopsys-90nm/default/db/cells.db)
+    saed90nm_typ_cg (File: /home/ff/cs250/stdcells/synopsys-90nm/default/db/cells_cg.db)
+
+
+Operating Conditions: TYPICAL   Library: saed90nm_typ
+Wire Load Model Mode: enclosed
+
+Cell               Design       Wire_model  Library       Selection_type
+--------------------------------------------------------------------------------
+                   GCD          8000        saed90nm_typ  automatic-by-area
+clk_gate_A_reg     SNPS_CLOCK_GATE_HIGH_GCD_0 ForQA saed90nm_typ automatic-by-area
+clk_gate_B_reg     SNPS_CLOCK_GATE_HIGH_GCD_1 ForQA saed90nm_typ automatic-by-area
+
+Power-specific unit information :
+    Voltage Units = 1 V
+    Capacitance Units = 1 pf
+    Time Units = 1 ns
+    Dynamic Power Units = 1 W
+    Leakage Power Units = 1 W
+
+
+
+                                      Switch   Int      Leak      Total
+Hierarchy                             Power    Power    Power     Power    %
+--------------------------------------------------------------------------------
+GCD                                   5.13e-05 1.74e-04 2.57e-05  2.51e-04 100.0
+  clk_gate_A_reg (SNPS_CLOCK_GATE_HIGH_GCD_0) 1.65e-06 9.49e-06 1.04e-07 1.12e-05   4.5
+  clk_gate_B_reg (SNPS_CLOCK_GATE_HIGH_GCD_1) 3.10e-06 9.05e-06 1.03e-07 1.23e-05   4.9
+1

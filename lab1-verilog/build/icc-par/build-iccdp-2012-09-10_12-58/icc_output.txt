@@ -1,0 +1,3104 @@
+##########################################################################################
+## ICC Design Planning RM
+## flat_dp: Virtual Flat Placement, PNS, PNA, IPO, Proto Route, and Explore Runs
+# Version: D-2010.03-SP2 (July 6, 2010)
+# Copyright (C) 2007-2010 Synopsys All rights reserved.
+##########################################################################################
+source -echo icc_setup.tcl
+##########################################################################################
+# Variables for ICC-RM, ICC DP-RM, and ICC Hierarchical-RM
+# Script: icc_setup.tcl
+# Version: D-2010.03-SP2 (July 6, 2010)
+# Copyright (C) 2007-2010 Synopsys, Inc. All rights reserved.
+##########################################################################################
+# sourcing the common variables
+source -echo -verbose make_generated_vars.tcl
+set DESIGN_NAME                 "gcdGCDUnit_rtl";
+gcdGCDUnit_rtl
+set STRIP_PATH                  "gcdTestHarness_rtl/gcd";
+gcdTestHarness_rtl/gcd
+set ADDITIONAL_SEARCH_PATH      "/home/ff/cs250/stdcells/synopsys-90nm/default/db /home/ff/cs250/stdcells/synopsys-90nm/default/mw ../../dc-syn/current-dc/results";
+/home/ff/cs250/stdcells/synopsys-90nm/default/db /home/ff/cs250/stdcells/synopsys-90nm/default/mw ../../dc-syn/current-dc/results
+set TARGET_LIBRARY_FILES        "cells.db cells_cg.db";
+cells.db cells_cg.db
+set MW_REFERENCE_LIB_DIRS       "/home/ff/cs250/stdcells/synopsys-90nm/default/mw/cells.mw";
+/home/ff/cs250/stdcells/synopsys-90nm/default/mw/cells.mw
+set TECH_FILE                   "/home/ff/cs250/stdcells/synopsys-90nm/default/techfile/techfile.tf";
+/home/ff/cs250/stdcells/synopsys-90nm/default/techfile/techfile.tf
+set MAP_FILE                    "/home/ff/cs250/stdcells/synopsys-90nm/default/techfile/tech2itf.map";
+/home/ff/cs250/stdcells/synopsys-90nm/default/techfile/tech2itf.map
+set TLUPLUS_MAX_FILE            "/home/ff/cs250/stdcells/synopsys-90nm/default/tluplus/max.tluplus";
+/home/ff/cs250/stdcells/synopsys-90nm/default/tluplus/max.tluplus
+set TLUPLUS_MIN_FILE            "/home/ff/cs250/stdcells/synopsys-90nm/default/tluplus/min.tluplus";
+/home/ff/cs250/stdcells/synopsys-90nm/default/tluplus/min.tluplus
+set REPORTS_DIR                 "reports";
+reports
+set RESULTS_DIR                 "results";
+results
+set FILLER_CELL                 "SHFILL128 SHFILL64 SHFILL3 SHFILL2 SHFILL1";
+SHFILL128 SHFILL64 SHFILL3 SHFILL2 SHFILL1
+set REPORTING_EFFORT            "OFF";
+OFF
+set PNR_EFFORT                  "low";
+low
+set ICC_FLOORPLAN_CEL            "init_design_icc";
+init_design_icc
+source -echo common_setup.tcl
+##########################################################################################
+# Variables common to all RM scripts
+# Script: common_setup.tcl
+# Version: D-2010.03-SP2 (July 6, 2010)
+# Copyright (C) 2007-2010 Synopsys All rights reserved.
+##########################################################################################
+#YUNSUP: this is set by make_generated_vars.tcl
+#set DESIGN_NAME                   ""  ;#  The name of the top-level design
+set DESIGN_REF_DATA_PATH          ""  ;#  Absolute path prefix variable for library/design data.
+#  Use this variable to prefix the common absolute path to
+#  the common variables defined below.
+#  Absolute paths are mandatory for hierarchical RM flow.
+##########################################################################################
+# Hierarchical Flow Design Variables
+##########################################################################################
+set HIERARCHICAL_DESIGNS           "" ;# List of hierarchical block design names "DesignA DesignB" ...
+set HIERARCHICAL_CELLS             "" ;# List of hierarchical block cell instance names "u_DesignA u_DesignB" ...
+##########################################################################################
+# Library Setup Variables
+##########################################################################################
+# For the following variables, use a blank space to separate multiple entries
+# Example: set TARGET_LIBRARY_FILES "lib1.db lib2.db lib3.db"
+#YUNSUP: this is set by make_generated_vars.tcl
+#set ADDITIONAL_SEARCH_PATH        ""  ;#  Additional search path to be added to the default search path
+#YUNSUP: this is set by make_generated_vars.tcl
+#set TARGET_LIBRARY_FILES          ""  ;#  Target technology logical libraries
+set ADDITIONAL_LINK_LIB_FILES     ""  ;#  Extra link logical libraries not included in TARGET_LIBRARY_FILES
+set MIN_LIBRARY_FILES             ""  ;#  List of max min library pairs "max1 min1 max2 min2 max3 min3"...
+#YUNSUP: this is set by make_generated_vars.tcl
+#set MW_REFERENCE_LIB_DIRS         ""  ;#  Milkyway reference libraries (include IC Compiler ILMs here)
+set MW_REFERENCE_CONTROL_FILE     ""  ;#  Reference Control file to define the MW ref libs
+#YUNSUP: this is set by make_generated_vars.tcl
+#set TECH_FILE                     ""  ;#  Milkyway technology file
+#set MAP_FILE                      ""  ;#  Mapping file for TLUplus
+#set TLUPLUS_MAX_FILE              ""  ;#  Max TLUplus file
+#set TLUPLUS_MIN_FILE              ""  ;#  Min TLUplus file
+set MW_POWER_NET                "VDD" ;#
+set MW_POWER_PORT               "VDD" ;#
+set MW_GROUND_NET               "VSS" ;#
+set MW_GROUND_PORT              "VSS" ;#
+set MIN_ROUTING_LAYER            ""   ;# Min routing layer
+set MAX_ROUTING_LAYER            ""   ;# Max routing layer
+set LIBRARY_DONT_USE_FILE        ""   ;# Tcl file with library modifications for dont_use
+##########################################################################################
+# Multi-Voltage Common Variables
+#
+# Define the following MV common variables for the RM scripts for multi-voltage flows.
+# Use as few or as many of the following definitions as needed by your design.
+##########################################################################################
+set PD1                          ""           ;# Name of power domain/voltage area  1
+set PD1_CELLS                    ""           ;# Instances to include in power domain/voltage area 1
+set VA1_COORDINATES              {}           ;# Coordinates for voltage area 1
+set MW_POWER_NET1                "VDD1"       ;# Power net for voltage area 1
+set MW_POWER_PORT1               "VDD"        ;# Power port for voltage area 1
+set PD2                          ""           ;# Name of power domain/voltage area  2
+set PD2_CELLS                    ""           ;# Instances to include in power domain/voltage area 2
+set VA2_COORDINATES              {}           ;# Coordinates for voltage area 2
+set MW_POWER_NET2                "VDD2"       ;# Power net for voltage area 2
+set MW_POWER_PORT2               "VDD"        ;# Power port for voltage area 2
+set PD3                          ""           ;# Name of power domain/voltage area  3
+set PD3_CELLS                    ""           ;# Instances to include in power domain/voltage area 3
+set VA3_COORDINATES              {}           ;# Coordinates for voltage area 3
+set MW_POWER_NET3                "VDD3"       ;# Power net for voltage area 3
+set MW_POWER_PORT3               "VDD"        ;# Power port for voltage area 3
+set PD4                          ""           ;# Name of power domain/voltage area  4
+set PD4_CELLS                    ""           ;# Instances to include in power domain/voltage area 4
+set VA4_COORDINATES              {}           ;# Coordinates for voltage area 4
+set MW_POWER_NET4                "VDD4"       ;# Power net for voltage area 4
+set MW_POWER_PORT4               "VDD"        ;# Power port for voltage area 4
+###############################
+## General ICC variables
+###############################
+set ICC_INPUT_CEL                 "${DESIGN_NAME}_DCT" ;# CEL created in DCT
+set PNET_METAL_LIST               ""           ;# List of metals in the design to be used for (partial) pnet options
+set PNET_METAL_LIST_COMPLETE      ""           ;# List of metals in the design to be used for (complete) pnet options
+set ICC_IN_DONT_USE_FILE          "$LIBRARY_DONT_USE_FILE" ;# file of master don't use commands
+set ICC_FIX_HOLD_PREFER_CELLS     ""           ;# Syntax: library/cell_name - Example: slow/DLY1X1 slow/DLY1X4
+set ICC_MAX_AREA                  ""           ;# max_area value used during area optimization
+set AREA_CRITICAL_RANGE_PRE_CTS   ""           ;# area critical range use during area opto during place_opt
+set AREA_CRITICAL_RANGE_POST_CTS  ""           ;# area critical range use during area opto during post CTS opt
+set AREA_CRITICAL_RANGE_POST_RT   ""           ;# area critical range use during area opto during route_opt
+set POWER_CRITICAL_RANGE_PRE_CTS  ""           ;# power critical range use during area opto during place_opt
+set POWER_CRITICAL_RANGE_POST_CTS ""           ;# power critical range use during area opto during post CTS opt
+set POWER_CRITICAL_RANGE_POST_RT  ""           ;# power critical range use during area opto during route_opt
+set ICC_NUM_CPUS                  1            ;# number of cpus for distributed processing;
+;# specify a number greater than 1 to enable it for classic router based route_opt and insert_redundant_via commands
+set ICC_NUM_CORES                 1            ;# number of cores on the local host for multicore support;
+;# specify a number greater than 1 to enable it for the core commands
+# YUNSUP: changed for fast p&r
+set ICC_REPORTING_EFFORT          ${REPORTING_EFFORT}        ;# OFF|MED|LOW when set to OFF,no reporting is done; when set to LOW, report_timing/report_qor are skipped in clock_opt_cts
+# YUNSUP: changed for fast p&r
+set ICC_SANITY_CHECK              FALSE         ;# TRUE|FALSE, set TRUE to perform check_physical_design
+set ICC_ENABLE_CHECKPOINT         FALSE        ;# TRUE|FALSE, set TRUE to perform checkpoint strategy for optimization commands
+;# Please ensure there's enough disk space before enabling this feature. Refer to set_checkpoint_strategy man page for details.
+set ICC_TIE_CELL_FLOW             FALSE        ;# TRUE|FALSE, set TRUE if you want TIE-CELLS to be used during opto instead of TIE-nets
+set ICC_LOW_POWER_PLACEMENT       FALSE        ;# TRUE|FALSE, when set to TRUE, set_power_options -low_power_placement will be set to true
+set LEAKAGE_POWER                 FALSE        ;# TRUE|FALSE; set to TRUE to enable leakage optimization flow
+set DYNAMIC_POWER                 FALSE        ;# TRUE|FALSE; set to TRUE to enable dynamic power optimization flow
+set DFT                           FALSE        ;# TRUE|FALSE; set to TRUE to enable scan reordering flow
+# YUNSUP: changed for fast p&r
+set ICC_DBL_VIA                   FALSE        ;# TRUE|FALSE; set to TRUE to enable detail route wire spreading
+set ICC_FIX_ANTENNA               FALSE        ;# TRUE|FALSE: set to TRUE to enable antenna fixing
+set ADD_FILLER_CELL               TRUE         ;# TRUE|FALSE; set to TRUE to enable std cells filler insertion
+# YUNSUP: changed for fast p&r
+set ICC_REDUCE_CRITICAL_AREA      FALSE        ;# TRUE|FALSE; set to TRUE to enable detail route wire spreading
+set ICC_CREATE_MODEL              FALSE        ;# TRUE|FALSE; used for ILM/FRAM creation for the blocks in HRM
+# YUNSUP: read from ddc
+set ICC_INIT_DESIGN_INPUT         "DDC"         ;# VERILOG|DDC|MW; specify starting point
+# YUNSUP: make our own floorplan
+set ICC_FLOORPLAN_INPUT           "CREATE"        ;# DEF|FP_FILE|CREATE|USER_FILE|SKIP
+set ADD_METAL_FILL                "ICC"        ;# NONE|ICC|HERCULES|ICV; will start metal fill
+;# ICC : will start timing driven metal fill using ICC's command
+;# HERCULES : will start signoff metal fill using Hercules
+;# ICV : will start signoff metal fill using ICV
+# YUNSUP: changed for fast p&r
+set PLACE_OPT_EFFORT             ${PNR_EFFORT}      ;# low|medium|high; choose effort level for place_opt command
+# YUNSUP: changed for fast p&r
+set ROUTE_OPT_EFFORT             ${PNR_EFFORT}      ;# low|medium|high; choose effort level for route_opt command
+set PLACE_OPT_CONGESTION         TRUE          ;# TRUE|FALSE; set TRUE to enable congestion removal during place_opt
+###############################
+## Cellname variables
+###############################
+#YUNSUP: this is set by make_generated_vars.tcl
+#set ICC_FLOORPLAN_CEL            "init_design_icc"
+set ICC_PLACE_OPT_CEL            "place_opt_icc"
+set ICC_CLOCK_OPT_CTS_CEL        "clock_opt_cts_icc"
+set ICC_CLOCK_OPT_PSYN_CEL       "clock_opt_psyn_icc"
+set ICC_CLOCK_OPT_ROUTE_CEL      "clock_opt_route_icc"
+set ICC_ROUTE_CEL                "route_icc"
+set ICC_ROUTE_OPT_CEL            "route_opt_icc"
+set ICC_CHIP_FINISH_CEL          "chip_finish_icc"
+set ICC_SIGNOFF_CEL              "signoff_icc"
+set ICC_SIGNOFF_OPT_CEL          "signoff_opt_icc"
+set ICC_METAL_FILL_CEL           "metal_fill_icc"
+set ICC_ECO_STARTING_CEL         $ICC_METAL_FILL_CEL         ;# CEL to run ECO on (contains original pre-tape-out database)
+set ICC_ECO_CEL                  "eco_icc"                   ;# CEL after running the ECO (contains new eco netlist)
+set ICC_FOCAL_OPT_STARTING_CEL   $ICC_CHIP_FINISH_CEL        ;# CEL to run focal_opt on
+set ICC_FOCAL_OPT_CEL            "focal_opt_icc"             ;# CEL after running focal_opt
+set ICC_DP_CREATE_PLANGROUPS_CEL "create_plangroups_dp"
+set ICC_DP_ROUTEABILITY_ON_PLANGROUPS_CEL "routeability_on_plangroups_dp"
+set ICC_DP_PIN_ASSIGNMENT_BUDGETING_CEL  "pin_assignment_budgeting_dp"
+set ICC_DP_COMMIT_CEL            "commit_dp"
+###############################
+## Timing variables
+###############################
+set ICC_APPLY_RM_DERATING               TRUE    ;# TRUE|FALSE; when set to FALSE, the derating is assumed to be in the SDC
+set ICC_LATE_DERATING_FACTOR            1.01    ;# Late derating factor, used for both data and clock
+set ICC_EARLY_DERATING_FACTOR           0.99    ;# Early derating factor, used for both data and clock
+set ICC_APPLY_RM_UNCERTAINTY_PRECTS     FALSE   ;# TRUE|FALSE; when set to TRUE, user uncertainty will be replaced by $ICC_UNCERTAINTY_PRECTS
+set ICC_APPLY_RM_UNCERTAINTY_POSTCTS    FALSE   ;# TRUE|FALSE; when set to TRUE, user uncertainty will be replaced by $ICC_UNCERTAINTY_POSTCTS
+set ICC_UNCERTAINTY_PRECTS_FILE         ""      ;# pre-cts uncertainty file used during place_opt
+set ICC_UNCERTAINTY_POSTCTS_FILE        ""      ;# post-cts uncertainty file used during post cts opto and route_opt
+set ICC_MAX_TRANSITION                  ""      ;# max_transition value set on the design
+set ICC_CRITICAL_RANGE                  ""      ;# critical_range set on the design ; default = 50% of each clock period
+set ICC_MAX_FANOUT                      ""      ;# max_fanout value set on the design
+set ICC_FULL_ARNOLDI                    FALSE   ;# TRUE|FALSE; when set to TRUE, will enable full arnoldi, i.e. no net filtering
+###############################
+## Floorplan Input variables                    
+###############################
+set ICC_IN_DEF_FILE                     ""      ;# Complete floorplan file in DEF format
+set ICC_IN_FLOORPLAN_FILE               ""      ;# Complete floorplan file generated by write_floorplan
+set ICC_IN_FLOORPLAN_USER_FILE          ""      ;# Complete floorplan file generated by user ;this file will simply be sourced
+set ICC_IN_TDF_FILE                     ""      ;# TDF file which contains pad or pin information
+set ICC_IN_PHYSICAL_ONLY_CELLS_CREATION_FILE "" ;# a file to include physical only cell creation commands to be sourced
+;# e.g. create_cell {vdd1left vdd1right vdd1top vdd1bottom} pvdi
+set ICC_IN_PHYSICAL_ONLY_CELLS_CONNECTION_FILE "" ;# a file to include physical only cell connection commands to be sourced
+;# e.g. derive_pg_connection -power_net $MW_POWER_NET -power_pin $MW_POWER_PORT -ground_net $MW_GROUND_NET -ground_pin $MW_GROUND_PORT -cells {vdd1left vdd1right vdd1top vdd1bottom}
+set ICC_PHYSICAL_CONSTRAINTS_FILE       ""      ;# Can you used to add extra floorplan info  -sourced after floorplan creation
+set CUSTOM_CONNECT_PG_NETS_SCRIPT       ""      ;# If not defined as "", source this file
+###############################
+## MV Input variables
+###############################
+set AO_INSTANCES                        {}      ;# list of instances that require AO synthesis (e.g. {TOP/INST2, TOP/INST3}
+set ICC_DP_AUTO_CREATE_VA               FALSE   ;# TRUE|FALSE; if TRUE, automatically creates voltage area based on user specified utilization
+set CUSTOM_POWER_SWITCH_SCRIPT          ""      ;# script to define the headers_footers and connect the sleep pin
+set CUSTOM_CREATE_VA_SCRIPT             ""      ;# script to define the voltage area creation commands for your design
+set CUSTOM_SECONDARY_POWER_ROUTE_SCRIPT ""      ;# script to define the pre_route_standard_cells command for the AO/RR cells.
+set RR_CELLS                            ""      ;# e.g. "RSD" if each Retention Register contains RSD in its name
+set CUSTOM_LOAD_ASCII_UPF_SCRIPT_LIST   ""      ;# for upf flow with ascii inputs, provide a list of scripts for each power domain and top
+set ICC_UPF_PM_CELL_EXISTING            FALSE   ;# TRUE|FALSE; specify if design contains pre-existing power_management cells
+set ICC_UPF_PM_CELL_INSERTION           FALSE   ;# TRUE|FALSE; if TRUE, runs insert_mv_cells
+###############################
+## MCMM Input variables
+###############################
+set ICC_MCMM_SCENARIOS_FILE             ""      ;# file containing all scenario definitions - example in rm_icc_scripts/mcmm.scenarios.example
+set ICC_MCMM_PLACE_OPT_SCENARIOS        ""      ;# list of scenarios to be made active during place_opt; optional; by default all scenarios will be made active
+set ICC_MCMM_CLOCK_OPT_PSYN_SCENARIOS   ""      ;# list of scenarios to be made active during post CTS opto (pre-route); optional; by default all scenarios will be made active
+set ICC_MCMM_CLOCK_OPT_ROUTE_SCENARIOS  ""      ;# list of scenarios to be made active during clock routing; optional; by default all scenarios will be made active
+set ICC_MCMM_ROUTE_SCENARIOS            ""      ;# list of scenarios to be made active during signal routing; optional; by default all scenarios will be made active
+set ICC_MCMM_ROUTE_OPT_SCENARIOS        ""      ;# list of scenarios to be made active during route_opt; optional; by default all scenarios will be made active
+set ICC_MCMM_CHIP_FINISH_SCENARIOS      ""      ;# list of scenarios to be made active during route_opt post chipfinish; optional; by default all scenarios will be made active
+set ICC_MCMM_METAL_FILL_SCENARIOS       ""      ;# list of scenarios to be made active during metal filling; optional; by default all scenarios will be made active
+set ICC_MCMM_PLACE_OPT_HIGH_CAP         FALSE   ;# TRUE|FALSE : if TRUE, enables High Capacity MCMM mode for place_opt (Adaptive MCMM)
+set ICC_MCMM_CLOCK_OPT_HIGH_CAP         FALSE   ;# TRUE|FALSE : if TRUE, enables High Capacity MCMM mode for post cts opto ( pre-route) (Adaptive MCMM)
+###############################
+## ECO FLOW VARIABLES
+###############################
+set ICC_ECO_FLOW                        "NONE"  ;# NONE|UNCONSTRAINED|FREEZE_SILICON
+;# UNCONSTRAINED : NO spare cell insertion ; cells can be added (pre tapeout)
+;# FREEZE_SILICON : spare cell insertion/freeze silicon ECO
+set ICC_SPARE_CELL_FILE                 ""      ;# TCL script to insert the spare cells, e.g. :
+;# insert_spare_cells -lib_cell {INV8 DFF1} -cell_name spares -num_instances 300
+set ICC_ECO_NETLIST                     ""      ;# new verilog netlist containing the ECO changes
+###############################
+## GATE MERGE/SPLIT
+###############################
+set ICC_CTS_CLOCK_GATE_MERGE           FALSE                         ;# set to TRUE to enable clock gate merging for power reduction
+set ICC_CTS_CLOCK_GATE_SPLIT           FALSE                         ;# set to TRUE to enable clock gate splitting for reducing enable pin violations
+###############################
+## EMULATION TLU+ FILES
+###############################
+set TLUPLUS_MAX_EMULATION_FILE         ""  ;#  Max TLUplus file
+set TLUPLUS_MIN_EMULATION_FILE         ""  ;#  Min TLUplus file
+###############################
+## PNG creation
+###############################
+set ICC_CREATE_GR_PNG                  FALSE  ;# set to TRUE to create the Global route congestion map PNG after initial route
+###############################
+## SIGNOFF_OPT Input variables
+###############################
+set PT_DIR ""                          ;# path to PT bin directory
+set PT_SDC_FILE ""                     ;# optional file in case PT has different SDC that what is available in the ICC database
+set STARRC_DIR ""                      ;# path to StarRC bin directory
+set STARRC_MAX_NXTGRD ""               ;# MAX NXTGRD file
+set STARRC_MIN_NXTGRD ""               ;# MIN NXTGRD file
+set STARRC_MAP_FILE "$MAP_FILE"        ;# NXTGRD mapping file, defaults to TLUPlus mapping file, but could be different
+set ICC_SIGNOFF_OPT_CHECK_CORRELATION_PREROUTE_SCRIPT "" ;# a file to be sourced to run check_signoff_correlation at end of place_opt_icc step;
+;# example - rm_icc_scripts/signoff_opt_check_correlation_preroute_icc.example.tcl
+set ICC_SIGNOFF_OPT_CHECK_CORRELATION_POSTROUTE_SCRIPT "" ;# a file to be sourced to run at check_signoff_correlation end of route_opt_icc step;
+;# example - rm_icc_scripts/signoff_opt_check_correlation_postroute_icc.example.tcl
+###############################
+## SIGNOFF Physical variables
+###############################
+## Hercules - ensure env variable HERCULES_HOME_DIR is set and that hercules is included in path in shell ICC executed from
+## ICV Metal Fill - ensure env variable PRIMEYIELD_HOME_DIR is set and that icv is included in path in shell ICC executed from
+## ICV DRC - ensure env variable ICV_HOME_DIR is set and that icv is included in path in shell ICC executed from
+set SIGNOFF_FILL_RUNSET ""             ;# ICV|Hercules runset for signoff_metal_fill
+set SIGNOFF_DRC_RUNSET  ""             ;# ICV|Hercules runset for signoff_drc
+set SIGNOFF_MAPFILE     ""             ;# Mapping file for ICV|Hercules signoff_metal_fill|signoff_drc
+set SIGNOFF_DRC_ENGINE  "HERCULES"     ;# ICV|HERCULES
+set SIGNOFF_METAL_FILL_TIMING_DRIVEN FALSE  ;# TRUE|FALSE : set this to TRUE to enable timing driven for ICV metal fill         
+set TIMING_PRESERVE_SLACK_SETUP "0.1"  ;# float : setup slack threshold for wire_spreading/widening/timing driven ICV metal fill; default 0.1
+set TIMING_PRESERVE_SLACK_HOLD "0"     ;# float : hold slack threshold for wire_spreading/widening; default 0
+###############################
+## Clock Tree variables
+###############################
+set ICC_CTS_RULE_NAME           "iccrm_clock_double_spacing" ;# specify clock routing rule
+;# default will be 2x NDR applied to all layers
+set ICC_CTS_LAYER_LIST          ""              ;# clock tree layers, usually M3 and above
+;# e.g. set ICC_CTS_LAYER_LIST "M3 M4 M5"
+set ICC_CTS_REF_LIST            ""              ;# cells ;# used for CTS
+;#   space deliminated list: cell1 cell2
+set ICC_CTS_REF_DEL_INS_ONLY    ""              ;# cells for CTS delay insertion :
+;#   space deliminated list: cell1 cell2
+set ICC_CTS_REF_SIZING_ONLY     ""              ;# cells for CTS that are for sizing only
+set ICC_CTS_INTERCLOCK_BALANCING        FALSE   ;# set this to TRUE to perform ICDB
+set ICC_CTS_INTERCLOCK_BALANCING_OPTIONS_FILE   ""      ;# set here the interclock_delay options
+set ICC_CTS_UPDATE_LATENCY      FALSE           ;# set this to TRUE to perform clock latency update post CTS
+set ICC_CTS_LATENCY_OPTIONS_FILE        ""      ;# define here the latency adjustment options options
+set ICC_POST_CLOCK_ROUTE_CTO    FALSE           ;# set to TRUE if you want to run Post route CTO after clock routing
+###############################
+## Chipfinishing variables
+###############################
+set ICC_METAL_FILL_SPACE           2                   ;# space amount used during ICC's insert_metal_fill command
+set ICC_METAL_FILL_TIMING_DRIVEN  TRUE                 ;# enables timing driven metal fill for ICC's insert_metal_fill
+## end cap cels
+set ICC_H_CAP_CEL                  ""           ;# defines the horizontal CAP CELL libcell
+set ICC_V_CAP_CEL                  ""           ;# defines the vertical CAP CELL libcell (for the Well Proximity Effect)
+## antenna fixing
+set ANTENNA_RULES_FILE           ""             ;# defines the antenna rules
+set ICC_USE_DIODES               FALSE          ;# TRUE|FALSE : control variable to allow diodes to be inserted both by the
+;# insert_port_protection_diodes command as well as the router
+set ICC_ROUTING_DIODES           ""             ;# space separated list of diode names
+set ICC_PORT_PROTECTION_DIODE    ""             ;# diode name for insert_port_protection_diodes
+;# Format = library_name/diode_name
+## filler cell insertion
+set FILLER_CELL_METAL            ""             ;# space separated list of filler cells
+set FILLER_CELL                  ""             ;# ADD_FILLER_CELL - space separated
+## double via insertion
+set ICC_DBL_VIA_FLOW_EFFORT      LOW            ;# LOW|MED|HIGH  - MED enables concurrent soft-rule dbl via insertion
+;# HIGH runs another dbl via, timing driven, after chipfinishing
+set ICC_CUSTOM_DBL_VIA_DEFINE_SCRIPT ""         ;# script to define the dbl via definitions
+## focal opt
+set ICC_FOCAL_OPT_HOLD_VIOLS     ""             ;# filename containing the hold violations
+set ICC_FOCAL_OPT_SETUP_VIOLS    ""             ;# filename containing the setup violations
+set ICC_FOCAL_OPT_DRC_NET_VIOLS  ""             ;# filename containing the DRC net violations
+set ICC_FOCAL_OPT_DRC_PIN_VIOLS  ""             ;# filename containing the DRC pin violations
+set ICC_FOCAL_OPT_XTALK_VIOLS    ""             ;# filename containing the crosstalk violations
+######################################################################################################################
+#####################   ICC DESIGN PLANNING SPECIFIC (variables for ICC DP-RM and ICC Hierarchical-RM)  ##############
+######################################################################################################################
+#######################################################################
+## Common variables (applied to both ICC DP RM and ICC Hierarchical RM)
+#######################################################################
+set ICC_DP_VERBOSE_REPORTING            FALSE           ;# TRUE|FALSE; generate additional reports before placement
+set ICC_DP_SET_HFNS_AS_IDEAL_THRESHOLD  ""              ;# integer; specify a threshold to set nets with fanout larger than it as ideal nets
+set ICC_DP_SET_MIXED_AS_IDEAL           TRUE            ;# TRUE|FALSE; set mixed clock/signal paths as ideal nets
+set ICC_DP_FIX_MACRO_LIST               ""              ;# ""|skip|"a_list_of_macros"; unfix all macos OR skip fix OR fix specified macros before placement
+set CUSTOM_ICC_DP_PLACE_CONSTRAINT_SCRIPT ""            ;# Put your set_keepout_margin and fp_set_macro_placement_constraint in this file
+set ICC_DP_PLACEMENT_VA_NET_WEIGHT      1               ;# valid values are from 0 to 9; applied for MV designs and used by set_fp_placement_strategy -voltage_area_interface_net_weight
+set CUSTOM_ICC_DP_PREROUTE_STD_CELL_SCRIPT ""           ;# File to perform customized preroute_standard_cell commands
+set ICC_DP_USE_ZROUTE                   TRUE            ;# TRUE|FALSE; use zroute for ICC DP RM and pin assignment of ICC Hierarchical RM
+## PNS and PNA control variables
+set CUSTOM_ICC_DP_PNS_CONSTRAINT_SCRIPT ""              ;# File to add PNS constraints which is loaded before running PNS
+set PNS_POWER_NETS                      "${MW_POWER_NET} ${MW_GROUND_NET}" ;# Target nets for PNS; syntax is "your_power_net your_ground_net"
+set PNS_POWER_BUDGET                    1000            ;# Unit in milliWatts; default is 1000
+set PNS_VOLTAGE_SUPPLY                  1.5             ;# Unit in Volts; default is 1.5
+#YUNSUP: add virtual rail layer
+set PNS_VIRTUAL_RAIL_LAYER              "M1"              ;# Specify the metal layer you want to use as virtual rail
+set PNS_OUTPUT_DIR                      "./pna_output"  ;# Output directory for PNS and PNA output files
+###################################################
+## ICC Hierarchical RM specific variables
+###################################################
+set ICC_SKIP_IN_BLOCK_IMPLEMENTATION    FALSE           ;# TRUE|FALSE; set TRUE to disable "Creating the physical MV objects" and "MTCMOS CELL INSTANTIATION"
+;# sections in init_design_icc.tcl if you have already done so on full chip level
+set MW_ILM_LIBS                         ""              ;# add ILMs for block level FRAMs not used by DCT
+set BUDGETING_SDC_OUTPUT_DIR            "./sdc"         ;# budgeting SDC output directory; default is "./sdc"
+set ICC_DP_PLAN_GROUPS          "$HIERARCHICAL_CELLS"   ;# full module names from which plan groups will be created
+;#   space deliminated list: "top/A top/B top/C"
+;# default to $HIERARCHICAL_CELLS from common_setup.tcl if using DCT
+set ICC_DP_PLANGROUP_FILE               ""              ;# floorplan file containing plan group creation and location which should be the output of write_floorplan
+set ICC_DP_CTP                          FALSE           ;# TRUE|FALSE; set TRUE to enable clock tree planning; please uncomment the section in hierarchical_dp.tcl first
+set ICC_DP_CTP_ANCHOR_CEL               ""              ;# anchor cell for clock tree planning (anchor cell is required if you uncomment clock tree planning in scripts);
+;#   cell master of one mid-sized buffer
+set ICC_DP_ALLOW_FEEDTHROUGH            FALSE           ;# TRUE|FALSE; allow feedthrough creation during pin assignment
+set CUSTOM_ICC_DP_PNS_SCRIPT            ""              ;# customized PNS script; replacing PNS section in scripts
+set CUSTOM_ICC_DP_PNA_SCRIPT            ""              ;# customized PNA script; replacing PNA section in scripts
+## DFT-aware hierarchical design planning variables
+set ICC_DP_DFT_FLOW                     FALSE           ;# TRUE|FALSE; enable DFT-aware hierarchical design planning flow; requires ICC_IN_FULL_CHIP_SCANDEF_FILE
+set ICC_IN_FULL_CHIP_SCANDEF_FILE "$DESIGN_NAME.mapped.expanded.scandef"                
+;# ASCII full-chip SCANDEF file for DFT-aware hierarchical design planning flow (ICC_DP_DFT_FLOW)
+;# it is used for hierarchical design planning phase; not needed for block level implementations
+###################################################
+## ICC DP RM (Flat) specific variables
+###################################################
+## explore mode: flow control variables
+#YUNSUP: don't explore floorplans
+set ICC_DP_EXPLORE_MODE                 FALSE   ;# TRUE|FALSE; turn on exploration mode
+set ICC_DP_EXPLORE_STYLE                default         ;# valid options are: default | placement_only | no_pns_pna | no_ipo
+;# default: place -> pns/pna -> ipo -> final groute,snapshot,QOR,timing,and outputs
+;# placement_only: skips pns/pna and ipo from default | no_pns_pna: skips pna/pns from default
+;# | no_ipo: skips ipo from default
+set ICC_DP_EXPLORE_SAVE_CEL_EACH_STEP   FALSE           ;# TRUE|FALSE; save 3 additional CEL after placement, ipo, and pns in explore mode (requires more disk space)
+set ICC_DP_EXPLORE_REPORTING_EACH_STEP  FALSE           ;# TRUE|FALSE; generate QoR snapshot and timing report after each step (longer run time)
+set ICC_DP_EXPLORE_USE_GLOBAL_ROUTE     FALSE           ;# TRUE|FALSE; use route_global OR route_fp_proto (default); if ICC_DP_USE_ZROUTE is true, route_zrt_global will be used
+set ICC_DP_EXPLORE_SAVE_CEL_AFTER_GROUTE TRUE           ;# TRUE|FALSE; save 2 additional CEL after global route: one after placement and one at the end
+set ICC_DP_EXPLORE_CUSTOM_PG_SCRIPT     ""              ;# string; script to be loaded to create customized PG straps after placement in explore mode;
+;# valid only if ICC_DP_EXPLORE_STYLE is placement_only or no_pns_pna
+## explore mode: additional PNS control variables
+set PNS_TARGET_VOLTAGE_DROP             250             ;# Unit in milliVolts. Tool default is 10% of PNS_POWER_BUDGET
+set PNS_BLOCK_MODE                      FALSE           ;# TRUE|FALSE; specify if the design is block or top level; It turns on correspondant options in PNS and PNA
+set PNS_PAD_MASTERS                     ""              ;# Only for top level design with power pads. Specify cell masters for power pads, e.g. "pv0i.FRAM pv0a.FRAM"
+set PNS_PAD_INSTANCE_FILE               ""              ;# Only for top level design with power pads. Specify the file with a list of power pad instances
+set PNS_PAD_MASTER_FILE                 ""              ;# Only for top level design with power pads. Specify the file with a list of power pad masters
+## Please provide only one of PNS_PAD_MASTERS, OR PNS_PAD_INSTANCE_FILE, OR PNS_PAD_MASTER_FILE
+##########################################################################################
+#####################      NO NEED TO CHANGE IF DC-RM IS USED BEFORE          ##############
+##########################################################################################
+set ICC_IN_VERILOG_NETLIST_FILE "$DESIGN_NAME.mapped.v" ;#1 to n verilog input files, spaced by blanks
+set ICC_IN_SDC_FILE             "$DESIGN_NAME.mapped.sdc"
+set ICC_IN_DDC_FILE             "$DESIGN_NAME.mapped.ddc"
+set ICC_IN_UPF_FILE             "$DESIGN_NAME.mapped.upf"
+set ICC_IN_SCAN_DEF_FILE        "$DESIGN_NAME.mapped.scandef"
+set MW_DESIGN_LIBRARY           "${DESIGN_NAME}_LIB"    ;# milkyway design library
+##########################################################################################
+#########################     USAGE OF ABOVE VARIABLES      ##############################
+#########################   DO NOT CHANGE BELOW THIS LINE   ##############################
+##########################################################################################
+set ICC_IN_SAIF_FILE            "$DESIGN_NAME.saif"     ;# SAIF file for dynamic power opto
+set ICC_SAIF_INSTANCE_NAME      $DESIGN_NAME            ;# the instance in the SAIF file containing the switching activity
+set REPORTS_DIR                 "reports"               ;# Directory to write reports.
+set RESULTS_DIR                 "results"               ;# Directory to write output data files
+set REPORTS_DIR_INIT_DESIGN                     $REPORTS_DIR
+set REPORTS_DIR_PLACE_OPT                       $REPORTS_DIR
+set REPORTS_DIR_CLOCK_OPT_CTS                   $REPORTS_DIR
+set REPORTS_DIR_CLOCK_OPT_PSYN                  $REPORTS_DIR
+set REPORTS_DIR_CLOCK_OPT_ROUTE                 $REPORTS_DIR
+set REPORTS_DIR_ROUTE                           $REPORTS_DIR
+set REPORTS_DIR_ROUTE_OPT                       $REPORTS_DIR
+set REPORTS_DIR_CHIP_FINISH                     $REPORTS_DIR
+set REPORTS_DIR_ECO                             $REPORTS_DIR
+set REPORTS_DIR_FOCAL_OPT                       $REPORTS_DIR
+set REPORTS_DIR_SIGNOFF_OPT                     $REPORTS_DIR
+set REPORTS_DIR_METAL_FILL                      $REPORTS_DIR
+set REPORTS_DIR_DP                              $REPORTS_DIR
+set REPORTS_DIR_DP_CREATE_PLANGROUPS            $REPORTS_DIR
+set REPORTS_DIR_DP_ROUTEABILITY_ON_PLANGROUPS   $REPORTS_DIR
+set REPORTS_DIR_DP_PIN_ASSIGNMENT_BUDGETING     $REPORTS_DIR
+set REPORTS_DIR_DP_COMMIT                       $REPORTS_DIR
+set REPORTS_DIR_DP_PREPARE_BLOCK                $REPORTS_DIR
+set REPORTS_DIR_FORMALITY                       $REPORTS_DIR
+if { ! [file exists $REPORTS_DIR_INIT_DESIGN] } { file mkdir $REPORTS_DIR_INIT_DESIGN }
+if { ! [file exists $REPORTS_DIR_PLACE_OPT] } { file mkdir $REPORTS_DIR_PLACE_OPT }
+if { ! [file exists $REPORTS_DIR_CLOCK_OPT_CTS] } { file mkdir $REPORTS_DIR_CLOCK_OPT_CTS }
+if { ! [file exists $REPORTS_DIR_CLOCK_OPT_PSYN] } { file mkdir $REPORTS_DIR_CLOCK_OPT_PSYN }
+if { ! [file exists $REPORTS_DIR_CLOCK_OPT_ROUTE] } { file mkdir $REPORTS_DIR_CLOCK_OPT_ROUTE }
+if { ! [file exists $REPORTS_DIR_ROUTE] } { file mkdir $REPORTS_DIR_ROUTE }
+if { ! [file exists $REPORTS_DIR_ROUTE_OPT] } { file mkdir $REPORTS_DIR_ROUTE_OPT }
+if { ! [file exists $REPORTS_DIR_CHIP_FINISH] } { file mkdir $REPORTS_DIR_CHIP_FINISH }
+if { ! [file exists $REPORTS_DIR_ECO] } { file mkdir $REPORTS_DIR_ECO }
+if { ! [file exists $REPORTS_DIR_FOCAL_OPT] } { file mkdir $REPORTS_DIR_FOCAL_OPT }
+if { ! [file exists $REPORTS_DIR_SIGNOFF_OPT] } { file mkdir $REPORTS_DIR_SIGNOFF_OPT }
+if { ! [file exists $REPORTS_DIR_METAL_FILL] } { file mkdir $REPORTS_DIR_METAL_FILL }
+if { ! [file exists $REPORTS_DIR_DP] } { file mkdir $REPORTS_DIR_DP }
+if { ! [file exists $REPORTS_DIR_DP_CREATE_PLANGROUPS] } { file mkdir $REPORTS_DIR_DP_CREATE_PLANGROUPS }
+if { ! [file exists $REPORTS_DIR_DP_ROUTEABILITY_ON_PLANGROUPS] } { file mkdir $REPORTS_DIR_DP_ROUTEABILITY_ON_PLANGROUPS }
+if { ! [file exists $REPORTS_DIR_DP_PIN_ASSIGNMENT_BUDGETING] } { file mkdir $REPORTS_DIR_DP_PIN_ASSIGNMENT_BUDGETING }
+if { ! [file exists $REPORTS_DIR_DP_COMMIT] } { file mkdir $REPORTS_DIR_DP_COMMIT }
+if { ! [file exists $REPORTS_DIR_DP_PREPARE_BLOCK] } { file mkdir $REPORTS_DIR_DP_PREPARE_BLOCK }
+if { ! [file exists $REPORTS_DIR_FORMALITY] } { file mkdir $REPORTS_DIR_FORMALITY }
+## Logical libraries
+set_app_var search_path ". ./rm_icc_scripts ./rm_icc_zrt_scripts ./rm_icc_dp_scripts $ADDITIONAL_SEARCH_PATH $search_path"
+set_app_var target_library      "$TARGET_LIBRARY_FILES"
+set_app_var link_library        "* $TARGET_LIBRARY_FILES $ADDITIONAL_LINK_LIB_FILES"
+if { ! [file exists $RESULTS_DIR] } {
+  file mkdir $RESULTS_DIR
+}
+if { ! [file exists $REPORTS_DIR] } {
+  file mkdir $REPORTS_DIR
+}
+if {$synopsys_program_name == "icc_shell"} {
+
+## Min max library relationships
+## Not common for MCMM setup, but can be used also for MCMM
+if {$MIN_LIBRARY_FILES != "" } {
+  foreach {max_library min_library} $MIN_LIBRARY_FILES {
+    set_min_library $max_library -min_version $min_library
+  }
+}
+
+## Reference libraries
+if { ![file exists [which $MW_REFERENCE_CONTROL_FILE]]} {
+ if {[file exists $MW_DESIGN_LIBRARY/lib]} {
+   set_mw_lib_reference $MW_DESIGN_LIBRARY -mw_reference_library "$MW_REFERENCE_LIB_DIRS $MW_ILM_LIBS"
+ }
+}
+
+## PD4 is not always used
+if {![info exists PD4]} {set PD4 ""}
+
+
+## Avoiding too many messages
+set_message_info -id PSYN-040 -limit 10 ;# Dont_touch for fixed cells
+set_message_info -id PSYN-087 -limit 10 ;# Port inherits its location from pad pin
+set_message_info -id LINT-8   -limit 10 ;# input port is unloaded
+
+set_app_var check_error_list "$check_error_list LINK-5 PSYN-375"
+
+source check_icc_rm_values.tcl
+
+}
+
+------------------- Internal Reference Library Settings -----------------
+
+Library    /work/cs250-af/lab1-verilog/build/icc-par/build-iccdp-2012-09-10_12-58/gcdGCDUnit_rtl_LIB
+  Reference    /home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr
+
+
+------------------- Control File Reference Library Settings -----------
+
+Library    /work/cs250-af/lab1-verilog/build/icc-par/build-iccdp-2012-09-10_12-58/gcdGCDUnit_rtl_LIB
+  Reference    /home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr
+-------------------------------------------------------------------------
+
+#################################################################################
+source proc_explore.tcl
+gui_set_current_task -name {Design Planning}
+open_mw_lib $MW_DESIGN_LIBRARY
+{gcdGCDUnit_rtl_LIB}
+copy_mw_cel -from $ICC_FLOORPLAN_CEL -to flat_dp
+1
+open_mw_cel flat_dp
+Warning: Conflict unit found: MW tech file capacitance unit is pF; Main Library capacitance unit is fF. (IFS-007)
+Warning: Conflict unit found: MW tech file resistance unit is kOhm; Main Library resistance unit is MOhm. (IFS-007)
+Information: Opened "flat_dp.CEL;1" from "/work/cs250-af/lab1-verilog/build/icc-par/build-iccdp-2012-09-10_12-58/gcdGCDUnit_rtl_LIB" library. (MWUI-068)
+{flat_dp}
+link
+1
+source common_placement_settings_icc.tcl
+        Loading :                /work/cs250-af/lab1-verilog/build/icc-par/build-iccdp-2012-09-10_12-58/common_placement_settings_icc.tcl
+source common_optimization_settings_icc.tcl
+        Loading :                /work/cs250-af/lab1-verilog/build/icc-par/build-iccdp-2012-09-10_12-58/common_optimization_settings_icc.tcl
+Loading db file '/home/ff/cs250/stdcells/synopsys-90nm/default/db/cells.db'
+Loading db file '/home/ff/cs250/stdcells/synopsys-90nm/default/db/cells_cg.db'
+Loading db file '/home/ff/cs250/tools/synopsys/icc/current/libraries/syn/gtech.db'
+Information: linking reference library : /home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr. (PSYN-878)
+Warning: The 'RSDFFNSRASRX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASRX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFSRARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFSRARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSDNENX8' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSDNX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSDNX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSDNX4' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSDNX8' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPENCLX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPENCLX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPENCLX4' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFNARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFNARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFSRSSRX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFSRSSRX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFSRX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFSRX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASRNX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASRNX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASRQX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASRQX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPX4' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPX8' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFNSRARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFNSRARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+
+  Linking design 'gcdGCDUnit_rtl'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  * (5 designs)               flat_dp.CEL, etc
+  saed90nm_typ (library)      /home/ff/cs250/stdcells/synopsys-90nm/default/db/cells.db
+  saed90nm_typ_cg (library)   /home/ff/cs250/stdcells/synopsys-90nm/default/db/cells_cg.db
+
+Load global CTS reference options from NID to stack
+Warning: Starting from the 2011.09 release, the command set_power_options will no longer be supported (OBS-001)
+Warning: The set_power_options command is retired in the F-2011.09 release. (PWR-808)
+Warning: Starting from the 2011.09 release, the command set_power_options will no longer be supported (OBS-001)
+Warning: The set_power_options command is retired in the F-2011.09 release. (PWR-808)
+Warning: Starting from the 2011.09 release, the command set_power_options will no longer be supported (OBS-001)
+Warning: The set_power_options command is retired in the F-2011.09 release. (PWR-808)
+Warning: Starting from the 2011.09 release, the command set_power_options will no longer be supported (OBS-001)
+Warning: The set_power_options command is retired in the F-2011.09 release. (PWR-808)
+## (Optional) Set ideal network on nets with fanout larger than the specified threshold
+if {$ICC_DP_SET_HFNS_AS_IDEAL_THRESHOLD != ""} {
+        set hf_nets [all_high_fanout -nets -threshold $ICC_DP_SET_HFNS_AS_IDEAL_THRESHOLD]
+        if { $hf_nets != "" } {
+                redirect /dev/null {set_load 0 -subtract_pin_load $hf_nets}
+                redirect /dev/null {set_ideal_network -no_propagate $hf_nets}
+        }
+}
+## (Optional) Set ideal network on mixed clock/signal paths with high fanout; this will be removed in clock_opt_psyn_icc.tcl
+if {$ICC_DP_SET_MIXED_AS_IDEAL} {set_ideal_network [all_fanout -flat -clock_tree]}
+Information: The design has horizontal rows, and Y-symmetry has been used for sites. (MWDC-217)
+Floorplan loading succeeded.
+Information: Updating graph... (UID-83)
+1
+## Additional reporting before the major steps
+if {$ICC_DP_VERBOSE_REPORTING} {
+        check_design -summary > ${REPORTS_DIR_DP}/flat_dp.check_design.rpt
+        report_net_fanout -threshold 50 > ${REPORTS_DIR_DP}/flat_dp.high_fanout.rpt
+}
+########################################################################################
+## Set Placement Constraints
+########################################################################################
+## You can control if you want to unfix macros before placement:
+#       set ICC_DP_FIX_MACRO_LIST ""            : unfix all macros;
+#                                                 it performs remove_dont_touch_placement on macros
+#       set ICC_DP_FIX_MACRO_LIST skip          : skip unfix of macros; retain existing fix status;
+#                                                 it change macro fix status
+#       set ICC_DP_FIX_MACRO_LIST {a list}      : fix specified macros and unfix the others; useful if you want to preserve certain macros locations
+#                                                 it performs remove_dont_touch_placement and then set_dont_touch_placement on specified macros
+if {[all_macro_cells] != ""} {
+
+        if {$ICC_DP_FIX_MACRO_LIST eq ""} {
+                remove_dont_touch_placement [all_macro_cells]
+        } elseif {$ICC_DP_FIX_MACRO_LIST eq "skip"} {
+                echo "remove_dont_touch_placement for macros is skipped"
+        } else {
+                remove_dont_touch_placement [all_macro_cells]
+                set_dont_touch_placement $ICC_DP_FIX_MACRO_LIST}
+
+}
+## You can customize padding and location preference by loading a file
+## Below are examples for the kind of commands to put in the file using set_keepout_margin and set_fp_macro_array
+#       set_keepout_margin -type soft -all_macros -outer {10 10 10 10}
+#       set_fp_macro_array -name array1 -align_edge t -elements {macro_1 macro_2 macro_3}
+if {[file exists [which $CUSTOM_ICC_DP_PLACE_CONSTRAINT_SCRIPT]]} {
+        source $CUSTOM_ICC_DP_PLACE_CONSTRAINT_SCRIPT}
+## You can customize power network synthesis constraints by loading a file
+## Below are examples for the kind of commands to put in the file using set_fp_rail_constraints
+#       set_fp_rail_constraints -set_global -keep_ring_outside_core -no_routing_over_hard_macros
+if {[file exists [which $CUSTOM_ICC_DP_PNS_CONSTRAINT_SCRIPT]]} {
+        source $CUSTOM_ICC_DP_PNS_CONSTRAINT_SCRIPT}
+######################################################################################################################
+## Flat Design Planning Flow : Virtual Flat Placement, Power Network Synthesis/Analysis, In Place Optimization, and Proto Route
+######################################################################################################################
+## There're two ways (or modes) that you can perform flat design planning flow depending on your needs.
+## Explore mode : It automates multiple runs of virtual flat placement each with different combinations of placement parameters and options.
+##                It also performs proto route, IPO, and PNS/PNA for full flow feasibility analysis
+## Baseline mode : It performs one run of virtual flat placement + global route + PNS/PNA + IPO plain script for flat design planning flow
+##                 It can serve as your reference and template for interactive runs
+## Both modes are based on same underlying flow steps
+if {$ICC_DP_EXPLORE_MODE} {
+
+        if !{[info exists env(DISPLAY)]} {
+                echo "SCRIPT-Info: DISPLAY is not set. GUI snapshot will be skipped."
+        }
+
+        ## // Explore mode //
+        ## macro_placement_exploration_dp.tcl : It contains all the runs to be performed. You can customize this file based on your needs. See the file for more details.
+        ## gen_explore_table : It runs a Perl script to parse the outputs and generate an HTML table: ./${DESIGN_NAME}_explore.html
+        save_mw_cel -as saved_cel_before_explore_mode -overwrite
+        close_mw_cel
+        source macro_placement_exploration_dp.tcl
+        sh rm_icc_dp_scripts/gen_explore_table ${REPORTS_DIR_DP} ${DESIGN_NAME}_explore.html
+
+} else {
+
+        ## // Baseline mode //
+        ## baseline.tcl : Plain script without automation which can be used as a template or starting point
+        source baseline.tcl
+
+}
+Information: Tcl variable placer_soft_keepout_channel_width is set to 10.000 (VFP-801)
+Setting sliver_size = 10.00
+Reference Point: Lower Left-hand corner of Core Base Array
+Warning: No scan chain found. (VFP-425)
+CPU time for freeing timing design =    0:00:00
+Elapsed time for freeing timing design =    0:00:00
+num_cpus = 1
+Reference Point: Lower Left-hand corner of Core Base Array
+Reference Point: Lower Left-hand corner of Core Base Array
+Reference Point: Lower Left-hand corner of Core Base Array
+Reference Point: Lower Left-hand corner of Core Base Array
+Reference Point: Lower Left-hand corner of Core Base Array
+flip_chip = 0
+*** Performing global placement...
+Transferring Data From Milkyway...
+Number of plan group pins = 0
+Auto detecting hierarchy nodes for grouping ...
+Warning: No hierarchy information in design. Hierarchy gravity turned off. (VFP-415)
+  0 blocks freed
+  0 bytes freed
+Placement Effort Level: Low
+Placement Design Stats
+Num std     cells  = 372 (fixed = 0)
+Num macros  cells  = 0 (fixed = 0)
+Num IOs     cells  = 0
+Num bump    cells  = 0
+Num LS/ISO  cells  = 0
+Num no type cells  = 0
+Num other   cells  = 0
+Num cells with no net connections = 0
+Num non-zero wt nets = 441
+Num     zero wt nets = 0
+A net with highest fanout (52) is GCDdpath0/n319
+grouping macros ...
+0 macro arrays generated automatically.
+0 array cells created
+No large HMs were processed
+coarse place 0% done.
+coarse place 33% done.
+coarse place 67% done.
+coarse place 100% done.
+*********************************************
+Report     : Virtual Flat Placement
+Design     : flat_dp
+Version    : F-2011.09-ICC-SP4
+Date       : Mon Sep 10 12:58:49 2012
+*********************************************
+
+Total wirelength: 9368.73
+Number of 100x100 tracks cell density regions: 4
+Number of low (< 10%) cell density regions: 0 (0.000%)
+Number of high (> 200%) cell density regions: 0 (0.000%)
+Maximum cell density: 71.80% (at 30 30 53 53)
+Checking hard macro to hard macro overlaps...
+Number of hard macro to hard macro overlaps: 0
+Checking hard macro to std cell overlaps...
+Number of hard macro to std cell overlaps: 0
+Checking plan group to plan group overlaps...
+Number of plan group to plan group overlaps: 0
+Number of TL cells overlapping PG: 0
+Number of cells violating core area: 0
+Total number of cells violating plan group or core area: 0
+Transferring Data to Milkyway ...
+*** global placement done.
+Begin Overlap Removal...
+[begin initializing data for legality checker]
+Initializing Data Structure ...
+  Reading technology information ...
+    Technology table contains 9 routable metal layers
+    This is considered as a 9-metal-layer design
+    Reading library information from DB ...
+  Reading misc information ...
+    array <unit> has 0 vertical and 24 horizontal rows
+  Checking information read in ...
+    design style = Horizontal masters, Horizontal rows
+  Preprocessing design ...
+    splitting rows by natural obstacles ...
+[end initializing data for legality checker]
+Information: Running legalization in Fast-Mode! (DPI-029)
+ 
+****************************************
+  Report : Chip Summary
+  Design : gcdGCDUnit_rtl
+  Version: F-2011.09-ICC-SP4
+  Date   : Mon Sep 10 12:58:49 2012
+****************************************
+Std cell utilization: 70.43%  (3668/(5208-0))
+(Non-fixed + Fixed)
+Std cell utilization: 70.43%  (3668/(5208-0))
+(Non-fixed only)
+Chip area:            5208     sites, bbox (30.00 30.00 99.44 99.12) um
+Std cell area:        3668     sites, (non-fixed:3668   fixed:0)
+                      372      cells, (non-fixed:372    fixed:0)
+Macro cell area:      0        sites
+                      0        cells
+Placement blockages:  0        sites, (excluding fixed std cells)
+                      0        sites, (include fixed std cells & chimney area)
+                      0        sites, (complete p/g net blockages)
+Routing blockages:    0        sites, (partial p/g net blockages)
+                      0        sites, (routing blockages and signal pre-route)
+Lib cell count:       25 
+Avg. std cell width:  3.90 um 
+Site array:           unit     (width: 0.32 um, height: 2.88 um, rows: 24)
+Physical DB scale:    1000 db_unit = 1 um 
+
+ 
+****************************************
+  Report : pnet options
+  Design : gcdGCDUnit_rtl
+  Version: F-2011.09-ICC-SP4
+  Date   : Mon Sep 10 12:58:49 2012
+****************************************
+
+
+--------------------------------------------------------------------
+Layer      Blockage   Min_width   Min_height   Via_additive     Density
+--------------------------------------------------------------------
+M1         none          ---         ---       via additive      ---
+M2         none          ---         ---       via additive      ---
+M3         none          ---         ---       via additive      ---
+M4         none          ---         ---       via additive      ---
+M5         none          ---         ---       via additive      ---
+M6         none          ---         ---       via additive      ---
+M7         none          ---         ---       via additive      ---
+M8         none          ---         ---       via additive      ---
+M9         none          ---         ---       via additive      ---
+Legalizing 372 illegal cells...
+Starting legalizer.
+Initial legalization:  100% (0 sec)
+Optimizations pass 1: 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% (0.0 sec)
+Optimizations pass 2: 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% (0.0 sec)
+Optimizations pass 3: 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% (0.0 sec)
+Legalization complete (0 total sec)
+ 
+****************************************
+  Report : Legalize Displacement
+  Design : gcdGCDUnit_rtl
+  Version: F-2011.09-ICC-SP4
+  Date   : Mon Sep 10 12:58:49 2012
+****************************************
+
+avg cell displacement:    0.769 um ( 0.27 row height)
+max cell displacement:    2.047 um ( 0.71 row height)
+std deviation:            0.440 um ( 0.15 row height)
+number of cell moved:       372 cells (out of 372 cells)
+
+Total 0 cells has large displacement (e.g. > 8.640 um or 3 row height)
+
+Information: Fast-Mode Legalization Done! (DPI-030)
+Completed Overlap Removal.
+[                Init] CPU =    0:00:00, gr_data VM =        0 M
+                   Elapsed =    0:00:00, total   VM =      215 M
+Routing User Options:
+SplitTimer = 1
+PortSingleConn = 0
+ViaExtraCostByLength = 0
+ReadPlanGroup = 0
+GaTimingFileMode = 0
+Global Routing User Options:
+speed = 2
+mapOnly = 0
+accessPolyPin = 1
+congestionWeight = 4
+netCriticality = 1
+timingDriven = 0
+timingWeight = 4
+avoidXtalk = 0
+xtalkWeight = 4
+ignoreViaBlockage = 1
+clockBalanced = 1
+clockBalancedAuto = 0
+clockComb = 0
+combDistance = 2
+skewControl = 0
+skewControlWeight = 5
+skewControlNetBBLowBound = 5
+avoidCouplingUser = 0
+horReserveTracks = 2
+verReserveTracks = 2
+blockEdgeAccess = 1
+extraWireLengthOpt = 1
+compactMode = 1
+turboMode = 1
+maxDetourPercent = -1
+detourLimitMinNetLen = 0
+incremental = 0
+unGroutedNetsOnly = 0
+extraCostsApplyPercent = 50
+rcOptByLength = 0
+powerDriven = 0
+densityDriven = 0
+topLayerWidePitch = 1
+topLayerGrcDimAdjust = 4
+topLayerCostAdjust = 5
+Begin global routing.
+Reading database ... 
+********* router params **********
+** Layer Extra Cost:
+  layerExtraCostByRC : 0
+  (polyCont,via1, .. ,via14)ExtraCost :  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+  (poly,m1, .. ,m15)ExtraCost :  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+********* router params **********
+Ignore contact DIFFCON, which has non-routing layers:
+
+        layerNumber = 3
+
+
+ Add [VIA89C] 's rotated via as default via on Lay VIA8 
+
+ Add [VIA78C] 's rotated via as default via on Lay VIA7 
+
+ Add [VIA67C] 's rotated via as default via on Lay VIA6 
+
+ Add [VIA56C] 's rotated via as default via on Lay VIA5 
+
+ Add [VIA45C] 's rotated via as default via on Lay VIA4 
+
+ Add [VIA34C] 's rotated via as default via on Lay VIA3 
+
+ Add [VIA23C] 's rotated via as default via on Lay VIA2 
+
+ Add [VIA12C] 's rotated via as default via on Lay VIA1 
+
+ Add [VIA12B] 's rotated via as default via on Lay VIA1 
+
+ Add [POLYCON] 's rotated via as default via on Lay CO 
+Select via(VIA89C) as the default for layer(VIA8)
+
+	Alternate via(VIA89C-R) for layer(VIA8)
+	Alternate via(VIA89-R) for layer(VIA8)
+	Alternate via(VIA89) for layer(VIA8)
+Select via(VIA78C) as the default for layer(VIA7)
+
+	Alternate via(VIA78C-R) for layer(VIA7)
+	Alternate via(VIA78-R) for layer(VIA7)
+	Alternate via(VIA78) for layer(VIA7)
+Select via(VIA67C) as the default for layer(VIA6)
+
+	Alternate via(VIA67C-R) for layer(VIA6)
+	Alternate via(VIA67-R) for layer(VIA6)
+	Alternate via(VIA67) for layer(VIA6)
+Select via(VIA56C) as the default for layer(VIA5)
+
+	Alternate via(VIA56C-R) for layer(VIA5)
+	Alternate via(VIA56-R) for layer(VIA5)
+	Alternate via(VIA56) for layer(VIA5)
+Select via(VIA45C) as the default for layer(VIA4)
+
+	Alternate via(VIA45C-R) for layer(VIA4)
+	Alternate via(VIA45-R) for layer(VIA4)
+	Alternate via(VIA45) for layer(VIA4)
+Select via(VIA34C) as the default for layer(VIA3)
+
+	Alternate via(VIA34C-R) for layer(VIA3)
+	Alternate via(VIA34-R) for layer(VIA3)
+	Alternate via(VIA34) for layer(VIA3)
+Select via(VIA23C) as the default for layer(VIA2)
+
+	Alternate via(VIA23C-R) for layer(VIA2)
+	Alternate via(VIA23-R) for layer(VIA2)
+	Alternate via(VIA23) for layer(VIA2)
+  Multiple default via [VIA12C] for layer(VIA1)
+  Multiple default via [VIA12B] for layer(VIA1)
+Select via(VIA12B) as the default for layer(VIA1)
+
+	Alternate via(VIA12C-R) for layer(VIA1)
+	Alternate via(VIA12C) for layer(VIA1)
+	Alternate via(VIA12B-R) for layer(VIA1)
+	Alternate via(VIA12A-R) for layer(VIA1)
+	Alternate via(VIA12A) for layer(VIA1)
+Select via(POLYCON) as the default for layer(CO)
+
+	Alternate via(POLYCON-R) for layer(CO)
+[VIA89C] and [VIA78C] stacking is allowed
+
+[VIA78C] and [VIA89C] stacking is allowed
+
+[VIA78C] and [VIA67C] stacking is allowed
+
+[VIA67C] and [VIA78C] stacking is allowed
+
+[VIA67C] and [VIA56C] stacking is allowed
+
+[VIA56C] and [VIA67C] stacking is allowed
+
+[VIA56C] and [VIA45C] stacking is allowed
+
+[VIA45C] and [VIA56C] stacking is allowed
+
+[VIA45C] and [VIA34C] stacking is allowed
+
+[VIA34C] and [VIA45C] stacking is allowed
+
+[VIA34C] and [VIA23C] stacking is allowed
+
+[VIA23C] and [VIA34C] stacking is allowed
+
+[VIA23C] and [VIA12B] stacking is allowed
+
+[VIA12B] and [VIA23C] stacking is allowed
+
+[VIA12B] and [POLYCON] stacking is allowed
+
+[POLYCON] and [VIA12B] stacking is allowed
+
+Reading spacing rules from lib properties (create_lib_property)
+
+Reading wire end grids from technolgy file
+
+Reading jog to jog spacing from technology file
+POWER Net (VDD)
+GROUND Net (VSS)
+**** WARNING:Ignore 2 top-cell ports with no pins!
+
+
+release 0 cache blocks
+There are NO POLY pins
+# Masters = 27 , # Instances = 373 , # Nets = 443
+
+# Routing Layers = 9 , Maximum Pitch = 5120 [X:3840, Y:5120]m(640,640)
+Max. FatWireThreshold = 0
+  cut  Layer[0] = CO
+  wire Layer[0] = M1 (H,1,1)
+  cut  Layer[1] = VIA1
+  wire Layer[1] = M2 (V,1,0)
+  cut  Layer[2] = VIA2
+  wire Layer[2] = M3 (H,1,0)
+  cut  Layer[3] = VIA3
+  wire Layer[3] = M4 (V,1,0)
+  cut  Layer[4] = VIA4
+  wire Layer[4] = M5 (H,1,0)
+  cut  Layer[5] = VIA5
+  wire Layer[5] = M6 (V,1,0)
+  cut  Layer[6] = VIA6
+  wire Layer[6] = M7 (H,1,0)
+  cut  Layer[7] = VIA7
+  wire Layer[7] = M8 (V,1,0)
+  cut  Layer[8] = VIA8
+  wire Layer[8] = M9 (H,1,0)
+GRC-Dim: (2880,2880)
+**** WARNING:Layer (M2) pitch (0.320) may be TOO SMALL.
+        minimum required value: wire/via-down(0.360) wire/via-up(0.320)
+
+
+Layer (M3) pitch (0.640) : wire-via(0.360) via-via(0.400)
+Layer (M4) pitch (0.640) : wire-via(0.360) via-via(0.400)
+Layer (M5) pitch (1.280) : wire-via(0.360) via-via(0.400)
+Layer (M6) pitch (1.280) : wire-via(0.360) via-via(0.400)
+Layer (M7) pitch (2.560) : wire-via(0.360) via-via(0.400)
+Layer (M8) pitch (3.840) : wire-via(0.465) via-via(0.610)
+Layer (M9) pitch (5.120) : wire-via(0.900) via-via(0.900)
+Via on layer (VIA1) needs more than 1 tracks
+[      End of Read DB] CPU =    0:00:00, gr_data VM =        6 M
+                   Elapsed =    0:00:00, total   VM =      215 M
+Constructing data structure ... 
+
+Number of plan groups = 0
+Number of voltage areas = 0
+user unit = 1000 db unit.
+db min Grid = 5 db unit.
+Design Bounding Box (0.00 0.00) (129.44 129.12)
+layer M1, dir Hor, min width = 0.14, min space = 0.14, pitch = 0.32
+layer M2, dir Ver, min width = 0.16, min space = 0.16, pitch = 0.32
+layer M3, dir Hor, min width = 0.16, min space = 0.16, pitch = 0.64
+layer M4, dir Ver, min width = 0.16, min space = 0.16, pitch = 0.64
+layer M5, dir Hor, min width = 0.16, min space = 0.16, pitch = 1.28
+layer M6, dir Ver, min width = 0.16, min space = 0.16, pitch = 1.28
+layer M7, dir Hor, min width = 0.16, min space = 0.16, pitch = 2.56
+layer M8, dir Ver, min width = 0.16, min space = 0.16, pitch = 3.84
+layer M9, dir Hor, min width = 0.45, min space = 0.45, pitch = 5.12
+Via :M2 -- layer M2 needs 3 tracks.
+Number of routing layers = 9.
+track info for layer(M1):
+Number of X routing tracks = 405.
+X Track min 0.08 max 129.36, Ave. track dist = 0.32
+Number of Y routing tracks = 403.
+Y Track min 0.24 max 128.88, Ave. track dist = 0.32
+track info for layer(M2):
+Number of X routing tracks = 405.
+X Track min 0.08 max 129.36, Ave. track dist = 0.32
+Number of Y routing tracks = 403.
+Y Track min 0.24 max 128.88, Ave. track dist = 0.32
+track info for layer(M3):
+Number of X routing tracks = 606.
+X Track min 0.08 max 129.36, Ave. track dist = 0.21
+Number of Y routing tracks = 201.
+Y Track min 0.56 max 128.56, Ave. track dist = 0.64
+track info for layer(M4):
+Number of X routing tracks = 203.
+X Track min 0.08 max 129.36, Ave. track dist = 0.64
+Number of Y routing tracks = 201.
+Y Track min 0.56 max 128.56, Ave. track dist = 0.64
+track info for layer(M5):
+Number of X routing tracks = 303.
+X Track min 0.08 max 129.36, Ave. track dist = 0.43
+Number of Y routing tracks = 99.
+Y Track min 1.84 max 127.28, Ave. track dist = 1.28
+track info for layer(M6):
+Number of X routing tracks = 102.
+X Track min 0.08 max 129.36, Ave. track dist = 1.28
+Number of Y routing tracks = 99.
+Y Track min 1.84 max 127.28, Ave. track dist = 1.28
+track info for layer(M7):
+Number of X routing tracks = 102.
+X Track min 0.08 max 129.36, Ave. track dist = 1.28
+Number of Y routing tracks = 50.
+Y Track min 1.84 max 127.28, Ave. track dist = 2.56
+track info for layer(M8):
+Number of X routing tracks = 34.
+X Track min 0.08 max 129.36, Ave. track dist = 3.92
+Number of Y routing tracks = 50.
+Y Track min 1.84 max 127.28, Ave. track dist = 2.56
+track info for layer(M9):
+Number of X routing tracks = 34.
+X Track min 0.08 max 129.36, Ave. track dist = 3.92
+Number of Y routing tracks = 24.
+Y Track min 4.40 max 122.16, Ave. track dist = 5.12
+Creating uniform X GGrids ...
+Creating uniform Y GGrids ...
+Number of X global grids = 9.
+Number of Y global grids = 9.
+X global grid min 0.00 max 130.44, Ave. ggrid dist = 16.30
+Y global grid min 0.00 max 130.12, Ave. ggrid dist = 16.27
+zqlNoMazeInBlockedArea = T
+[End of Build Blockage] CPU =    0:00:00, gr_data VM =        6 M
+                   Elapsed =    0:00:00, total   VM =      215 M
+allow wrong dir = 0, weight = 4
+turbo speed = 1
+turbo min dist = 4
+compact param = 2
+Extra wire cost M1 = 0
+Extra wire cost M2 = 0
+Extra wire cost M3 = 0
+Extra wire cost M4 = 0
+Extra wire cost M5 = 0
+Extra wire cost M6 = 0
+Extra wire cost M7 = 0
+Extra wire cost M8 = 0
+Extra wire cost M9 = 0
+Extra via cost VIA1 = 0
+Extra via cost VIA2 = 0
+Extra via cost VIA3 = 0
+Extra via cost VIA4 = 0
+Extra via cost VIA5 = 0
+Extra via cost VIA6 = 0
+Extra via cost VIA7 = 0
+Extra via cost VIA8 = 0
+[End of Build Layer Cost Table] CPU =    0:00:00, gr_data VM =        6 M
+                   Elapsed =    0:00:00, total   VM =      215 M
+Number of instances = 373.
+Number of signal/clock nets = 441.
+Number of net ports = 1257.
+Average number of ports per net = 2.85
+Largest net GCDdpath0/n319 has 52 ports.
+Average cells per port =  1.03
+[    End of Build Net] CPU =    0:00:00, gr_data VM =        6 M
+                   Elapsed =    0:00:00, total   VM =      215 M
+
+Average GCell capacity  33.67 on layer (0) M1
+Average GCell capacity  50.62 on layer (1) M2
+Average GCell capacity  24.72 on layer (2) M3
+Average GCell capacity  25.38 on layer (3) M4
+Average GCell capacity  12.38 on layer (4) M5
+Average GCell capacity  12.75 on layer (5) M6
+Average GCell capacity   6.25 on layer (6) M7
+Average GCell capacity   4.25 on layer (7) M8
+Average GCell capacity   3.00 on layer (8) M9
+Number of GCells = 576.
+VR: Init Virtual Routing - Level 1
+
+VR: ignore voltage areas
+
+VR: Virtual Routing Completed
+
+[   End of Build Data] CPU =    0:00:00, gr_data VM =        8 M
+                   Elapsed =    0:00:00, total   VM =      215 M
+Number of nets to route = 441.
+Begin Initial routing ...
+Layer M1: reserved tracks = 2
+Layer M2: reserved tracks = 2
+Layer M3: reserved tracks = 2
+Layer M4: reserved tracks = 2
+Layer M5: reserved tracks = 2
+Layer M6: reserved tracks = 2
+Layer M7: reserved tracks = 2
+Layer M8: reserved tracks = 2
+Layer M9: reserved tracks = 2
+Initial routing completed.
+Initial. Routing result:
+Initial. Both Dirs: Overflow = 907 Max = 113 GRCs = 18 (14.06%)
+Initial. H routing: Overflow = 2 Max = 1 (2 GRCs) GRCs = 2 (1.56%)
+Initial. V routing: Overflow = 905 Max = 113 (1 GRCs) GRCs = 16 (12.50%)
+Initial. M1       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+Initial. M2       : Overflow = 905 Max = 113 (1 GRCs) GRCs = 16 (25.00%)
+Initial. M3       : Overflow = 2 Max = 1 (2 GRCs) GRCs = 2 (3.12%)
+Initial. M4       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+Initial. M5       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+Initial. M6       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+Initial. M7       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+Initial. M8       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+Initial. M9       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+
+Initial. Total wire length = 9499.12
+Initial. Layer M1 wire length = 0.00
+Initial. Layer M2 wire length = 3215.04
+Initial. Layer M3 wire length = 4943.92
+Initial. Layer M4 wire length = 1305.60
+Initial. Layer M5 wire length = 34.56
+Initial. Layer M6 wire length = 0.00
+Initial. Layer M7 wire length = 0.00
+Initial. Layer M8 wire length = 0.00
+Initial. Layer M9 wire length = 0.00
+Initial. Via VIA12B count = 1210
+Initial. Via VIA23C count = 402
+Initial. Via VIA34C count = 93
+Initial. Via VIA45C count = 2
+Initial. Via VIA56C count = 0
+Initial. Via VIA67C count = 0
+Initial. Via VIA78C count = 0
+Initial. Via VIA89C count = 0
+[End of Initial Routing] CPU =    0:00:00, gr_data VM =       10 M
+                   Elapsed =    0:00:00, total   VM =      215 M
+Begin Rerouting ... 
+Meandering net count: 0/441
+Begin Phase 1 ...
+Layer M1: reserved tracks = 1
+Layer M2: reserved tracks = 1
+Layer M3: reserved tracks = 1
+Layer M4: reserved tracks = 1
+Layer M5: reserved tracks = 1
+Layer M6: reserved tracks = 1
+Layer M7: reserved tracks = 1
+Layer M8: reserved tracks = 1
+Layer M9: reserved tracks = 1
+phase1. Routing result:
+phase1. Both Dirs: Overflow = 1184 Max = 145 GRCs = 16 (12.50%)
+phase1. H routing: Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase1. V routing: Overflow = 1184 Max = 145 (1 GRCs) GRCs = 16 (12.50%)
+phase1. M1       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase1. M2       : Overflow = 1184 Max = 145 (1 GRCs) GRCs = 16 (25.00%)
+phase1. M3       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase1. M4       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase1. M5       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase1. M6       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase1. M7       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase1. M8       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase1. M9       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+
+phase1. Total wire length = 9533.68
+phase1. Layer M1 wire length = 0.00
+phase1. Layer M2 wire length = 3284.16
+phase1. Layer M3 wire length = 4822.96
+phase1. Layer M4 wire length = 1340.16
+phase1. Layer M5 wire length = 86.40
+phase1. Layer M6 wire length = 0.00
+phase1. Layer M7 wire length = 0.00
+phase1. Layer M8 wire length = 0.00
+phase1. Layer M9 wire length = 0.00
+phase1. Via VIA12B count = 1210
+phase1. Via VIA23C count = 398
+phase1. Via VIA34C count = 97
+phase1. Via VIA45C count = 6
+phase1. Via VIA56C count = 0
+phase1. Via VIA67C count = 0
+phase1. Via VIA78C count = 0
+phase1. Via VIA89C count = 0
+Phase 1 completed.
+[       End of Phase1] CPU =    0:00:00, gr_data VM =       10 M
+                   Elapsed =    0:00:00, total   VM =      215 M
+Meandering net count: 0/441
+Begin Phase 2 ...
+Layer M1: reserved tracks = 0
+Layer M2: reserved tracks = 0
+Layer M3: reserved tracks = 0
+Layer M4: reserved tracks = 0
+Layer M5: reserved tracks = 0
+Layer M6: reserved tracks = 0
+Layer M7: reserved tracks = 0
+Layer M8: reserved tracks = 0
+Layer M9: reserved tracks = 0
+phase2. Routing result:
+phase2. Both Dirs: Overflow = 1464 Max = 177 GRCs = 16 (12.50%)
+phase2. H routing: Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase2. V routing: Overflow = 1464 Max = 177 (1 GRCs) GRCs = 16 (12.50%)
+phase2. M1       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase2. M2       : Overflow = 1464 Max = 177 (1 GRCs) GRCs = 16 (25.00%)
+phase2. M3       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase2. M4       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase2. M5       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase2. M6       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase2. M7       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase2. M8       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase2. M9       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+
+phase2. Total wire length = 9516.40
+phase2. Layer M1 wire length = 0.00
+phase2. Layer M2 wire length = 3284.16
+phase2. Layer M3 wire length = 4840.24
+phase2. Layer M4 wire length = 1322.88
+phase2. Layer M5 wire length = 69.12
+phase2. Layer M6 wire length = 0.00
+phase2. Layer M7 wire length = 0.00
+phase2. Layer M8 wire length = 0.00
+phase2. Layer M9 wire length = 0.00
+phase2. Via VIA12B count = 1210
+phase2. Via VIA23C count = 398
+phase2. Via VIA34C count = 95
+phase2. Via VIA45C count = 4
+phase2. Via VIA56C count = 0
+phase2. Via VIA67C count = 0
+phase2. Via VIA78C count = 0
+phase2. Via VIA89C count = 0
+Phase 2 completed.
+[       End of Phase2] CPU =    0:00:00, gr_data VM =       10 M
+                   Elapsed =    0:00:00, total   VM =      215 M
+Meandering net count: 0/441
+Begin Phase 3 ...
+Layer M1: reserved tracks = 0
+Layer M2: reserved tracks = 0
+Layer M3: reserved tracks = 0
+Layer M4: reserved tracks = 0
+Layer M5: reserved tracks = 0
+Layer M6: reserved tracks = 0
+Layer M7: reserved tracks = 0
+Layer M8: reserved tracks = 0
+Layer M9: reserved tracks = 0
+Extra wire cost M1 = 0
+Extra wire cost M2 = 0
+Extra wire cost M3 = 0
+Extra wire cost M4 = 0
+Extra wire cost M5 = 0
+Extra wire cost M6 = 0
+Extra wire cost M7 = 0
+Extra wire cost M8 = 0
+Extra wire cost M9 = 0
+Extra via cost VIA1 = 0
+Extra via cost VIA2 = 0
+Extra via cost VIA3 = 0
+Extra via cost VIA4 = 0
+Extra via cost VIA5 = 0
+Extra via cost VIA6 = 0
+Extra via cost VIA7 = 0
+Extra via cost VIA8 = 0
+Layer M1: reserved tracks = 0
+Layer M2: reserved tracks = 0
+Layer M3: reserved tracks = 0
+Layer M4: reserved tracks = 0
+Layer M5: reserved tracks = 0
+Layer M6: reserved tracks = 0
+Layer M7: reserved tracks = 0
+Layer M8: reserved tracks = 0
+Layer M9: reserved tracks = 0
+phase3. Routing result:
+phase3. Both Dirs: Overflow = 1464 Max = 177 GRCs = 16 (12.50%)
+phase3. H routing: Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase3. V routing: Overflow = 1464 Max = 177 (1 GRCs) GRCs = 16 (12.50%)
+phase3. M1       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase3. M2       : Overflow = 1464 Max = 177 (1 GRCs) GRCs = 16 (25.00%)
+phase3. M3       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase3. M4       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase3. M5       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase3. M6       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase3. M7       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase3. M8       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase3. M9       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+
+phase3. Total wire length = 9516.40
+phase3. Layer M1 wire length = 0.00
+phase3. Layer M2 wire length = 3284.16
+phase3. Layer M3 wire length = 4840.24
+phase3. Layer M4 wire length = 1322.88
+phase3. Layer M5 wire length = 69.12
+phase3. Layer M6 wire length = 0.00
+phase3. Layer M7 wire length = 0.00
+phase3. Layer M8 wire length = 0.00
+phase3. Layer M9 wire length = 0.00
+phase3. Via VIA12B count = 1210
+phase3. Via VIA23C count = 398
+phase3. Via VIA34C count = 95
+phase3. Via VIA45C count = 4
+phase3. Via VIA56C count = 0
+phase3. Via VIA67C count = 0
+phase3. Via VIA78C count = 0
+phase3. Via VIA89C count = 0
+Phase 3 completed.
+[       End of Phase3] CPU =    0:00:00, gr_data VM =       10 M
+                   Elapsed =    0:00:00, total   VM =      215 M
+Meandering net count: 0/441
+Rerouting completed.
+[    End of ReRouting] CPU =    0:00:00, gr_data VM =       10 M
+                   Elapsed =    0:00:00, total   VM =      215 M
+Writing results to database ...
+
+Deleting previous global routing.
+[    End of Update DB] CPU =    0:00:00, gr_data VM =        4 M
+                   Elapsed =    0:00:00, total   VM =      215 M
+[  End of Global Routing] CPU =    0:00:00, gr_data VM =        4 M
+                   Elapsed =    0:00:00, total   VM =      215 M
+Global routing completed.
+Information: Performing CEL netlist consistency check. (MWDC-118)
+Information: CEL consistency check PASSED. (MWDC-119)
+Information: Saved design named flat_dp_groute_after_place. (UIG-5)
+Successfully removed route by type
+Information: linking reference library : /home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr. (PSYN-878)
+Warning: The 'RSDFFNSRASRX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASRX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFSRARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFSRARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSDNENX8' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSDNX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSDNX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSDNX4' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSDNX8' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPENCLX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPENCLX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPENCLX4' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFNARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFNARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFSRSSRX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFSRSSRX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFSRX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFSRX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASRNX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASRNX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASRQX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASRQX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPX4' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPX8' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFNSRARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFNSRARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+
+  Linking design 'gcdGCDUnit_rtl'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  * (5 designs)               flat_dp.CEL, etc
+  saed90nm_typ (library)      /home/ff/cs250/stdcells/synopsys-90nm/default/db/cells.db
+  saed90nm_typ_cg (library)   /home/ff/cs250/stdcells/synopsys-90nm/default/db/cells_cg.db
+
+Load global CTS reference options from NID to stack
+Information: The design has horizontal rows, and Y-symmetry has been used for sites. (MWDC-217)
+Floorplan loading succeeded.
+
+  Loading design 'gcdGCDUnit_rtl'
+
+
+
+
+Information: Library Manufacturing Grid(GridResolution) : 5
+Information: Time Unit from Milkyway design library: 'ns' 
+Information: Design Library and main library timing units are matched - 1.000 ns. 
+Information: Resistance Unit from Milkyway design library: 'kohm' 
+Warning: Mismatch in the main library and the Milkyway library resistance units. In the main library it is 1000.000 kohm and in the Milkyway design library it is 1.000 kohm. Check and correct the resistance units in the .tf and .db files. (PSYN-476)
+Information: Capacitance Unit from Milkyway design library: 'pf' 
+Warning: Mismatch in the main and the Milkyway library capacitance units. In the main library it is 0.001 pf and in the Milkyway design library it is 1.000 pf. Check and correct the capacitance units in the .tf and .db files. (PSYN-477)
+
+TLU+ File = /home/ff/cs250/stdcells/synopsys-90nm/default/tluplus/max.tluplus
+TLU+ File = /home/ff/cs250/stdcells/synopsys-90nm/default/tluplus/min.tluplus
+
+--------- Sanity Check on TLUPlus Files -------------
+1. Checking the conducting layer names in ITF and mapping file ... 
+[ Passed! ]
+2. Checking the via layer names in ITF and mapping file ... 
+[ Passed! ]
+3. Checking the consistency of Min Width and Min Spacing between MW-tech and ITF ... 
+[ Passed! ]
+----------------- Check Ends ------------------
+****************************************************************
+Information: TLUPlus based RC computation is enabled. (RCEX-141)
+****************************************************************
+Information: The distance unit in Capacitance and Resistance is 1 micron. (RCEX-007)
+Information: The RC model used is TLU+. (RCEX-015)
+Information: Library Derived Cap for layer M1 : 0.22 0.19 (RCEX-011)
+Information: Library Derived Res for layer M1 : 6.4e-07 6.4e-07 (RCEX-011)
+Information: Library Derived Cap for layer M2 : 0.25 0.21 (RCEX-011)
+Information: Library Derived Res for layer M2 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M3 : 0.14 0.12 (RCEX-011)
+Information: Library Derived Res for layer M3 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M4 : 0.14 0.12 (RCEX-011)
+Information: Library Derived Res for layer M4 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M5 : 0.13 0.1 (RCEX-011)
+Information: Library Derived Res for layer M5 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M6 : 0.13 0.1 (RCEX-011)
+Information: Library Derived Res for layer M6 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M7 : 0.13 0.098 (RCEX-011)
+Information: Library Derived Res for layer M7 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M8 : 0.13 0.098 (RCEX-011)
+Information: Library Derived Res for layer M8 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M9 : 0.16 0.12 (RCEX-011)
+Information: Library Derived Res for layer M9 : 6.2e-08 6.2e-08 (RCEX-011)
+Information: Library Derived Horizontal Cap : 0.16 0.13 (RCEX-011)
+Information: Library Derived Horizontal Res : 4.8e-07 4.8e-07 (RCEX-011)
+Information: Library Derived Vertical Cap : 0.16 0.13 (RCEX-011)
+Information: Library Derived Vertical Res : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Using derived R and C coefficients. (RCEX-008)
+Information: Using region-based R and C coefficients. (RCEX-013)
+Information: Library Derived Via Res : 8e-07 8e-07 (RCEX-011)
+....
+438 nets processed. 
+Router succeeded.
+Information: This newer version of snapshot utility does not support these options:-timing, -congestion, -constraint. Ignored. (UID-1103)
+Information: Timer is not in zero interconnect delay mode. (TIM-176)
+***********************************************
+Report          : create_qor_snapshot (flat_dp_place)
+Design          : gcdGCDUnit_rtl
+Version         : F-2011.09-ICC-SP4
+Date            : Mon Sep 10 12:58:52 2012
+Time unit       : 1.0e-09 Second(ns)
+Capacitance unit: N/A
+Voltage unit    : 1 Volt
+Power unit      : N/A
+Location        : /work/cs250-af/lab1-verilog/build/icc-par/build-iccdp-2012-09-10_12-58/snapshot
+***********************************************
+No. of scenario = 1
+---------------------------------------------
+WNS of each timing group:           
+---------------------------------------------
+ideal_clock1                           -0.128 
+---------------------------------------------
+Setup WNS:                             -0.128  
+Setup TNS:                             -1.536  
+Number of setup violations:                21  
+Hold WNS:                               0.000  
+Hold TNS:                               0.000  
+Number of hold violations:                  0  
+Number of max trans violations:             0  
+Number of max cap violations:               0  
+Number of min pulse width violations:       0  
+Route drc violations:                       0
+---------------------------------------------
+Area:                                    3380
+Cell count:                               372
+Buf/inv cell count:                        45
+Std cell utilization:                  70.43%
+CPU/ELAPSE(hr):                     0.00/0.00
+Mem(Mb):                                  216
+Host name:                          bcom16.EECS.Berkeley.EDU
+---------------------------------------------
+Histogram:           
+---------------------------------------------
+Max violations:        21 
+   above ~ -0.7  ---    0 
+    -0.6 ~ -0.7  ---    0 
+    -0.5 ~ -0.6  ---    0 
+    -0.4 ~ -0.5  ---    0 
+    -0.3 ~ -0.4  ---    0 
+    -0.2 ~ -0.3  ---    0 
+    -0.1 ~ -0.2  ---    5 
+       0 ~ -0.1  ---   16 
+---------------------------------------------
+Min violations:         0 
+  -0.06 ~ above  ---    0 
+  -0.05 ~ -0.06  ---    0 
+  -0.04 ~ -0.05  ---    0 
+  -0.03 ~ -0.04  ---    0 
+  -0.02 ~ -0.03  ---    0 
+  -0.01 ~ -0.02  ---    0 
+      0 ~ -0.01  ---    0 
+---------------------------------------------
+Snapshot (flat_dp_place) is created and stored under "/work/cs250-af/lab1-verilog/build/icc-par/build-iccdp-2012-09-10_12-58/snapshot" directory
+Warning: Layer constraint is not set in top design. (PNA-101)
+Use the top two layers as default
+Warning: Ring constraint is not set in top design. (PNA-102)
+Use the top two layers as default
+Warning: Power/Ground pad constraint is not set in top design. (PNA-103)
+Use the default pad synthesis constraints
+
+Power Pad and Network Synthesis Begins ...
+Geometry mapping begins.
+Parasitics Operating Condition is max
+Ignore contact DIFFCON, which has non-routing layers:  3
+The command set_tlu_plus_files was not set
+Reading TLU+ files from db.
+TLU+ based extraction:
+Resistance based on max model.
+Using operating temperature of  25.00 degree Celsius.
+EKL: layer poly has pitch<=0, forced pitch=2
+EKL: layer poly has pitch<width+spacing, forced pitch=width+spacing
+Getting the info of via resistance from TLU+ model
+via resistance of default area is used for layer 19
+via resistance of default area is used for layer 19
+lower mask id 0, upper mask id 1, via layer 20, resistivity 8.000000
+via resistance of default area is used for layer 20
+lower mask id 1, upper mask id 2, via layer 21, resistivity 0.900000
+lower mask id 2, upper mask id 3, via layer 22, resistivity 0.900000
+lower mask id 3, upper mask id 4, via layer 23, resistivity 0.900000
+lower mask id 4, upper mask id 5, via layer 24, resistivity 0.900000
+lower mask id 5, upper mask id 6, via layer 25, resistivity 0.900000
+lower mask id 6, upper mask id 7, via layer 26, resistivity 0.900000
+lower mask id 7, upper mask id 8, via layer 27, resistivity 0.900000
+lower mask id 8, upper mask id 9, via layer 28, resistivity 0.152500
+EKL: max metal layer: 9  max back metal layer: 0
+Ignoring all CONN views
+Warning: No power/ground pads are specified and no virtual pads are defined. (PNA-138)
+Number of pad instances: 0
+Geometry mapping took     0.03 seconds
+
+Name of design : flat_dp
+Number of cell instances in the design : 372
+Number of cell instance masters in the library : 26
+Warning: There are no wires in net VSS. (PNA-111)
+The net VSS is skipped
+Warning: There are no wires in net VDD. (PNA-111)
+The net VDD is skipped
+The estimated number of p/g pads for PNS is 8.
+Initialization completed.
+
+Geometry mapping begins.
+Removing all the files with the prefix flat_dp in the directory ./pna_output
+Parasitics Operating Condition is max
+Ignore contact DIFFCON, which has non-routing layers:  3
+The command set_tlu_plus_files was not set
+Reading TLU+ files from db.
+TLU+ based extraction:
+Resistance based on max model.
+Using operating temperature of  25.00 degree Celsius.
+EKL: layer poly has pitch<=0, forced pitch=2
+EKL: layer poly has pitch<width+spacing, forced pitch=width+spacing
+Getting the info of via resistance from TLU+ model
+lower mask id 0, upper mask id 1, via layer 20, resistivity 8.000000
+lower mask id 1, upper mask id 2, via layer 21, resistivity 0.900000
+lower mask id 2, upper mask id 3, via layer 22, resistivity 0.900000
+lower mask id 3, upper mask id 4, via layer 23, resistivity 0.900000
+lower mask id 4, upper mask id 5, via layer 24, resistivity 0.900000
+lower mask id 5, upper mask id 6, via layer 25, resistivity 0.900000
+lower mask id 6, upper mask id 7, via layer 26, resistivity 0.900000
+lower mask id 7, upper mask id 8, via layer 27, resistivity 0.900000
+lower mask id 8, upper mask id 9, via layer 28, resistivity 0.152500
+EKL: max metal layer: 9  max back metal layer: 0
+Ignoring all CONN views
+Number of pad instances: 0
+Geometry mapping took     0.05 seconds
+
+Name of design : flat_dp
+Number of cell instance masters in the library : 26
+Number of cell instances in the design : 372
+Power Network Synthesis Begins ...
+Processing net VDD ...
+Average power dissipation in flat_dp :  1000.00 mW
+Power supply voltage :     1.50 V
+Average current in flat_dp :   666.67 mA
+EKL: layer 8, width 0.870 > max tlu+ tab range
+EKL: layer 8, width 0.870 > max tlu+ tab range
+EKL: layer 8, width 1.740 > max tlu+ tab range
+EKL: layer 8, width 1.740 > max tlu+ tab range
+EKL: layer 8, width 0.870 > max tlu+ tab range
+25 percent of initial power plan synthesis is done.
+50 percent of initial power plan synthesis is done.
+75 percent of initial power plan synthesis is done.
+100 percent of initial power plan synthesis is done.
+Performing Wire Cutting and Resizing of net VDD for Honoring Blockage Constraints
+Processing 18x30 straps
+Processing virtual rail for net VDD
+Number of power pads reaching to the power ports of the leaf cells or blocks: 100
+Total assigned virtual connection port current is 0.000000
+Total assigned connected port current is 666.666667
+Total assigned current is 666.666667
+Total floating virtual connection port current is 0.000000
+Total floating connected port current is 0.000000
+Simulation begin ...
+Virtual Pad at (0.530 60.190) layer M9 Supplies   24.76 mA Current (3.71%)
+Virtual Pad at (128.910 60.190) layer M9 Supplies   24.75 mA Current (3.71%)
+Virtual Pad at (128.910 75.550) layer M9 Supplies   24.70 mA Current (3.70%)
+Virtual Pad at (0.530 75.550) layer M9 Supplies   24.62 mA Current (3.69%)
+Virtual Pad at (0.530 65.310) layer M9 Supplies   24.49 mA Current (3.67%)
+Virtual Pad at (0.530 55.070) layer M9 Supplies   24.47 mA Current (3.67%)
+Virtual Pad at (128.910 65.310) layer M9 Supplies   24.37 mA Current (3.66%)
+Virtual Pad at (0.530 49.950) layer M9 Supplies   24.35 mA Current (3.65%)
+Virtual Pad at (128.910 55.070) layer M9 Supplies   24.32 mA Current (3.65%)
+Virtual Pad at (128.910 49.950) layer M9 Supplies   24.14 mA Current (3.62%)
+Virtual Pad at (128.910 80.670) layer M9 Supplies   23.04 mA Current (3.46%)
+Virtual Pad at (0.530 80.670) layer M9 Supplies   22.88 mA Current (3.43%)
+Virtual Pad at (128.910 85.790) layer M9 Supplies   21.31 mA Current (3.20%)
+Virtual Pad at (0.530 85.790) layer M9 Supplies   21.21 mA Current (3.18%)
+Virtual Pad at (128.910 39.710) layer M9 Supplies   20.51 mA Current (3.08%)
+Virtual Pad at (0.530 39.710) layer M9 Supplies   20.45 mA Current (3.07%)
+Virtual Pad at (128.910 90.910) layer M9 Supplies   19.60 mA Current (2.94%)
+Virtual Pad at (0.530 90.910) layer M9 Supplies   19.46 mA Current (2.92%)
+Virtual Pad at (128.910 34.590) layer M9 Supplies   17.13 mA Current (2.57%)
+Virtual Pad at (0.530 34.590) layer M9 Supplies   17.01 mA Current (2.55%)
+Virtual Pad at (128.910 29.470) layer M9 Supplies   13.38 mA Current (2.01%)
+Virtual Pad at (0.530 29.470) layer M9 Supplies   13.28 mA Current (1.99%)
+Virtual Pad at (0.530 101.150) layer M9 Supplies   12.68 mA Current (1.90%)
+Virtual Pad at (128.910 101.150) layer M9 Supplies   12.66 mA Current (1.90%)
+Virtual Pad at (128.910 24.350) layer M9 Supplies   10.05 mA Current (1.51%)
+Virtual Pad at (0.530 24.350) layer M9 Supplies    9.99 mA Current (1.50%)
+Virtual Pad at (0.530 106.270) layer M9 Supplies    9.18 mA Current (1.38%)
+Virtual Pad at (128.910 106.270) layer M9 Supplies    9.14 mA Current (1.37%)
+Virtual Pad at (0.530 111.390) layer M9 Supplies    6.53 mA Current (0.98%)
+Virtual Pad at (128.910 111.390) layer M9 Supplies    6.50 mA Current (0.97%)
+Virtual Pad at (128.910 14.110) layer M9 Supplies    5.13 mA Current (0.77%)
+Virtual Pad at (0.530 14.110) layer M9 Supplies    5.11 mA Current (0.77%)
+Virtual Pad at (0.530 116.510) layer M9 Supplies    4.39 mA Current (0.66%)
+Virtual Pad at (128.910 116.510) layer M9 Supplies    4.37 mA Current (0.66%)
+Virtual Pad at (128.910 8.990) layer M9 Supplies    3.10 mA Current (0.47%)
+Virtual Pad at (0.530 8.990) layer M9 Supplies    3.09 mA Current (0.46%)
+Virtual Pad at (54.720 128.590) layer M8 Supplies    2.05 mA Current (0.31%)
+Virtual Pad at (58.560 128.590) layer M8 Supplies    2.04 mA Current (0.31%)
+Virtual Pad at (54.720 0.530) layer M8 Supplies    2.04 mA Current (0.31%)
+Virtual Pad at (58.560 0.530) layer M8 Supplies    2.04 mA Current (0.31%)
+Virtual Pad at (50.880 128.590) layer M8 Supplies    2.01 mA Current (0.30%)
+Virtual Pad at (73.920 128.590) layer M8 Supplies    2.01 mA Current (0.30%)
+Virtual Pad at (73.920 0.530) layer M8 Supplies    2.01 mA Current (0.30%)
+Virtual Pad at (50.880 0.530) layer M8 Supplies    2.00 mA Current (0.30%)
+Virtual Pad at (77.760 128.590) layer M8 Supplies    2.00 mA Current (0.30%)
+Virtual Pad at (77.760 0.530) layer M8 Supplies    1.99 mA Current (0.30%)
+Virtual Pad at (62.400 128.590) layer M8 Supplies    1.98 mA Current (0.30%)
+Virtual Pad at (62.400 0.530) layer M8 Supplies    1.98 mA Current (0.30%)
+Virtual Pad at (70.080 128.590) layer M8 Supplies    1.98 mA Current (0.30%)
+Virtual Pad at (70.080 0.530) layer M8 Supplies    1.97 mA Current (0.30%)
+Virtual Pad at (47.040 128.590) layer M8 Supplies    1.95 mA Current (0.29%)
+Virtual Pad at (81.600 128.590) layer M8 Supplies    1.94 mA Current (0.29%)
+Virtual Pad at (81.600 0.530) layer M8 Supplies    1.94 mA Current (0.29%)
+Virtual Pad at (47.040 0.530) layer M8 Supplies    1.94 mA Current (0.29%)
+Virtual Pad at (66.240 128.590) layer M8 Supplies    1.87 mA Current (0.28%)
+Virtual Pad at (66.240 0.530) layer M8 Supplies    1.86 mA Current (0.28%)
+Virtual Pad at (85.440 0.530) layer M8 Supplies    1.86 mA Current (0.28%)
+Virtual Pad at (43.200 128.590) layer M8 Supplies    1.86 mA Current (0.28%)
+Virtual Pad at (85.440 128.590) layer M8 Supplies    1.86 mA Current (0.28%)
+Virtual Pad at (43.200 0.530) layer M8 Supplies    1.85 mA Current (0.28%)
+Virtual Pad at (129.440 65.850) layer M9 Supplies    1.83 mA Current (0.27%)
+Virtual Pad at (0.000 65.850) layer M9 Supplies    1.80 mA Current (0.27%)
+Virtual Pad at (89.280 0.530) layer M8 Supplies    1.75 mA Current (0.26%)
+Virtual Pad at (89.280 128.590) layer M8 Supplies    1.75 mA Current (0.26%)
+Virtual Pad at (39.360 128.590) layer M8 Supplies    1.75 mA Current (0.26%)
+Virtual Pad at (39.360 0.530) layer M8 Supplies    1.74 mA Current (0.26%)
+Virtual Pad at (93.120 0.530) layer M8 Supplies    1.63 mA Current (0.24%)
+Virtual Pad at (93.120 128.590) layer M8 Supplies    1.62 mA Current (0.24%)
+Virtual Pad at (35.520 128.590) layer M8 Supplies    1.62 mA Current (0.24%)
+Virtual Pad at (35.520 0.530) layer M8 Supplies    1.61 mA Current (0.24%)
+Virtual Pad at (31.680 128.590) layer M8 Supplies    1.47 mA Current (0.22%)
+Virtual Pad at (31.680 0.530) layer M8 Supplies    1.46 mA Current (0.22%)
+Virtual Pad at (100.800 0.530) layer M8 Supplies    1.34 mA Current (0.20%)
+Virtual Pad at (100.800 128.590) layer M8 Supplies    1.34 mA Current (0.20%)
+Virtual Pad at (66.010 129.120) layer M8 Supplies    1.25 mA Current (0.19%)
+Virtual Pad at (66.010 0.000) layer M8 Supplies    1.25 mA Current (0.19%)
+Virtual Pad at (104.640 0.530) layer M8 Supplies    1.19 mA Current (0.18%)
+Virtual Pad at (104.640 128.590) layer M8 Supplies    1.18 mA Current (0.18%)
+Virtual Pad at (24.000 128.590) layer M8 Supplies    1.15 mA Current (0.17%)
+Virtual Pad at (24.000 0.530) layer M8 Supplies    1.15 mA Current (0.17%)
+Virtual Pad at (108.480 0.530) layer M8 Supplies    1.02 mA Current (0.15%)
+Virtual Pad at (108.480 128.590) layer M8 Supplies    1.02 mA Current (0.15%)
+Virtual Pad at (20.160 128.590) layer M8 Supplies    0.99 mA Current (0.15%)
+Virtual Pad at (20.160 0.530) layer M8 Supplies    0.98 mA Current (0.15%)
+Virtual Pad at (112.320 0.530) layer M8 Supplies    0.86 mA Current (0.13%)
+Virtual Pad at (112.320 128.590) layer M8 Supplies    0.85 mA Current (0.13%)
+Virtual Pad at (16.320 128.590) layer M8 Supplies    0.82 mA Current (0.12%)
+Virtual Pad at (16.320 0.530) layer M8 Supplies    0.82 mA Current (0.12%)
+Virtual Pad at (116.160 0.530) layer M8 Supplies    0.69 mA Current (0.10%)
+Virtual Pad at (116.160 128.590) layer M8 Supplies    0.69 mA Current (0.10%)
+Virtual Pad at (12.480 128.590) layer M8 Supplies    0.65 mA Current (0.10%)
+Virtual Pad at (12.480 0.530) layer M8 Supplies    0.65 mA Current (0.10%)
+Virtual Pad at (120.000 128.590) layer M8 Supplies    0.53 mA Current (0.08%)
+Virtual Pad at (120.000 0.530) layer M8 Supplies    0.53 mA Current (0.08%)
+Virtual Pad at (8.640 128.590) layer M8 Supplies    0.50 mA Current (0.07%)
+Virtual Pad at (8.640 0.530) layer M8 Supplies    0.49 mA Current (0.07%)
+Virtual Pad at (123.840 128.590) layer M8 Supplies    0.40 mA Current (0.06%)
+Virtual Pad at (123.840 0.530) layer M8 Supplies    0.39 mA Current (0.06%)
+Virtual Pad at (4.800 128.590) layer M8 Supplies    0.36 mA Current (0.05%)
+Virtual Pad at (4.800 0.530) layer M8 Supplies    0.35 mA Current (0.05%)
+Total Current from Straps Ends:    0.00 mA (0.00%)
+Total Current from Virtual Pads:  666.67 mA (100.00%)
+Maximum IR drop in flat_dp : 82.41 mV
+Maximum current in flat_dp : 24.762 mA
+Maximum EM of wires in flat_dp : 4.761863e+02 A/cm, layer M9
+Maximum EM of vias in flat_dp : 1.948972e+07 A/cm_square, layer VIA7
+The PNS synthesizes the net VDD successfully
+The maximum IR drop of the synthesized net VDD is  82.410 mV
+Processing net VSS ...
+Average power dissipation in flat_dp :  1000.00 mW
+Power supply voltage :     1.50 V
+Average current in flat_dp :   666.67 mA
+Performing Wire Cutting of net VSS for Honoring Blockage Constraints
+Processing virtual rail for net VSS
+Number of power pads reaching to the power ports of the leaf cells or blocks: 100
+Total assigned virtual connection port current is 0.000000
+Total assigned connected port current is 666.666667
+Total assigned current is 666.666667
+Total floating virtual connection port current is 0.000000
+Total floating connected port current is 0.000000
+Simulation begin ...
+Virtual Pad at (128.190 66.370) layer M9 Supplies   25.19 mA Current (3.78%)
+Virtual Pad at (1.250 66.370) layer M9 Supplies   25.17 mA Current (3.77%)
+Virtual Pad at (1.250 76.610) layer M9 Supplies   24.87 mA Current (3.73%)
+Virtual Pad at (128.190 76.610) layer M9 Supplies   24.75 mA Current (3.71%)
+Virtual Pad at (1.250 56.130) layer M9 Supplies   24.48 mA Current (3.67%)
+Virtual Pad at (128.190 56.130) layer M9 Supplies   24.44 mA Current (3.67%)
+Virtual Pad at (128.190 51.010) layer M9 Supplies   24.37 mA Current (3.66%)
+Virtual Pad at (1.250 61.250) layer M9 Supplies   24.34 mA Current (3.65%)
+Virtual Pad at (128.190 61.250) layer M9 Supplies   24.27 mA Current (3.64%)
+Virtual Pad at (1.250 51.010) layer M9 Supplies   24.27 mA Current (3.64%)
+Virtual Pad at (1.250 81.730) layer M9 Supplies   22.93 mA Current (3.44%)
+Virtual Pad at (128.190 81.730) layer M9 Supplies   22.83 mA Current (3.42%)
+Virtual Pad at (1.250 40.770) layer M9 Supplies   21.24 mA Current (3.19%)
+Virtual Pad at (128.190 40.770) layer M9 Supplies   21.09 mA Current (3.16%)
+Virtual Pad at (1.250 86.850) layer M9 Supplies   20.76 mA Current (3.11%)
+Virtual Pad at (128.190 86.850) layer M9 Supplies   20.71 mA Current (3.11%)
+Virtual Pad at (128.190 91.970) layer M9 Supplies   18.64 mA Current (2.80%)
+Virtual Pad at (1.250 91.970) layer M9 Supplies   18.53 mA Current (2.78%)
+Virtual Pad at (1.250 35.650) layer M9 Supplies   17.95 mA Current (2.69%)
+Virtual Pad at (128.190 35.650) layer M9 Supplies   17.85 mA Current (2.68%)
+Virtual Pad at (128.190 30.530) layer M9 Supplies   14.33 mA Current (2.15%)
+Virtual Pad at (1.250 30.530) layer M9 Supplies   14.18 mA Current (2.13%)
+Virtual Pad at (128.190 102.210) layer M9 Supplies   12.10 mA Current (1.82%)
+Virtual Pad at (1.250 102.210) layer M9 Supplies   12.01 mA Current (1.80%)
+Virtual Pad at (128.190 25.410) layer M9 Supplies   10.63 mA Current (1.59%)
+Virtual Pad at (1.250 25.410) layer M9 Supplies   10.50 mA Current (1.58%)
+Virtual Pad at (128.190 107.330) layer M9 Supplies    8.42 mA Current (1.26%)
+Virtual Pad at (1.250 107.330) layer M9 Supplies    8.36 mA Current (1.25%)
+Virtual Pad at (128.190 112.450) layer M9 Supplies    5.75 mA Current (0.86%)
+Virtual Pad at (1.250 112.450) layer M9 Supplies    5.71 mA Current (0.86%)
+Virtual Pad at (128.190 15.170) layer M9 Supplies    5.29 mA Current (0.79%)
+Virtual Pad at (1.250 15.170) layer M9 Supplies    5.24 mA Current (0.79%)
+Virtual Pad at (128.190 117.570) layer M9 Supplies    3.59 mA Current (0.54%)
+Virtual Pad at (1.250 117.570) layer M9 Supplies    3.57 mA Current (0.54%)
+Virtual Pad at (128.190 10.050) layer M9 Supplies    3.12 mA Current (0.47%)
+Virtual Pad at (1.250 10.050) layer M9 Supplies    3.09 mA Current (0.46%)
+Virtual Pad at (70.560 2.100) layer M8 Supplies    2.18 mA Current (0.33%)
+Virtual Pad at (74.400 2.100) layer M8 Supplies    2.17 mA Current (0.33%)
+Virtual Pad at (55.200 2.100) layer M8 Supplies    2.15 mA Current (0.32%)
+Virtual Pad at (66.720 2.100) layer M8 Supplies    2.14 mA Current (0.32%)
+Virtual Pad at (59.040 2.100) layer M8 Supplies    2.14 mA Current (0.32%)
+Virtual Pad at (78.240 2.100) layer M8 Supplies    2.13 mA Current (0.32%)
+Virtual Pad at (70.560 127.020) layer M8 Supplies    2.12 mA Current (0.32%)
+Virtual Pad at (51.360 2.100) layer M8 Supplies    2.11 mA Current (0.32%)
+Virtual Pad at (74.400 127.020) layer M8 Supplies    2.11 mA Current (0.32%)
+Virtual Pad at (55.200 127.020) layer M8 Supplies    2.09 mA Current (0.31%)
+Virtual Pad at (59.040 127.020) layer M8 Supplies    2.08 mA Current (0.31%)
+Virtual Pad at (66.720 127.020) layer M8 Supplies    2.08 mA Current (0.31%)
+Virtual Pad at (78.240 127.020) layer M8 Supplies    2.07 mA Current (0.31%)
+Virtual Pad at (62.880 2.100) layer M8 Supplies    2.07 mA Current (0.31%)
+Virtual Pad at (51.360 127.020) layer M8 Supplies    2.06 mA Current (0.31%)
+Virtual Pad at (82.080 2.100) layer M8 Supplies    2.05 mA Current (0.31%)
+Virtual Pad at (47.520 2.100) layer M8 Supplies    2.05 mA Current (0.31%)
+Virtual Pad at (62.880 127.020) layer M8 Supplies    2.01 mA Current (0.30%)
+Virtual Pad at (82.080 127.020) layer M8 Supplies    2.00 mA Current (0.30%)
+Virtual Pad at (47.520 127.020) layer M8 Supplies    2.00 mA Current (0.30%)
+Virtual Pad at (85.920 2.100) layer M8 Supplies    1.95 mA Current (0.29%)
+Virtual Pad at (43.680 2.100) layer M8 Supplies    1.95 mA Current (0.29%)
+Virtual Pad at (43.680 127.020) layer M8 Supplies    1.90 mA Current (0.29%)
+Virtual Pad at (85.920 127.020) layer M8 Supplies    1.90 mA Current (0.29%)
+Virtual Pad at (39.840 2.100) layer M8 Supplies    1.83 mA Current (0.28%)
+Virtual Pad at (89.760 2.100) layer M8 Supplies    1.83 mA Current (0.27%)
+Virtual Pad at (39.840 127.020) layer M8 Supplies    1.79 mA Current (0.27%)
+Virtual Pad at (89.760 127.020) layer M8 Supplies    1.78 mA Current (0.27%)
+Virtual Pad at (36.000 2.100) layer M8 Supplies    1.70 mA Current (0.25%)
+Virtual Pad at (93.600 2.100) layer M8 Supplies    1.69 mA Current (0.25%)
+Virtual Pad at (36.000 127.020) layer M8 Supplies    1.66 mA Current (0.25%)
+Virtual Pad at (93.600 127.020) layer M8 Supplies    1.65 mA Current (0.25%)
+Virtual Pad at (32.160 2.100) layer M8 Supplies    1.54 mA Current (0.23%)
+Virtual Pad at (32.160 127.020) layer M8 Supplies    1.51 mA Current (0.23%)
+Virtual Pad at (101.280 2.100) layer M8 Supplies    1.38 mA Current (0.21%)
+Virtual Pad at (0.000 63.260) layer M9 Supplies    1.35 mA Current (0.20%)
+Virtual Pad at (129.440 63.260) layer M9 Supplies    1.35 mA Current (0.20%)
+Virtual Pad at (101.280 127.020) layer M8 Supplies    1.34 mA Current (0.20%)
+Virtual Pad at (105.120 2.100) layer M8 Supplies    1.21 mA Current (0.18%)
+Virtual Pad at (24.480 2.100) layer M8 Supplies    1.21 mA Current (0.18%)
+Virtual Pad at (24.480 127.020) layer M8 Supplies    1.18 mA Current (0.18%)
+Virtual Pad at (105.120 127.020) layer M8 Supplies    1.18 mA Current (0.18%)
+Virtual Pad at (108.960 2.100) layer M8 Supplies    1.03 mA Current (0.15%)
+Virtual Pad at (20.640 2.100) layer M8 Supplies    1.03 mA Current (0.15%)
+Virtual Pad at (20.640 127.020) layer M8 Supplies    1.01 mA Current (0.15%)
+Virtual Pad at (108.960 127.020) layer M8 Supplies    1.01 mA Current (0.15%)
+Virtual Pad at (63.420 0.000) layer M8 Supplies    0.93 mA Current (0.14%)
+Virtual Pad at (63.420 129.120) layer M8 Supplies    0.91 mA Current (0.14%)
+Virtual Pad at (16.800 2.100) layer M8 Supplies    0.85 mA Current (0.13%)
+Virtual Pad at (112.800 2.100) layer M8 Supplies    0.85 mA Current (0.13%)
+Virtual Pad at (16.800 127.020) layer M8 Supplies    0.83 mA Current (0.13%)
+Virtual Pad at (112.800 127.020) layer M8 Supplies    0.83 mA Current (0.12%)
+Virtual Pad at (12.960 2.100) layer M8 Supplies    0.68 mA Current (0.10%)
+Virtual Pad at (116.640 2.100) layer M8 Supplies    0.67 mA Current (0.10%)
+Virtual Pad at (12.960 127.020) layer M8 Supplies    0.66 mA Current (0.10%)
+Virtual Pad at (116.640 127.020) layer M8 Supplies    0.66 mA Current (0.10%)
+Virtual Pad at (9.120 2.100) layer M8 Supplies    0.51 mA Current (0.08%)
+Virtual Pad at (120.480 2.100) layer M8 Supplies    0.50 mA Current (0.08%)
+Virtual Pad at (9.120 127.020) layer M8 Supplies    0.50 mA Current (0.07%)
+Virtual Pad at (120.480 127.020) layer M8 Supplies    0.49 mA Current (0.07%)
+Virtual Pad at (5.280 2.100) layer M8 Supplies    0.36 mA Current (0.05%)
+Virtual Pad at (5.280 127.020) layer M8 Supplies    0.36 mA Current (0.05%)
+Virtual Pad at (124.320 2.100) layer M8 Supplies    0.36 mA Current (0.05%)
+Virtual Pad at (124.320 127.020) layer M8 Supplies    0.35 mA Current (0.05%)
+Total Current from Straps Ends:    0.00 mA (0.00%)
+Total Current from Virtual Pads:  666.67 mA (100.00%)
+Maximum IR drop in flat_dp : 82.20 mV
+Maximum current in flat_dp : 25.187 mA
+Maximum EM of wires in flat_dp : 4.843585e+02 A/cm, layer M9
+Maximum EM of vias in flat_dp : 2.081405e+07 A/cm_square, layer VIA7
+The PPS synthesizes the net VSS successfully
+The maximum IR drop of the synthesized net VSS is  82.196
+
+The statistics of PNS results
+Global Constraints Setting
+Remove Floating Segments:       On
+Use Stack Via:                  On
+Same PG Width Sizing:           On
+Optimize Track Usage:           Off
+Keep Ring Outside Core Area:    Off
+No Straps Over Hard Macros:     Off
+No Straps Over Plan Groups:     Off
+No Straps Over Soft Macros:     Off
+Ignore Blockage:                Off
+Net name : VDD
+IR drop of the synthesized net :   82.41 mV
+Core ring segment: Horizontal: M9, Width: 1.040 microns
+Core ring segment: Vertical: M8, Width: 0.480 microns
+Layer: M9, Direction: Horizontal, # of Straps: 18, PG spacing
+The maximum width of straps: 0.520 microns
+The average width of straps: 0.520 microns
+Layer: M8, Direction: Vertical, # of Straps: 30, PG spacing
+The maximum width of straps: 0.240 microns
+The average width of straps: 0.240 microns
+The percentage of routing tracks used by the power net VDD for layer M9: 78.52%
+The percentage of routing tracks used by the power net VDD for layer M8: 96.08%
+The percentage of routing tracks used by the power net VDD for layer M7: 0.00%
+The percentage of routing tracks used by the power net VDD for layer M6: 0.00%
+The percentage of routing tracks used by the power net VDD for layer M5: 0.00%
+The percentage of routing tracks used by the power net VDD for layer M4: 0.00%
+The percentage of routing tracks used by the power net VDD for layer M3: 0.00%
+The percentage of routing tracks used by the power net VDD for layer M2: 0.00%
+The percentage of routing tracks used by the power net VDD for layer M1: 8.86%
+The average percentage of routing tracks used by net VDD : 20.38%
+Net name : VSS
+IR drop of the synthesized net :   82.20 mV
+Core ring segment: Horizontal: M9, Width: 1.040 microns
+Core ring segment: Vertical: M8, Width: 0.480 microns
+Layer: M9, Direction: Horizontal, # of Straps: 18, PG spacing
+The maximum width of straps: 0.520 microns
+The average width of straps: 0.520 microns
+Layer: M8, Direction: Vertical, # of Straps: 30, PG spacing
+The maximum width of straps: 0.240 microns
+The average width of straps: 0.240 microns
+The percentage of routing tracks used by the power net VSS for layer M9: 77.64%
+The percentage of routing tracks used by the power net VSS for layer M8: 93.72%
+The percentage of routing tracks used by the power net VSS for layer M7: 0.00%
+The percentage of routing tracks used by the power net VSS for layer M6: 0.00%
+The percentage of routing tracks used by the power net VSS for layer M5: 0.00%
+The percentage of routing tracks used by the power net VSS for layer M4: 0.00%
+The percentage of routing tracks used by the power net VSS for layer M3: 0.00%
+The percentage of routing tracks used by the power net VSS for layer M2: 0.00%
+The percentage of routing tracks used by the power net VSS for layer M1: 9.49%
+The average percentage of routing tracks used by net VSS : 20.09%
+Memory usage for design data :        786.432 Kbytes
+Generating Power Routing Tcl commands file ./pna_output/create_pns_pg.tcl
+Overall takes     0.67 seconds
+Please read flat_dp.PNS.log for detail information
+Generating file ./pna_output/flat_dp.VDD.pad_summary to report power pad synthesis status.
+Generating file ./pna_output/flat_dp.VSS.pad_summary to report power pad synthesis status.
+
+Performing p/g pad synthesis ...
+0% . .  100% done.
+
+p/g pad synthesis result ...
+========================
+Net: VDD  [Maximum/Target IR drop(mV): 186.60/250.00]  [Number of synthesized pads:4]
+Net: VSS  [Maximum/Target IR drop(mV): 199.85/250.00]  [Number of synthesized pads:4]
+========================
+
+All pads are synthesized successfully.
+Saving the virtual pad file ./default.vpad successfully
+Memory usage for p/g pad synthesis only:         49.152 Kbytes
+Run time for p/g pad synthesis only:     0.74 seconds
+All the memory for p/g pad synthesis is removed.
+
+Power network synthesis is done successfully.
+Reading power network analysis highlight file: ./pna_output/flat_dp.VDD.pw_hl.pna ...
+Setting the IR threshold of drop ratio display to 0.100 mV
+Successfully create error file ./pna_output/VDD.VD.report
+Successfully loaded voltage drop map
+Report display map data ...
+Successfully created the VD report file icc_gui.output
+Committing the synthesized power plan ... 
+Done with committing power plan!
+Geometry mapping begins.
+Removing all the files with the prefix flat_dp in the directory ./pna_output
+Parasitics Operating Condition is max
+Ignore contact DIFFCON, which has non-routing layers:  3
+The command set_tlu_plus_files was not set
+Reading TLU+ files from db.
+TLU+ based extraction:
+Resistance based on max model.
+Using operating temperature of  25.00 degree Celsius.
+EKL: layer poly has pitch<=0, forced pitch=2
+EKL: layer poly has pitch<width+spacing, forced pitch=width+spacing
+Getting the info of via resistance from TLU+ model
+lower mask id 0, upper mask id 1, via layer 20, resistivity 8.000000
+lower mask id 1, upper mask id 2, via layer 21, resistivity 0.900000
+lower mask id 2, upper mask id 3, via layer 22, resistivity 0.900000
+lower mask id 3, upper mask id 4, via layer 23, resistivity 0.900000
+lower mask id 4, upper mask id 5, via layer 24, resistivity 0.900000
+lower mask id 5, upper mask id 6, via layer 25, resistivity 0.900000
+lower mask id 6, upper mask id 7, via layer 26, resistivity 0.900000
+lower mask id 7, upper mask id 8, via layer 27, resistivity 0.900000
+lower mask id 8, upper mask id 9, via layer 28, resistivity 0.152500
+EKL: max metal layer: 9  max back metal layer: 0
+Warning: No power/ground pads are specified and no virtual pads are defined. (PNA-138)
+Number of pad instances: 0
+Error: All the P/G pads do not have power ports, or all the power ports are not connected to power or ground net logically. (PNA-006)
+PNA failed.
+        Loading :                /work/cs250-af/lab1-verilog/build/icc-par/build-iccdp-2012-09-10_12-58/common_optimization_settings_icc.tcl
+Warning: Starting from the 2011.09 release, the command set_power_options will no longer be supported (OBS-001)
+Warning: The set_power_options command is retired in the F-2011.09 release. (PWR-808)
+Warning: Starting from the 2011.09 release, the command set_power_options will no longer be supported (OBS-001)
+Warning: The set_power_options command is retired in the F-2011.09 release. (PWR-808)
+Warning: Starting from the 2011.09 release, the command set_power_options will no longer be supported (OBS-001)
+Warning: The set_power_options command is retired in the F-2011.09 release. (PWR-808)
+Warning: Starting from the 2011.09 release, the command set_power_options will no longer be supported (OBS-001)
+Warning: The set_power_options command is retired in the F-2011.09 release. (PWR-808)
+
+  Loading design 'gcdGCDUnit_rtl'
+
+
+
+
+Information: Library Manufacturing Grid(GridResolution) : 5
+Information: Time Unit from Milkyway design library: 'ns' 
+Information: Design Library and main library timing units are matched - 1.000 ns. 
+Information: Resistance Unit from Milkyway design library: 'kohm' 
+Warning: Mismatch in the main library and the Milkyway library resistance units. In the main library it is 1000.000 kohm and in the Milkyway design library it is 1.000 kohm. Check and correct the resistance units in the .tf and .db files. (PSYN-476)
+Information: Capacitance Unit from Milkyway design library: 'pf' 
+Warning: Mismatch in the main and the Milkyway library capacitance units. In the main library it is 0.001 pf and in the Milkyway design library it is 1.000 pf. Check and correct the capacitance units in the .tf and .db files. (PSYN-477)
+****************************************************************
+Information: TLUPlus based RC computation is enabled. (RCEX-141)
+****************************************************************
+Information: The distance unit in Capacitance and Resistance is 1 micron. (RCEX-007)
+Information: The RC model used is TLU+. (RCEX-015)
+Information: Library Derived Cap for layer M1 : 0.22 0.19 (RCEX-011)
+Information: Library Derived Res for layer M1 : 6.4e-07 6.4e-07 (RCEX-011)
+Information: Library Derived Cap for layer M2 : 0.25 0.21 (RCEX-011)
+Information: Library Derived Res for layer M2 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M3 : 0.14 0.12 (RCEX-011)
+Information: Library Derived Res for layer M3 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M4 : 0.14 0.12 (RCEX-011)
+Information: Library Derived Res for layer M4 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M5 : 0.13 0.1 (RCEX-011)
+Information: Library Derived Res for layer M5 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M6 : 0.13 0.1 (RCEX-011)
+Information: Library Derived Res for layer M6 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M7 : 0.13 0.098 (RCEX-011)
+Information: Library Derived Res for layer M7 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M8 : 0.13 0.098 (RCEX-011)
+Information: Library Derived Res for layer M8 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M9 : 0.16 0.12 (RCEX-011)
+Information: Library Derived Res for layer M9 : 6.2e-08 6.2e-08 (RCEX-011)
+Information: Library Derived Horizontal Cap : 0.16 0.13 (RCEX-011)
+Information: Library Derived Horizontal Res : 4.8e-07 4.8e-07 (RCEX-011)
+Information: Library Derived Vertical Cap : 0.16 0.13 (RCEX-011)
+Information: Library Derived Vertical Res : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Using derived R and C coefficients. (RCEX-008)
+Information: Using region-based R and C coefficients. (RCEX-013)
+Information: Library Derived Via Res : 8e-07 8e-07 (RCEX-011)
+....
+438 nets processed. 
+Router succeeded.
+Removing global routes...
+
+Deleting previous global routing.
+Finished removing global routes
+
+  Loading design 'gcdGCDUnit_rtl'
+
+
+
+
+Information: Library Manufacturing Grid(GridResolution) : 5
+Information: Time Unit from Milkyway design library: 'ns' 
+Information: Design Library and main library timing units are matched - 1.000 ns. 
+Information: Resistance Unit from Milkyway design library: 'kohm' 
+Warning: Mismatch in the main library and the Milkyway library resistance units. In the main library it is 1000.000 kohm and in the Milkyway design library it is 1.000 kohm. Check and correct the resistance units in the .tf and .db files. (PSYN-476)
+Information: Capacitance Unit from Milkyway design library: 'pf' 
+Warning: Mismatch in the main and the Milkyway library capacitance units. In the main library it is 0.001 pf and in the Milkyway design library it is 1.000 pf. Check and correct the capacitance units in the .tf and .db files. (PSYN-477)
+****************************************************************
+Information: TLUPlus based RC computation is enabled. (RCEX-141)
+****************************************************************
+Information: The distance unit in Capacitance and Resistance is 1 micron. (RCEX-007)
+Information: The RC model used is TLU+. (RCEX-015)
+Information: Library Derived Cap for layer M1 : 0.22 0.19 (RCEX-011)
+Information: Library Derived Res for layer M1 : 6.4e-07 6.4e-07 (RCEX-011)
+Information: Library Derived Cap for layer M2 : 0.25 0.21 (RCEX-011)
+Information: Library Derived Res for layer M2 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M3 : 0.14 0.12 (RCEX-011)
+Information: Library Derived Res for layer M3 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M4 : 0.14 0.12 (RCEX-011)
+Information: Library Derived Res for layer M4 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M5 : 0.13 0.1 (RCEX-011)
+Information: Library Derived Res for layer M5 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M6 : 0.13 0.1 (RCEX-011)
+Information: Library Derived Res for layer M6 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M7 : 0.13 0.098 (RCEX-011)
+Information: Library Derived Res for layer M7 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M8 : 0.13 0.098 (RCEX-011)
+Information: Library Derived Res for layer M8 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M9 : 0.16 0.12 (RCEX-011)
+Information: Library Derived Res for layer M9 : 6.2e-08 6.2e-08 (RCEX-011)
+Information: Library Derived Horizontal Cap : 0.16 0.13 (RCEX-011)
+Information: Library Derived Horizontal Res : 4.8e-07 4.8e-07 (RCEX-011)
+Information: Library Derived Vertical Cap : 0.16 0.13 (RCEX-011)
+Information: Library Derived Vertical Res : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Using derived R and C coefficients. (RCEX-008)
+Information: Using region-based R and C coefficients. (RCEX-013)
+Information: Library Derived Via Res : 8e-07 8e-07 (RCEX-011)
+
+                  High fanout optimization starts
+================================================================
+
+
+Information: Identified 1 drivers for buffer tree removal. (HFS-800)
+Information: Automatic high-fanout synthesis in progress for high fanout nets. (PSYN-869)
+Information: Identified 1 drivers for buffer tree insertion. (HFS-801)
+Information: Automatic high-fanout synthesis deletes 1 cells. (HFS-802)
+Information: Automatic high-fanout synthesis adds 2 new cells. (PSYN-864)
+
+
+                  High fanout optimization completes
+================================================================
+
+
+  WNS: 0.14  TNS: 1.68  Number of Violating Paths: 31
+  Nets with DRC Violations: 0
+  Total moveable cell area: 3392.4
+  Total fixed cell area: 0.0
+  Total physical cell area: 3392.4
+  Core area: (30000 30000 99440 99120)
+
+
+  Timing and DRC Optimization (Stage 1)
+  --------------------------------------
+
+
+   ELAPSED            WORST NEG TOTAL NEG  DESIGN                            
+    TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:02    3795.1      0.00       0.0       0.0                          
+    0:00:02    3795.1      0.00       0.0       0.0                          
+
+  Optimization Complete
+  ---------------------
+
+  Placement Optimization (Stage 1)
+  ---------------------------------
+
+[begin initializing data for legality checker]
+Initializing Data Structure ...
+  Reading technology information ...
+    Technology table contains 9 routable metal layers
+    This is considered as a 9-metal-layer design
+    Reading library information from DB ...
+  Reading misc information ...
+    array <unit> has 0 vertical and 24 horizontal rows
+    104 pre-routes for placement blockage/checking
+    244 pre-routes for map congestion calculation
+  Checking information read in ...
+    design style = Horizontal masters, Horizontal rows
+  Preprocessing design ...
+    splitting rows by natural obstacles ...
+[end initializing data for legality checker]
+ 
+****************************************
+  Report : Chip Summary
+  Design : gcdGCDUnit_rtl
+  Version: F-2011.09-ICC-SP4
+  Date   : Mon Sep 10 12:58:56 2012
+****************************************
+Std cell utilization: 79.07%  (4118/(5208-0))
+(Non-fixed + Fixed)
+Std cell utilization: 79.07%  (4118/(5208-0))
+(Non-fixed only)
+Chip area:            5208     sites, bbox (30.00 30.00 99.44 99.12) um
+Std cell area:        4118     sites, (non-fixed:4118   fixed:0)
+                      411      cells, (non-fixed:411    fixed:0)
+Macro cell area:      0        sites
+                      0        cells
+Placement blockages:  0        sites, (excluding fixed std cells)
+                      0        sites, (include fixed std cells & chimney area)
+                      0        sites, (complete p/g net blockages)
+Routing blockages:    0        sites, (partial p/g net blockages)
+                      0        sites, (routing blockages and signal pre-route)
+Lib cell count:       32 
+Avg. std cell width:  4.33 um 
+Site array:           unit     (width: 0.32 um, height: 2.88 um, rows: 24)
+Physical DB scale:    1000 db_unit = 1 um 
+
+ 
+****************************************
+  Report : pnet options
+  Design : gcdGCDUnit_rtl
+  Version: F-2011.09-ICC-SP4
+  Date   : Mon Sep 10 12:58:56 2012
+****************************************
+
+
+--------------------------------------------------------------------
+Layer      Blockage   Min_width   Min_height   Via_additive     Density
+--------------------------------------------------------------------
+M1         none          ---         ---       via additive      ---
+M2         none          ---         ---       via additive      ---
+M3         none          ---         ---       via additive      ---
+M4         none          ---         ---       via additive      ---
+M5         none          ---         ---       via additive      ---
+M6         none          ---         ---       via additive      ---
+M7         none          ---         ---       via additive      ---
+M8         none          ---         ---       via additive      ---
+M9         none          ---         ---       via additive      ---
+Legalizing 166 illegal cells...
+Starting legalizer.
+Initial legalization:  100% (0 sec)
+Optimizations pass 1: 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% (0.0 sec)
+Optimizations pass 2: 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% (0.0 sec)
+Optimizations pass 3: 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% (0.0 sec)
+Legalization complete (0 total sec)
+ 
+****************************************
+  Report : Legalize Displacement
+  Design : gcdGCDUnit_rtl
+  Version: F-2011.09-ICC-SP4
+  Date   : Mon Sep 10 12:58:56 2012
+****************************************
+
+avg cell displacement:    1.247 um ( 0.43 row height)
+max cell displacement:    4.492 um ( 1.56 row height)
+std deviation:            0.923 um ( 0.32 row height)
+number of cell moved:       179 cells (out of 411 cells)
+
+Total 0 cells has large displacement (e.g. > 8.640 um or 3 row height)
+
+
+  Placement Optimization Complete
+  -------------------------------
+
+Information: Updating database...
+[                Init] CPU =    0:00:00, gr_data VM =        0 M
+                   Elapsed =    0:00:00, total   VM =      215 M
+Routing User Options:
+SplitTimer = 1
+PortSingleConn = 0
+ViaExtraCostByLength = 0
+ReadPlanGroup = 0
+GaTimingFileMode = 0
+Global Routing User Options:
+speed = 2
+mapOnly = 0
+accessPolyPin = 1
+congestionWeight = 4
+netCriticality = 1
+timingDriven = 0
+timingWeight = 4
+avoidXtalk = 0
+xtalkWeight = 4
+ignoreViaBlockage = 1
+clockBalanced = 1
+clockBalancedAuto = 0
+clockComb = 0
+combDistance = 2
+skewControl = 0
+skewControlWeight = 5
+skewControlNetBBLowBound = 5
+avoidCouplingUser = 0
+horReserveTracks = 2
+verReserveTracks = 2
+blockEdgeAccess = 1
+extraWireLengthOpt = 1
+compactMode = 1
+turboMode = 1
+maxDetourPercent = -1
+detourLimitMinNetLen = 0
+incremental = 0
+unGroutedNetsOnly = 0
+extraCostsApplyPercent = 50
+rcOptByLength = 0
+powerDriven = 0
+densityDriven = 0
+topLayerWidePitch = 1
+topLayerGrcDimAdjust = 4
+topLayerCostAdjust = 5
+Begin global routing.
+Reading database ... 
+********* router params **********
+** Layer Extra Cost:
+  layerExtraCostByRC : 0
+  (polyCont,via1, .. ,via14)ExtraCost :  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+  (poly,m1, .. ,m15)ExtraCost :  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+********* router params **********
+Ignore contact DIFFCON, which has non-routing layers:
+
+        layerNumber = 3
+
+
+ Add [VIA89C] 's rotated via as default via on Lay VIA8 
+
+ Add [VIA78C] 's rotated via as default via on Lay VIA7 
+
+ Add [VIA67C] 's rotated via as default via on Lay VIA6 
+
+ Add [VIA56C] 's rotated via as default via on Lay VIA5 
+
+ Add [VIA45C] 's rotated via as default via on Lay VIA4 
+
+ Add [VIA34C] 's rotated via as default via on Lay VIA3 
+
+ Add [VIA23C] 's rotated via as default via on Lay VIA2 
+
+ Add [VIA12C] 's rotated via as default via on Lay VIA1 
+
+ Add [VIA12B] 's rotated via as default via on Lay VIA1 
+
+ Add [POLYCON] 's rotated via as default via on Lay CO 
+Select via(VIA89C) as the default for layer(VIA8)
+
+	Alternate via(VIA89C-R) for layer(VIA8)
+	Alternate via(VIA89-R) for layer(VIA8)
+	Alternate via(VIA89) for layer(VIA8)
+Select via(VIA78C) as the default for layer(VIA7)
+
+	Alternate via(VIA78C-R) for layer(VIA7)
+	Alternate via(VIA78-R) for layer(VIA7)
+	Alternate via(VIA78) for layer(VIA7)
+Select via(VIA67C) as the default for layer(VIA6)
+
+	Alternate via(VIA67C-R) for layer(VIA6)
+	Alternate via(VIA67-R) for layer(VIA6)
+	Alternate via(VIA67) for layer(VIA6)
+Select via(VIA56C) as the default for layer(VIA5)
+
+	Alternate via(VIA56C-R) for layer(VIA5)
+	Alternate via(VIA56-R) for layer(VIA5)
+	Alternate via(VIA56) for layer(VIA5)
+Select via(VIA45C) as the default for layer(VIA4)
+
+	Alternate via(VIA45C-R) for layer(VIA4)
+	Alternate via(VIA45-R) for layer(VIA4)
+	Alternate via(VIA45) for layer(VIA4)
+Select via(VIA34C) as the default for layer(VIA3)
+
+	Alternate via(VIA34C-R) for layer(VIA3)
+	Alternate via(VIA34-R) for layer(VIA3)
+	Alternate via(VIA34) for layer(VIA3)
+Select via(VIA23C) as the default for layer(VIA2)
+
+	Alternate via(VIA23C-R) for layer(VIA2)
+	Alternate via(VIA23-R) for layer(VIA2)
+	Alternate via(VIA23) for layer(VIA2)
+  Multiple default via [VIA12C] for layer(VIA1)
+  Multiple default via [VIA12B] for layer(VIA1)
+Select via(VIA12B) as the default for layer(VIA1)
+
+	Alternate via(VIA12C-R) for layer(VIA1)
+	Alternate via(VIA12C) for layer(VIA1)
+	Alternate via(VIA12B-R) for layer(VIA1)
+	Alternate via(VIA12A-R) for layer(VIA1)
+	Alternate via(VIA12A) for layer(VIA1)
+Select via(POLYCON) as the default for layer(CO)
+
+	Alternate via(POLYCON-R) for layer(CO)
+[VIA89C] and [VIA78C] stacking is allowed
+
+[VIA78C] and [VIA89C] stacking is allowed
+
+[VIA78C] and [VIA67C] stacking is allowed
+
+[VIA67C] and [VIA78C] stacking is allowed
+
+[VIA67C] and [VIA56C] stacking is allowed
+
+[VIA56C] and [VIA67C] stacking is allowed
+
+[VIA56C] and [VIA45C] stacking is allowed
+
+[VIA45C] and [VIA56C] stacking is allowed
+
+[VIA45C] and [VIA34C] stacking is allowed
+
+[VIA34C] and [VIA45C] stacking is allowed
+
+[VIA34C] and [VIA23C] stacking is allowed
+
+[VIA23C] and [VIA34C] stacking is allowed
+
+[VIA23C] and [VIA12B] stacking is allowed
+
+[VIA12B] and [VIA23C] stacking is allowed
+
+[VIA12B] and [POLYCON] stacking is allowed
+
+[POLYCON] and [VIA12B] stacking is allowed
+
+Reading spacing rules from lib properties (create_lib_property)
+
+Reading wire end grids from technolgy file
+
+Reading jog to jog spacing from technology file
+POWER Net (VDD)
+GROUND Net (VSS)
+**** WARNING:Ignore 2 top-cell ports with no pins!
+
+
+release 0 cache blocks
+There are NO POLY pins
+# Masters = 34 , # Instances = 412 , # Nets = 482
+
+# Routing Layers = 9 , Maximum Pitch = 5120 [X:3840, Y:5120]m(640,640)
+Max. FatWireThreshold = 0
+  cut  Layer[0] = CO
+  wire Layer[0] = M1 (H,1,1)
+  cut  Layer[1] = VIA1
+  wire Layer[1] = M2 (V,1,0)
+  cut  Layer[2] = VIA2
+  wire Layer[2] = M3 (H,1,0)
+  cut  Layer[3] = VIA3
+  wire Layer[3] = M4 (V,1,0)
+  cut  Layer[4] = VIA4
+  wire Layer[4] = M5 (H,1,0)
+  cut  Layer[5] = VIA5
+  wire Layer[5] = M6 (V,1,0)
+  cut  Layer[6] = VIA6
+  wire Layer[6] = M7 (H,1,0)
+  cut  Layer[7] = VIA7
+  wire Layer[7] = M8 (V,1,0)
+  cut  Layer[8] = VIA8
+  wire Layer[8] = M9 (H,1,0)
+GRC-Dim: (2880,2880)
+**** WARNING:Layer (M2) pitch (0.320) may be TOO SMALL.
+        minimum required value: wire/via-down(0.360) wire/via-up(0.320)
+
+
+Layer (M3) pitch (0.640) : wire-via(0.360) via-via(0.400)
+Layer (M4) pitch (0.640) : wire-via(0.360) via-via(0.400)
+Layer (M5) pitch (1.280) : wire-via(0.360) via-via(0.400)
+Layer (M6) pitch (1.280) : wire-via(0.360) via-via(0.400)
+Layer (M7) pitch (2.560) : wire-via(0.360) via-via(0.400)
+Layer (M8) pitch (3.840) : wire-via(0.465) via-via(0.610)
+Layer (M9) pitch (5.120) : wire-via(0.900) via-via(0.900)
+Via on layer (VIA1) needs more than 1 tracks
+[      End of Read DB] CPU =    0:00:00, gr_data VM =        6 M
+                   Elapsed =    0:00:00, total   VM =      215 M
+Constructing data structure ... 
+
+Number of plan groups = 0
+Number of voltage areas = 0
+user unit = 1000 db unit.
+db min Grid = 5 db unit.
+Design Bounding Box (0.00 0.00) (129.44 129.12)
+layer M1, dir Hor, min width = 0.14, min space = 0.14, pitch = 0.32
+layer M2, dir Ver, min width = 0.16, min space = 0.16, pitch = 0.32
+layer M3, dir Hor, min width = 0.16, min space = 0.16, pitch = 0.64
+layer M4, dir Ver, min width = 0.16, min space = 0.16, pitch = 0.64
+layer M5, dir Hor, min width = 0.16, min space = 0.16, pitch = 1.28
+layer M6, dir Ver, min width = 0.16, min space = 0.16, pitch = 1.28
+layer M7, dir Hor, min width = 0.16, min space = 0.16, pitch = 2.56
+layer M8, dir Ver, min width = 0.16, min space = 0.16, pitch = 3.84
+layer M9, dir Hor, min width = 0.45, min space = 0.45, pitch = 5.12
+Via :M2 -- layer M2 needs 3 tracks.
+Number of routing layers = 9.
+track info for layer(M1):
+Number of X routing tracks = 405.
+X Track min 0.08 max 129.36, Ave. track dist = 0.32
+Number of Y routing tracks = 403.
+Y Track min 0.24 max 128.88, Ave. track dist = 0.32
+track info for layer(M2):
+Number of X routing tracks = 405.
+X Track min 0.08 max 129.36, Ave. track dist = 0.32
+Number of Y routing tracks = 403.
+Y Track min 0.24 max 128.88, Ave. track dist = 0.32
+track info for layer(M3):
+Number of X routing tracks = 606.
+X Track min 0.08 max 129.36, Ave. track dist = 0.21
+Number of Y routing tracks = 201.
+Y Track min 0.56 max 128.56, Ave. track dist = 0.64
+track info for layer(M4):
+Number of X routing tracks = 203.
+X Track min 0.08 max 129.36, Ave. track dist = 0.64
+Number of Y routing tracks = 201.
+Y Track min 0.56 max 128.56, Ave. track dist = 0.64
+track info for layer(M5):
+Number of X routing tracks = 303.
+X Track min 0.08 max 129.36, Ave. track dist = 0.43
+Number of Y routing tracks = 99.
+Y Track min 1.84 max 127.28, Ave. track dist = 1.28
+track info for layer(M6):
+Number of X routing tracks = 102.
+X Track min 0.08 max 129.36, Ave. track dist = 1.28
+Number of Y routing tracks = 99.
+Y Track min 1.84 max 127.28, Ave. track dist = 1.28
+track info for layer(M7):
+Number of X routing tracks = 102.
+X Track min 0.08 max 129.36, Ave. track dist = 1.28
+Number of Y routing tracks = 50.
+Y Track min 1.84 max 127.28, Ave. track dist = 2.56
+track info for layer(M8):
+Number of X routing tracks = 34.
+X Track min 0.08 max 129.36, Ave. track dist = 3.92
+Number of Y routing tracks = 50.
+Y Track min 1.84 max 127.28, Ave. track dist = 2.56
+track info for layer(M9):
+Number of X routing tracks = 34.
+X Track min 0.08 max 129.36, Ave. track dist = 3.92
+Number of Y routing tracks = 24.
+Y Track min 4.40 max 122.16, Ave. track dist = 5.12
+Creating uniform X GGrids ...
+Creating uniform Y GGrids ...
+Number of X global grids = 9.
+Number of Y global grids = 9.
+X global grid min 0.00 max 130.44, Ave. ggrid dist = 16.30
+Y global grid min 0.00 max 130.12, Ave. ggrid dist = 16.27
+zqlNoMazeInBlockedArea = T
+[End of Build Blockage] CPU =    0:00:00, gr_data VM =        7 M
+                   Elapsed =    0:00:00, total   VM =      215 M
+allow wrong dir = 0, weight = 4
+turbo speed = 1
+turbo min dist = 4
+compact param = 2
+Extra wire cost M1 = 0
+Extra wire cost M2 = 0
+Extra wire cost M3 = 0
+Extra wire cost M4 = 0
+Extra wire cost M5 = 0
+Extra wire cost M6 = 0
+Extra wire cost M7 = 0
+Extra wire cost M8 = 0
+Extra wire cost M9 = 0
+Extra via cost VIA1 = 0
+Extra via cost VIA2 = 0
+Extra via cost VIA3 = 0
+Extra via cost VIA4 = 0
+Extra via cost VIA5 = 0
+Extra via cost VIA6 = 0
+Extra via cost VIA7 = 0
+Extra via cost VIA8 = 0
+[End of Build Layer Cost Table] CPU =    0:00:00, gr_data VM =        7 M
+                   Elapsed =    0:00:00, total   VM =      215 M
+Number of instances = 412.
+Number of signal/clock nets = 480.
+Number of net ports = 1335.
+Average number of ports per net = 2.78
+Largest net GCDdpath0/n343 has 52 ports.
+Average cells per port =  1.03
+[    End of Build Net] CPU =    0:00:00, gr_data VM =        7 M
+                   Elapsed =    0:00:00, total   VM =      215 M
+
+Average GCell capacity  33.67 on layer (0) M1
+Average GCell capacity  50.62 on layer (1) M2
+Average GCell capacity  24.72 on layer (2) M3
+Average GCell capacity  25.38 on layer (3) M4
+Average GCell capacity  12.38 on layer (4) M5
+Average GCell capacity  12.75 on layer (5) M6
+Average GCell capacity   6.25 on layer (6) M7
+Average GCell capacity   0.50 on layer (7) M8
+Average GCell capacity   0.75 on layer (8) M9
+Number of GCells = 576.
+VR: Init Virtual Routing - Level 1
+
+VR: ignore voltage areas
+
+VR: Virtual Routing Completed
+
+[   End of Build Data] CPU =    0:00:00, gr_data VM =        9 M
+                   Elapsed =    0:00:00, total   VM =      215 M
+Number of nets to route = 480.
+Begin Initial routing ...
+Layer M1: reserved tracks = 2
+Layer M2: reserved tracks = 2
+Layer M3: reserved tracks = 2
+Layer M4: reserved tracks = 2
+Layer M5: reserved tracks = 2
+Layer M6: reserved tracks = 2
+Layer M7: reserved tracks = 2
+Layer M8: reserved tracks = 2
+Layer M9: reserved tracks = 2
+Initial routing completed.
+Initial. Routing result:
+Initial. Both Dirs: Overflow = 1049 Max = 118 GRCs = 20 (15.62%)
+Initial. H routing: Overflow = 11 Max = 4 (1 GRCs) GRCs = 4 (3.12%)
+Initial. V routing: Overflow = 1038 Max = 118 (1 GRCs) GRCs = 16 (12.50%)
+Initial. M1       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+Initial. M2       : Overflow = 1038 Max = 118 (1 GRCs) GRCs = 16 (25.00%)
+Initial. M3       : Overflow = 11 Max = 4 (1 GRCs) GRCs = 4 (6.25%)
+Initial. M4       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+Initial. M5       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+Initial. M6       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+Initial. M7       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+Initial. M8       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+Initial. M9       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+
+Initial. Total wire length = 9620.08
+Initial. Layer M1 wire length = 0.00
+Initial. Layer M2 wire length = 3145.92
+Initial. Layer M3 wire length = 5013.04
+Initial. Layer M4 wire length = 1443.84
+Initial. Layer M5 wire length = 17.28
+Initial. Layer M6 wire length = 0.00
+Initial. Layer M7 wire length = 0.00
+Initial. Layer M8 wire length = 0.00
+Initial. Layer M9 wire length = 0.00
+Initial. Via VIA12B count = 1293
+Initial. Via VIA23C count = 409
+Initial. Via VIA34C count = 106
+Initial. Via VIA45C count = 2
+Initial. Via VIA56C count = 0
+Initial. Via VIA67C count = 0
+Initial. Via VIA78C count = 0
+Initial. Via VIA89C count = 0
+[End of Initial Routing] CPU =    0:00:00, gr_data VM =       11 M
+                   Elapsed =    0:00:00, total   VM =      215 M
+Begin Rerouting ... 
+Meandering net count: 0/480
+Begin Phase 1 ...
+Layer M1: reserved tracks = 1
+Layer M2: reserved tracks = 1
+Layer M3: reserved tracks = 1
+Layer M4: reserved tracks = 1
+Layer M5: reserved tracks = 1
+Layer M6: reserved tracks = 1
+Layer M7: reserved tracks = 1
+Layer M8: reserved tracks = 1
+Layer M9: reserved tracks = 1
+phase1. Routing result:
+phase1. Both Dirs: Overflow = 1321 Max = 152 GRCs = 16 (12.50%)
+phase1. H routing: Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase1. V routing: Overflow = 1321 Max = 152 (1 GRCs) GRCs = 16 (12.50%)
+phase1. M1       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase1. M2       : Overflow = 1321 Max = 152 (1 GRCs) GRCs = 16 (25.00%)
+phase1. M3       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase1. M4       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase1. M5       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase1. M6       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase1. M7       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase1. M8       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase1. M9       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+
+phase1. Total wire length = 9689.20
+phase1. Layer M1 wire length = 0.00
+phase1. Layer M2 wire length = 3266.88
+phase1. Layer M3 wire length = 4719.28
+phase1. Layer M4 wire length = 1461.12
+phase1. Layer M5 wire length = 241.92
+phase1. Layer M6 wire length = 0.00
+phase1. Layer M7 wire length = 0.00
+phase1. Layer M8 wire length = 0.00
+phase1. Layer M9 wire length = 0.00
+phase1. Via VIA12B count = 1290
+phase1. Via VIA23C count = 403
+phase1. Via VIA34C count = 114
+phase1. Via VIA45C count = 20
+phase1. Via VIA56C count = 0
+phase1. Via VIA67C count = 0
+phase1. Via VIA78C count = 0
+phase1. Via VIA89C count = 0
+Phase 1 completed.
+[       End of Phase1] CPU =    0:00:00, gr_data VM =       11 M
+                   Elapsed =    0:00:00, total   VM =      215 M
+Meandering net count: 0/480
+Begin Phase 2 ...
+Layer M1: reserved tracks = 0
+Layer M2: reserved tracks = 0
+Layer M3: reserved tracks = 0
+Layer M4: reserved tracks = 0
+Layer M5: reserved tracks = 0
+Layer M6: reserved tracks = 0
+Layer M7: reserved tracks = 0
+Layer M8: reserved tracks = 0
+Layer M9: reserved tracks = 0
+phase2. Routing result:
+phase2. Both Dirs: Overflow = 1617 Max = 181 GRCs = 16 (12.50%)
+phase2. H routing: Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase2. V routing: Overflow = 1617 Max = 181 (1 GRCs) GRCs = 16 (12.50%)
+phase2. M1       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase2. M2       : Overflow = 1617 Max = 181 (1 GRCs) GRCs = 16 (25.00%)
+phase2. M3       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase2. M4       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase2. M5       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase2. M6       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase2. M7       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase2. M8       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase2. M9       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+
+phase2. Total wire length = 9689.20
+phase2. Layer M1 wire length = 0.00
+phase2. Layer M2 wire length = 3266.88
+phase2. Layer M3 wire length = 4702.00
+phase2. Layer M4 wire length = 1461.12
+phase2. Layer M5 wire length = 259.20
+phase2. Layer M6 wire length = 0.00
+phase2. Layer M7 wire length = 0.00
+phase2. Layer M8 wire length = 0.00
+phase2. Layer M9 wire length = 0.00
+phase2. Via VIA12B count = 1290
+phase2. Via VIA23C count = 404
+phase2. Via VIA34C count = 116
+phase2. Via VIA45C count = 20
+phase2. Via VIA56C count = 0
+phase2. Via VIA67C count = 0
+phase2. Via VIA78C count = 0
+phase2. Via VIA89C count = 0
+Phase 2 completed.
+[       End of Phase2] CPU =    0:00:00, gr_data VM =       11 M
+                   Elapsed =    0:00:00, total   VM =      215 M
+Meandering net count: 0/480
+Begin Phase 3 ...
+Layer M1: reserved tracks = 0
+Layer M2: reserved tracks = 0
+Layer M3: reserved tracks = 0
+Layer M4: reserved tracks = 0
+Layer M5: reserved tracks = 0
+Layer M6: reserved tracks = 0
+Layer M7: reserved tracks = 0
+Layer M8: reserved tracks = 0
+Layer M9: reserved tracks = 0
+Extra wire cost M1 = 0
+Extra wire cost M2 = 0
+Extra wire cost M3 = 0
+Extra wire cost M4 = 0
+Extra wire cost M5 = 0
+Extra wire cost M6 = 0
+Extra wire cost M7 = 0
+Extra wire cost M8 = 0
+Extra wire cost M9 = 0
+Extra via cost VIA1 = 0
+Extra via cost VIA2 = 0
+Extra via cost VIA3 = 0
+Extra via cost VIA4 = 0
+Extra via cost VIA5 = 0
+Extra via cost VIA6 = 0
+Extra via cost VIA7 = 0
+Extra via cost VIA8 = 0
+Layer M1: reserved tracks = 0
+Layer M2: reserved tracks = 0
+Layer M3: reserved tracks = 0
+Layer M4: reserved tracks = 0
+Layer M5: reserved tracks = 0
+Layer M6: reserved tracks = 0
+Layer M7: reserved tracks = 0
+Layer M8: reserved tracks = 0
+Layer M9: reserved tracks = 0
+phase3. Routing result:
+phase3. Both Dirs: Overflow = 1617 Max = 181 GRCs = 16 (12.50%)
+phase3. H routing: Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase3. V routing: Overflow = 1617 Max = 181 (1 GRCs) GRCs = 16 (12.50%)
+phase3. M1       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase3. M2       : Overflow = 1617 Max = 181 (1 GRCs) GRCs = 16 (25.00%)
+phase3. M3       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase3. M4       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase3. M5       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase3. M6       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase3. M7       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase3. M8       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+phase3. M9       : Overflow = 0 Max = 0 GRCs = 0 (0.00%)
+
+phase3. Total wire length = 9689.20
+phase3. Layer M1 wire length = 0.00
+phase3. Layer M2 wire length = 3266.88
+phase3. Layer M3 wire length = 4702.00
+phase3. Layer M4 wire length = 1461.12
+phase3. Layer M5 wire length = 259.20
+phase3. Layer M6 wire length = 0.00
+phase3. Layer M7 wire length = 0.00
+phase3. Layer M8 wire length = 0.00
+phase3. Layer M9 wire length = 0.00
+phase3. Via VIA12B count = 1290
+phase3. Via VIA23C count = 404
+phase3. Via VIA34C count = 116
+phase3. Via VIA45C count = 20
+phase3. Via VIA56C count = 0
+phase3. Via VIA67C count = 0
+phase3. Via VIA78C count = 0
+phase3. Via VIA89C count = 0
+Phase 3 completed.
+[       End of Phase3] CPU =    0:00:00, gr_data VM =       11 M
+                   Elapsed =    0:00:00, total   VM =      215 M
+Meandering net count: 0/480
+Rerouting completed.
+[    End of ReRouting] CPU =    0:00:00, gr_data VM =       11 M
+                   Elapsed =    0:00:00, total   VM =      215 M
+Writing results to database ...
+
+Deleting previous global routing.
+[    End of Update DB] CPU =    0:00:00, gr_data VM =        4 M
+                   Elapsed =    0:00:00, total   VM =      215 M
+[  End of Global Routing] CPU =    0:00:00, gr_data VM =        4 M
+                   Elapsed =    0:00:00, total   VM =      215 M
+Global routing completed.
+Information: Performing CEL netlist consistency check. (MWDC-118)
+Information: CEL consistency check PASSED. (MWDC-119)
+Information: Saved design named flat_dp_groute. (UIG-5)
+Successfully removed route by type
+Information: linking reference library : /home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr. (PSYN-878)
+Warning: The 'RSDFFNSRASRX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASRX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFSRARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFSRARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSDNENX8' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSDNX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSDNX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSDNX4' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSDNX8' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPENCLX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPENCLX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPENCLX4' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFNARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFNARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFSRSSRX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFSRSSRX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFSRX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFSRX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASRNX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASRNX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASRQX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASRQX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPX4' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPX8' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFNSRARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFNSRARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+        have corresponding logical cell description. (PSYN-025)
+
+  Linking design 'gcdGCDUnit_rtl'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  * (5 designs)               flat_dp.CEL, etc
+  saed90nm_typ (library)      /home/ff/cs250/stdcells/synopsys-90nm/default/db/cells.db
+  saed90nm_typ_cg (library)   /home/ff/cs250/stdcells/synopsys-90nm/default/db/cells_cg.db
+
+Load global CTS reference options from NID to stack
+Information: The design has horizontal rows, and Y-symmetry has been used for sites. (MWDC-217)
+Floorplan loading succeeded.
+
+  Loading design 'gcdGCDUnit_rtl'
+
+
+
+
+Information: Library Manufacturing Grid(GridResolution) : 5
+Information: Time Unit from Milkyway design library: 'ns' 
+Information: Design Library and main library timing units are matched - 1.000 ns. 
+Information: Resistance Unit from Milkyway design library: 'kohm' 
+Warning: Mismatch in the main library and the Milkyway library resistance units. In the main library it is 1000.000 kohm and in the Milkyway design library it is 1.000 kohm. Check and correct the resistance units in the .tf and .db files. (PSYN-476)
+Information: Capacitance Unit from Milkyway design library: 'pf' 
+Warning: Mismatch in the main and the Milkyway library capacitance units. In the main library it is 0.001 pf and in the Milkyway design library it is 1.000 pf. Check and correct the capacitance units in the .tf and .db files. (PSYN-477)
+****************************************************************
+Information: TLUPlus based RC computation is enabled. (RCEX-141)
+****************************************************************
+Information: The distance unit in Capacitance and Resistance is 1 micron. (RCEX-007)
+Information: The RC model used is TLU+. (RCEX-015)
+Information: Library Derived Cap for layer M1 : 0.22 0.19 (RCEX-011)
+Information: Library Derived Res for layer M1 : 6.4e-07 6.4e-07 (RCEX-011)
+Information: Library Derived Cap for layer M2 : 0.25 0.21 (RCEX-011)
+Information: Library Derived Res for layer M2 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M3 : 0.14 0.12 (RCEX-011)
+Information: Library Derived Res for layer M3 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M4 : 0.14 0.12 (RCEX-011)
+Information: Library Derived Res for layer M4 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M5 : 0.13 0.1 (RCEX-011)
+Information: Library Derived Res for layer M5 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M6 : 0.13 0.1 (RCEX-011)
+Information: Library Derived Res for layer M6 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M7 : 0.13 0.098 (RCEX-011)
+Information: Library Derived Res for layer M7 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M8 : 0.13 0.098 (RCEX-011)
+Information: Library Derived Res for layer M8 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M9 : 0.16 0.12 (RCEX-011)
+Information: Library Derived Res for layer M9 : 6.2e-08 6.2e-08 (RCEX-011)
+Information: Library Derived Horizontal Cap : 0.16 0.13 (RCEX-011)
+Information: Library Derived Horizontal Res : 4.8e-07 4.8e-07 (RCEX-011)
+Information: Library Derived Vertical Cap : 0.16 0.13 (RCEX-011)
+Information: Library Derived Vertical Res : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Using derived R and C coefficients. (RCEX-008)
+Information: Using region-based R and C coefficients. (RCEX-013)
+Information: Library Derived Via Res : 8e-07 8e-07 (RCEX-011)
+....
+477 nets processed. 
+Router succeeded.
+Information: This newer version of snapshot utility does not support these options:-timing, -congestion, -constraint. Ignored. (UID-1103)
+Information: Timer is not in zero interconnect delay mode. (TIM-176)
+***********************************************
+Report          : create_qor_snapshot (flat_dp)
+Design          : gcdGCDUnit_rtl
+Version         : F-2011.09-ICC-SP4
+Date            : Mon Sep 10 12:58:57 2012
+Time unit       : 1.0e-09 Second(ns)
+Capacitance unit: N/A
+Voltage unit    : 1 Volt
+Power unit      : N/A
+Location        : /work/cs250-af/lab1-verilog/build/icc-par/build-iccdp-2012-09-10_12-58/snapshot
+***********************************************
+No. of scenario = 1
+---------------------------------------------
+WNS of each timing group:           
+---------------------------------------------
+---------------------------------------------
+Setup WNS:                              0.002  
+Setup TNS:                                0.0  
+Number of setup violations:                 0  
+Hold WNS:                               0.000  
+Hold TNS:                               0.000  
+Number of hold violations:                  0  
+Number of max trans violations:             0  
+Number of max cap violations:               0  
+Number of min pulse width violations:       0  
+Route drc violations:                       0
+---------------------------------------------
+Area:                                    3795
+Cell count:                               411
+Buf/inv cell count:                        87
+Std cell utilization:                  79.07%
+CPU/ELAPSE(hr):                     0.00/0.01
+Mem(Mb):                                  216
+Host name:                          bcom16.EECS.Berkeley.EDU
+---------------------------------------------
+Histogram:           
+---------------------------------------------
+Max violations:         0 
+   above ~ -0.7  ---    0 
+    -0.6 ~ -0.7  ---    0 
+    -0.5 ~ -0.6  ---    0 
+    -0.4 ~ -0.5  ---    0 
+    -0.3 ~ -0.4  ---    0 
+    -0.2 ~ -0.3  ---    0 
+    -0.1 ~ -0.2  ---    0 
+       0 ~ -0.1  ---    0 
+---------------------------------------------
+Min violations:         0 
+  -0.06 ~ above  ---    0 
+  -0.05 ~ -0.06  ---    0 
+  -0.04 ~ -0.05  ---    0 
+  -0.03 ~ -0.04  ---    0 
+  -0.02 ~ -0.03  ---    0 
+  -0.01 ~ -0.02  ---    0 
+      0 ~ -0.01  ---    0 
+---------------------------------------------
+Snapshot (flat_dp) is created and stored under "/work/cs250-af/lab1-verilog/build/icc-par/build-iccdp-2012-09-10_12-58/snapshot" directory
+Error: Error in argument 'object_list'. 'No objects specified to set_dont_touch_placement'. (PSYN-052)
+Information: Overwrite is already the default.  You do not need to specify this option. (UID-1065)
+Information: Performing CEL netlist consistency check. (MWDC-118)
+Information: CEL consistency check PASSED. (MWDC-119)
+Information: Saved design named flat_dp. (UIG-5)
+Warning: Extra braces will be added for number list returned from get_attribute. (MWUI-041)
+Warning: Extra braces will be added for number list returned from get_attribute. (MWUI-041)
+Warning: Extra braces will be added for number list returned from get_attribute. (MWUI-041)
+Warning: Extra braces will be added for number list returned from get_attribute. (MWUI-041)
+Warning: Extra braces will be added for number list returned from get_attribute. (MWUI-041)
+Warning: Extra braces will be added for number list returned from get_attribute. (MWUI-041)
+Warning: Extra braces will be added for number list returned from get_attribute. (MWUI-041)
+Warning: Extra braces will be added for number list returned from get_attribute. (MWUI-041)
+Warning: Extra braces will be added for number list returned from get_attribute. (MWUI-041)
+# of    Terminals    : 54
+# of  std cell : 411
+# of  Track : 25
+# of  Row : 24
+Output DEF file
+Information: Writing ROWS statement (DDEFW-014)
+Information: Completed ROWS statement  (DDEFW-016)
+Information: Writing TRACKS statement (DDEFW-014)
+Information: Completed TRACKS statement  (DDEFW-016)
+Information: Writing GCELLGRID statement (DDEFW-014)
+Information: Completed GCELLGRID statement  (DDEFW-016)
+Information: Writing PINS section (DDEFW-014)
+Information: Completed PINS section  (DDEFW-016)
+Information: Writing SPECIALNETS section (DDEFW-014)
+Information: Completed SPECIALNETS section  (DDEFW-016)
+DEF output completed
+Warning: Extra braces will be added for number list returned from get_attribute. (MWUI-041)
+Warning: Extra braces will be added for number list returned from get_attribute. (MWUI-041)
+Warning: Extra braces will be added for number list returned from get_attribute. (MWUI-041)
+# of  Row : 24
+Removing physical design 'gcdGCDUnit_rtl'
+1
+##################################################################################################################################################
+## If you use explore mode,
+## how to use explore run results and continue in ICC-RM?
+##################################################################################################################################################
+##
+## After explore mode is done, please review results in HTML table ${DESIGN_NAME}_explore.html and pick one result you like to continue ICC-RM
+## You can do this by either of the following depending on your preference:
+##
+## - Use the saved CEL from the run you like as starting point for ICC-RM
+##   -> Please change varible ICC_FLOORPLAN_CEL in icc_setup.tcl to this CEL name
+##    * This CEL will contain fixed macro placement or In Place Optimization or Power Network Synthesis changes depeding on what option you choose
+##    * ICC_FLOORPLAN_CEL is the variable which you specify the starting CEL of ICC-RM
+##
+## - Use the dumped floorplan_file and routes from the run you like and load it to original CEL
+##   -> Open CEL saved_cel_before_explore_mode, load the dumped floorplan file and routes from the run you like
+##   -> save the CEL as for example, flat_dp and change ICC_FLOORPLAN_CEL to flat_dp
+##    * This approach ensures no netlist change and only macro placement and PG routes.
+##    * saved_cel_before_explore_mode is the CEL saved before explore mode starts which is your clean starting point.
+##    * the dumped floorplan file is in $RESULTS_DIR, for ex, you can load it by:
+##              read_floorplan $RESULTS_DIR/run0_default_dump.floorplan
+##    * the dumped route file is in $RESULTS_DIR, for ex, you can load it by:
+##              read_floorplan $RESULTS_DIR/run0_default_dump.route
+exit
+
+Thank you...
+

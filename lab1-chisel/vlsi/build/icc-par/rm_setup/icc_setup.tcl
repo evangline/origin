@@ -1,0 +1,1 @@
+../../../../../lab1-verilog/build/icc-par/rm_setup/icc_setup.tcl

@@ -1,0 +1,206 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -input_pins
+        -nets
+        -max_paths 1
+        -transition_time
+        -capacitance
+Design : GCD
+Version: F-2011.09-ICC-SP4
+Date   : Tue Sep 11 00:01:41 2012
+****************************************
+
+ * Some/all delay information is back-annotated.
+
+Operating Conditions: TYPICAL   Library: saed90nm_typ
+
+  Startpoint: io_result_rdy
+              (input port clocked by ideal_clock1)
+  Endpoint: io_result_bits_data[7]
+            (output port clocked by ideal_clock1)
+  Path Group: FEEDTHROUGH
+  Path Type: max
+
+  Point                        Fanout       Cap     Trans      Incr       Path
+  -------------------------------------------------------------------------------
+  clock ideal_clock1 (rise edge)                               0.00       0.00
+  clock network delay (ideal)                                  0.00       0.00
+  input external delay                                         0.20       0.20 r
+  io_result_rdy (in)                                 0.04      0.01       0.21 r
+  io_result_rdy (net)            1        11.53                0.00       0.21 r
+  U291/INP (INVX0)                                   0.04      0.00 *     0.21 r
+  U291/ZN (INVX0)                                    0.03      0.03       0.24 f
+  n35 (net)                      1         2.87                0.00       0.24 f
+  U114/IN1 (NOR2X0)                                  0.03      0.00 *     0.24 f
+  U114/QN (NOR2X0)                                   0.33      0.16       0.40 r
+  io_result_val (net)            4        37.91                0.00       0.40 r
+  dp_ipo111/IN2 (NOR2X4)                             0.33      0.00 *     0.40 r
+  dp_ipo111/QN (NOR2X4)                              0.16      0.11       0.51 f
+  n358 (net)                    11        48.83                0.00       0.51 f
+  U382/IN1 (NOR2X1)                                  0.16      0.00 *     0.51 f
+  U382/QN (NOR2X1)                                   0.10      0.05       0.56 r
+  io_result_bits_data[7] (net)
+                                 1         7.03                0.00       0.56 r
+  io_result_bits_data[7] (out)                       0.10      0.00 *     0.56 r
+  data arrival time                                                       0.56
+
+  clock ideal_clock1 (rise edge)                               0.90       0.90
+  clock network delay (ideal)                                  0.00       0.90
+  output external delay                                       -0.20       0.70
+  data required time                                                      0.70
+  -------------------------------------------------------------------------------
+  data required time                                                      0.70
+  data arrival time                                                      -0.56
+  -------------------------------------------------------------------------------
+  slack (MET)                                                             0.14
+
+
+  Startpoint: reset (input port clocked by ideal_clock1)
+  Endpoint: A_reg_1_ (rising edge-triggered flip-flop clocked by ideal_clock1)
+  Path Group: REGIN
+  Path Type: max
+
+  Point                        Fanout       Cap     Trans      Incr       Path
+  -------------------------------------------------------------------------------
+  clock ideal_clock1 (rise edge)                               0.00       0.00
+  clock network delay (ideal)                                  0.00       0.00
+  input external delay                                         0.20       0.20 r
+  reset (in)                                         0.14      0.06       0.26 r
+  reset (net)                    4        44.69                0.00       0.26 r
+  U116/INP (INVX0)                                   0.14      0.00 *     0.26 r
+  U116/ZN (INVX0)                                    0.08      0.05       0.32 f
+  n341 (net)                     2         6.84                0.00       0.32 f
+  U226/IN2 (NAND2X1)                                 0.08      0.00 *     0.32 f
+  U226/QN (NAND2X1)                                  0.41      0.21       0.52 r
+  n351 (net)                    33        92.24                0.00       0.52 r
+  U173/IN1 (NAND2X0)                                 0.41      0.00 *     0.52 r
+  U173/QN (NAND2X0)                                  0.21      0.13       0.66 f
+  n182 (net)                     1        11.38                0.00       0.66 f
+  U172/IN2 (NAND2X0)                                 0.21      0.00 *     0.66 f
+  U172/QN (NAND2X0)                                  0.11      0.07       0.73 r
+  N21 (net)                      1         3.64                0.00       0.73 r
+  A_reg_1_/D (DFFX1)                                 0.11      0.00 *     0.73 r
+  data arrival time                                                       0.73
+
+  clock ideal_clock1 (rise edge)                               0.90       0.90
+  clock network delay (ideal)                                  0.00       0.90
+  A_reg_1_/CLK (DFFX1)                                         0.00       0.90 r
+  library setup time                                          -0.08       0.82
+  data required time                                                      0.82
+  -------------------------------------------------------------------------------
+  data required time                                                      0.82
+  data arrival time                                                      -0.73
+  -------------------------------------------------------------------------------
+  slack (MET)                                                             0.09
+
+
+  Startpoint: A_reg_11_ (rising edge-triggered flip-flop clocked by ideal_clock1)
+  Endpoint: io_result_bits_data[7]
+            (output port clocked by ideal_clock1)
+  Path Group: REGOUT
+  Path Type: max
+
+  Point                        Fanout       Cap     Trans      Incr       Path
+  -------------------------------------------------------------------------------
+  clock ideal_clock1 (rise edge)                               0.00       0.00
+  clock network delay (ideal)                                  0.00       0.00
+  A_reg_11_/CLK (DFFSSRX1)                           0.00      0.00       0.00 r
+  A_reg_11_/QN (DFFSSRX1)                            0.08      0.15       0.15 r
+  n71 (net)                      3        13.38                0.00       0.15 r
+  U278/IN1 (NAND2X0)                                 0.08      0.00 *     0.15 r
+  U278/QN (NAND2X0)                                  0.15      0.09       0.24 f
+  n294 (net)                     6        14.12                0.00       0.24 f
+  U402/INP (INVX0)                                   0.15      0.00 *     0.24 f
+  U402/ZN (INVX0)                                    0.08      0.05       0.29 r
+  n49 (net)                      1         5.94                0.00       0.29 r
+  U401/IN1 (NOR2X2)                                  0.08      0.00 *     0.29 r
+  U401/QN (NOR2X2)                                   0.08      0.04       0.33 f
+  n284 (net)                     2         9.95                0.00       0.33 f
+  U420/IN2 (NAND4X0)                                 0.08      0.00 *     0.33 f
+  U420/QN (NAND4X0)                                  0.09      0.05       0.38 r
+  n61 (net)                      1         4.07                0.00       0.38 r
+  dp_ipo112/IN1 (NOR2X0)                             0.09      0.00 *     0.38 r
+  dp_ipo112/QN (NOR2X0)                              0.08      0.06       0.44 f
+  n359 (net)                     1         7.81                0.00       0.44 f
+  dp_ipo114/INP (INVX2)                              0.08      0.00 *     0.44 f
+  dp_ipo114/ZN (INVX2)                               0.03      0.02       0.46 r
+  n360 (net)                     1         3.64                0.00       0.46 r
+  dp_ipo113/IN3 (NOR3X2)                             0.03      0.00 *     0.46 r
+  dp_ipo113/QN (NOR3X2)                              0.05      0.12       0.59 f
+  n345 (net)                     3        30.48                0.00       0.59 f
+  dp_ipo111/IN1 (NOR2X4)                             0.05      0.00 *     0.59 f
+  dp_ipo111/QN (NOR2X4)                              0.13      0.05       0.64 r
+  n358 (net)                    11        48.83                0.00       0.64 r
+  U382/IN1 (NOR2X1)                                  0.13      0.00 *     0.64 r
+  U382/QN (NOR2X1)                                   0.07      0.06       0.70 f
+  io_result_bits_data[7] (net)
+                                 1         7.03                0.00       0.70 f
+  io_result_bits_data[7] (out)                       0.07      0.00 *     0.70 f
+  data arrival time                                                       0.70
+
+  clock ideal_clock1 (rise edge)                               0.90       0.90
+  clock network delay (ideal)                                  0.00       0.90
+  output external delay                                       -0.20       0.70
+  data required time                                                      0.70
+  -------------------------------------------------------------------------------
+  data required time                                                      0.70
+  data arrival time                                                      -0.70
+  -------------------------------------------------------------------------------
+  slack (MET)                                                             0.00
+
+
+  Startpoint: B_reg_0_ (rising edge-triggered flip-flop clocked by ideal_clock1)
+  Endpoint: B_reg_11_ (rising edge-triggered flip-flop clocked by ideal_clock1)
+  Path Group: ideal_clock1
+  Path Type: max
+
+  Point                        Fanout       Cap     Trans      Incr       Path
+  -------------------------------------------------------------------------------
+  clock ideal_clock1 (rise edge)                               0.00       0.00
+  clock network delay (ideal)                                  0.00       0.00
+  B_reg_0_/CLK (DFFX1)                               0.00      0.00       0.00 r
+  B_reg_0_/Q (DFFX1)                                 0.05      0.19       0.19 f
+  B[0] (net)                     3        12.54                0.00       0.19 f
+  sub_x_10_U144/IN2 (NOR2X0)                         0.05      0.00 *     0.19 f
+  sub_x_10_U144/QN (NOR2X0)                          0.09      0.05       0.24 r
+  sub_x_10_n113 (net)            2         5.91                0.00       0.24 r
+  sub_x_10_U138/IN1 (OAI21X1)                        0.09      0.00 *     0.24 r
+  sub_x_10_U138/QN (OAI21X1)                         0.03      0.12       0.35 f
+  sub_x_10_n110 (net)            2         5.97                0.00       0.35 f
+  sub_x_10_U123/IN1 (AOI21X1)                        0.03      0.00 *     0.35 f
+  sub_x_10_U123/QN (AOI21X1)                         0.04      0.10       0.45 r
+  sub_x_10_n101 (net)            2         5.64                0.00       0.45 r
+  dp_ipo105/IN2 (OR2X1)                              0.04      0.00 *     0.45 r
+  dp_ipo105/Q (OR2X1)                                0.04      0.06       0.51 r
+  n353 (net)                     1         6.18                0.00       0.51 r
+  dp_ipo106/IN1 (NAND2X2)                            0.04      0.00 *     0.51 r
+  dp_ipo106/QN (NAND2X2)                             0.08      0.05       0.57 f
+  sub_x_10_n1 (net)              8        31.09                0.00       0.57 f
+  sub_x_10_U52/IN1 (AOI21X1)                         0.08      0.00 *     0.57 f
+  sub_x_10_U52/QN (AOI21X1)                          0.03      0.10       0.67 r
+  sub_x_10_n51 (net)             1         4.26                0.00       0.67 r
+  sub_x_10_U39/IN1 (XOR2X1)                          0.03      0.00 *     0.67 r
+  sub_x_10_U39/Q (XOR2X1)                            0.04      0.06       0.73 r
+  T25[11] (net)                  1         2.60                0.00       0.73 r
+  U183/IN1 (NAND2X0)                                 0.04      0.00 *     0.73 r
+  U183/QN (NAND2X0)                                  0.06      0.04       0.77 f
+  n125 (net)                     1         2.97                0.00       0.77 f
+  B_reg_11_/SETB (DFFSSRX1)                          0.06      0.00 *     0.77 f
+  data arrival time                                                       0.77
+
+  clock ideal_clock1 (rise edge)                               0.90       0.90
+  clock network delay (ideal)                                  0.00       0.90
+  B_reg_11_/CLK (DFFSSRX1)                                     0.00       0.90 r
+  library setup time                                          -0.14       0.76
+  data required time                                                      0.76
+  -------------------------------------------------------------------------------
+  data required time                                                      0.76
+  data arrival time                                                      -0.77
+  -------------------------------------------------------------------------------
+  slack (VIOLATED)                                                       -0.01
+
+
+1
