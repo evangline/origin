@@ -1,0 +1,1096 @@
+# 
+# SNPS write_def
+# Release      : F-2011.09-ICC-SP4
+# User Name    : cs250-af
+# Date         : Mon Sep 10 12:26:12 2012
+# 
+VERSION 5.7 ;
+DIVIDERCHAR "/" ;
+BUSBITCHARS "[]" ;
+DESIGN gcdGCDUnit_rtl ;
+TECHNOLOGY saed90 ;
+UNITS DISTANCE MICRONS 1000 ;
+DIEAREA ( 0 0 ) ( 129760 129120 ) ;
+ROW STD_ROW_24 unit 30000 30000 N DO 218 BY 1 STEP 320 0 ;
+ROW STD_ROW_25 unit 30000 32880 FS DO 218 BY 1 STEP 320 0 ;
+ROW STD_ROW_26 unit 30000 35760 N DO 218 BY 1 STEP 320 0 ;
+ROW STD_ROW_27 unit 30000 38640 FS DO 218 BY 1 STEP 320 0 ;
+ROW STD_ROW_28 unit 30000 41520 N DO 218 BY 1 STEP 320 0 ;
+ROW STD_ROW_29 unit 30000 44400 FS DO 218 BY 1 STEP 320 0 ;
+ROW STD_ROW_30 unit 30000 47280 N DO 218 BY 1 STEP 320 0 ;
+ROW STD_ROW_31 unit 30000 50160 FS DO 218 BY 1 STEP 320 0 ;
+ROW STD_ROW_32 unit 30000 53040 N DO 218 BY 1 STEP 320 0 ;
+ROW STD_ROW_33 unit 30000 55920 FS DO 218 BY 1 STEP 320 0 ;
+ROW STD_ROW_34 unit 30000 58800 N DO 218 BY 1 STEP 320 0 ;
+ROW STD_ROW_35 unit 30000 61680 FS DO 218 BY 1 STEP 320 0 ;
+ROW STD_ROW_36 unit 30000 64560 N DO 218 BY 1 STEP 320 0 ;
+ROW STD_ROW_37 unit 30000 67440 FS DO 218 BY 1 STEP 320 0 ;
+ROW STD_ROW_38 unit 30000 70320 N DO 218 BY 1 STEP 320 0 ;
+ROW STD_ROW_39 unit 30000 73200 FS DO 218 BY 1 STEP 320 0 ;
+ROW STD_ROW_40 unit 30000 76080 N DO 218 BY 1 STEP 320 0 ;
+ROW STD_ROW_41 unit 30000 78960 FS DO 218 BY 1 STEP 320 0 ;
+ROW STD_ROW_42 unit 30000 81840 N DO 218 BY 1 STEP 320 0 ;
+ROW STD_ROW_43 unit 30000 84720 FS DO 218 BY 1 STEP 320 0 ;
+ROW STD_ROW_44 unit 30000 87600 N DO 218 BY 1 STEP 320 0 ;
+ROW STD_ROW_45 unit 30000 90480 FS DO 218 BY 1 STEP 320 0 ;
+ROW STD_ROW_46 unit 30000 93360 N DO 218 BY 1 STEP 320 0 ;
+ROW STD_ROW_47 unit 30000 96240 FS DO 218 BY 1 STEP 320 0 ;
+TRACKS Y 240 DO 403 STEP 320 LAYER M1 ;
+TRACKS Y 240 DO 403 STEP 320 LAYER M2 ;
+TRACKS X 400 DO 404 STEP 320 LAYER M2 ;
+TRACKS X 400 DO 404 STEP 320 LAYER M1 ;
+TRACKS X 400 DO 404 STEP 320 LAYER M3 ;
+TRACKS Y 560 DO 201 STEP 640 LAYER M3 ;
+TRACKS Y 560 DO 201 STEP 640 LAYER M2 ;
+TRACKS Y 560 DO 201 STEP 640 LAYER M4 ;
+TRACKS X 880 DO 201 STEP 640 LAYER M4 ;
+TRACKS X 880 DO 201 STEP 640 LAYER M3 ;
+TRACKS X 880 DO 201 STEP 640 LAYER M5 ;
+TRACKS Y 1840 DO 99 STEP 1280 LAYER M5 ;
+TRACKS Y 1840 DO 99 STEP 1280 LAYER M4 ;
+TRACKS Y 1840 DO 99 STEP 1280 LAYER M6 ;
+TRACKS X 1200 DO 100 STEP 1280 LAYER M6 ;
+TRACKS X 1200 DO 100 STEP 1280 LAYER M5 ;
+TRACKS X 1200 DO 100 STEP 1280 LAYER M7 ;
+TRACKS Y 1840 DO 50 STEP 2560 LAYER M7 ;
+TRACKS Y 1840 DO 50 STEP 2560 LAYER M6 ;
+TRACKS Y 1840 DO 50 STEP 2560 LAYER M8 ;
+TRACKS X 5040 DO 32 STEP 3840 LAYER M8 ;
+TRACKS X 5040 DO 32 STEP 3840 LAYER M7 ;
+TRACKS X 5040 DO 32 STEP 3840 LAYER M9 ;
+TRACKS Y 4400 DO 24 STEP 5120 LAYER M9 ;
+TRACKS Y 4400 DO 24 STEP 5120 LAYER M8 ;
+GCELLGRID X 27120 DO 46 STEP 2880 ;
+GCELLGRID Y 27120 DO 45 STEP 2880 ;
+PINS 56 ;
+ - clk + NET clk + DIRECTION INPUT + USE SIGNAL + LAYER M3 ( 0 0 ) ( 160 160 ) + PLACED ( 0 3680 ) N ;
+ - reset + NET reset + DIRECTION INPUT + USE SIGNAL + LAYER M3 ( 0 0 ) ( 160 160 ) + PLACED ( 0 13920 ) N ;
+ - operands_bits_A[15] + NET operands_bits_A[15] + DIRECTION INPUT + USE SIGNAL + LAYER M3 ( 0 0 ) ( 160 160 ) + PLACED ( 0 24160 ) N ;
+ - operands_bits_A[14] + NET operands_bits_A[14] + DIRECTION INPUT + USE SIGNAL + LAYER M3 ( 0 0 ) ( 160 160 ) + PLACED ( 0 33760 ) N ;
+ - operands_bits_A[13] + NET operands_bits_A[13] + DIRECTION INPUT + USE SIGNAL + LAYER M3 ( 0 0 ) ( 160 160 ) + PLACED ( 0 44000 ) N ;
+ - operands_bits_A[12] + NET operands_bits_A[12] + DIRECTION INPUT + USE SIGNAL + LAYER M3 ( 0 0 ) ( 160 160 ) + PLACED ( 0 54240 ) N ;
+ - operands_bits_A[11] + NET operands_bits_A[11] + DIRECTION INPUT + USE SIGNAL + LAYER M3 ( 0 0 ) ( 160 160 ) + PLACED ( 0 64480 ) N ;
+ - operands_bits_A[10] + NET operands_bits_A[10] + DIRECTION INPUT + USE SIGNAL + LAYER M3 ( 0 0 ) ( 160 160 ) + PLACED ( 0 74720 ) N ;
+ - operands_bits_A[9] + NET operands_bits_A[9] + DIRECTION INPUT + USE SIGNAL + LAYER M3 ( 0 0 ) ( 160 160 ) + PLACED ( 0 84960 ) N ;
+ - operands_bits_A[8] + NET operands_bits_A[8] + DIRECTION INPUT + USE SIGNAL + LAYER M3 ( 0 0 ) ( 160 160 ) + PLACED ( 0 94560 ) N ;
+ - operands_bits_A[7] + NET operands_bits_A[7] + DIRECTION INPUT + USE SIGNAL + LAYER M3 ( 0 0 ) ( 160 160 ) + PLACED ( 0 104800 ) N ;
+ - operands_bits_A[6] + NET operands_bits_A[6] + DIRECTION INPUT + USE SIGNAL + LAYER M3 ( 0 0 ) ( 160 160 ) + PLACED ( 0 115040 ) N ;
+ - operands_bits_A[5] + NET operands_bits_A[5] + DIRECTION INPUT + USE SIGNAL + LAYER M3 ( 0 0 ) ( 160 160 ) + PLACED ( 0 125280 ) N ;
+ - operands_bits_A[4] + NET operands_bits_A[4] + DIRECTION INPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 1920 128960 ) N ;
+ - operands_bits_A[3] + NET operands_bits_A[3] + DIRECTION INPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 11520 128960 ) N ;
+ - operands_bits_A[2] + NET operands_bits_A[2] + DIRECTION INPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 21120 128960 ) N ;
+ - operands_bits_A[1] + NET operands_bits_A[1] + DIRECTION INPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 31040 128960 ) N ;
+ - operands_bits_A[0] + NET operands_bits_A[0] + DIRECTION INPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 40640 128960 ) N ;
+ - operands_bits_B[15] + NET operands_bits_B[15] + DIRECTION INPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 50240 128960 ) N ;
+ - operands_bits_B[14] + NET operands_bits_B[14] + DIRECTION INPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 59840 128960 ) N ;
+ - operands_bits_B[13] + NET operands_bits_B[13] + DIRECTION INPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 69760 128960 ) N ;
+ - operands_bits_B[12] + NET operands_bits_B[12] + DIRECTION INPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 79360 128960 ) N ;
+ - operands_bits_B[11] + NET operands_bits_B[11] + DIRECTION INPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 88960 128960 ) N ;
+ - operands_bits_B[10] + NET operands_bits_B[10] + DIRECTION INPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 98560 128960 ) N ;
+ - operands_bits_B[9] + NET operands_bits_B[9] + DIRECTION INPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 108480 128960 ) N ;
+ - operands_bits_B[8] + NET operands_bits_B[8] + DIRECTION INPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 118080 128960 ) N ;
+ - operands_bits_B[7] + NET operands_bits_B[7] + DIRECTION INPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 127680 128960 ) N ;
+ - operands_bits_B[6] + NET operands_bits_B[6] + DIRECTION INPUT + USE SIGNAL + LAYER M3 ( 0 0 ) ( 160 160 ) + PLACED ( 129600 3680 ) N ;
+ - operands_bits_B[5] + NET operands_bits_B[5] + DIRECTION INPUT + USE SIGNAL + LAYER M3 ( 0 0 ) ( 160 160 ) + PLACED ( 129600 13920 ) N ;
+ - operands_bits_B[4] + NET operands_bits_B[4] + DIRECTION INPUT + USE SIGNAL + LAYER M3 ( 0 0 ) ( 160 160 ) + PLACED ( 129600 24160 ) N ;
+ - operands_bits_B[3] + NET operands_bits_B[3] + DIRECTION INPUT + USE SIGNAL + LAYER M3 ( 0 0 ) ( 160 160 ) + PLACED ( 129600 33760 ) N ;
+ - operands_bits_B[2] + NET operands_bits_B[2] + DIRECTION INPUT + USE SIGNAL + LAYER M3 ( 0 0 ) ( 160 160 ) + PLACED ( 129600 44000 ) N ;
+ - operands_bits_B[1] + NET operands_bits_B[1] + DIRECTION INPUT + USE SIGNAL + LAYER M3 ( 0 0 ) ( 160 160 ) + PLACED ( 129600 54240 ) N ;
+ - operands_bits_B[0] + NET operands_bits_B[0] + DIRECTION INPUT + USE SIGNAL + LAYER M3 ( 0 0 ) ( 160 160 ) + PLACED ( 129600 64480 ) N ;
+ - operands_val + NET operands_val + DIRECTION INPUT + USE SIGNAL + LAYER M3 ( 0 0 ) ( 160 160 ) + PLACED ( 129600 74720 ) N ;
+ - operands_rdy + NET operands_rdy + DIRECTION OUTPUT + USE SIGNAL + LAYER M3 ( 0 0 ) ( 160 160 ) + PLACED ( 129600 84960 ) N ;
+ - result_bits_data[15] + NET result_bits_data[15] + DIRECTION OUTPUT + USE SIGNAL + LAYER M3 ( 0 0 ) ( 160 160 ) + PLACED ( 129600 94560 ) N ;
+ - result_bits_data[14] + NET result_bits_data[14] + DIRECTION OUTPUT + USE SIGNAL + LAYER M3 ( 0 0 ) ( 160 160 ) + PLACED ( 129600 104800 ) N ;
+ - result_bits_data[13] + NET result_bits_data[13] + DIRECTION OUTPUT + USE SIGNAL + LAYER M3 ( 0 0 ) ( 160 160 ) + PLACED ( 129600 115040 ) N ;
+ - result_bits_data[12] + NET result_bits_data[12] + DIRECTION OUTPUT + USE SIGNAL + LAYER M3 ( 0 0 ) ( 160 160 ) + PLACED ( 129600 125280 ) N ;
+ - result_bits_data[11] + NET result_bits_data[11] + DIRECTION OUTPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 1920 0 ) N ;
+ - result_bits_data[10] + NET result_bits_data[10] + DIRECTION OUTPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 11520 0 ) N ;
+ - result_bits_data[9] + NET result_bits_data[9] + DIRECTION OUTPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 21120 0 ) N ;
+ - result_bits_data[8] + NET result_bits_data[8] + DIRECTION OUTPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 31040 0 ) N ;
+ - result_bits_data[7] + NET result_bits_data[7] + DIRECTION OUTPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 40640 0 ) N ;
+ - result_bits_data[6] + NET result_bits_data[6] + DIRECTION OUTPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 50240 0 ) N ;
+ - result_bits_data[5] + NET result_bits_data[5] + DIRECTION OUTPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 59840 0 ) N ;
+ - result_bits_data[4] + NET result_bits_data[4] + DIRECTION OUTPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 69760 0 ) N ;
+ - result_bits_data[3] + NET result_bits_data[3] + DIRECTION OUTPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 79360 0 ) N ;
+ - result_bits_data[2] + NET result_bits_data[2] + DIRECTION OUTPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 88960 0 ) N ;
+ - result_bits_data[1] + NET result_bits_data[1] + DIRECTION OUTPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 98560 0 ) N ;
+ - result_bits_data[0] + NET result_bits_data[0] + DIRECTION OUTPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 108480 0 ) N ;
+ - result_val + NET result_val + DIRECTION OUTPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 118080 0 ) N ;
+ - result_rdy + NET result_rdy + DIRECTION INPUT + USE SIGNAL + LAYER M2 ( 0 0 ) ( 160 160 ) + PLACED ( 127680 0 ) N ;
+ - VDD + NET VDD + SPECIAL + DIRECTION INOUT + USE POWER ;
+ - VSS + NET VSS + SPECIAL + DIRECTION INOUT + USE GROUND ;
+END PINS
+SPECIALNETS 2 ;
+#SNPS_WIRES
+ - VDD
+   ( GCDctrl0/U11 VDD )
+   ( GCDctrl0/U12 VDD )
+   ( GCDctrl0/U13 VDD )
+   ( GCDctrl0/U14 VDD )
+   ( GCDctrl0/U15 VDD )
+   ( GCDctrl0/U16 VDD )
+   ( GCDctrl0/U17 VDD )
+   ( GCDctrl0/U18 VDD )
+   ( GCDctrl0/U19 VDD )
+   ( GCDctrl0/U21 VDD )
+   ( GCDctrl0/U22 VDD )
+   ( GCDctrl0/U23 VDD )
+   ( GCDctrl0/U24 VDD )
+   ( GCDctrl0/U25 VDD )
+   ( GCDctrl0/U9 VDD )
+   ( GCDctrl0/U5 VDD )
+   ( GCDdpath0/clk_gate_B_reg_reg/latch VDD )
+   ( GCDdpath0/clk_gate_A_reg_reg/latch VDD )
+   ( GCDdpath0/U8 VDD )
+   ( GCDdpath0/U6 VDD )
+   ( GCDdpath0/U5 VDD )
+   ( GCDdpath0/U3 VDD )
+   ( GCDdpath0/U102 VDD )
+   ( GCDdpath0/U98 VDD )
+   ( GCDdpath0/U252 VDD )
+   ( GCDdpath0/U154 VDD )
+   ( GCDdpath0/U101 VDD )
+   ( GCDdpath0/U96 VDD )
+   ( GCDdpath0/U25 VDD )
+   ( GCDdpath0/U60 VDD )
+   ( GCDdpath0/U10 VDD )
+   ( GCDdpath0/U16 VDD )
+   ( GCDdpath0/U39 VDD )
+   ( GCDdpath0/U46 VDD )
+   ( GCDdpath0/U104 VDD )
+   ( GCDdpath0/U130 VDD )
+   ( GCDdpath0/U129 VDD )
+   ( GCDdpath0/U73 VDD )
+   ( GCDdpath0/U70 VDD )
+   ( GCDdpath0/U66 VDD )
+   ( GCDdpath0/U322 VDD )
+   ( GCDdpath0/U323 VDD )
+   ( GCDdpath0/U324 VDD )
+   ( GCDctrl0/state_reg_0_ VDD )
+   ( GCDctrl0/state_reg_1_ VDD )
+   ( GCDctrl0/U3 VDD )
+   ( GCDctrl0/U4 VDD )
+   ( GCDctrl0/U6 VDD )
+   ( GCDctrl0/U7 VDD )
+   ( GCDctrl0/U8 VDD )
+   ( GCDctrl0/U10 VDD )
+   ( GCDdpath0/U306 VDD )
+   ( GCDdpath0/U307 VDD )
+   ( GCDdpath0/U308 VDD )
+   ( GCDdpath0/U309 VDD )
+   ( GCDdpath0/U310 VDD )
+   ( GCDdpath0/U311 VDD )
+   ( GCDdpath0/U312 VDD )
+   ( GCDdpath0/U313 VDD )
+   ( GCDdpath0/U314 VDD )
+   ( GCDdpath0/U317 VDD )
+   ( GCDdpath0/U318 VDD )
+   ( GCDdpath0/U319 VDD )
+   ( GCDdpath0/U320 VDD )
+   ( GCDdpath0/U321 VDD )
+   ( GCDdpath0/U62 VDD )
+   ( GCDdpath0/U106 VDD )
+   ( GCDdpath0/U250 VDD )
+   ( GCDdpath0/U251 VDD )
+   ( GCDdpath0/U86 VDD )
+   ( GCDdpath0/U97 VDD )
+   ( GCDdpath0/U103 VDD )
+   ( GCDdpath0/U95 VDD )
+   ( GCDdpath0/U81 VDD )
+   ( GCDdpath0/U30 VDD )
+   ( GCDdpath0/U11 VDD )
+   ( GCDdpath0/U155 VDD )
+   ( GCDdpath0/U47 VDD )
+   ( GCDdpath0/U14 VDD )
+   ( GCDdpath0/U274 VDD )
+   ( GCDdpath0/U275 VDD )
+   ( GCDdpath0/U276 VDD )
+   ( GCDdpath0/U277 VDD )
+   ( GCDdpath0/U278 VDD )
+   ( GCDdpath0/U279 VDD )
+   ( GCDdpath0/U280 VDD )
+   ( GCDdpath0/U281 VDD )
+   ( GCDdpath0/U282 VDD )
+   ( GCDdpath0/U283 VDD )
+   ( GCDdpath0/U284 VDD )
+   ( GCDdpath0/U285 VDD )
+   ( GCDdpath0/U286 VDD )
+   ( GCDdpath0/U287 VDD )
+   ( GCDdpath0/U288 VDD )
+   ( GCDdpath0/U289 VDD )
+   ( GCDdpath0/U290 VDD )
+   ( GCDdpath0/U291 VDD )
+   ( GCDdpath0/U292 VDD )
+   ( GCDdpath0/U293 VDD )
+   ( GCDdpath0/U294 VDD )
+   ( GCDdpath0/U295 VDD )
+   ( GCDdpath0/U296 VDD )
+   ( GCDdpath0/U297 VDD )
+   ( GCDdpath0/U298 VDD )
+   ( GCDdpath0/U299 VDD )
+   ( GCDdpath0/U300 VDD )
+   ( GCDdpath0/U301 VDD )
+   ( GCDdpath0/U302 VDD )
+   ( GCDdpath0/U303 VDD )
+   ( GCDdpath0/U304 VDD )
+   ( GCDdpath0/U240 VDD )
+   ( GCDdpath0/U241 VDD )
+   ( GCDdpath0/U242 VDD )
+   ( GCDdpath0/U243 VDD )
+   ( GCDdpath0/U244 VDD )
+   ( GCDdpath0/U245 VDD )
+   ( GCDdpath0/U246 VDD )
+   ( GCDdpath0/U247 VDD )
+   ( GCDdpath0/U248 VDD )
+   ( GCDdpath0/U249 VDD )
+   ( GCDdpath0/U253 VDD )
+   ( GCDdpath0/U254 VDD )
+   ( GCDdpath0/U255 VDD )
+   ( GCDdpath0/U256 VDD )
+   ( GCDdpath0/U257 VDD )
+   ( GCDdpath0/U258 VDD )
+   ( GCDdpath0/U259 VDD )
+   ( GCDdpath0/U260 VDD )
+   ( GCDdpath0/U261 VDD )
+   ( GCDdpath0/U262 VDD )
+   ( GCDdpath0/U263 VDD )
+   ( GCDdpath0/U264 VDD )
+   ( GCDdpath0/U265 VDD )
+   ( GCDdpath0/U266 VDD )
+   ( GCDdpath0/U267 VDD )
+   ( GCDdpath0/U268 VDD )
+   ( GCDdpath0/U269 VDD )
+   ( GCDdpath0/U270 VDD )
+   ( GCDdpath0/U271 VDD )
+   ( GCDdpath0/U272 VDD )
+   ( GCDdpath0/U273 VDD )
+   ( GCDdpath0/U205 VDD )
+   ( GCDdpath0/U206 VDD )
+   ( GCDdpath0/U207 VDD )
+   ( GCDdpath0/U208 VDD )
+   ( GCDdpath0/U209 VDD )
+   ( GCDdpath0/U210 VDD )
+   ( GCDdpath0/U211 VDD )
+   ( GCDdpath0/U212 VDD )
+   ( GCDdpath0/U213 VDD )
+   ( GCDdpath0/U214 VDD )
+   ( GCDdpath0/U215 VDD )
+   ( GCDdpath0/U216 VDD )
+   ( GCDdpath0/U217 VDD )
+   ( GCDdpath0/U218 VDD )
+   ( GCDdpath0/U219 VDD )
+   ( GCDdpath0/U220 VDD )
+   ( GCDdpath0/U221 VDD )
+   ( GCDdpath0/U222 VDD )
+   ( GCDdpath0/U223 VDD )
+   ( GCDdpath0/U224 VDD )
+   ( GCDdpath0/U225 VDD )
+   ( GCDdpath0/U226 VDD )
+   ( GCDdpath0/U227 VDD )
+   ( GCDdpath0/U228 VDD )
+   ( GCDdpath0/U229 VDD )
+   ( GCDdpath0/U230 VDD )
+   ( GCDdpath0/U231 VDD )
+   ( GCDdpath0/U232 VDD )
+   ( GCDdpath0/U233 VDD )
+   ( GCDdpath0/U234 VDD )
+   ( GCDdpath0/U235 VDD )
+   ( GCDdpath0/U236 VDD )
+   ( GCDdpath0/U237 VDD )
+   ( GCDdpath0/U238 VDD )
+   ( GCDdpath0/U239 VDD )
+   ( GCDdpath0/U169 VDD )
+   ( GCDdpath0/U170 VDD )
+   ( GCDdpath0/U171 VDD )
+   ( GCDdpath0/U172 VDD )
+   ( GCDdpath0/U173 VDD )
+   ( GCDdpath0/U174 VDD )
+   ( GCDdpath0/U175 VDD )
+   ( GCDdpath0/U176 VDD )
+   ( GCDdpath0/U177 VDD )
+   ( GCDdpath0/U178 VDD )
+   ( GCDdpath0/U179 VDD )
+   ( GCDdpath0/U181 VDD )
+   ( GCDdpath0/U182 VDD )
+   ( GCDdpath0/U183 VDD )
+   ( GCDdpath0/U184 VDD )
+   ( GCDdpath0/U185 VDD )
+   ( GCDdpath0/U186 VDD )
+   ( GCDdpath0/U187 VDD )
+   ( GCDdpath0/U188 VDD )
+   ( GCDdpath0/U189 VDD )
+   ( GCDdpath0/U190 VDD )
+   ( GCDdpath0/U191 VDD )
+   ( GCDdpath0/U192 VDD )
+   ( GCDdpath0/U193 VDD )
+   ( GCDdpath0/U194 VDD )
+   ( GCDdpath0/U195 VDD )
+   ( GCDdpath0/U196 VDD )
+   ( GCDdpath0/U197 VDD )
+   ( GCDdpath0/U198 VDD )
+   ( GCDdpath0/U199 VDD )
+   ( GCDdpath0/U200 VDD )
+   ( GCDdpath0/U201 VDD )
+   ( GCDdpath0/U202 VDD )
+   ( GCDdpath0/U203 VDD )
+   ( GCDdpath0/U204 VDD )
+   ( GCDdpath0/U133 VDD )
+   ( GCDdpath0/U134 VDD )
+   ( GCDdpath0/U135 VDD )
+   ( GCDdpath0/U136 VDD )
+   ( GCDdpath0/U137 VDD )
+   ( GCDdpath0/U138 VDD )
+   ( GCDdpath0/U139 VDD )
+   ( GCDdpath0/U140 VDD )
+   ( GCDdpath0/U141 VDD )
+   ( GCDdpath0/U142 VDD )
+   ( GCDdpath0/U143 VDD )
+   ( GCDdpath0/U144 VDD )
+   ( GCDdpath0/U145 VDD )
+   ( GCDdpath0/U146 VDD )
+   ( GCDdpath0/U147 VDD )
+   ( GCDdpath0/U148 VDD )
+   ( GCDdpath0/U149 VDD )
+   ( GCDdpath0/U150 VDD )
+   ( GCDdpath0/U151 VDD )
+   ( GCDdpath0/U152 VDD )
+   ( GCDdpath0/U153 VDD )
+   ( GCDdpath0/U156 VDD )
+   ( GCDdpath0/U157 VDD )
+   ( GCDdpath0/U158 VDD )
+   ( GCDdpath0/U159 VDD )
+   ( GCDdpath0/U160 VDD )
+   ( GCDdpath0/U161 VDD )
+   ( GCDdpath0/U162 VDD )
+   ( GCDdpath0/U163 VDD )
+   ( GCDdpath0/U164 VDD )
+   ( GCDdpath0/U165 VDD )
+   ( GCDdpath0/U166 VDD )
+   ( GCDdpath0/U167 VDD )
+   ( GCDdpath0/U168 VDD )
+   ( GCDdpath0/U87 VDD )
+   ( GCDdpath0/U88 VDD )
+   ( GCDdpath0/U89 VDD )
+   ( GCDdpath0/U90 VDD )
+   ( GCDdpath0/U92 VDD )
+   ( GCDdpath0/U93 VDD )
+   ( GCDdpath0/U94 VDD )
+   ( GCDdpath0/U99 VDD )
+   ( GCDdpath0/U100 VDD )
+   ( GCDdpath0/U105 VDD )
+   ( GCDdpath0/U107 VDD )
+   ( GCDdpath0/U108 VDD )
+   ( GCDdpath0/U109 VDD )
+   ( GCDdpath0/U110 VDD )
+   ( GCDdpath0/U111 VDD )
+   ( GCDdpath0/U112 VDD )
+   ( GCDdpath0/U113 VDD )
+   ( GCDdpath0/U114 VDD )
+   ( GCDdpath0/U115 VDD )
+   ( GCDdpath0/U116 VDD )
+   ( GCDdpath0/U117 VDD )
+   ( GCDdpath0/U118 VDD )
+   ( GCDdpath0/U119 VDD )
+   ( GCDdpath0/U120 VDD )
+   ( GCDdpath0/U121 VDD )
+   ( GCDdpath0/U122 VDD )
+   ( GCDdpath0/U123 VDD )
+   ( GCDdpath0/U124 VDD )
+   ( GCDdpath0/U125 VDD )
+   ( GCDdpath0/U126 VDD )
+   ( GCDdpath0/U127 VDD )
+   ( GCDdpath0/U128 VDD )
+   ( GCDdpath0/U131 VDD )
+   ( GCDdpath0/U132 VDD )
+   ( GCDdpath0/U40 VDD )
+   ( GCDdpath0/U41 VDD )
+   ( GCDdpath0/U42 VDD )
+   ( GCDdpath0/U43 VDD )
+   ( GCDdpath0/U44 VDD )
+   ( GCDdpath0/U45 VDD )
+   ( GCDdpath0/U48 VDD )
+   ( GCDdpath0/U50 VDD )
+   ( GCDdpath0/U53 VDD )
+   ( GCDdpath0/U54 VDD )
+   ( GCDdpath0/U57 VDD )
+   ( GCDdpath0/U58 VDD )
+   ( GCDdpath0/U61 VDD )
+   ( GCDdpath0/U63 VDD )
+   ( GCDdpath0/U64 VDD )
+   ( GCDdpath0/U67 VDD )
+   ( GCDdpath0/U68 VDD )
+   ( GCDdpath0/U72 VDD )
+   ( GCDdpath0/U74 VDD )
+   ( GCDdpath0/U75 VDD )
+   ( GCDdpath0/U76 VDD )
+   ( GCDdpath0/U78 VDD )
+   ( GCDdpath0/U80 VDD )
+   ( GCDdpath0/U82 VDD )
+   ( GCDdpath0/U83 VDD )
+   ( GCDdpath0/U84 VDD )
+   ( GCDdpath0/U85 VDD )
+   ( GCDdpath0/A_reg_reg_12_ VDD )
+   ( GCDdpath0/A_reg_reg_10_ VDD )
+   ( GCDdpath0/A_reg_reg_9_ VDD )
+   ( GCDdpath0/A_reg_reg_11_ VDD )
+   ( GCDdpath0/A_reg_reg_15_ VDD )
+   ( GCDdpath0/A_reg_reg_7_ VDD )
+   ( GCDdpath0/A_reg_reg_4_ VDD )
+   ( GCDdpath0/A_reg_reg_14_ VDD )
+   ( GCDdpath0/U2 VDD )
+   ( GCDdpath0/U4 VDD )
+   ( GCDdpath0/U7 VDD )
+   ( GCDdpath0/U9 VDD )
+   ( GCDdpath0/U12 VDD )
+   ( GCDdpath0/U13 VDD )
+   ( GCDdpath0/U15 VDD )
+   ( GCDdpath0/U18 VDD )
+   ( GCDdpath0/U19 VDD )
+   ( GCDdpath0/U20 VDD )
+   ( GCDdpath0/U22 VDD )
+   ( GCDdpath0/U23 VDD )
+   ( GCDdpath0/U24 VDD )
+   ( GCDdpath0/U26 VDD )
+   ( GCDdpath0/U31 VDD )
+   ( GCDdpath0/U32 VDD )
+   ( GCDdpath0/U33 VDD )
+   ( GCDdpath0/U34 VDD )
+   ( GCDdpath0/U35 VDD )
+   ( GCDdpath0/U36 VDD )
+   ( GCDdpath0/U37 VDD )
+   ( GCDdpath0/U38 VDD )
+   ( GCDdpath0/B_reg_reg_15_ VDD )
+   ( GCDdpath0/B_reg_reg_14_ VDD )
+   ( GCDdpath0/B_reg_reg_13_ VDD )
+   ( GCDdpath0/B_reg_reg_12_ VDD )
+   ( GCDdpath0/B_reg_reg_11_ VDD )
+   ( GCDdpath0/B_reg_reg_10_ VDD )
+   ( GCDdpath0/B_reg_reg_9_ VDD )
+   ( GCDdpath0/B_reg_reg_8_ VDD )
+   ( GCDdpath0/B_reg_reg_7_ VDD )
+   ( GCDdpath0/B_reg_reg_6_ VDD )
+   ( GCDdpath0/B_reg_reg_5_ VDD )
+   ( GCDdpath0/B_reg_reg_4_ VDD )
+   ( GCDdpath0/B_reg_reg_3_ VDD )
+   ( GCDdpath0/B_reg_reg_2_ VDD )
+   ( GCDdpath0/B_reg_reg_1_ VDD )
+   ( GCDdpath0/B_reg_reg_0_ VDD )
+   ( GCDdpath0/A_reg_reg_8_ VDD )
+   ( GCDdpath0/A_reg_reg_6_ VDD )
+   ( GCDdpath0/A_reg_reg_5_ VDD )
+   ( GCDdpath0/A_reg_reg_3_ VDD )
+   ( GCDdpath0/A_reg_reg_2_ VDD )
+   ( GCDdpath0/A_reg_reg_1_ VDD )
+   ( GCDdpath0/A_reg_reg_0_ VDD )
+   ( GCDdpath0/A_reg_reg_13_ VDD )
+   + ROUTED M9 520 + SHAPE STRIPE ( 530 60190 ) ( 129230 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 530 55070 ) ( 129230 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 530 49950 ) ( 129230 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 530 39710 ) ( 129230 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 530 34590 ) ( 129230 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 530 29470 ) ( 129230 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 530 24350 ) ( 129230 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 530 14110 ) ( 129230 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 530 8990 ) ( 129230 * ) 
+   NEW M9 1040 + SHAPE RING ( 530 1050 ) ( 129230 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 530 116510 ) ( 129230 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 530 111390 ) ( 129230 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 530 106270 ) ( 129230 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 530 101150 ) ( 129230 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 530 90910 ) ( 129230 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 530 85790 ) ( 129230 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 530 80670 ) ( 129230 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 530 75550 ) ( 129230 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 530 65310 ) ( 129230 * ) 
+   NEW M9 1040 + SHAPE RING ( 530 128070 ) ( 129230 * ) 
+   NEW M8 360 + SHAPE STRIPE ( 128990 29470 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128990 24350 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128990 14110 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128990 8990 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 123840 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 120000 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 116160 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 112320 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 108480 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 104640 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 100800 1050 ) VIA89C
+   NEW M8 360 + SHAPE RING ( 128990 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 96960 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 89280 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 85440 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 81600 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 77760 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 73920 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 70080 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 66240 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128990 60190 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128990 55070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128990 49950 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128990 39710 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128990 34590 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 62400 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 58560 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 54720 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 50880 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 47040 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 43200 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 39360 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 35520 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 770 29470 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 770 24350 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 770 14110 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 770 8990 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 31680 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 24000 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 20160 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 16320 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 12480 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 8640 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 4800 1050 ) VIA89C
+   NEW M8 360 + SHAPE RING ( 770 1050 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 770 60190 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 770 55070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 770 49950 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 770 39710 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 770 34590 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128990 90910 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128990 85790 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128990 80670 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128990 75550 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128990 65310 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128990 116510 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128990 111390 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128990 106270 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128990 101150 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 123840 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 120000 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 116160 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 112320 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 108480 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 104640 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 100800 128070 ) VIA89C
+   NEW M8 360 + SHAPE RING ( 128990 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 96960 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 89280 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 85440 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 81600 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 77760 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 73920 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 70080 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 66240 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 770 90910 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 770 85790 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 770 80670 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 770 75550 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 770 65310 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 62400 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 58560 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 54720 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 50880 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 47040 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 43200 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 39360 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 35520 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 770 116510 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 770 111390 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 770 106270 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 770 101150 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 31680 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 24000 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 20160 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 16320 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 12480 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 8640 128070 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 4800 128070 ) VIA89C
+   NEW M8 360 + SHAPE RING ( 770 128070 ) VIA89C
+   NEW M8 240 + SHAPE STRIPE ( 123840 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 120000 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 116160 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 112320 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 108480 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 104640 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 100800 530 ) ( * 128590 ) 
+   NEW M8 480 + SHAPE RING ( 128990 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 96960 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 89280 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 85440 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 81600 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 77760 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 73920 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 70080 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 66240 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 62400 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 58560 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 54720 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 50880 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 47040 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 43200 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 39360 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 35520 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 31680 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 24000 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 20160 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 16320 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 12480 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 8640 530 ) ( * 128590 ) 
+   NEW M8 240 + SHAPE STRIPE ( 4800 530 ) ( * 128590 ) 
+   NEW M8 480 + SHAPE RING ( 770 530 ) ( * 128590 ) 
+   + USE POWER
+   ;
+ - VSS
+   ( GCDctrl0/U11 VSS )
+   ( GCDctrl0/U12 VSS )
+   ( GCDctrl0/U13 VSS )
+   ( GCDctrl0/U14 VSS )
+   ( GCDctrl0/U15 VSS )
+   ( GCDctrl0/U16 VSS )
+   ( GCDctrl0/U17 VSS )
+   ( GCDctrl0/U18 VSS )
+   ( GCDctrl0/U19 VSS )
+   ( GCDctrl0/U21 VSS )
+   ( GCDctrl0/U22 VSS )
+   ( GCDctrl0/U23 VSS )
+   ( GCDctrl0/U24 VSS )
+   ( GCDctrl0/U25 VSS )
+   ( GCDctrl0/U9 VSS )
+   ( GCDctrl0/U5 VSS )
+   ( GCDdpath0/clk_gate_B_reg_reg/latch VSS )
+   ( GCDdpath0/clk_gate_A_reg_reg/latch VSS )
+   ( GCDdpath0/U8 VSS )
+   ( GCDdpath0/U6 VSS )
+   ( GCDdpath0/U5 VSS )
+   ( GCDdpath0/U3 VSS )
+   ( GCDdpath0/U102 VSS )
+   ( GCDdpath0/U98 VSS )
+   ( GCDdpath0/U252 VSS )
+   ( GCDdpath0/U154 VSS )
+   ( GCDdpath0/U101 VSS )
+   ( GCDdpath0/U96 VSS )
+   ( GCDdpath0/U25 VSS )
+   ( GCDdpath0/U60 VSS )
+   ( GCDdpath0/U10 VSS )
+   ( GCDdpath0/U16 VSS )
+   ( GCDdpath0/U39 VSS )
+   ( GCDdpath0/U46 VSS )
+   ( GCDdpath0/U104 VSS )
+   ( GCDdpath0/U130 VSS )
+   ( GCDdpath0/U129 VSS )
+   ( GCDdpath0/U73 VSS )
+   ( GCDdpath0/U70 VSS )
+   ( GCDdpath0/U66 VSS )
+   ( GCDdpath0/U322 VSS )
+   ( GCDdpath0/U323 VSS )
+   ( GCDdpath0/U324 VSS )
+   ( GCDctrl0/state_reg_0_ VSS )
+   ( GCDctrl0/state_reg_1_ VSS )
+   ( GCDctrl0/U3 VSS )
+   ( GCDctrl0/U4 VSS )
+   ( GCDctrl0/U6 VSS )
+   ( GCDctrl0/U7 VSS )
+   ( GCDctrl0/U8 VSS )
+   ( GCDctrl0/U10 VSS )
+   ( GCDdpath0/U304 VSS )
+   ( GCDdpath0/U306 VSS )
+   ( GCDdpath0/U307 VSS )
+   ( GCDdpath0/U308 VSS )
+   ( GCDdpath0/U309 VSS )
+   ( GCDdpath0/U310 VSS )
+   ( GCDdpath0/U311 VSS )
+   ( GCDdpath0/U312 VSS )
+   ( GCDdpath0/U313 VSS )
+   ( GCDdpath0/U314 VSS )
+   ( GCDdpath0/U317 VSS )
+   ( GCDdpath0/U318 VSS )
+   ( GCDdpath0/U319 VSS )
+   ( GCDdpath0/U320 VSS )
+   ( GCDdpath0/U321 VSS )
+   ( GCDdpath0/U62 VSS )
+   ( GCDdpath0/U106 VSS )
+   ( GCDdpath0/U250 VSS )
+   ( GCDdpath0/U251 VSS )
+   ( GCDdpath0/U86 VSS )
+   ( GCDdpath0/U97 VSS )
+   ( GCDdpath0/U103 VSS )
+   ( GCDdpath0/U95 VSS )
+   ( GCDdpath0/U81 VSS )
+   ( GCDdpath0/U30 VSS )
+   ( GCDdpath0/U11 VSS )
+   ( GCDdpath0/U155 VSS )
+   ( GCDdpath0/U47 VSS )
+   ( GCDdpath0/U14 VSS )
+   ( GCDdpath0/U274 VSS )
+   ( GCDdpath0/U275 VSS )
+   ( GCDdpath0/U276 VSS )
+   ( GCDdpath0/U277 VSS )
+   ( GCDdpath0/U278 VSS )
+   ( GCDdpath0/U279 VSS )
+   ( GCDdpath0/U280 VSS )
+   ( GCDdpath0/U281 VSS )
+   ( GCDdpath0/U282 VSS )
+   ( GCDdpath0/U283 VSS )
+   ( GCDdpath0/U284 VSS )
+   ( GCDdpath0/U285 VSS )
+   ( GCDdpath0/U286 VSS )
+   ( GCDdpath0/U287 VSS )
+   ( GCDdpath0/U288 VSS )
+   ( GCDdpath0/U289 VSS )
+   ( GCDdpath0/U290 VSS )
+   ( GCDdpath0/U291 VSS )
+   ( GCDdpath0/U292 VSS )
+   ( GCDdpath0/U293 VSS )
+   ( GCDdpath0/U294 VSS )
+   ( GCDdpath0/U295 VSS )
+   ( GCDdpath0/U296 VSS )
+   ( GCDdpath0/U297 VSS )
+   ( GCDdpath0/U298 VSS )
+   ( GCDdpath0/U299 VSS )
+   ( GCDdpath0/U300 VSS )
+   ( GCDdpath0/U301 VSS )
+   ( GCDdpath0/U302 VSS )
+   ( GCDdpath0/U303 VSS )
+   ( GCDdpath0/U240 VSS )
+   ( GCDdpath0/U241 VSS )
+   ( GCDdpath0/U242 VSS )
+   ( GCDdpath0/U243 VSS )
+   ( GCDdpath0/U244 VSS )
+   ( GCDdpath0/U245 VSS )
+   ( GCDdpath0/U246 VSS )
+   ( GCDdpath0/U247 VSS )
+   ( GCDdpath0/U248 VSS )
+   ( GCDdpath0/U249 VSS )
+   ( GCDdpath0/U253 VSS )
+   ( GCDdpath0/U254 VSS )
+   ( GCDdpath0/U255 VSS )
+   ( GCDdpath0/U256 VSS )
+   ( GCDdpath0/U257 VSS )
+   ( GCDdpath0/U258 VSS )
+   ( GCDdpath0/U259 VSS )
+   ( GCDdpath0/U260 VSS )
+   ( GCDdpath0/U261 VSS )
+   ( GCDdpath0/U262 VSS )
+   ( GCDdpath0/U263 VSS )
+   ( GCDdpath0/U264 VSS )
+   ( GCDdpath0/U265 VSS )
+   ( GCDdpath0/U266 VSS )
+   ( GCDdpath0/U267 VSS )
+   ( GCDdpath0/U268 VSS )
+   ( GCDdpath0/U269 VSS )
+   ( GCDdpath0/U270 VSS )
+   ( GCDdpath0/U271 VSS )
+   ( GCDdpath0/U272 VSS )
+   ( GCDdpath0/U273 VSS )
+   ( GCDdpath0/U205 VSS )
+   ( GCDdpath0/U206 VSS )
+   ( GCDdpath0/U207 VSS )
+   ( GCDdpath0/U208 VSS )
+   ( GCDdpath0/U209 VSS )
+   ( GCDdpath0/U210 VSS )
+   ( GCDdpath0/U211 VSS )
+   ( GCDdpath0/U212 VSS )
+   ( GCDdpath0/U213 VSS )
+   ( GCDdpath0/U214 VSS )
+   ( GCDdpath0/U215 VSS )
+   ( GCDdpath0/U216 VSS )
+   ( GCDdpath0/U217 VSS )
+   ( GCDdpath0/U218 VSS )
+   ( GCDdpath0/U219 VSS )
+   ( GCDdpath0/U220 VSS )
+   ( GCDdpath0/U221 VSS )
+   ( GCDdpath0/U222 VSS )
+   ( GCDdpath0/U223 VSS )
+   ( GCDdpath0/U224 VSS )
+   ( GCDdpath0/U225 VSS )
+   ( GCDdpath0/U226 VSS )
+   ( GCDdpath0/U227 VSS )
+   ( GCDdpath0/U228 VSS )
+   ( GCDdpath0/U229 VSS )
+   ( GCDdpath0/U230 VSS )
+   ( GCDdpath0/U231 VSS )
+   ( GCDdpath0/U232 VSS )
+   ( GCDdpath0/U233 VSS )
+   ( GCDdpath0/U234 VSS )
+   ( GCDdpath0/U235 VSS )
+   ( GCDdpath0/U236 VSS )
+   ( GCDdpath0/U237 VSS )
+   ( GCDdpath0/U238 VSS )
+   ( GCDdpath0/U239 VSS )
+   ( GCDdpath0/U170 VSS )
+   ( GCDdpath0/U171 VSS )
+   ( GCDdpath0/U172 VSS )
+   ( GCDdpath0/U173 VSS )
+   ( GCDdpath0/U174 VSS )
+   ( GCDdpath0/U175 VSS )
+   ( GCDdpath0/U176 VSS )
+   ( GCDdpath0/U177 VSS )
+   ( GCDdpath0/U178 VSS )
+   ( GCDdpath0/U179 VSS )
+   ( GCDdpath0/U181 VSS )
+   ( GCDdpath0/U182 VSS )
+   ( GCDdpath0/U183 VSS )
+   ( GCDdpath0/U184 VSS )
+   ( GCDdpath0/U185 VSS )
+   ( GCDdpath0/U186 VSS )
+   ( GCDdpath0/U187 VSS )
+   ( GCDdpath0/U188 VSS )
+   ( GCDdpath0/U189 VSS )
+   ( GCDdpath0/U190 VSS )
+   ( GCDdpath0/U191 VSS )
+   ( GCDdpath0/U192 VSS )
+   ( GCDdpath0/U193 VSS )
+   ( GCDdpath0/U194 VSS )
+   ( GCDdpath0/U195 VSS )
+   ( GCDdpath0/U196 VSS )
+   ( GCDdpath0/U197 VSS )
+   ( GCDdpath0/U198 VSS )
+   ( GCDdpath0/U199 VSS )
+   ( GCDdpath0/U200 VSS )
+   ( GCDdpath0/U201 VSS )
+   ( GCDdpath0/U202 VSS )
+   ( GCDdpath0/U203 VSS )
+   ( GCDdpath0/U204 VSS )
+   ( GCDdpath0/U134 VSS )
+   ( GCDdpath0/U135 VSS )
+   ( GCDdpath0/U136 VSS )
+   ( GCDdpath0/U137 VSS )
+   ( GCDdpath0/U138 VSS )
+   ( GCDdpath0/U139 VSS )
+   ( GCDdpath0/U140 VSS )
+   ( GCDdpath0/U141 VSS )
+   ( GCDdpath0/U142 VSS )
+   ( GCDdpath0/U143 VSS )
+   ( GCDdpath0/U144 VSS )
+   ( GCDdpath0/U145 VSS )
+   ( GCDdpath0/U146 VSS )
+   ( GCDdpath0/U147 VSS )
+   ( GCDdpath0/U148 VSS )
+   ( GCDdpath0/U149 VSS )
+   ( GCDdpath0/U150 VSS )
+   ( GCDdpath0/U151 VSS )
+   ( GCDdpath0/U152 VSS )
+   ( GCDdpath0/U153 VSS )
+   ( GCDdpath0/U156 VSS )
+   ( GCDdpath0/U157 VSS )
+   ( GCDdpath0/U158 VSS )
+   ( GCDdpath0/U159 VSS )
+   ( GCDdpath0/U160 VSS )
+   ( GCDdpath0/U161 VSS )
+   ( GCDdpath0/U162 VSS )
+   ( GCDdpath0/U163 VSS )
+   ( GCDdpath0/U164 VSS )
+   ( GCDdpath0/U165 VSS )
+   ( GCDdpath0/U166 VSS )
+   ( GCDdpath0/U167 VSS )
+   ( GCDdpath0/U168 VSS )
+   ( GCDdpath0/U169 VSS )
+   ( GCDdpath0/U85 VSS )
+   ( GCDdpath0/U87 VSS )
+   ( GCDdpath0/U88 VSS )
+   ( GCDdpath0/U89 VSS )
+   ( GCDdpath0/U90 VSS )
+   ( GCDdpath0/U92 VSS )
+   ( GCDdpath0/U93 VSS )
+   ( GCDdpath0/U94 VSS )
+   ( GCDdpath0/U99 VSS )
+   ( GCDdpath0/U100 VSS )
+   ( GCDdpath0/U105 VSS )
+   ( GCDdpath0/U107 VSS )
+   ( GCDdpath0/U108 VSS )
+   ( GCDdpath0/U109 VSS )
+   ( GCDdpath0/U110 VSS )
+   ( GCDdpath0/U111 VSS )
+   ( GCDdpath0/U112 VSS )
+   ( GCDdpath0/U113 VSS )
+   ( GCDdpath0/U114 VSS )
+   ( GCDdpath0/U115 VSS )
+   ( GCDdpath0/U116 VSS )
+   ( GCDdpath0/U117 VSS )
+   ( GCDdpath0/U118 VSS )
+   ( GCDdpath0/U119 VSS )
+   ( GCDdpath0/U120 VSS )
+   ( GCDdpath0/U121 VSS )
+   ( GCDdpath0/U122 VSS )
+   ( GCDdpath0/U123 VSS )
+   ( GCDdpath0/U124 VSS )
+   ( GCDdpath0/U125 VSS )
+   ( GCDdpath0/U126 VSS )
+   ( GCDdpath0/U127 VSS )
+   ( GCDdpath0/U128 VSS )
+   ( GCDdpath0/U131 VSS )
+   ( GCDdpath0/U132 VSS )
+   ( GCDdpath0/U133 VSS )
+   ( GCDdpath0/U40 VSS )
+   ( GCDdpath0/U41 VSS )
+   ( GCDdpath0/U42 VSS )
+   ( GCDdpath0/U43 VSS )
+   ( GCDdpath0/U44 VSS )
+   ( GCDdpath0/U45 VSS )
+   ( GCDdpath0/U48 VSS )
+   ( GCDdpath0/U50 VSS )
+   ( GCDdpath0/U53 VSS )
+   ( GCDdpath0/U54 VSS )
+   ( GCDdpath0/U57 VSS )
+   ( GCDdpath0/U58 VSS )
+   ( GCDdpath0/U61 VSS )
+   ( GCDdpath0/U63 VSS )
+   ( GCDdpath0/U64 VSS )
+   ( GCDdpath0/U67 VSS )
+   ( GCDdpath0/U68 VSS )
+   ( GCDdpath0/U72 VSS )
+   ( GCDdpath0/U74 VSS )
+   ( GCDdpath0/U75 VSS )
+   ( GCDdpath0/U76 VSS )
+   ( GCDdpath0/U78 VSS )
+   ( GCDdpath0/U80 VSS )
+   ( GCDdpath0/U82 VSS )
+   ( GCDdpath0/U83 VSS )
+   ( GCDdpath0/U84 VSS )
+   ( GCDdpath0/A_reg_reg_13_ VSS )
+   ( GCDdpath0/A_reg_reg_12_ VSS )
+   ( GCDdpath0/A_reg_reg_10_ VSS )
+   ( GCDdpath0/A_reg_reg_9_ VSS )
+   ( GCDdpath0/A_reg_reg_11_ VSS )
+   ( GCDdpath0/A_reg_reg_15_ VSS )
+   ( GCDdpath0/A_reg_reg_7_ VSS )
+   ( GCDdpath0/A_reg_reg_4_ VSS )
+   ( GCDdpath0/A_reg_reg_14_ VSS )
+   ( GCDdpath0/U2 VSS )
+   ( GCDdpath0/U4 VSS )
+   ( GCDdpath0/U7 VSS )
+   ( GCDdpath0/U9 VSS )
+   ( GCDdpath0/U12 VSS )
+   ( GCDdpath0/U13 VSS )
+   ( GCDdpath0/U15 VSS )
+   ( GCDdpath0/U18 VSS )
+   ( GCDdpath0/U19 VSS )
+   ( GCDdpath0/U20 VSS )
+   ( GCDdpath0/U22 VSS )
+   ( GCDdpath0/U23 VSS )
+   ( GCDdpath0/U24 VSS )
+   ( GCDdpath0/U26 VSS )
+   ( GCDdpath0/U31 VSS )
+   ( GCDdpath0/U32 VSS )
+   ( GCDdpath0/U33 VSS )
+   ( GCDdpath0/U34 VSS )
+   ( GCDdpath0/U35 VSS )
+   ( GCDdpath0/U36 VSS )
+   ( GCDdpath0/U37 VSS )
+   ( GCDdpath0/U38 VSS )
+   ( GCDdpath0/B_reg_reg_15_ VSS )
+   ( GCDdpath0/B_reg_reg_14_ VSS )
+   ( GCDdpath0/B_reg_reg_13_ VSS )
+   ( GCDdpath0/B_reg_reg_12_ VSS )
+   ( GCDdpath0/B_reg_reg_11_ VSS )
+   ( GCDdpath0/B_reg_reg_10_ VSS )
+   ( GCDdpath0/B_reg_reg_9_ VSS )
+   ( GCDdpath0/B_reg_reg_8_ VSS )
+   ( GCDdpath0/B_reg_reg_7_ VSS )
+   ( GCDdpath0/B_reg_reg_6_ VSS )
+   ( GCDdpath0/B_reg_reg_5_ VSS )
+   ( GCDdpath0/B_reg_reg_4_ VSS )
+   ( GCDdpath0/B_reg_reg_3_ VSS )
+   ( GCDdpath0/B_reg_reg_2_ VSS )
+   ( GCDdpath0/B_reg_reg_1_ VSS )
+   ( GCDdpath0/B_reg_reg_0_ VSS )
+   ( GCDdpath0/A_reg_reg_8_ VSS )
+   ( GCDdpath0/A_reg_reg_6_ VSS )
+   ( GCDdpath0/A_reg_reg_5_ VSS )
+   ( GCDdpath0/A_reg_reg_3_ VSS )
+   ( GCDdpath0/A_reg_reg_2_ VSS )
+   ( GCDdpath0/A_reg_reg_1_ VSS )
+   ( GCDdpath0/A_reg_reg_0_ VSS )
+   + ROUTED M9 520 + SHAPE STRIPE ( 1250 61250 ) ( 128510 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 1250 56130 ) ( 128510 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 1250 51010 ) ( 128510 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 1250 40770 ) ( 128510 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 1250 35650 ) ( 128510 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 1250 30530 ) ( 128510 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 1250 25410 ) ( 128510 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 1250 15170 ) ( 128510 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 1250 10050 ) ( 128510 * ) 
+   NEW M9 1040 + SHAPE RING ( 1250 2620 ) ( 128510 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 1250 117570 ) ( 128510 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 1250 112450 ) ( 128510 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 1250 107330 ) ( 128510 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 1250 102210 ) ( 128510 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 1250 91970 ) ( 128510 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 1250 86850 ) ( 128510 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 1250 81730 ) ( 128510 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 1250 76610 ) ( 128510 * ) 
+   NEW M9 520 + SHAPE STRIPE ( 1250 66370 ) ( 128510 * ) 
+   NEW M9 1040 + SHAPE RING ( 1250 126500 ) ( 128510 * ) 
+   NEW M8 360 + SHAPE STRIPE ( 128270 30530 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128270 25410 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128270 15170 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128270 10050 ) VIA89C
+   NEW M8 360 + SHAPE RING ( 128270 2620 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128270 61250 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128270 56130 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128270 51010 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128270 40770 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128270 35650 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 1490 30530 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 1490 25410 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 1490 15170 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 1490 10050 ) VIA89C
+   NEW M8 360 + SHAPE RING ( 1490 2620 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 1490 61250 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 1490 56130 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 1490 51010 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 1490 40770 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 1490 35650 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128270 91970 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128270 86850 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128270 81730 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128270 76610 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128270 66370 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128270 117570 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128270 112450 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128270 107330 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 128270 102210 ) VIA89C
+   NEW M8 360 + SHAPE RING ( 128270 126500 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 1490 91970 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 1490 86850 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 1490 81730 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 1490 76610 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 1490 66370 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 1490 117570 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 1490 112450 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 1490 107330 ) VIA89C
+   NEW M8 360 + SHAPE STRIPE ( 1490 102210 ) VIA89C
+   NEW M8 360 + SHAPE RING ( 1490 126500 ) VIA89C
+   NEW M8 240 + SHAPE STRIPE ( 124320 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 120480 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 116640 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 112800 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 108960 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 105120 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 101280 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 97440 2100 ) ( * 127020 ) 
+   NEW M8 480 + SHAPE RING ( 128270 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 89760 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 85920 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 82080 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 78240 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 74400 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 70560 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 66720 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 62880 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 59040 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 55200 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 51360 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 47520 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 43680 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 39840 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 36000 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 32160 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 24480 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 20640 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 16800 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 12960 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 9120 2100 ) ( * 127020 ) 
+   NEW M8 240 + SHAPE STRIPE ( 5280 2100 ) ( * 127020 ) 
+   NEW M8 480 + SHAPE RING ( 1490 2100 ) ( * 127020 ) 
+   + USE GROUND
+   ;
+END SPECIALNETS
+END DESIGN

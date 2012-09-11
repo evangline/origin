@@ -1,0 +1,235 @@
+
+                            PrimeTime (R)
+                           PrimeTime (R) SI
+                           PrimeTime (R) PX
+                           PrimeTime (R) VX
+           Version D-2010.06-SP1 for amd64 -- Jul 15, 2010
+              Copyright (c) 1988-2010 by Synopsys, Inc.
+                         ALL RIGHTS RESERVED
+
+This program is proprietary and confidential information of Synopsys, Inc.
+and may be used and disclosed only as authorized in a license agreement
+controlling such use and disclosure.
+
+#################################################################################
+# PrimeTime Reference Methodology Script
+# Script: pt.tcl
+# Version: D-2010.06 (July 6, 2010)
+# Copyright (C) 2008-2010 Synopsys All rights reserved.
+################################################################################
+##################################################################
+#    Source common and pt_setup.tcl File                         #
+##################################################################
+source make_generated_vars.tcl
+vcdplus
+source common_setup.tcl
+VDD
+source pt_setup.tcl
+set REPORTS_SUFFIX $PT_METHOD.$PT_PARASITIC
+time.max
+##################################################################
+#    Search Path, Library and Operating Condition Section        #
+##################################################################
+# Under normal circumstances, when executing a script with source, Tcl
+# errors (syntax and semantic) cause the execution of the script to terminate.
+# Uncomment the following line to set sh_continue_on_error to true to allow
+# processing to continue when errors occur.
+#set sh_continue_on_error true
+set power_enable_analysis true
+true
+set power_analysis_mode time_based
+time_based
+set report_default_significant_digits 4 ;
+4
+set sh_source_uses_search_path true ;
+true
+set search_path ". $search_path" ;
+. . /home/ff/cs250/stdcells/synopsys-90nm/default/db ../../icc-par/current-icc/results 
+##################################################################
+#    Netlist Reading Section                                     #
+##################################################################
+set link_path "* $link_path"
+* * cells.db cells_cg.db 
+read_verilog $NETLIST_FILES
+Loading verilog file '/work/cs250-af/lab1-verilog/build/icc-par/current-icc/results/gcdGCDUnit_rtl.output.v'
+1
+current_design $DESIGN_NAME
+{"gcdGCDUnit_rtl"}
+link
+Loading db file '/home/ff/cs250/stdcells/synopsys-90nm/default/db/cells.db'
+Loading db file '/home/ff/cs250/stdcells/synopsys-90nm/default/db/cells_cg.db'
+Linking design gcdGCDUnit_rtl...
+Information: Removing 4 unneeded designs..... (LNK-034)
+Information: 195 (87.05%) library cells are unused in library saed90nm_typ.....
+Information: 11 (91.67%) library cells are unused in library saed90nm_typ_cg.....
+Information: total 206 library cells are unused.
+Information: Issuing set_operating_conditions for setting analysis mode on_chip_variation. (PTE-037)
+set_operating_conditions -analysis_type on_chip_variation  -library [get_libs {cells.db:saed90nm_typ}] 
+Design 'gcdGCDUnit_rtl' was successfully linked.
+1
+##################################################################
+#    Power Switching Activity Annotation Section                 #
+##################################################################
+read_vcd $ACTIVITY_FILE -strip_path $STRIP_PATH
+Information: Checked out license 'PrimeTime-PX' (PT-019)
+
+======================================================================
+Summary:
+Total number of nets = 552
+Number of annotated nets = 552 (100.00%)
+Total number of leaf cells = 479
+Number of fully annotated leaf cells = 479 (100.00%)
+======================================================================
+
+report_switching_activity -list_not_annotated > $REPORTS_DIR/$PT_EXEC.switching.$REPORTS_SUFFIX.report
+##################################################################
+#    Back Annotation Section                                     #
+##################################################################
+if {[info exists PARASITIC_PATHS] && [info exists PARASITIC_FILES]} {
+  foreach para_path $PARASITIC_PATHS para_file $PARASITIC_FILES {
+    if {[string compare $para_path $DESIGN_NAME] == 0} {
+      read_parasitics -increment -format sbpf $para_file
+    } else {
+      read_parasitics -path $para_path -increment -format sbpf $para_file
+    }
+  }
+  report_annotated_parasitics -check > $REPORTS_DIR/$PT_EXEC.rap.$REPORTS_SUFFIX.report
+}
+Information: Derived library resistance unit is 999.999939 Kohm (Time unit is 1 ns, and Capacitance unit is 0.001000 pF). (DES-028)
+
+****************************************
+Report : read_parasitics /work/cs250-af/lab1-verilog/build/icc-par/current-icc/results/gcdGCDUnit_rtl.output.sbpf.max
+	-increment
+Design : gcdGCDUnit_rtl
+Version: D-2010.06-SP1
+Date   : Mon Sep 10 12:32:37 2012
+****************************************
+
+        0 error(s)
+        Format is SBPF
+        Annotated nets                   :          549
+        Annotated capacitances           :         6309
+        Annotated resistances            :         5761
+        Reduced coupling capacitances    :         1007
+        Annotated PI models              :            0
+        Annotated Elmore delays          :            0
+
+##################################################################
+#    Reading Constraints Section                                 #
+##################################################################
+if {[info exists CONSTRAINT_FILES]} {
+  foreach constraint_file $CONSTRAINT_FILES {
+    if {[file extension $constraint_file] eq ".sdc"} {
+      read_sdc -echo $constraint_file
+    } else {
+      source -echo $constraint_file
+    }
+  }
+}
+##################################################################
+#    Clock Tree Synthesis Section                                #
+##################################################################
+#set_propagated_clock [all_clocks]
+##################################################################
+#    Update_timing and check_timing Section                      #
+##################################################################
+update_timing -full
+Warning: Some timing arcs have been disabled for breaking timing loops
+	or because of constant propagation. Use the 'report_disable_timing'
+	command to get the list of these disabled timing arcs. (PTE-003)
+Information: Using automatic max wire load selection group 'predcaps'. (ENV-003)
+Information: Using automatic min wire load selection group 'predcaps'. (ENV-003)
+1
+# Ensure design is properly constrained
+check_timing -verbose > $REPORTS_DIR/$PT_EXEC.ct.$REPORTS_SUFFIX.report
+##################################################################
+#    Report_timing Section                                       #
+##################################################################
+report_timing -slack_lesser_than 0.0 -delay min_max -nosplit -input -net -sign 4 > $REPORTS_DIR/$PT_EXEC.timing.$REPORTS_SUFFIX.report
+report_clock -skew -attribute > $REPORTS_DIR/$PT_EXEC.clock.$REPORTS_SUFFIX.report
+report_analysis_coverage > $REPORTS_DIR/$PT_EXEC.converage.$REPORTS_SUFFIX.report
+##################################################################
+#    Power Analysis Section                                      #
+##################################################################
+## run power analysis
+check_power > $REPORTS_DIR/$PT_EXEC.checkpower.$REPORTS_SUFFIX.report
+update_power
+Information: Running time_based power analysis... (PWR-601)
+Information: The waveform options are:
+		File name:	primetime_px.fsdb
+		File format:	fsdb
+		Time interval:	0.001ns
+		Hierarchical level:	all
+
+Information: Power analysis is running, please wait ...
+
+ Last event time =  774.167 ns Information: analysis is done for time window (0ns - 1546.5ns)
+
+1
+## report_power
+report_power -nosplit -verbose -hierarchy > $REPORTS_DIR/$PT_EXEC.power.$REPORTS_SUFFIX.report
+exit
+Information: Defining new variable 'PT_PARASITIC'. (CMD-041)
+Information: Defining new variable 'LIBRARY_DONT_USE_FILE'. (CMD-041)
+Information: Defining new variable 'ADDITIONAL_SEARCH_PATH'. (CMD-041)
+Information: Defining new variable 'MAP_FILE'. (CMD-041)
+Information: Defining new variable 'MW_POWER_NET'. (CMD-041)
+Information: Defining new variable 'PT_EXEC'. (CMD-041)
+Information: Defining new variable 'REPORTS_DIR'. (CMD-041)
+Information: Defining new variable 'MW_POWER_PORT1'. (CMD-041)
+Information: Defining new variable 'MW_POWER_PORT2'. (CMD-041)
+Information: Defining new variable 'MW_POWER_PORT3'. (CMD-041)
+Information: Defining new variable 'MW_POWER_PORT4'. (CMD-041)
+Information: Defining new variable 'TECH_FILE'. (CMD-041)
+Information: Defining new variable 'VA3_COORDINATES'. (CMD-041)
+Information: Defining new variable 'PT_METHOD'. (CMD-041)
+Information: Defining new variable 'MW_GROUND_PORT'. (CMD-041)
+Information: Defining new variable 'MW_POWER_NET1'. (CMD-041)
+Information: Defining new variable 'MW_POWER_NET2'. (CMD-041)
+Information: Defining new variable 'MW_POWER_NET3'. (CMD-041)
+Information: Defining new variable 'HIERARCHICAL_CELLS'. (CMD-041)
+Information: Defining new variable 'MW_POWER_NET4'. (CMD-041)
+Information: Defining new variable 'MIN_LIBRARY_FILES'. (CMD-041)
+Information: Defining new variable 'para_path'. (CMD-041)
+Information: Defining new variable 'VA4_COORDINATES'. (CMD-041)
+Information: Defining new variable 'MIN_ROUTING_LAYER'. (CMD-041)
+Information: Defining new variable 'MW_REFERENCE_LIB_DIRS'. (CMD-041)
+Information: Defining new variable 'MW_POWER_PORT'. (CMD-041)
+Information: Defining new variable 'ADDITIONAL_LINK_LIB_FILES'. (CMD-041)
+Information: Defining new variable 'PARASITIC_FILES'. (CMD-041)
+Information: Defining new variable 'TLUPLUS_MAX_FILE'. (CMD-041)
+Information: Defining new variable 'PARASITIC_PATHS'. (CMD-041)
+Information: Defining new variable 'ACTIVITY_FILE'. (CMD-041)
+Information: Defining new variable 'TARGET_LIBRARY_FILES'. (CMD-041)
+Information: Defining new variable 'DESIGN_NAME'. (CMD-041)
+Information: Defining new variable 'MW_GROUND_NET'. (CMD-041)
+Information: Defining new variable 'DESIGN_REF_DATA_PATH'. (CMD-041)
+Information: Defining new variable 'PD4_CELLS'. (CMD-041)
+Information: Defining new variable 'NETLIST_FILES'. (CMD-041)
+Information: Defining new variable 'PD3_CELLS'. (CMD-041)
+Information: Defining new variable 'PD2_CELLS'. (CMD-041)
+Information: Defining new variable 'VA1_COORDINATES'. (CMD-041)
+Information: Defining new variable 'PD1_CELLS'. (CMD-041)
+Information: Defining new variable 'TLUPLUS_MIN_FILE'. (CMD-041)
+Information: Defining new variable 'para_file'. (CMD-041)
+Information: Defining new variable 'STRIP_PATH'. (CMD-041)
+Information: Defining new variable 'MAX_ROUTING_LAYER'. (CMD-041)
+Information: Defining new variable 'MW_REFERENCE_CONTROL_FILE'. (CMD-041)
+Information: Defining new variable 'HIERARCHICAL_DESIGNS'. (CMD-041)
+Information: Defining new variable 'VA2_COORDINATES'. (CMD-041)
+Information: Defining new variable 'NAME_MAP_FILE'. (CMD-041)
+Information: Defining new variable 'CONSTRAINTS_FILES'. (CMD-041)
+Information: Defining new variable 'REPORTS_SUFFIX'. (CMD-041)
+Information: Defining new variable 'PD1'. (CMD-041)
+Information: Defining new variable 'PD2'. (CMD-041)
+Information: Defining new variable 'PD3'. (CMD-041)
+Information: Defining new variable 'PD4'. (CMD-041)
+Updating preference file: /home/cc/cs250/fa12/class/cs250-af/.synopsys_pt_prefs.tcl
+
+Timing updates: 1 (0 implicit, 1 explicit) (0 incremental, 1 full)
+Maximum memory usage for this session: 40.69 MB
+CPU usage for this session: 1 seconds 
+Elapsed time for this session: 3 seconds
+Diagnostics summary: 1 warning, 62 informationals
+
+Thank you for using pt_shell!

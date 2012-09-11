@@ -1,0 +1,70 @@
+ 
+****************************************
+Report : qor
+Design : gcdGCDUnit_rtl
+Version: F-2011.09-SP4
+Date   : Mon Sep 10 10:59:17 2012
+****************************************
+
+
+  Timing Path Group 'ideal_clock1'
+  -----------------------------------
+  Levels of Logic:              16.00
+  Critical Path Length:          0.79
+  Critical Path Slack:           0.01
+  Critical Path Clk Period:      0.90
+  Total Negative Slack:          0.00
+  No. of Violating Paths:        0.00
+  Worst Hold Violation:          0.00
+  Total Hold Violation:          0.00
+  No. of Hold Violations:        0.00
+  -----------------------------------
+
+
+  Cell Count
+  -----------------------------------
+  Hierarchical Cell Count:          4
+  Hierarchical Port Count:         80
+  Leaf Cell Count:                375
+  Buf/Inv Cell Count:              41
+  CT Buf/Inv Cell Count:            0
+  Combinational Cell Count:       339
+  Sequential Cell Count:           36
+  Macro Count:                      0
+  -----------------------------------
+
+
+  Area
+  -----------------------------------
+  Combinational Area:     2288.332832
+  Noncombinational Area:  1124.352417
+  Net Area:                  0.000000
+  Net XLength        :        4703.12
+  Net YLength        :        4492.04
+  -----------------------------------
+  Cell Area:              3412.685249
+  Design Area:            3412.685249
+  Net Length        :         9195.16
+
+
+  Design Rules
+  -----------------------------------
+  Total Number of Nets:           445
+  Nets With Violations:             0
+  Max Trans Violations:             0
+  Max Cap Violations:               0
+  -----------------------------------
+
+
+  Hostname: bcom16.EECS.Berkeley.EDU
+
+  Compile CPU Statistics
+  -----------------------------------------
+  Resource Sharing:                    0.30
+  Logic Optimization:                  2.75
+  Mapping Optimization:                3.82
+  -----------------------------------------
+  Overall Compile Time:               15.60
+  Overall Compile Wall Clock Time:    17.69
+
+1

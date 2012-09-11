@@ -1,0 +1,70 @@
+ 
+****************************************
+Report : resources
+Design : gcdGCDUnit_rtl
+Version: F-2011.09-SP4
+Date   : Mon Sep 10 12:56:04 2012
+****************************************
+
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : gcdGCDUnitCtrl
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : gcdGCDUnitDpath_W16
+****************************************
+
+Resource Report for this hierarchy in file ../../../src/gcdGCDUnitDpath.v
+=============================================================================
+| Cell           | Module         | Parameters | Contained Operations       |
+=============================================================================
+| sub_x_2        | DW01_sub       | width=16   | sub_45                     |
+| lt_x_3         | DW_cmp         | width=16   | lt_51                      |
+=============================================================================
+
+
+Implementation Report
+===============================================================================
+|                    |                  | Current            | Set            |
+| Cell               | Module           | Implementation     | Implementation |
+===============================================================================
+| sub_x_2            | DW01_sub         | pparch (area,speed)                 |
+| lt_x_3             | DW_cmp           | apparch (area)     |                |
+===============================================================================
+
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_gcdGCDUnitDpath_W16_1
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_gcdGCDUnitDpath_W16_0
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+1

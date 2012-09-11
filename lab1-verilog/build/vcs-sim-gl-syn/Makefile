@@ -65,7 +65,7 @@ $(vcs_sim) : Makefile $(vsrcs) $(vclibsrcs)
 
 vpd = vcdplus.vpd
 $(vpd): $(vcs_sim)
-	./simv -ucli -do run.tcl +verbose=1
+	./simv -ucli -do run.tcl +verbose=1 
 	date > timestamp
 
 run: $(vpd)

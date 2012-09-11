@@ -1,0 +1,191 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -input_pins
+        -nets
+        -max_paths 1
+        -transition_time
+        -capacitance
+Design : gcdGCDUnit_rtl
+Version: F-2011.09-ICC-SP4
+Date   : Mon Sep 10 12:58:58 2012
+****************************************
+
+ * Some/all delay information is back-annotated.
+
+Operating Conditions: TYPICAL   Library: saed90nm_typ
+
+  Startpoint: operands_val
+              (input port clocked by ideal_clock1)
+  Endpoint: GCDdpath0/clk_gate_A_reg_reg/latch
+            (gating element for clock ideal_clock1)
+  Path Group: REGIN
+  Path Type: max
+
+  Point                                       Fanout       Cap     Trans      Incr       Path
+  ----------------------------------------------------------------------------------------------
+  clock ideal_clock1 (rise edge)                                              0.00       0.00
+  clock network delay (ideal)                                                 0.00       0.00
+  input external delay                                                        0.20       0.20 f
+  operands_val (in)                                                 0.05      0.02       0.22 f
+  operands_val (net)                            2        19.12                0.00       0.22 f
+  GCDctrl0/operands_val (gcdGCDUnitCtrl)                                      0.00       0.22 f
+  GCDctrl0/operands_val (net)                            19.12                0.00       0.22 f
+  GCDctrl0/U11/IN2 (NAND2X0)                                        0.05      0.00 *     0.23 f
+  GCDctrl0/U11/QN (NAND2X0)                                         0.07      0.04       0.26 r
+  GCDctrl0/n4 (net)                             1         1.81                0.00       0.26 r
+  GCDctrl0/U10/IN2 (NAND2X0)                                        0.07      0.00 *     0.26 r
+  GCDctrl0/U10/QN (NAND2X0)                                         0.08      0.06       0.32 f
+  GCDctrl0/B_en (net)                           2         6.46                0.00       0.32 f
+  GCDctrl0/U25/IN1 (OR2X1)                                          0.08      0.00 *     0.32 f
+  GCDctrl0/U25/Q (OR2X1)                                            0.03      0.06       0.37 f
+  GCDctrl0/A_en (net)                           1         2.15                0.00       0.37 f
+  GCDctrl0/A_en (gcdGCDUnitCtrl)                                              0.00       0.37 f
+  A_en (net)                                              2.15                0.00       0.37 f
+  GCDdpath0/A_en (gcdGCDUnitDpath_W16)                                        0.00       0.37 f
+  GCDdpath0/A_en (net)                                    2.15                0.00       0.37 f
+  GCDdpath0/clk_gate_A_reg_reg/EN (SNPS_CLOCK_GATE_HIGH_gcdGCDUnitDpath_W16_1)
+                                                                              0.00       0.37 f
+  GCDdpath0/clk_gate_A_reg_reg/EN (net)                   2.15                0.00       0.37 f
+  GCDdpath0/clk_gate_A_reg_reg/latch/EN (CGLPPRX2)                  0.03      0.00 *     0.37 f
+  data arrival time                                                                      0.37
+
+  clock ideal_clock1 (rise edge)                                              0.90       0.90
+  clock network delay (ideal)                                                 0.00       0.90
+  GCDdpath0/clk_gate_A_reg_reg/latch/CLK (CGLPPRX2)                           0.00       0.90 r
+  clock gating setup time                                                    -0.09       0.81
+  data required time                                                                     0.81
+  ----------------------------------------------------------------------------------------------
+  data required time                                                                     0.81
+  data arrival time                                                                     -0.37
+  ----------------------------------------------------------------------------------------------
+  slack (MET)                                                                            0.43
+
+
+  Startpoint: GCDdpath0/A_reg_reg_2_
+              (rising edge-triggered flip-flop clocked by ideal_clock1)
+  Endpoint: result_bits_data[2]
+            (output port clocked by ideal_clock1)
+  Path Group: REGOUT
+  Path Type: max
+
+  Point                                       Fanout       Cap     Trans      Incr       Path
+  ----------------------------------------------------------------------------------------------
+  clock ideal_clock1 (rise edge)                                              0.00       0.00
+  clock network delay (ideal)                                                 0.00       0.00
+  GCDdpath0/A_reg_reg_2_/CLK (DFFARX1)                              0.00      0.00       0.00 r
+  GCDdpath0/A_reg_reg_2_/Q (DFFARX1)                                0.07      0.21       0.21 f
+  GCDdpath0/result_bits_data[2] (net)           4        15.18                0.00       0.21 f
+  GCDdpath0/result_bits_data[2] (gcdGCDUnitDpath_W16)                         0.00       0.21 f
+  n14 (net)                                              15.18                0.00       0.21 f
+  dp_ipo6/INP (INVX0)                                               0.07      0.00 *     0.21 f
+  dp_ipo6/ZN (INVX0)                                                0.05      0.03       0.24 r
+  n6 (net)                                      1         2.98                0.00       0.24 r
+  dp_ipo5/INP (INVX0)                                               0.05      0.00 *     0.24 r
+  dp_ipo5/ZN (INVX0)                                                0.03      0.03       0.27 f
+  n5 (net)                                      1         2.81                0.00       0.27 f
+  dp_ipo10/INP (INVX0)                                              0.03      0.00 *     0.27 f
+  dp_ipo10/ZN (INVX0)                                               0.03      0.02       0.29 r
+  n10 (net)                                     1         2.67                0.00       0.29 r
+  dp_ipo9/INP (INVX0)                                               0.03      0.00 *     0.29 r
+  dp_ipo9/ZN (INVX0)                                                0.04      0.03       0.32 f
+  result_bits_data[2] (net)                     1         5.45                0.00       0.32 f
+  result_bits_data[2] (out)                                         0.04      0.00 *     0.32 f
+  data arrival time                                                                      0.32
+
+  clock ideal_clock1 (rise edge)                                              0.90       0.90
+  clock network delay (ideal)                                                 0.00       0.90
+  output external delay                                                      -0.20       0.70
+  data required time                                                                     0.70
+  ----------------------------------------------------------------------------------------------
+  data required time                                                                     0.70
+  data arrival time                                                                     -0.32
+  ----------------------------------------------------------------------------------------------
+  slack (MET)                                                                            0.38
+
+
+  Startpoint: GCDdpath0/B_reg_reg_8_
+              (rising edge-triggered flip-flop clocked by ideal_clock1)
+  Endpoint: GCDdpath0/A_reg_reg_8_
+            (rising edge-triggered flip-flop clocked by ideal_clock1)
+  Path Group: ideal_clock1
+  Path Type: max
+
+  Point                                       Fanout       Cap     Trans      Incr       Path
+  ----------------------------------------------------------------------------------------------
+  clock ideal_clock1 (rise edge)                                              0.00       0.00
+  clock network delay (ideal)                                                 0.00       0.00
+  GCDdpath0/B_reg_reg_8_/CLK (DFFARX1)                              0.00      0.00       0.00 r
+  GCDdpath0/B_reg_reg_8_/Q (DFFARX1)                                0.05      0.18       0.18 r
+  GCDdpath0/B_reg[8] (net)                      2         6.88                0.00       0.18 r
+  GCDdpath0/U152/IN2 (NAND2X0)                                      0.05      0.00 *     0.18 r
+  GCDdpath0/U152/QN (NAND2X0)                                       0.12      0.07       0.25 f
+  GCDdpath0/n192 (net)                          3        11.14                0.00       0.25 f
+  GCDdpath0/dp_ipo324/IN2 (NAND2X1)                                 0.12      0.00 *     0.25 f
+  GCDdpath0/dp_ipo324/QN (NAND2X1)                                  0.07      0.04       0.30 r
+  GCDdpath0/n63 (net)                           1         4.38                0.00       0.30 r
+  GCDdpath0/dp_ipo326/INP (INVX0)                                   0.07      0.00 *     0.30 r
+  GCDdpath0/dp_ipo326/ZN (INVX0)                                    0.04      0.03       0.33 f
+  GCDdpath0/n70 (net)                           1         3.11                0.00       0.33 f
+  GCDdpath0/dp_ipo325/IN2 (NAND3X0)                                 0.04      0.00 *     0.33 f
+  GCDdpath0/dp_ipo325/QN (NAND3X0)                                  0.07      0.04       0.37 r
+  GCDdpath0/n5 (net)                            1         6.02                0.00       0.37 r
+  GCDdpath0/dp_ipo345/IN1 (NOR2X2)                                  0.07      0.00 *     0.37 r
+  GCDdpath0/dp_ipo345/QN (NOR2X2)                                   0.04      0.03       0.40 f
+  GCDdpath0/n9 (net)                            1         5.80                0.00       0.40 f
+  GCDdpath0/U14/IN2 (NAND3X0)                                       0.04      0.00 *     0.40 f
+  GCDdpath0/U14/QN (NAND3X0)                                        0.07      0.04       0.44 r
+  GCDdpath0/n40 (net)                           1         4.07                0.00       0.44 r
+  GCDdpath0/U93/INP (INVX1)                                         0.07      0.00 *     0.44 r
+  GCDdpath0/U93/ZN (INVX1)                                          0.05      0.04       0.48 f
+  GCDdpath0/n59 (net)                           1        11.54                0.00       0.48 f
+  GCDdpath0/U91/IN1 (NOR2X4)                                        0.05      0.00 *     0.48 f
+  GCDdpath0/U91/QN (NOR2X4)                                         0.06      0.04       0.52 r
+  GCDdpath0/A_lt_B (net)                        4        25.08                0.00       0.52 r
+  GCDdpath0/A_lt_B (gcdGCDUnitDpath_W16)                                      0.00       0.52 r
+  A_lt_B (net)                                           25.08                0.00       0.52 r
+  GCDctrl0/A_lt_B (gcdGCDUnitCtrl)                                            0.00       0.52 r
+  GCDctrl0/A_lt_B (net)                                  25.08                0.00       0.52 r
+  GCDctrl0/U5/IN1 (NAND2X2)                                         0.06      0.00 *     0.52 r
+  GCDctrl0/U5/QN (NAND2X2)                                          0.04      0.03       0.55 f
+  GCDctrl0/B_mux_sel_BAR (net)                  1         7.08                0.00       0.55 f
+  GCDctrl0/B_mux_sel_BAR (gcdGCDUnitCtrl)                                     0.00       0.55 f
+  n11 (net)                                               7.08                0.00       0.55 f
+  dp_ipo4/INP (NBUFFX16)                                            0.04      0.00 *     0.55 f
+  dp_ipo4/Z (NBUFFX16)                                              0.05      0.09       0.63 f
+  n12 (net)                                     9       140.61                0.00       0.63 f
+  GCDdpath0/A_mux_sel_0__BAR (gcdGCDUnitDpath_W16)                            0.00       0.63 f
+  GCDdpath0/A_mux_sel_0__BAR (net)                      140.61                0.00       0.63 f
+  GCDdpath0/dp_ipo314/INP (INVX32)                                  0.05      0.00 *     0.63 f
+  GCDdpath0/dp_ipo314/ZN (INVX32)                                   0.04      0.03       0.66 r
+  GCDdpath0/n343 (net)                         51       220.39                0.00       0.66 r
+  GCDdpath0/U172/IN1 (NOR2X0)                                       0.04      0.00 *     0.66 r
+  GCDdpath0/U172/QN (NOR2X0)                                        0.05      0.04       0.70 f
+  GCDdpath0/n165 (net)                          1         3.77                0.00       0.70 f
+  GCDdpath0/U47/IN1 (NOR2X0)                                        0.05      0.00 *     0.70 f
+  GCDdpath0/U47/QN (NOR2X0)                                         0.05      0.03       0.73 r
+  GCDdpath0/n168 (net)                          1         2.27                0.00       0.73 r
+  GCDdpath0/U61/IN1 (NAND2X0)                                       0.05      0.00 *     0.73 r
+  GCDdpath0/U61/QN (NAND2X0)                                        0.05      0.04       0.77 f
+  GCDdpath0/n188 (net)                          1         2.20                0.00       0.77 f
+  GCDdpath0/U62/IN1 (NAND2X0)                                       0.05      0.00 *     0.77 f
+  GCDdpath0/U62/QN (NAND2X0)                                        0.06      0.04       0.80 r
+  GCDdpath0/A_next[8] (net)                     1         2.61                0.00       0.80 r
+  GCDdpath0/A_reg_reg_8_/D (DFFARX1)                                0.06      0.00 *     0.80 r
+  data arrival time                                                                      0.80
+
+  clock ideal_clock1 (rise edge)                                              0.90       0.90
+  clock network delay (ideal)                                                 0.00       0.90
+  GCDdpath0/A_reg_reg_8_/CLK (DFFARX1)                                        0.00       0.90 r
+  library setup time                                                         -0.10       0.80
+  data required time                                                                     0.80
+  ----------------------------------------------------------------------------------------------
+  data required time                                                                     0.80
+  data arrival time                                                                     -0.80
+  ----------------------------------------------------------------------------------------------
+  slack (MET)                                                                            0.00
+
+
+1

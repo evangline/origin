@@ -1,0 +1,45 @@
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -hier
+        -analysis_effort low
+Design : gcdGCDUnit_rtl
+Version: F-2011.09-ICC-SP4
+Date   : Mon Sep 10 12:27:50 2012
+****************************************
+
+
+Library(s) Used:
+
+    saed90nm_typ (File: /home/ff/cs250/stdcells/synopsys-90nm/default/db/cells.db)
+    saed90nm_typ_cg (File: /home/ff/cs250/stdcells/synopsys-90nm/default/db/cells_cg.db)
+
+
+Operating Conditions: TYPICAL   Library: saed90nm_typ
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+gcdGCDUnit_rtl         ForQA             saed90nm_typ
+
+
+Global Operating Voltage = 1.2  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1pW
+
+
+--------------------------------------------------------------------------------
+                                       Switch   Int      Leak     Total
+Hierarchy                              Power    Power    Power    Power    %
+--------------------------------------------------------------------------------
+gcdGCDUnit_rtl                          402.198  494.725 2.12e+07  918.142 100.0
+  GCDdpath0 (gcdGCDUnitDpath_W16)       312.473  361.278 1.85e+07  692.295  75.4
+  GCDctrl0 (gcdGCDUnitCtrl)              53.674  120.615 1.90e+06  176.184  19.2
+1

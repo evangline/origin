@@ -1,0 +1,107 @@
+ 
+****************************************
+Report : design
+        -physical
+Design : gcdGCDUnit_rtl
+Version: F-2011.09-ICC-SP4
+Date   : Mon Sep 10 12:26:11 2012
+****************************************
+
+****************************** P&R Summary ********************************
+Date : Mon Sep 10 12:26:11 2012
+Machine Host Name: bcom16.EECS.Berkeley.EDU
+Working Directory: /work/cs250-af/lab1-verilog/build/icc-par/build-iccdp-2012-09-10_12-25
+Library Name:      gcdGCDUnit_rtl_LIB
+Cell Name:         flat_dp.CEL;1
+Design Statistics:
+    Number of Module Cells:        421
+    Number of Pins:                2146
+    Number of IO Pins:             54
+    Number of Nets:                492
+    Average Pins Per Net (Signal): 2.76531
+
+Chip Utilization:
+    Total Std Cell Area:           3827.40
+    Core Size:     width 69.76, height 69.12; area 4821.81
+    Chip Size:     width 129.76, height 129.12; area 16754.61
+    Std cells utilization:         79.38% 
+    Cell/Core Ratio:               79.38%
+    Cell/Chip Ratio:               22.84%
+    Number of Cell Rows:            24
+
+Master Instantiation:
+	MasterName	Type	InstCount
+	=================================
+	NAND2X1		STD	67
+	INVX0		STD	63
+	NAND2X0		STD	52
+	NOR2X0		STD	50
+	DFFARX1		STD	32
+	NAND3X0		STD	23
+	NOR2X1		STD	18
+	XOR2X1		STD	14
+	INVX1		STD	14
+	NOR2X2		STD	14
+	NAND2X2		STD	11
+	MUX21X1		STD	10
+	INVX2		STD	9
+	NOR2X4		STD	7
+	OR2X1		STD	7
+	MUX21X2		STD	7
+	NOR4X0		STD	4
+	NAND4X0		STD	3
+	CGLPPRX2	STD	2
+	DFFX1		STD	2
+	AND2X1		STD	2
+	NOR3X0		STD	2
+	INVX8		STD	1
+	OR2X4		STD	1
+	OA21X1		STD	1
+	AND4X1		STD	1
+	AO21X1		STD	1
+	NBUFFX16	STD	1
+	NBUFFX8		STD	1
+	NOR4X1		STD	1
+	=================================
+
+Timing/Optimization Information:
+
+Global Routing Information:
+
+Track Assignment Information:
+
+Detailed Routing Information:
+
+DRC information: 
+      Total error number: 0
+
+Ring Wiring Statistics:
+    metal8 Wire Length(count):                504.04(4)
+    metal9 Wire Length(count):                507.76(4)
+  ==============================================
+    Total Wire Length(count):                1011.80(8)
+    Number of via8 Contacts:              8
+  ==============================================
+    Total Number of Contacts:        8
+
+Stripe Wiring Statistics:
+    metal8 Wire Length(count):               7575.00(60)
+    metal9 Wire Length(count):               4588.56(36)
+  ==============================================
+    Total Wire Length(count):               12163.56(96)
+    Number of via8 Contacts:            132
+  ==============================================
+    Total Number of Contacts:      132
+
+User Wiring Statistics:
+
+PG follow-pin Wiring Statistics:
+
+Signal Wiring Statistics:
+      Mask Name      Contact Code    Number Of Contacts    Percentage
+
+  Horizontal/Vertical Wire Distribution:
+    Layer      Hor. Wire (% of Hor.)     Ver. Wire (% of Ver.)
+  ==============================================================
+    Total              0.00                      0.00
+1

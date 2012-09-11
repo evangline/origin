@@ -1,0 +1,1631 @@
+#@ # 
+#@ # Running icc_shell Version F-2011.09-ICC-SP4 for amd64 -- Feb 29, 2012
+#@ # Date:   Mon Sep 10 12:58:44 2012
+#@ # Run by: cs250-af@bcom16.EECS.Berkeley.EDU
+#@ 
+
+source -echo -verbose /work/cs250-af/lab1-verilog/build/icc-par/build-iccdp-2012-09-10_12-58/flat_dp.tcl
+#@ ##########################################################################################
+#@ ## ICC Design Planning RM
+#@ ## flat_dp: Virtual Flat Placement, PNS, PNA, IPO, Proto Route, and Explore Runs
+#@ # Version: D-2010.03-SP2 (July 6, 2010)
+#@ # Copyright (C) 2007-2010 Synopsys All rights reserved.
+#@ ##########################################################################################
+#@ 
+#@ source -echo icc_setup.tcl
+#@ ##########################################################################################
+#@ # Variables for ICC-RM, ICC DP-RM, and ICC Hierarchical-RM
+#@ # Script: icc_setup.tcl
+#@ # Version: D-2010.03-SP2 (July 6, 2010)
+#@ # Copyright (C) 2007-2010 Synopsys, Inc. All rights reserved.
+#@ ##########################################################################################
+#@ 
+#@ # sourcing the common variables
+#@ source -echo -verbose make_generated_vars.tcl
+#@ set DESIGN_NAME                 "gcdGCDUnit_rtl";
+#@ set STRIP_PATH                  "gcdTestHarness_rtl/gcd";
+#@ set ADDITIONAL_SEARCH_PATH      "/home/ff/cs250/stdcells/synopsys-90nm/default/db /home/ff/cs250/stdcells/synopsys-90nm/default/mw ../../dc-syn/current-dc/results";
+#@ set TARGET_LIBRARY_FILES        "cells.db cells_cg.db";
+#@ set MW_REFERENCE_LIB_DIRS       "/home/ff/cs250/stdcells/synopsys-90nm/default/mw/cells.mw";
+#@ set TECH_FILE                   "/home/ff/cs250/stdcells/synopsys-90nm/default/techfile/techfile.tf";
+#@ set MAP_FILE                    "/home/ff/cs250/stdcells/synopsys-90nm/default/techfile/tech2itf.map";
+#@ set TLUPLUS_MAX_FILE            "/home/ff/cs250/stdcells/synopsys-90nm/default/tluplus/max.tluplus";
+#@ set TLUPLUS_MIN_FILE            "/home/ff/cs250/stdcells/synopsys-90nm/default/tluplus/min.tluplus";
+#@ set REPORTS_DIR                 "reports";
+#@ set RESULTS_DIR                 "results";
+#@ set FILLER_CELL                 "SHFILL128 SHFILL64 SHFILL3 SHFILL2 SHFILL1";
+#@ set REPORTING_EFFORT            "OFF";
+#@ set PNR_EFFORT                  "low";
+#@ 
+#@ set ICC_FLOORPLAN_CEL            "init_design_icc";
+#@ 
+#@ # -- End source make_generated_vars.tcl
+
+#@ source -echo common_setup.tcl
+#@ ##########################################################################################
+#@ # Variables common to all RM scripts
+#@ # Script: common_setup.tcl
+#@ # Version: D-2010.03-SP2 (July 6, 2010)
+#@ # Copyright (C) 2007-2010 Synopsys All rights reserved.
+#@ ##########################################################################################
+#@ 
+#@ #YUNSUP: this is set by make_generated_vars.tcl
+#@ #set DESIGN_NAME                   ""  ;#  The name of the top-level design
+#@ 
+#@ set DESIGN_REF_DATA_PATH          ""  ;#  Absolute path prefix variable for library/design data.
+#@ #  Use this variable to prefix the common absolute path to
+#@ #  the common variables defined below.
+#@ #  Absolute paths are mandatory for hierarchical RM flow.
+#@ 
+#@ ##########################################################################################
+#@ # Hierarchical Flow Design Variables
+#@ ##########################################################################################
+#@ 
+#@ set HIERARCHICAL_DESIGNS           "" ;# List of hierarchical block design names "DesignA DesignB" ...
+#@ set HIERARCHICAL_CELLS             "" ;# List of hierarchical block cell instance names "u_DesignA u_DesignB" ...
+#@ 
+#@ ##########################################################################################
+#@ # Library Setup Variables
+#@ ##########################################################################################
+#@ 
+#@ # For the following variables, use a blank space to separate multiple entries
+#@ # Example: set TARGET_LIBRARY_FILES "lib1.db lib2.db lib3.db"
+#@ 
+#@ #YUNSUP: this is set by make_generated_vars.tcl
+#@ #set ADDITIONAL_SEARCH_PATH        ""  ;#  Additional search path to be added to the default search path
+#@ 
+#@ #YUNSUP: this is set by make_generated_vars.tcl
+#@ #set TARGET_LIBRARY_FILES          ""  ;#  Target technology logical libraries
+#@ set ADDITIONAL_LINK_LIB_FILES     ""  ;#  Extra link logical libraries not included in TARGET_LIBRARY_FILES
+#@ 
+#@ set MIN_LIBRARY_FILES             ""  ;#  List of max min library pairs "max1 min1 max2 min2 max3 min3"...
+#@ 
+#@ #YUNSUP: this is set by make_generated_vars.tcl
+#@ #set MW_REFERENCE_LIB_DIRS         ""  ;#  Milkyway reference libraries (include IC Compiler ILMs here)
+#@ 
+#@ set MW_REFERENCE_CONTROL_FILE     ""  ;#  Reference Control file to define the MW ref libs
+#@ 
+#@ #YUNSUP: this is set by make_generated_vars.tcl
+#@ #set TECH_FILE                     ""  ;#  Milkyway technology file
+#@ #set MAP_FILE                      ""  ;#  Mapping file for TLUplus
+#@ #set TLUPLUS_MAX_FILE              ""  ;#  Max TLUplus file
+#@ #set TLUPLUS_MIN_FILE              ""  ;#  Min TLUplus file
+#@ 
+#@ 
+#@ set MW_POWER_NET                "VDD" ;#
+#@ set MW_POWER_PORT               "VDD" ;#
+#@ set MW_GROUND_NET               "VSS" ;#
+#@ set MW_GROUND_PORT              "VSS" ;#
+#@ 
+#@ set MIN_ROUTING_LAYER            ""   ;# Min routing layer
+#@ set MAX_ROUTING_LAYER            ""   ;# Max routing layer
+#@ 
+#@ set LIBRARY_DONT_USE_FILE        ""   ;# Tcl file with library modifications for dont_use
+#@ 
+#@ ##########################################################################################
+#@ # Multi-Voltage Common Variables
+#@ #
+#@ # Define the following MV common variables for the RM scripts for multi-voltage flows.
+#@ # Use as few or as many of the following definitions as needed by your design.
+#@ ##########################################################################################
+#@ 
+#@ set PD1                          ""           ;# Name of power domain/voltage area  1
+#@ set PD1_CELLS                    ""           ;# Instances to include in power domain/voltage area 1
+#@ set VA1_COORDINATES              {}           ;# Coordinates for voltage area 1
+#@ set MW_POWER_NET1                "VDD1"       ;# Power net for voltage area 1
+#@ set MW_POWER_PORT1               "VDD"        ;# Power port for voltage area 1
+#@ 
+#@ set PD2                          ""           ;# Name of power domain/voltage area  2
+#@ set PD2_CELLS                    ""           ;# Instances to include in power domain/voltage area 2
+#@ set VA2_COORDINATES              {}           ;# Coordinates for voltage area 2
+#@ set MW_POWER_NET2                "VDD2"       ;# Power net for voltage area 2
+#@ set MW_POWER_PORT2               "VDD"        ;# Power port for voltage area 2
+#@ 
+#@ set PD3                          ""           ;# Name of power domain/voltage area  3
+#@ set PD3_CELLS                    ""           ;# Instances to include in power domain/voltage area 3
+#@ set VA3_COORDINATES              {}           ;# Coordinates for voltage area 3
+#@ set MW_POWER_NET3                "VDD3"       ;# Power net for voltage area 3
+#@ set MW_POWER_PORT3               "VDD"        ;# Power port for voltage area 3
+#@ 
+#@ set PD4                          ""           ;# Name of power domain/voltage area  4
+#@ set PD4_CELLS                    ""           ;# Instances to include in power domain/voltage area 4
+#@ set VA4_COORDINATES              {}           ;# Coordinates for voltage area 4
+#@ set MW_POWER_NET4                "VDD4"       ;# Power net for voltage area 4
+#@ set MW_POWER_PORT4               "VDD"        ;# Power port for voltage area 4
+#@ # -- End source common_setup.tcl
+
+#@ 
+#@ ###############################
+#@ ## General ICC variables
+#@ ###############################
+#@ set ICC_INPUT_CEL                 "${DESIGN_NAME}_DCT" ;# CEL created in DCT
+#@ set PNET_METAL_LIST               ""           ;# List of metals in the design to be used for (partial) pnet options
+#@ set PNET_METAL_LIST_COMPLETE	  ""	       ;# List of metals in the design to be used for (complete) pnet options
+#@ set ICC_IN_DONT_USE_FILE          "$LIBRARY_DONT_USE_FILE" ;# file of master don't use commands
+#@ set ICC_FIX_HOLD_PREFER_CELLS     ""           ;# Syntax: library/cell_name - Example: slow/DLY1X1 slow/DLY1X4
+#@ set ICC_MAX_AREA                  ""           ;# max_area value used during area optimization
+#@ set AREA_CRITICAL_RANGE_PRE_CTS   ""           ;# area critical range use during area opto during place_opt
+#@ set AREA_CRITICAL_RANGE_POST_CTS  ""           ;# area critical range use during area opto during post CTS opt
+#@ set AREA_CRITICAL_RANGE_POST_RT   ""           ;# area critical range use during area opto during route_opt
+#@ set POWER_CRITICAL_RANGE_PRE_CTS  ""           ;# power critical range use during area opto during place_opt
+#@ set POWER_CRITICAL_RANGE_POST_CTS ""           ;# power critical range use during area opto during post CTS opt
+#@ set POWER_CRITICAL_RANGE_POST_RT  ""           ;# power critical range use during area opto during route_opt
+#@ set ICC_NUM_CPUS                  1            ;# number of cpus for distributed processing;
+#@ ;# specify a number greater than 1 to enable it for classic router based route_opt and insert_redundant_via commands
+#@ set ICC_NUM_CORES                 1            ;# number of cores on the local host for multicore support;
+#@ ;# specify a number greater than 1 to enable it for the core commands
+#@ # YUNSUP: changed for fast p&r
+#@ set ICC_REPORTING_EFFORT          ${REPORTING_EFFORT}        ;# OFF|MED|LOW when set to OFF,no reporting is done; when set to LOW, report_timing/report_qor are skipped in clock_opt_cts
+#@ # YUNSUP: changed for fast p&r
+#@ set ICC_SANITY_CHECK              FALSE         ;# TRUE|FALSE, set TRUE to perform check_physical_design
+#@ set ICC_ENABLE_CHECKPOINT	  FALSE	       ;# TRUE|FALSE, set TRUE to perform checkpoint strategy for optimization commands
+#@ ;# Please ensure there's enough disk space before enabling this feature. Refer to set_checkpoint_strategy man page for details.
+#@ 
+#@ set ICC_TIE_CELL_FLOW             FALSE        ;# TRUE|FALSE, set TRUE if you want TIE-CELLS to be used during opto instead of TIE-nets
+#@ set ICC_LOW_POWER_PLACEMENT	  FALSE	       ;# TRUE|FALSE, when set to TRUE, set_power_options -low_power_placement will be set to true
+#@ set LEAKAGE_POWER                 FALSE	       ;# TRUE|FALSE; set to TRUE to enable leakage optimization flow
+#@ set DYNAMIC_POWER                 FALSE	       ;# TRUE|FALSE; set to TRUE to enable dynamic power optimization flow
+#@ set DFT                           FALSE	       ;# TRUE|FALSE; set to TRUE to enable scan reordering flow
+#@ # YUNSUP: changed for fast p&r
+#@ set ICC_DBL_VIA                   FALSE        ;# TRUE|FALSE; set to TRUE to enable detail route wire spreading
+#@ set ICC_FIX_ANTENNA               FALSE        ;# TRUE|FALSE: set to TRUE to enable antenna fixing
+#@ set ADD_FILLER_CELL               TRUE         ;# TRUE|FALSE; set to TRUE to enable std cells filler insertion
+#@ # YUNSUP: changed for fast p&r
+#@ set ICC_REDUCE_CRITICAL_AREA      FALSE        ;# TRUE|FALSE; set to TRUE to enable detail route wire spreading
+#@ set ICC_CREATE_MODEL              FALSE        ;# TRUE|FALSE; used for ILM/FRAM creation for the blocks in HRM
+#@ # YUNSUP: read from ddc
+#@ set ICC_INIT_DESIGN_INPUT         "DDC"         ;# VERILOG|DDC|MW; specify starting point
+#@ # YUNSUP: make our own floorplan
+#@ set ICC_FLOORPLAN_INPUT           "CREATE"        ;# DEF|FP_FILE|CREATE|USER_FILE|SKIP
+#@ set ADD_METAL_FILL                "ICC"        ;# NONE|ICC|HERCULES|ICV; will start metal fill
+#@ ;# ICC : will start timing driven metal fill using ICC's command
+#@ ;# HERCULES : will start signoff metal fill using Hercules
+#@ ;# ICV : will start signoff metal fill using ICV
+#@ 
+#@ # YUNSUP: changed for fast p&r
+#@ set PLACE_OPT_EFFORT 		 ${PNR_EFFORT}      ;# low|medium|high; choose effort level for place_opt command
+#@ # YUNSUP: changed for fast p&r
+#@ set ROUTE_OPT_EFFORT 		 ${PNR_EFFORT}      ;# low|medium|high; choose effort level for route_opt command
+#@ set PLACE_OPT_CONGESTION         TRUE          ;# TRUE|FALSE; set TRUE to enable congestion removal during place_opt
+#@ 
+#@ ###############################
+#@ ## Cellname variables
+#@ ###############################
+#@ #YUNSUP: this is set by make_generated_vars.tcl
+#@ #set ICC_FLOORPLAN_CEL            "init_design_icc"
+#@ set ICC_PLACE_OPT_CEL            "place_opt_icc"
+#@ set ICC_CLOCK_OPT_CTS_CEL        "clock_opt_cts_icc"
+#@ set ICC_CLOCK_OPT_PSYN_CEL       "clock_opt_psyn_icc"
+#@ set ICC_CLOCK_OPT_ROUTE_CEL      "clock_opt_route_icc"
+#@ set ICC_ROUTE_CEL                "route_icc"
+#@ set ICC_ROUTE_OPT_CEL            "route_opt_icc"
+#@ set ICC_CHIP_FINISH_CEL          "chip_finish_icc"
+#@ set ICC_SIGNOFF_CEL              "signoff_icc"
+#@ set ICC_SIGNOFF_OPT_CEL          "signoff_opt_icc"
+#@ set ICC_METAL_FILL_CEL           "metal_fill_icc"
+#@ 
+#@ set ICC_ECO_STARTING_CEL	 $ICC_METAL_FILL_CEL         ;# CEL to run ECO on (contains original pre-tape-out database)
+#@ set ICC_ECO_CEL             	 "eco_icc"                   ;# CEL after running the ECO (contains new eco netlist)
+#@ set ICC_FOCAL_OPT_STARTING_CEL	 $ICC_CHIP_FINISH_CEL        ;# CEL to run focal_opt on
+#@ set ICC_FOCAL_OPT_CEL       	 "focal_opt_icc"             ;# CEL after running focal_opt
+#@ 
+#@ set ICC_DP_CREATE_PLANGROUPS_CEL "create_plangroups_dp"
+#@ set ICC_DP_ROUTEABILITY_ON_PLANGROUPS_CEL "routeability_on_plangroups_dp"
+#@ set ICC_DP_PIN_ASSIGNMENT_BUDGETING_CEL	 "pin_assignment_budgeting_dp"
+#@ set ICC_DP_COMMIT_CEL		 "commit_dp"
+#@ 
+#@ 
+#@ ###############################
+#@ ## Timing variables
+#@ ###############################
+#@ set ICC_APPLY_RM_DERATING               TRUE 	;# TRUE|FALSE; when set to FALSE, the derating is assumed to be in the SDC
+#@ set ICC_LATE_DERATING_FACTOR	        1.01 	;# Late derating factor, used for both data and clock
+#@ set ICC_EARLY_DERATING_FACTOR	        0.99 	;# Early derating factor, used for both data and clock
+#@ 
+#@ set ICC_APPLY_RM_UNCERTAINTY_PRECTS     FALSE	;# TRUE|FALSE; when set to TRUE, user uncertainty will be replaced by $ICC_UNCERTAINTY_PRECTS
+#@ set ICC_APPLY_RM_UNCERTAINTY_POSTCTS    FALSE	;# TRUE|FALSE; when set to TRUE, user uncertainty will be replaced by $ICC_UNCERTAINTY_POSTCTS
+#@ set ICC_UNCERTAINTY_PRECTS_FILE         ""   	;# pre-cts uncertainty file used during place_opt
+#@ set ICC_UNCERTAINTY_POSTCTS_FILE        ""   	;# post-cts uncertainty file used during post cts opto and route_opt
+#@ set ICC_MAX_TRANSITION                  ""   	;# max_transition value set on the design
+#@ set ICC_CRITICAL_RANGE                  ""   	;# critical_range set on the design ; default = 50% of each clock period
+#@ set ICC_MAX_FANOUT                      ""   	;# max_fanout value set on the design
+#@ set ICC_FULL_ARNOLDI                    FALSE	;# TRUE|FALSE; when set to TRUE, will enable full arnoldi, i.e. no net filtering
+#@ 
+#@ 
+#@ ###############################
+#@ ## Floorplan Input variables          		
+#@ ###############################
+#@ set ICC_IN_DEF_FILE		  	""	;# Complete floorplan file in DEF format
+#@ set ICC_IN_FLOORPLAN_FILE	  	""	;# Complete floorplan file generated by write_floorplan
+#@ set ICC_IN_FLOORPLAN_USER_FILE	  	""	;# Complete floorplan file generated by user ;this file will simply be sourced
+#@ set ICC_IN_TDF_FILE 		  	""	;# TDF file which contains pad or pin information
+#@ set ICC_IN_PHYSICAL_ONLY_CELLS_CREATION_FILE "" ;# a file to include physical only cell creation commands to be sourced
+#@ ;# e.g. create_cell {vdd1left vdd1right vdd1top vdd1bottom} pvdi
+#@ set ICC_IN_PHYSICAL_ONLY_CELLS_CONNECTION_FILE "" ;# a file to include physical only cell connection commands to be sourced
+#@ ;# e.g. derive_pg_connection -power_net $MW_POWER_NET -power_pin $MW_POWER_PORT -ground_net $MW_GROUND_NET -ground_pin $MW_GROUND_PORT -cells {vdd1left vdd1right vdd1top vdd1bottom}
+#@ 
+#@ set ICC_PHYSICAL_CONSTRAINTS_FILE 	""	;# Can you used to add extra floorplan info  -sourced after floorplan creation
+#@ set CUSTOM_CONNECT_PG_NETS_SCRIPT 	""      ;# If not defined as "", source this file
+#@ 
+#@ 
+#@ ###############################
+#@ ## MV Input variables
+#@ ###############################
+#@ set AO_INSTANCES                        {}     	;# list of instances that require AO synthesis (e.g. {TOP/INST2, TOP/INST3}
+#@ set ICC_DP_AUTO_CREATE_VA               FALSE  	;# TRUE|FALSE; if TRUE, automatically creates voltage area based on user specified utilization
+#@ set CUSTOM_POWER_SWITCH_SCRIPT          ""     	;# script to define the headers_footers and connect the sleep pin
+#@ set CUSTOM_CREATE_VA_SCRIPT             ""     	;# script to define the voltage area creation commands for your design
+#@ set CUSTOM_SECONDARY_POWER_ROUTE_SCRIPT ""     	;# script to define the pre_route_standard_cells command for the AO/RR cells.
+#@ set RR_CELLS                            ""     	;# e.g. "RSD" if each Retention Register contains RSD in its name
+#@ set CUSTOM_LOAD_ASCII_UPF_SCRIPT_LIST   ""     	;# for upf flow with ascii inputs, provide a list of scripts for each power domain and top
+#@ set ICC_UPF_PM_CELL_EXISTING		FALSE	;# TRUE|FALSE; specify if design contains pre-existing power_management cells
+#@ set ICC_UPF_PM_CELL_INSERTION		FALSE	;# TRUE|FALSE; if TRUE, runs insert_mv_cells
+#@ 
+#@ ###############################
+#@ ## MCMM Input variables
+#@ ###############################
+#@ set ICC_MCMM_SCENARIOS_FILE             ""     	;# file containing all scenario definitions - example in rm_icc_scripts/mcmm.scenarios.example
+#@ set ICC_MCMM_PLACE_OPT_SCENARIOS        ""     	;# list of scenarios to be made active during place_opt; optional; by default all scenarios will be made active
+#@ set ICC_MCMM_CLOCK_OPT_PSYN_SCENARIOS   ""     	;# list of scenarios to be made active during post CTS opto (pre-route); optional; by default all scenarios will be made active
+#@ set ICC_MCMM_CLOCK_OPT_ROUTE_SCENARIOS  ""     	;# list of scenarios to be made active during clock routing; optional; by default all scenarios will be made active
+#@ set ICC_MCMM_ROUTE_SCENARIOS            ""     	;# list of scenarios to be made active during signal routing; optional; by default all scenarios will be made active
+#@ set ICC_MCMM_ROUTE_OPT_SCENARIOS        ""     	;# list of scenarios to be made active during route_opt; optional; by default all scenarios will be made active
+#@ set ICC_MCMM_CHIP_FINISH_SCENARIOS      ""     	;# list of scenarios to be made active during route_opt post chipfinish; optional; by default all scenarios will be made active
+#@ set ICC_MCMM_METAL_FILL_SCENARIOS       ""     	;# list of scenarios to be made active during metal filling; optional; by default all scenarios will be made active
+#@ 
+#@ set ICC_MCMM_PLACE_OPT_HIGH_CAP         FALSE  	;# TRUE|FALSE : if TRUE, enables High Capacity MCMM mode for place_opt (Adaptive MCMM)
+#@ set ICC_MCMM_CLOCK_OPT_HIGH_CAP         FALSE  	;# TRUE|FALSE : if TRUE, enables High Capacity MCMM mode for post cts opto ( pre-route) (Adaptive MCMM)
+#@ 
+#@ ###############################
+#@ ## ECO FLOW VARIABLES
+#@ ###############################
+#@ set ICC_ECO_FLOW                        "NONE" 	;# NONE|UNCONSTRAINED|FREEZE_SILICON
+#@ ;# UNCONSTRAINED : NO spare cell insertion ; cells can be added (pre tapeout)
+#@ ;# FREEZE_SILICON : spare cell insertion/freeze silicon ECO
+#@ 
+#@ set ICC_SPARE_CELL_FILE                 ""     	;# TCL script to insert the spare cells, e.g. :
+#@ ;# insert_spare_cells -lib_cell {INV8 DFF1} -cell_name spares -num_instances 300
+#@ 
+#@ set ICC_ECO_NETLIST                     ""     	;# new verilog netlist containing the ECO changes
+#@ 
+#@ 
+#@ 
+#@ 
+#@ ###############################
+#@ ## GATE MERGE/SPLIT
+#@ ###############################
+#@ set ICC_CTS_CLOCK_GATE_MERGE           FALSE                         ;# set to TRUE to enable clock gate merging for power reduction
+#@ set ICC_CTS_CLOCK_GATE_SPLIT           FALSE                         ;# set to TRUE to enable clock gate splitting for reducing enable pin violations
+#@ 
+#@ 
+#@ ###############################
+#@ ## EMULATION TLU+ FILES
+#@ ###############################
+#@ set TLUPLUS_MAX_EMULATION_FILE         ""  ;#  Max TLUplus file
+#@ set TLUPLUS_MIN_EMULATION_FILE         ""  ;#  Min TLUplus file
+#@ 
+#@ 
+#@ ###############################
+#@ ## PNG creation
+#@ ###############################
+#@ set ICC_CREATE_GR_PNG                  FALSE  ;# set to TRUE to create the Global route congestion map PNG after initial route
+#@ 
+#@ 
+#@ ###############################
+#@ ## SIGNOFF_OPT Input variables
+#@ ###############################
+#@ set PT_DIR ""                          ;# path to PT bin directory
+#@ set PT_SDC_FILE ""                     ;# optional file in case PT has different SDC that what is available in the ICC database
+#@ set STARRC_DIR ""                      ;# path to StarRC bin directory
+#@ set STARRC_MAX_NXTGRD ""               ;# MAX NXTGRD file
+#@ set STARRC_MIN_NXTGRD ""               ;# MIN NXTGRD file
+#@ set STARRC_MAP_FILE "$MAP_FILE"        ;# NXTGRD mapping file, defaults to TLUPlus mapping file, but could be different
+#@ 
+#@ set ICC_SIGNOFF_OPT_CHECK_CORRELATION_PREROUTE_SCRIPT "" ;# a file to be sourced to run check_signoff_correlation at end of place_opt_icc step;
+#@ ;# example - rm_icc_scripts/signoff_opt_check_correlation_preroute_icc.example.tcl
+#@ set ICC_SIGNOFF_OPT_CHECK_CORRELATION_POSTROUTE_SCRIPT "" ;# a file to be sourced to run at check_signoff_correlation end of route_opt_icc step;
+#@ ;# example - rm_icc_scripts/signoff_opt_check_correlation_postroute_icc.example.tcl
+#@ 
+#@ ###############################
+#@ ## SIGNOFF Physical variables
+#@ ###############################
+#@ ## Hercules - ensure env variable HERCULES_HOME_DIR is set and that hercules is included in path in shell ICC executed from
+#@ ## ICV Metal Fill - ensure env variable PRIMEYIELD_HOME_DIR is set and that icv is included in path in shell ICC executed from
+#@ ## ICV DRC - ensure env variable ICV_HOME_DIR is set and that icv is included in path in shell ICC executed from
+#@ 
+#@ set SIGNOFF_FILL_RUNSET ""             ;# ICV|Hercules runset for signoff_metal_fill
+#@ set SIGNOFF_DRC_RUNSET  ""             ;# ICV|Hercules runset for signoff_drc
+#@ set SIGNOFF_MAPFILE     ""             ;# Mapping file for ICV|Hercules signoff_metal_fill|signoff_drc
+#@ set SIGNOFF_DRC_ENGINE	"HERCULES"     ;# ICV|HERCULES
+#@ 
+#@ set SIGNOFF_METAL_FILL_TIMING_DRIVEN FALSE  ;# TRUE|FALSE : set this to TRUE to enable timing driven for ICV metal fill 	
+#@ set TIMING_PRESERVE_SLACK_SETUP	"0.1"  ;# float : setup slack threshold for wire_spreading/widening/timing driven ICV metal fill; default 0.1
+#@ set TIMING_PRESERVE_SLACK_HOLD "0"     ;# float : hold slack threshold for wire_spreading/widening; default 0
+#@ 
+#@ ###############################
+#@ ## Clock Tree variables
+#@ ###############################
+#@ 
+#@ set ICC_CTS_RULE_NAME		"iccrm_clock_double_spacing" ;# specify clock routing rule
+#@ ;# default will be 2x NDR applied to all layers
+#@ set ICC_CTS_LAYER_LIST		""		;# clock tree layers, usually M3 and above
+#@ ;# e.g. set ICC_CTS_LAYER_LIST "M3 M4 M5"
+#@ set ICC_CTS_REF_LIST		""		;# cells ;# used for CTS
+#@ ;#   space deliminated list: cell1 cell2
+#@ set ICC_CTS_REF_DEL_INS_ONLY	""		;# cells for CTS delay insertion :
+#@ ;#   space deliminated list: cell1 cell2
+#@ set ICC_CTS_REF_SIZING_ONLY	""		;# cells for CTS that are for sizing only
+#@ 
+#@ set ICC_CTS_INTERCLOCK_BALANCING	FALSE	;# set this to TRUE to perform ICDB
+#@ set ICC_CTS_INTERCLOCK_BALANCING_OPTIONS_FILE	""	;# set here the interclock_delay options
+#@ 
+#@ set ICC_CTS_UPDATE_LATENCY	FALSE		;# set this to TRUE to perform clock latency update post CTS
+#@ set ICC_CTS_LATENCY_OPTIONS_FILE	""	;# define here the latency adjustment options options
+#@ 
+#@ set ICC_POST_CLOCK_ROUTE_CTO	FALSE  	       	;# set to TRUE if you want to run Post route CTO after clock routing
+#@ 
+#@ ###############################
+#@ ## Chipfinishing variables
+#@ ###############################
+#@ set ICC_METAL_FILL_SPACE           2                   ;# space amount used during ICC's insert_metal_fill command
+#@ set ICC_METAL_FILL_TIMING_DRIVEN  TRUE                 ;# enables timing driven metal fill for ICC's insert_metal_fill
+#@ 
+#@ ## end cap cels
+#@ set ICC_H_CAP_CEL                  ""           ;# defines the horizontal CAP CELL libcell
+#@ set ICC_V_CAP_CEL                  ""           ;# defines the vertical CAP CELL libcell (for the Well Proximity Effect)
+#@ 
+#@ ## antenna fixing
+#@ set ANTENNA_RULES_FILE           ""             ;# defines the antenna rules
+#@ set ICC_USE_DIODES               FALSE          ;# TRUE|FALSE : control variable to allow diodes to be inserted both by the
+#@ ;# insert_port_protection_diodes command as well as the router
+#@ set ICC_ROUTING_DIODES           ""             ;# space separated list of diode names
+#@ set ICC_PORT_PROTECTION_DIODE    ""             ;# diode name for insert_port_protection_diodes
+#@ ;# Format = library_name/diode_name
+#@ 
+#@ ## filler cell insertion
+#@ set FILLER_CELL_METAL            ""             ;# space separated list of filler cells
+#@ set FILLER_CELL                  ""             ;# ADD_FILLER_CELL - space separated
+#@ 
+#@ ## double via insertion
+#@ set ICC_DBL_VIA_FLOW_EFFORT      LOW            ;# LOW|MED|HIGH  - MED enables concurrent soft-rule dbl via insertion
+#@ ;# HIGH runs another dbl via, timing driven, after chipfinishing
+#@ set ICC_CUSTOM_DBL_VIA_DEFINE_SCRIPT ""         ;# script to define the dbl via definitions
+#@ 
+#@ ## focal opt
+#@ set ICC_FOCAL_OPT_HOLD_VIOLS     ""             ;# filename containing the hold violations
+#@ set ICC_FOCAL_OPT_SETUP_VIOLS    ""             ;# filename containing the setup violations
+#@ set ICC_FOCAL_OPT_DRC_NET_VIOLS  ""             ;# filename containing the DRC net violations
+#@ set ICC_FOCAL_OPT_DRC_PIN_VIOLS  ""             ;# filename containing the DRC pin violations
+#@ set ICC_FOCAL_OPT_XTALK_VIOLS    ""             ;# filename containing the crosstalk violations
+#@ 
+#@ 
+#@ 
+#@ ######################################################################################################################
+#@ #####################   ICC DESIGN PLANNING SPECIFIC (variables for ICC DP-RM and ICC Hierarchical-RM)  ##############
+#@ ######################################################################################################################
+#@ 
+#@ #######################################################################
+#@ ## Common variables (applied to both ICC DP RM and ICC Hierarchical RM)
+#@ #######################################################################
+#@ 
+#@ set ICC_DP_VERBOSE_REPORTING		FALSE		;# TRUE|FALSE; generate additional reports before placement
+#@ set ICC_DP_SET_HFNS_AS_IDEAL_THRESHOLD	""		;# integer; specify a threshold to set nets with fanout larger than it as ideal nets
+#@ set ICC_DP_SET_MIXED_AS_IDEAL		TRUE		;# TRUE|FALSE; set mixed clock/signal paths as ideal nets
+#@ 
+#@ set ICC_DP_FIX_MACRO_LIST		""		;# ""|skip|"a_list_of_macros"; unfix all macos OR skip fix OR fix specified macros before placement
+#@ set CUSTOM_ICC_DP_PLACE_CONSTRAINT_SCRIPT ""            ;# Put your set_keepout_margin and fp_set_macro_placement_constraint in this file
+#@ set ICC_DP_PLACEMENT_VA_NET_WEIGHT 	1		;# valid values are from 0 to 9; applied for MV designs and used by set_fp_placement_strategy -voltage_area_interface_net_weight
+#@ set CUSTOM_ICC_DP_PREROUTE_STD_CELL_SCRIPT ""		;# File to perform customized preroute_standard_cell commands
+#@ set ICC_DP_USE_ZROUTE                   TRUE            ;# TRUE|FALSE; use zroute for ICC DP RM and pin assignment of ICC Hierarchical RM
+#@ 
+#@ ## PNS and PNA control variables
+#@ set CUSTOM_ICC_DP_PNS_CONSTRAINT_SCRIPT ""              ;# File to add PNS constraints which is loaded before running PNS
+#@ set PNS_POWER_NETS         		"${MW_POWER_NET} ${MW_GROUND_NET}" ;# Target nets for PNS; syntax is "your_power_net your_ground_net"
+#@ set PNS_POWER_BUDGET       		1000          	;# Unit in milliWatts; default is 1000
+#@ set PNS_VOLTAGE_SUPPLY     		1.5           	;# Unit in Volts; default is 1.5
+#@ #YUNSUP: add virtual rail layer
+#@ set PNS_VIRTUAL_RAIL_LAYER 		"M1"              ;# Specify the metal layer you want to use as virtual rail
+#@ set PNS_OUTPUT_DIR         		"./pna_output"  ;# Output directory for PNS and PNA output files
+#@ 
+#@ ###################################################
+#@ ## ICC Hierarchical RM specific variables
+#@ ###################################################
+#@ 
+#@ set ICC_SKIP_IN_BLOCK_IMPLEMENTATION    FALSE           ;# TRUE|FALSE; set TRUE to disable "Creating the physical MV objects" and "MTCMOS CELL INSTANTIATION"
+#@ ;# sections in init_design_icc.tcl if you have already done so on full chip level
+#@ set MW_ILM_LIBS                         ""              ;# add ILMs for block level FRAMs not used by DCT
+#@ set BUDGETING_SDC_OUTPUT_DIR            "./sdc"         ;# budgeting SDC output directory; default is "./sdc"
+#@ 
+#@ set ICC_DP_PLAN_GROUPS		"$HIERARCHICAL_CELLS"	;# full module names from which plan groups will be created
+#@ ;#   space deliminated list: "top/A top/B top/C"
+#@ ;# default to $HIERARCHICAL_CELLS from common_setup.tcl if using DCT
+#@ set ICC_DP_PLANGROUP_FILE               ""              ;# floorplan file containing plan group creation and location which should be the output of write_floorplan
+#@ 
+#@ set ICC_DP_CTP				FALSE		;# TRUE|FALSE; set TRUE to enable clock tree planning; please uncomment the section in hierarchical_dp.tcl first
+#@ set ICC_DP_CTP_ANCHOR_CEL               ""              ;# anchor cell for clock tree planning (anchor cell is required if you uncomment clock tree planning in scripts);
+#@ ;#   cell master of one mid-sized buffer
+#@ set ICC_DP_ALLOW_FEEDTHROUGH	        FALSE		;# TRUE|FALSE; allow feedthrough creation during pin assignment
+#@ 
+#@ set CUSTOM_ICC_DP_PNS_SCRIPT 		""              ;# customized PNS script; replacing PNS section in scripts
+#@ set CUSTOM_ICC_DP_PNA_SCRIPT 		""              ;# customized PNA script; replacing PNA section in scripts
+#@ 
+#@ ## DFT-aware hierarchical design planning variables
+#@ set ICC_DP_DFT_FLOW			FALSE		;# TRUE|FALSE; enable DFT-aware hierarchical design planning flow; requires ICC_IN_FULL_CHIP_SCANDEF_FILE
+#@ set ICC_IN_FULL_CHIP_SCANDEF_FILE "$DESIGN_NAME.mapped.expanded.scandef"		
+#@ ;# ASCII full-chip SCANDEF file for DFT-aware hierarchical design planning flow (ICC_DP_DFT_FLOW)
+#@ ;# it is used for hierarchical design planning phase; not needed for block level implementations
+#@ 
+#@ 
+#@ 
+#@ ###################################################
+#@ ## ICC DP RM (Flat) specific variables
+#@ ###################################################
+#@ 
+#@ ## explore mode: flow control variables
+#@ #YUNSUP: don't explore floorplans
+#@ set ICC_DP_EXPLORE_MODE			FALSE	;# TRUE|FALSE; turn on exploration mode
+#@ set ICC_DP_EXPLORE_STYLE		default		;# valid options are: default | placement_only | no_pns_pna | no_ipo
+#@ ;# default: place -> pns/pna -> ipo -> final groute,snapshot,QOR,timing,and outputs
+#@ ;# placement_only: skips pns/pna and ipo from default | no_pns_pna: skips pna/pns from default
+#@ ;# | no_ipo: skips ipo from default
+#@ set ICC_DP_EXPLORE_SAVE_CEL_EACH_STEP 	FALSE		;# TRUE|FALSE; save 3 additional CEL after placement, ipo, and pns in explore mode (requires more disk space)
+#@ set ICC_DP_EXPLORE_REPORTING_EACH_STEP	FALSE		;# TRUE|FALSE; generate QoR snapshot and timing report after each step (longer run time)
+#@ set ICC_DP_EXPLORE_USE_GLOBAL_ROUTE 	FALSE		;# TRUE|FALSE; use route_global OR route_fp_proto (default); if ICC_DP_USE_ZROUTE is true, route_zrt_global will be used
+#@ set ICC_DP_EXPLORE_SAVE_CEL_AFTER_GROUTE TRUE		;# TRUE|FALSE; save 2 additional CEL after global route: one after placement and one at the end
+#@ set ICC_DP_EXPLORE_CUSTOM_PG_SCRIPT	""		;# string; script to be loaded to create customized PG straps after placement in explore mode;
+#@ ;# valid only if ICC_DP_EXPLORE_STYLE is placement_only or no_pns_pna
+#@ 
+#@ ## explore mode: additional PNS control variables
+#@ set PNS_TARGET_VOLTAGE_DROP     	250	        ;# Unit in milliVolts. Tool default is 10% of PNS_POWER_BUDGET
+#@ set PNS_BLOCK_MODE         		FALSE           ;# TRUE|FALSE; specify if the design is block or top level; It turns on correspondant options in PNS and PNA
+#@ set PNS_PAD_MASTERS        		""		;# Only for top level design with power pads. Specify cell masters for power pads, e.g. "pv0i.FRAM pv0a.FRAM"
+#@ set PNS_PAD_INSTANCE_FILE  		""              ;# Only for top level design with power pads. Specify the file with a list of power pad instances
+#@ set PNS_PAD_MASTER_FILE    		""		;# Only for top level design with power pads. Specify the file with a list of power pad masters
+#@ ## Please provide only one of PNS_PAD_MASTERS, OR PNS_PAD_INSTANCE_FILE, OR PNS_PAD_MASTER_FILE
+#@ 
+#@ 
+#@ ##########################################################################################
+#@ #####################      NO NEED TO CHANGE IF DC-RM IS USED BEFORE          ##############
+#@ ##########################################################################################
+#@ 
+#@ set ICC_IN_VERILOG_NETLIST_FILE "$DESIGN_NAME.mapped.v" ;#1 to n verilog input files, spaced by blanks
+#@ set ICC_IN_SDC_FILE             "$DESIGN_NAME.mapped.sdc"
+#@ set ICC_IN_DDC_FILE             "$DESIGN_NAME.mapped.ddc"
+#@ set ICC_IN_UPF_FILE             "$DESIGN_NAME.mapped.upf"
+#@ set ICC_IN_SCAN_DEF_FILE        "$DESIGN_NAME.mapped.scandef"
+#@ set MW_DESIGN_LIBRARY           "${DESIGN_NAME}_LIB"    ;# milkyway design library
+#@ 
+#@ ##########################################################################################
+#@ #########################     USAGE OF ABOVE VARIABLES      ##############################
+#@ #########################   DO NOT CHANGE BELOW THIS LINE   ##############################
+#@ ##########################################################################################
+#@ 
+#@ set ICC_IN_SAIF_FILE            "$DESIGN_NAME.saif"     ;# SAIF file for dynamic power opto
+#@ set ICC_SAIF_INSTANCE_NAME      $DESIGN_NAME            ;# the instance in the SAIF file containing the switching activity
+#@ 
+#@ set REPORTS_DIR                 "reports"               ;# Directory to write reports.
+#@ set RESULTS_DIR                 "results"               ;# Directory to write output data files
+#@ 
+#@ set REPORTS_DIR_INIT_DESIGN                     $REPORTS_DIR
+#@ set REPORTS_DIR_PLACE_OPT                       $REPORTS_DIR
+#@ set REPORTS_DIR_CLOCK_OPT_CTS                   $REPORTS_DIR
+#@ set REPORTS_DIR_CLOCK_OPT_PSYN                  $REPORTS_DIR
+#@ set REPORTS_DIR_CLOCK_OPT_ROUTE                 $REPORTS_DIR
+#@ set REPORTS_DIR_ROUTE                           $REPORTS_DIR
+#@ set REPORTS_DIR_ROUTE_OPT                       $REPORTS_DIR
+#@ set REPORTS_DIR_CHIP_FINISH                     $REPORTS_DIR
+#@ set REPORTS_DIR_ECO                        	$REPORTS_DIR
+#@ set REPORTS_DIR_FOCAL_OPT                       $REPORTS_DIR
+#@ set REPORTS_DIR_SIGNOFF_OPT                     $REPORTS_DIR
+#@ set REPORTS_DIR_METAL_FILL                      $REPORTS_DIR
+#@ set REPORTS_DIR_DP            			$REPORTS_DIR
+#@ set REPORTS_DIR_DP_CREATE_PLANGROUPS		$REPORTS_DIR
+#@ set REPORTS_DIR_DP_ROUTEABILITY_ON_PLANGROUPS   $REPORTS_DIR
+#@ set REPORTS_DIR_DP_PIN_ASSIGNMENT_BUDGETING     $REPORTS_DIR
+#@ set REPORTS_DIR_DP_COMMIT                       $REPORTS_DIR
+#@ set REPORTS_DIR_DP_PREPARE_BLOCK                $REPORTS_DIR
+#@ set REPORTS_DIR_FORMALITY			$REPORTS_DIR
+#@ 
+#@ if { ! [file exists $REPORTS_DIR_INIT_DESIGN] } { file mkdir $REPORTS_DIR_INIT_DESIGN }
+#@ if { ! [file exists $REPORTS_DIR_PLACE_OPT] } { file mkdir $REPORTS_DIR_PLACE_OPT }
+#@ if { ! [file exists $REPORTS_DIR_CLOCK_OPT_CTS] } { file mkdir $REPORTS_DIR_CLOCK_OPT_CTS }
+#@ if { ! [file exists $REPORTS_DIR_CLOCK_OPT_PSYN] } { file mkdir $REPORTS_DIR_CLOCK_OPT_PSYN }
+#@ if { ! [file exists $REPORTS_DIR_CLOCK_OPT_ROUTE] } { file mkdir $REPORTS_DIR_CLOCK_OPT_ROUTE }
+#@ if { ! [file exists $REPORTS_DIR_ROUTE] } { file mkdir $REPORTS_DIR_ROUTE }
+#@ if { ! [file exists $REPORTS_DIR_ROUTE_OPT] } { file mkdir $REPORTS_DIR_ROUTE_OPT }
+#@ if { ! [file exists $REPORTS_DIR_CHIP_FINISH] } { file mkdir $REPORTS_DIR_CHIP_FINISH }
+#@ if { ! [file exists $REPORTS_DIR_ECO] } { file mkdir $REPORTS_DIR_ECO }
+#@ if { ! [file exists $REPORTS_DIR_FOCAL_OPT] } { file mkdir $REPORTS_DIR_FOCAL_OPT }
+#@ if { ! [file exists $REPORTS_DIR_SIGNOFF_OPT] } { file mkdir $REPORTS_DIR_SIGNOFF_OPT }
+#@ if { ! [file exists $REPORTS_DIR_METAL_FILL] } { file mkdir $REPORTS_DIR_METAL_FILL }
+#@ if { ! [file exists $REPORTS_DIR_DP] } { file mkdir $REPORTS_DIR_DP }
+#@ if { ! [file exists $REPORTS_DIR_DP_CREATE_PLANGROUPS] } { file mkdir $REPORTS_DIR_DP_CREATE_PLANGROUPS }
+#@ if { ! [file exists $REPORTS_DIR_DP_ROUTEABILITY_ON_PLANGROUPS] } { file mkdir $REPORTS_DIR_DP_ROUTEABILITY_ON_PLANGROUPS }
+#@ if { ! [file exists $REPORTS_DIR_DP_PIN_ASSIGNMENT_BUDGETING] } { file mkdir $REPORTS_DIR_DP_PIN_ASSIGNMENT_BUDGETING }
+#@ if { ! [file exists $REPORTS_DIR_DP_COMMIT] } { file mkdir $REPORTS_DIR_DP_COMMIT }
+#@ if { ! [file exists $REPORTS_DIR_DP_PREPARE_BLOCK] } { file mkdir $REPORTS_DIR_DP_PREPARE_BLOCK }
+#@ if { ! [file exists $REPORTS_DIR_FORMALITY] } { file mkdir $REPORTS_DIR_FORMALITY }
+#@ 
+#@ ## Logical libraries
+#@ set_app_var search_path	". ./rm_icc_scripts ./rm_icc_zrt_scripts ./rm_icc_dp_scripts $ADDITIONAL_SEARCH_PATH $search_path"
+#@ set_app_var target_library	"$TARGET_LIBRARY_FILES"
+#@ set_app_var link_library	"* $TARGET_LIBRARY_FILES $ADDITIONAL_LINK_LIB_FILES"
+#@ 
+#@ if { ! [file exists $RESULTS_DIR] } {
+#@   file mkdir $RESULTS_DIR
+#@ }
+#@ if { ! [file exists $REPORTS_DIR] } {
+#@   file mkdir $REPORTS_DIR
+#@ }
+#@ 
+#@ if {$synopsys_program_name == "icc_shell"} {
+#@ 
+#@ ## Min max library relationships
+#@ ## Not common for MCMM setup, but can be used also for MCMM
+#@ if {$MIN_LIBRARY_FILES != "" } {
+#@   foreach {max_library min_library} $MIN_LIBRARY_FILES {
+#@     set_min_library $max_library -min_version $min_library
+#@   }
+#@ }
+#@ 
+#@ ## Reference libraries
+#@ if { ![file exists [which $MW_REFERENCE_CONTROL_FILE]]} {
+#@  if {[file exists $MW_DESIGN_LIBRARY/lib]} {
+#@    set_mw_lib_reference $MW_DESIGN_LIBRARY -mw_reference_library "$MW_REFERENCE_LIB_DIRS $MW_ILM_LIBS"
+#@  }
+#@ }
+#@ 
+#@ ## PD4 is not always used
+#@ if {![info exists PD4]} {set PD4 ""}
+#@ 
+#@ 
+#@ ## Avoiding too many messages
+#@ set_message_info -id PSYN-040 -limit 10 ;# Dont_touch for fixed cells
+#@ set_message_info -id PSYN-087 -limit 10 ;# Port inherits its location from pad pin
+#@ set_message_info -id LINT-8   -limit 10 ;# input port is unloaded
+#@ 
+#@ set_app_var check_error_list "$check_error_list LINK-5 PSYN-375"
+#@ 
+#@ source check_icc_rm_values.tcl
+#@ 
+#@ }
+#@ ##########################################################################################
+#@ # Version: D-2010.03-SP2 (July 6, 2010)
+#@ # Copyright (C) 2007-2010 Synopsys, Inc. All rights reserved.
+#@ ##########################################################################################
+#@ 
+#@ set rm_var_err false
+#@ 
+#@ 
+#@ 
+#@ if {$rm_var_err} {
+#@    echo "SCRIPT-Error: ICC-RM variable value error detected.  Exiting ICC."
+#@    exit 0
+#@ }
+#@ 
+#@ # -- End source check_icc_rm_values.tcl
+
+#@ 
+#@ #################################################################################
+#@ 
+#@ 
+#@ # -- End source icc_setup.tcl
+
+#@ source proc_explore.tcl
+#@ ###################################################################################################
+#@ # ICC Design Planning RM
+#@ # proc_explore.tcl: performs exploration run with vitual flat placement, PNS/PNA, IPO, and proto route
+#@ #                   the procedure "dp_explore" is used by rm_icc_dp_scripts/macro_placement_exploration_dp.tcl
+#@ # Version: D-2010.03-SP2 (July 6, 2010)
+#@ # Copyright (C) 2007-2010 Synopsys All rights reserved.
+#@ ###################################################################################################
+#@ 
+#@ # =============================================================================================
+#@ # Variables that usually may not need to be changed during exploration
+#@ # You can change the setting here and will affect all explore runs
+#@ # =============================================================================================
+#@ set vfp_num_cores $ICC_NUM_CORES
+#@ set vfp_legalize 1
+#@ 
+#@ # =============================================================================================
+#@ # 		Procedure
+#@ # =============================================================================================
+#@ # This procedure is to have all arguments
+#@ # Usage is like the following:
+#@ # dp_explore run0 default off low  on  off off off 512 low off "" "" automatic 10 low 1 1 1 off on high
+#@ proc dp_explore {run_num objective vfp_macros_on_edge vfp_auto_grouping vfp_hierarchy_gravity vfp_congestion_driven vfp_timing_driven vfp_set_ideal_network vfp_max_fanout vfp_effort vfp_incremental vfp_plan_groups vfp_voltage_areas vfp_macro_orientation vfp_sliver_size vfp_congestion_effort vfp_io_net_weight vfp_plangroup_net_weight vfp_va_net_weight vfp_va_net_weight_ls_only vfp_spread_spare_cells vfp_legalizer_effort ipo_ahfs ipo_ahfs_remove_effort ipo_effort ipo_fix_drc ipo_area_recovery} {
+#@ 
+#@        ##Declare all global variables as "global" to the explore procedure
+#@         set vars__proc_explore [uplevel 1 info globals]
+#@         foreach v__proc_explore $vars__proc_explore {
+#@            if {$v__proc_explore != "args" && ![info exists $v__proc_explore]} {
+#@               global $v__proc_explore
+#@               #echo "SCRIPT-debug: global $v__proc_explore"
+#@            }
+#@         }
+#@ 
+#@ 
+#@ 
+#@ ##############################################################
+#@ ##	Virtual Flat Placement (create_fp_placement)
+#@ ##############################################################
+#@ 	echo ""
+#@ 	echo "================================================================="
+#@ 	echo "              Now starting $run_num $objective"
+#@ 	echo "================================================================="
+#@ 
+#@ 	echo ""	
+#@ 	echo "------------------- Running Vitual Flat Placement --------------------"
+#@ 
+#@ 	copy_mw_cel -from saved_cel_before_explore_mode -to ${run_num}_${objective} > ${REPORTS_DIR_DP}/${run_num}_${objective}_place.log
+#@ 	open_mw_cel ${run_num}_${objective} >> ${REPORTS_DIR_DP}/${run_num}_${objective}_place.log
+#@ 
+#@ 	set_host_options -max_cores $vfp_num_cores
+#@ 
+#@ 	set_fp_placement_strategy -macro_orientation			$vfp_macro_orientation	>> ${REPORTS_DIR_DP}/${run_num}_${objective}_place.log
+#@ 	set_fp_placement_strategy -auto_grouping 			$vfp_auto_grouping	>> ${REPORTS_DIR_DP}/${run_num}_${objective}_place.log
+#@ 	set_fp_placement_strategy -macros_on_edge 			$vfp_macros_on_edge	>> ${REPORTS_DIR_DP}/${run_num}_${objective}_place.log
+#@ 	set_fp_placement_strategy -sliver_size		 		$vfp_sliver_size	>> ${REPORTS_DIR_DP}/${run_num}_${objective}_place.log
+#@ 	set_fp_placement_strategy -congestion_effort 			$vfp_congestion_effort	>> ${REPORTS_DIR_DP}/${run_num}_${objective}_place.log
+#@ 	set_fp_placement_strategy -IO_net_weight	 		$vfp_io_net_weight	>> ${REPORTS_DIR_DP}/${run_num}_${objective}_place.log
+#@ 	set_fp_placement_strategy -plan_group_interface_net_weight 	$vfp_plangroup_net_weight >> ${REPORTS_DIR_DP}/${run_num}_${objective}_place.log
+#@ 	set_fp_placement_strategy -voltage_area_interface_net_weight 	$vfp_va_net_weight	>> ${REPORTS_DIR_DP}/${run_num}_${objective}_place.log
+#@ 	set_fp_placement_strategy -voltage_area_net_weight_LS_only 	$vfp_va_net_weight_ls_only >> ${REPORTS_DIR_DP}/${run_num}_${objective}_place.log
+#@ 	set_fp_placement_strategy -legalizer_effort			$vfp_legalizer_effort	>> ${REPORTS_DIR_DP}/${run_num}_${objective}_place.log
+#@ 	set_fp_placement_strategy -spread_spare_cells		 	$vfp_spread_spare_cells	>> ${REPORTS_DIR_DP}/${run_num}_${objective}_place.log
+#@ 
+#@ 	if { $vfp_set_ideal_network eq "on" } {
+#@ 	    set hf_nets [all_high_fanout -nets -threshold $vfp_max_fanout]
+#@ 	    if { $hf_nets != "" } {
+#@ 		redirect /dev/null {set_load 0 -subtract_pin_load $hf_nets}
+#@ 	    	redirect /dev/null {set_ideal_network -no_propagate $hf_nets}
+#@ 	    }
+#@ 	}
+#@ 
+#@ 	set create_fp_placement_cmd "create_fp_placement -effort $vfp_effort"
+#@ 
+#@ 	if { $vfp_hierarchy_gravity eq "off" } {
+#@ 	    lappend create_fp_placement_cmd -no_hierarchy_gravity
+#@ 	}
+#@ 	if { $vfp_legalize eq "off" } {
+#@ 	    lappend create_fp_placement_cmd -no_legalize
+#@ 	}
+#@ 	if { $vfp_congestion_driven eq "on" } {
+#@ 	    lappend create_fp_placement_cmd -congestion_driven
+#@ 	}
+#@ 	if { $vfp_timing_driven eq "on" } {
+#@ 	    lappend create_fp_placement_cmd -timing_driven
+#@ 	}
+#@ 	if { $vfp_incremental eq "plan_groups" } {
+#@ 	    lappend create_fp_placement_cmd -incremental $vfp_incremental -plan_groups $vfp_plan_groups
+#@ 	} elseif { $vfp_incremental eq "voltage_areas" } {
+#@ 	    lappend create_fp_placement_cmd -incremental $vfp_incremental -voltage_areas $vfp_voltage_areas
+#@ 	}
+#@ 	eval $create_fp_placement_cmd >> ${REPORTS_DIR_DP}/${run_num}_${objective}_place.log
+#@ 	echo "create_fp_placement is done. Log file: ${REPORTS_DIR_DP}/${run_num}_${objective}_place.log"
+#@ 	if {$ICC_DP_EXPLORE_SAVE_CEL_EACH_STEP} {save_mw_cel -as ${run_num}_${objective}_place >> ${REPORTS_DIR_DP}/${run_num}_${objective}_place.log}
+#@ 
+#@ if { $ICC_DP_EXPLORE_STYLE ne "placement_only" } {
+#@ 
+#@ 	echo ""
+#@ 
+#@ 	if {$ICC_DP_USE_ZROUTE} {
+#@ 	    echo "------------------- Running Zroute --------------------"
+#@ 	    set_host_options -max_cores $ICC_NUM_CORES
+#@ 	    route_zrt_global -effort low > ${REPORTS_DIR_DP}/${run_num}_${objective}_groute_after_place.log
+#@ 	    echo "route_zrt_global -effort low is done. Log file: ${REPORTS_DIR_DP}/${run_num}_${objective}_groute_after_place.log"} else {
+#@ 
+#@ 	if { $ICC_DP_EXPLORE_USE_GLOBAL_ROUTE} {
+#@ 	    echo "------------------- Running Global Route --------------------"
+#@ 	    route_global -effort medium > ${REPORTS_DIR_DP}/${run_num}_${objective}_groute_after_place.log
+#@ 	    echo "route_global -effort medium is done. Log file: ${REPORTS_DIR_DP}/${run_num}_${objective}_groute_after_place.log"} else {
+#@ 	    echo "------------------- Running Proto Route --------------------"
+#@             route_fp_proto -effort medium > ${REPORTS_DIR_DP}/${run_num}_${objective}_groute_after_place.log
+#@ 	    echo "route_fp_proto -effort medium is done. Log file: ${REPORTS_DIR_DP}/${run_num}_${objective}_groute_after_place.log"
+#@ 	}
+#@ 	
+#@ 	}
+#@ 
+#@ 	if {$ICC_DP_EXPLORE_SAVE_CEL_AFTER_GROUTE} {save_mw_cel -as ${run_num}_${objective}_groute_after_place >> ${REPORTS_DIR_DP}/${run_num}_${objective}_groute_after_place.log}
+#@ 
+#@ 	#if {$ICC_DP_EXPLORE_REPORTING_EACH_STEP} {
+#@ 	#	    remove_route_by_type -signal_detail_route -clock_tie_off -pg_tie_off
+#@ 	#	    extract_rc
+#@ 	#	    create_qor_snapshot -name flat_dp_place
+#@ 	#}
+#@ 
+#@ }
+#@ 
+#@ 	if {[all_macro_cells] != ""} {
+#@ 		set_dont_touch_placement [all_macro_cells]
+#@ 	}
+#@ 
+#@ if { $ICC_DP_EXPLORE_STYLE eq "placement_only" || $ICC_DP_EXPLORE_STYLE eq "no_pns_pna" } {
+#@ 
+#@         if {$ICC_DP_EXPLORE_CUSTOM_PG_SCRIPT != ""} {
+#@           if {[file exists [which $ICC_DP_EXPLORE_CUSTOM_PG_SCRIPT]]} {
+#@             source $ICC_DP_EXPLORE_CUSTOM_PG_SCRIPT
+#@           } else {
+#@             echo "SCRIPT-Error: ICC_DP_EXPLORE_CUSTOM_PG_SCRIPT specified as
+#@ \"$ICC_DP_EXPLORE_CUSTOM_PG_SCRIPT\", cannot be found"
+#@           }
+#@         }
+#@ 
+#@ }
+#@ 
+#@ ##############################################################
+#@ ##	PNS/PNA (synthesize_fp_rail/analyze_fp_rail)
+#@ ##############################################################
+#@ if { $ICC_DP_EXPLORE_STYLE eq "default" || $ICC_DP_EXPLORE_STYLE eq "no_ipo" } {
+#@ 
+#@ 	echo ""	
+#@ 	echo "------------------- Running Power Network Synthesis --------------------"
+#@ 	set synthesize_fp_rail_cmd "synthesize_fp_rail -power_budget $PNS_POWER_BUDGET -voltage_supply $PNS_VOLTAGE_SUPPLY -output_directory $PNS_OUTPUT_DIR -nets \{$PNS_POWER_NETS\} -synthesize_power_plan"
+#@ 
+#@ 	if { $PNS_TARGET_VOLTAGE_DROP eq "lowest" } {
+#@ 		lappend synthesize_fp_rail_cmd -lowest_voltage_drop
+#@ 	} elseif { $PNS_TARGET_VOLTAGE_DROP ne "" } {
+#@ 		lappend synthesize_fp_rail_cmd -target_voltage_drop $PNS_TARGET_VOLTAGE_DROP
+#@ 	}
+#@ 
+#@ 	if { $PNS_VIRTUAL_RAIL_LAYER ne "" } { lappend synthesize_fp_rail_cmd -create_virtual_rails $PNS_VIRTUAL_RAIL_LAYER }
+#@ 
+#@ 
+#@ 	if { $PNS_BLOCK_MODE } {
+#@ 
+#@ 	    	lappend synthesize_fp_rail_cmd -use_strap_ends_as_pads
+#@ 		# can't use -use_pins_as_pads because tool can't determin if PG pins exist
+#@ 
+#@ 	} else {
+#@ 
+#@ 		if { $PNS_PAD_MASTERS ne "" } {
+#@ 	    	lappend synthesize_fp_rail_cmd -pad_masters $PNS_PAD_MASTERS
+#@ 		} elseif {[file exists [which $PNS_PAD_MASTER_FILE]]} {
+#@ 		lappend synthesize_fp_rail_cmd -read_pad_master_file $PNS_PAD_MASTER_FILE
+#@ 		} elseif {[file exists [which $PNS_PAD_INSTANCE_FILE]]} {
+#@ 		lappend synthesize_fp_rail_cmd -read_pad_instance_file $PNS_PAD_INSTANCE_FILE
+#@ 		} else {lappend synthesize_fp_rail_cmd -synthesize_power_pad}		
+#@ 
+#@ 	}
+#@ 	eval $synthesize_fp_rail_cmd > $REPORTS_DIR_DP/${run_num}_${objective}_pns.log
+#@ 	commit_fp_rail >> $REPORTS_DIR_DP/${run_num}_${objective}_pns.log
+#@ 	echo "synthesize_fp_rail is done. Log file: $REPORTS_DIR_DP/${run_num}_${objective}_pns.log"
+#@ 	if {$ICC_DP_EXPLORE_SAVE_CEL_EACH_STEP} {save_mw_cel -as ${run_num}_${objective}_pns >> $REPORTS_DIR_DP/${run_num}_${objective}_pns.log}
+#@ 
+#@ 	
+#@ 	set analyze_fp_rail_cmd "analyze_fp_rail -power_budget $PNS_POWER_BUDGET -voltage_supply $PNS_VOLTAGE_SUPPLY -output_directory $PNS_OUTPUT_DIR -nets \{$PNS_POWER_NETS\}"
+#@ 
+#@ 	if { $PNS_VIRTUAL_RAIL_LAYER ne "" } { lappend analyze_fp_rail_cmd -create_virtual_rails $PNS_VIRTUAL_RAIL_LAYER }
+#@ 
+#@ 	if { $PNS_BLOCK_MODE } {
+#@ 
+#@ 		# Assuming we use -use_pins_as_pads in PNS
+#@ 	    	create_fp_virtual_pad -load_file ${PNS_OUTPUT_DIR}/strap_end.${MW_POWER_NET}.vpad
+#@ 	    	create_fp_virtual_pad -load_file ${PNS_OUTPUT_DIR}/strap_end.${MW_GROUND_NET}.vpad
+#@ 	    	lappend analyze_fp_rail_cmd -use_pins_as_pads
+#@ 
+#@ 	} else {
+#@ 
+#@ 		if { $PNS_PAD_MASTERS ne "" } {
+#@ 	    	lappend analyze_fp_rail_cmd -pad_masters $PNS_PAD_MASTERS
+#@ 		} elseif {[file exists [which $PNS_PAD_MASTER_FILE]]} {
+#@ 		lappend analyze_fp_rail_cmd -read_pad_master_file $PNS_PAD_MASTER_FILE
+#@ 		} elseif {[file exists [which $PNS_PAD_INSTANCE_FILE]]} {
+#@ 		lappend analyze_fp_rail_cmd -read_pad_instance_file $PNS_PAD_INSTANCE_FILE
+#@ 		} else {
+#@ 	    		create_fp_virtual_pad -load_file ${PNS_OUTPUT_DIR}/strap_end.${MW_POWER_NET}.vpad
+#@ 	   		create_fp_virtual_pad -load_file ${PNS_OUTPUT_DIR}/strap_end.${MW_GROUND_NET}.vpad}		
+#@ 
+#@ 	}
+#@ 
+#@ 	eval $analyze_fp_rail_cmd > $REPORTS_DIR_DP/${run_num}_${objective}_pna.log
+#@ 	echo "analyze_fp_rail is done. Log file: $REPORTS_DIR_DP/${run_num}_${objective}_pna.log"
+#@ 
+#@ }
+#@ 
+#@ 
+#@ #############################################
+#@ ##	IPO (optimize_fp_timing)
+#@ #############################################
+#@ if { $ICC_DP_EXPLORE_STYLE eq "default" || $ICC_DP_EXPLORE_STYLE eq "no_pns_pna" } {
+#@ 
+#@ 	echo ""
+#@ 	echo "------------------- Running Optimization --------------------"
+#@         #source common_optimization_settings_icc.tcl > $REPORTS_DIR_DP/${run_num}_${objective}_ipo.log
+#@ 
+#@ 	if {$ICC_DP_EXPLORE_REPORTING_EACH_STEP} {
+#@ 		extract_rc
+#@ 		report_timing -cap -tran -input -net -delay max > $REPORTS_DIR_DP/${run_num}_${objective}_optimize_fp_timing_before.rpt
+#@ 	}
+#@ 
+#@ 
+#@ 	set compile_instance_name_prefix dp_ipo
+#@ 	if { $ipo_ahfs eq "on" } {
+#@ 	    set_ahfs_options -remove_effort $ipo_ahfs_remove_effort
+#@ 	    set_ahfs_options -hf_threshold $vfp_max_fanout
+#@ 	}
+#@ 
+#@ 	set optimize_fp_timing_cmd "optimize_fp_timing -effort $ipo_effort"
+#@ 
+#@ 	if { $ipo_fix_drc eq "on" } {
+#@ 	    lappend optimize_fp_timing_cmd -fix_design_rule
+#@ 	}
+#@ 	if { $ipo_area_recovery eq "on" } {
+#@ 	    lappend optimize_fp_timing_cmd -area_recovery
+#@ 	}
+#@ 
+#@ 	eval $optimize_fp_timing_cmd >> $REPORTS_DIR_DP/${run_num}_${objective}_ipo.log
+#@ 	echo "optimize_fp_timing is done. Log file: $REPORTS_DIR_DP/${run_num}_${objective}_ipo.log"
+#@ 
+#@ 	if {[file exists [which $CUSTOM_ICC_DP_PREROUTE_STD_CELL_SCRIPT]]} {
+#@ 	        source $CUSTOM_ICC_DP_PREROUTE_STD_CELL_SCRIPT
+#@ 	}
+#@ 
+#@ 	if {$ICC_DP_EXPLORE_SAVE_CEL_EACH_STEP} {save_mw_cel -as ${run_num}_${objective}_optimize >> $REPORTS_DIR_DP/${run_num}_${objective}_ipo.log}
+#@ 
+#@ }
+#@ 
+#@ 
+#@ ##############################################
+#@ ###		Final Report
+#@ ##############################################
+#@ 	echo ""
+#@ 	echo "------------------- Final Report --------------------"
+#@ 
+#@ 	echo ""
+#@ 	if {$ICC_DP_USE_ZROUTE} {
+#@ 	    echo "------------------- Running Zroute --------------------"
+#@ 	    set_host_options -max_cores $ICC_NUM_CORES	    	
+#@ 	    route_zrt_global -effort low > ${REPORTS_DIR_DP}/${run_num}_${objective}_groute.log
+#@ 	    echo "route_zrt_global -effort low is done. Log file: ${REPORTS_DIR_DP}/${run_num}_${objective}_groute.log"} else {
+#@ 
+#@ 	if { $ICC_DP_EXPLORE_USE_GLOBAL_ROUTE} {
+#@ 	    route_global -effort medium > ${REPORTS_DIR_DP}/${run_num}_${objective}_groute.log
+#@ 	    echo "route_global -effort medium is done. Log file: ${REPORTS_DIR_DP}/${run_num}_${objective}_groute.log"} else {
+#@             route_fp_proto -effort medium > ${REPORTS_DIR_DP}/${run_num}_${objective}_groute.log
+#@ 	    echo "route_fp_proto -effort medium is done. Log file: ${REPORTS_DIR_DP}/${run_num}_${objective}_groute.log"
+#@ 	}
+#@ 
+#@ 	}
+#@ 
+#@ 	if { $ICC_DP_EXPLORE_SAVE_CEL_AFTER_GROUTE } {save_mw_cel -as ${run_num}_${objective}_groute >> ${REPORTS_DIR_DP}/${run_num}_${objective}_groute.log}
+#@ 
+#@ 	if {[info exists env(DISPLAY)]} {
+#@ 	    source gui_save_snapshots.tcl
+#@ 	} else {
+#@ 		echo "SCRIPT-Info: DISPLAY is not set. GUI snapshot will be skipped."
+#@ 	}
+#@ 
+#@ 	remove_route_by_type -signal_detail_route -clock_tie_off -pg_tie_off
+#@ 	extract_rc
+#@ 	
+#@ 	create_qor_snapshot -name ${run_num}_${objective}
+#@ 	report_timing -cap -tran -input -net -delay max > ${REPORTS_DIR_DP}/${run_num}_${objective}_final.rpt
+#@ 	report_qor_snapshot -name ${run_num}_${objective}
+#@ 
+#@         file copy snapshot/${run_num}_${objective}.ss.sum.full ${REPORTS_DIR_DP}/
+#@ 
+#@ #	if {[all_macro_cells] != ""} {
+#@ #		set_dont_touch_placement [all_macro_cells]
+#@ #	}
+#@ 
+#@ 	save_mw_cel -overwrite
+#@ 	write_floorplan -create_terminal -create_bound -row -track -preroute -placement {io hard_macro soft_macro} ${RESULTS_DIR}/${run_num}_${objective}_dump.fp
+#@ 	write_floorplan -preroute ${RESULTS_DIR}/${run_num}_${objective}_dump.route
+#@ 	write_floorplan -all ${RESULTS_DIR}/${run_num}_${objective}_dump.complete_floorplan
+#@ 	write_pin_pad_physical_constraints -cel [get_object_name  [current_mw_cel]] -constraint_type side_order 	                     ${RESULTS_DIR}/${run_num}_${objective}_dump.tdf -io_only
+#@ 	
+#@ 	### Outputs for DCT ###
+#@ 	write_def -version 5.7 -rows_tracks_gcells -macro -pins -blockages -specialnets -vias -regions_groups -verbose -output ${RESULTS_DIR}/${run_num}_${objective}_dump.DCT.def
+#@ 	write_floorplan -create_terminal -create_bound -row -preroute -placement {io hard_macro soft_macro} ${RESULTS_DIR}/${run_num}_${objective}_dump.DCT.fp
+#@ 
+#@ 	close_mw_cel ${run_num}_${objective}
+#@ 
+#@ }
+#@ 
+#@ #set enable_concise_qor_snapshot false
+#@ # -- End source proc_explore.tcl
+
+#@ gui_set_current_task -name {Design Planning}
+#@ 
+#@ open_mw_lib $MW_DESIGN_LIBRARY
+#@ copy_mw_cel -from $ICC_FLOORPLAN_CEL -to flat_dp
+#@ open_mw_cel flat_dp
+#@ link
+#@ 
+#@ source common_placement_settings_icc.tcl
+#@ ##########################################################################################
+#@ # Version: D-2010.03-SP2 (July 6, 2010)
+#@ # Copyright (C) 2007-2010 Synopsys, Inc. All rights reserved.
+#@ ##########################################################################################
+#@ 
+#@ 
+#@ echo "\tLoading :\t\t [info script]"
+#@ 
+#@ # Placement Common Session Options - set in all sessions
+#@ 
+#@ ## Set Min/Max Routing Layers
+#@ if { $MAX_ROUTING_LAYER != ""} {set_ignored_layers -max_routing_layer $MAX_ROUTING_LAYER}
+#@ if { $MIN_ROUTING_LAYER != ""} {set_ignored_layers -min_routing_layer $MIN_ROUTING_LAYER}
+#@ 
+#@ 
+#@ 
+#@ ## Set PNET Options to control cel placement around P/G straps
+#@ if {$PNET_METAL_LIST != "" || $PNET_METAL_LIST_COMPLETE != "" } {
+#@ 	remove_pnet_options
+#@ 
+#@ 	if {$PNET_METAL_LIST_COMPLETE != "" } {
+#@ 		set_pnet_options -complete $PNET_METAL_LIST_COMPLETE -see_object {all_types}
+#@ 	}
+#@ 
+#@ 	if {$PNET_METAL_LIST != "" } {
+#@ 		set_pnet_options -partial $PNET_METAL_LIST -see_object {all_types}
+#@ 	}
+#@ 	
+#@ 	report_pnet_options
+#@ }
+#@ 
+#@ 
+#@ 
+#@ ## Improved congestion analysis by using Global Route info
+#@ # echo "SCRIPT-Info : Enabling Global Gouter during placement"
+#@ # set_app_var placer_enable_enhanced_router true
+#@ 
+#@ 
+#@ 
+#@ ## it is recommended to use the default of the tool
+#@ ## in case it needs to change ( e.g. for low utlization designs), use the command below :
+#@ # set_congestion_options -max_util 0.85
+#@ 
+#@ # -- End source common_placement_settings_icc.tcl
+
+#@ source common_optimization_settings_icc.tcl
+#@ ##########################################################################################
+#@ # Version: D-2010.03-SP2 (July 6, 2010)
+#@ # Copyright (C) 2007-2010 Synopsys, Inc. All rights reserved.
+#@ ##########################################################################################
+#@ 
+#@ 
+#@ echo "\tLoading :\t\t [info script]"
+#@ ## Optimization Common Session Options - set in all sessions
+#@ 
+#@ set_host_options -max_cores $ICC_NUM_CORES
+#@ 
+#@ ## General Optimization
+#@ # enable the recovery and removal timing checks
+#@ set_app_var enable_recovery_removal_arcs true
+#@ set_app_var timing_enable_multiple_clocks_per_reg true
+#@ set_app_var case_analysis_with_logic_constants true
+#@ set_fix_multiple_port_nets -all -buffer_constants
+#@ set_auto_disable_drc_nets -constant false
+#@ set timing_scgc_override_library_setup_hold false
+#@ ##Evaluate whether you library and design requires timing_use_enhanced_capacitance_modeling or not. Also only needed for OCV
+#@ #set_app_var timing_use_enhanced_capacitance_modeling true ;#PT default -  libraries with capacitance ranges (also see Solvnet 021686)
+#@ 
+#@ 
+#@ if {$ICC_MAX_AREA != ""} {
+#@      set_max_area $ICC_MAX_AREA
+#@    }
+#@ 
+#@ 
+#@ ## Set Area Critical Range
+#@ ## Typical value: 10 percent of critical clock period
+#@ if {$AREA_CRITICAL_RANGE_PRE_CTS != ""} {set_app_var physopt_area_critical_range $AREA_CRITICAL_RANGE_PRE_CTS}
+#@ 
+#@ 
+#@ ## Set Power Critical Range
+#@ ## Typical value: 9 percent of critical clock period
+#@ if {$POWER_CRITICAL_RANGE_PRE_CTS != ""} {set_app_var physopt_power_critical_range $POWER_CRITICAL_RANGE_PRE_CTS}
+#@ 
+#@ 
+#@ ## Set dont use cells
+#@ ## Examples, big drivers (EM issues), very weak drivers, delay cells,
+#@ ## clock cells
+#@ 
+#@ if {[file exists [which $ICC_IN_DONT_USE_FILE]] } {
+#@         source -echo  $ICC_IN_DONT_USE_FILE
+#@ }
+#@ 
+#@ 
+#@ ## Fixing the locations of the hard macros
+#@ if {[all_macro_cells] != "" } {
+#@   set_dont_touch_placement [all_macro_cells]
+#@ }
+#@ 
+#@ 
+#@ ## To reset power options to default to override what is stored in Milkyway database
+#@ #  set_power_options -default
+#@ 
+#@ if {$ICC_CTS_CLOCK_GATE_MERGE} {
+#@  set_power_options -clock_gating true
+#@ } else {
+#@  set_power_options -clock_gating false
+#@ }
+#@ 
+#@ if {$ICC_LOW_POWER_PLACEMENT} {
+#@   set_power_options -low_power_placement true
+#@ } else {
+#@   set_power_options -low_power_placement false
+#@ }
+#@ 
+#@ if {$LEAKAGE_POWER} {
+#@ ## Turn on leakage
+#@   set_power_options -leakage true
+#@ } else {
+#@ ## Turn off leakage
+#@   set_power_options -leakage false
+#@ }
+#@ 
+#@ if {$DYNAMIC_POWER} {
+#@ ## Dynamic power opto throughout the flow
+#@   set_power_options -dynamic true
+#@ } else {
+#@ ## No dynamic power opto
+#@   set_power_options -dynamic false
+#@ }
+#@ 
+#@ ## End of Common Optimization Session Options
+#@ 
+#@ # -- End source common_optimization_settings_icc.tcl
+
+#@ 
+#@ ## (Optional) Set ideal network on nets with fanout larger than the specified threshold
+#@ if {$ICC_DP_SET_HFNS_AS_IDEAL_THRESHOLD != ""} {
+#@ 	set hf_nets [all_high_fanout -nets -threshold $ICC_DP_SET_HFNS_AS_IDEAL_THRESHOLD]
+#@ 	if { $hf_nets != "" } {
+#@ 		redirect /dev/null {set_load 0 -subtract_pin_load $hf_nets}
+#@ 		redirect /dev/null {set_ideal_network -no_propagate $hf_nets}
+#@ 	}
+#@ }
+#@ 
+#@ ## (Optional) Set ideal network on mixed clock/signal paths with high fanout; this will be removed in clock_opt_psyn_icc.tcl
+#@ if {$ICC_DP_SET_MIXED_AS_IDEAL} {set_ideal_network [all_fanout -flat -clock_tree]}
+#@ 
+#@ ## Additional reporting before the major steps
+#@ if {$ICC_DP_VERBOSE_REPORTING} {
+#@ 	check_design -summary > ${REPORTS_DIR_DP}/flat_dp.check_design.rpt
+#@ 	report_net_fanout -threshold 50 > ${REPORTS_DIR_DP}/flat_dp.high_fanout.rpt
+#@ }
+#@ 
+#@ ########################################################################################
+#@ ## Set Placement Constraints
+#@ ########################################################################################
+#@ 
+#@ ## You can control if you want to unfix macros before placement:
+#@ #	set ICC_DP_FIX_MACRO_LIST ""		: unfix all macros;
+#@ #						  it performs remove_dont_touch_placement on macros
+#@ #	set ICC_DP_FIX_MACRO_LIST skip		: skip unfix of macros; retain existing fix status;
+#@ #					          it change macro fix status
+#@ #	set ICC_DP_FIX_MACRO_LIST {a list}	: fix specified macros and unfix the others; useful if you want to preserve certain macros locations
+#@ #						  it performs remove_dont_touch_placement and then set_dont_touch_placement on specified macros
+#@ if {[all_macro_cells] != ""} {
+#@ 
+#@ 	if {$ICC_DP_FIX_MACRO_LIST eq ""} {
+#@ 	        remove_dont_touch_placement [all_macro_cells]
+#@ 	} elseif {$ICC_DP_FIX_MACRO_LIST eq "skip"} {
+#@ 	        echo "remove_dont_touch_placement for macros is skipped"
+#@ 	} else {
+#@ 	        remove_dont_touch_placement [all_macro_cells]
+#@ 	        set_dont_touch_placement $ICC_DP_FIX_MACRO_LIST}
+#@ 
+#@ }
+#@ 
+#@ 
+#@ ## You can customize padding and location preference by loading a file
+#@ ## Below are examples for the kind of commands to put in the file using set_keepout_margin and set_fp_macro_array
+#@ #       set_keepout_margin -type soft -all_macros -outer {10 10 10 10}
+#@ #       set_fp_macro_array -name array1 -align_edge t -elements {macro_1 macro_2 macro_3}
+#@ if {[file exists [which $CUSTOM_ICC_DP_PLACE_CONSTRAINT_SCRIPT]]} {
+#@         source $CUSTOM_ICC_DP_PLACE_CONSTRAINT_SCRIPT}
+#@ 
+#@ 
+#@ ## You can customize power network synthesis constraints by loading a file
+#@ ## Below are examples for the kind of commands to put in the file using set_fp_rail_constraints
+#@ #       set_fp_rail_constraints -set_global -keep_ring_outside_core -no_routing_over_hard_macros
+#@ if {[file exists [which $CUSTOM_ICC_DP_PNS_CONSTRAINT_SCRIPT]]} {
+#@ 	source $CUSTOM_ICC_DP_PNS_CONSTRAINT_SCRIPT}
+#@ 
+#@ 
+#@ ######################################################################################################################
+#@ ## Flat Design Planning Flow : Virtual Flat Placement, Power Network Synthesis/Analysis, In Place Optimization, and Proto Route
+#@ ######################################################################################################################
+#@ 
+#@ ## There're two ways (or modes) that you can perform flat design planning flow depending on your needs.
+#@ ## Explore mode : It automates multiple runs of virtual flat placement each with different combinations of placement parameters and options.
+#@ ##		  It also performs proto route, IPO, and PNS/PNA for full flow feasibility analysis
+#@ ## Baseline mode : It performs one run of virtual flat placement + global route + PNS/PNA + IPO plain script for flat design planning flow
+#@ ##	 	   It can serve as your reference and template for interactive runs
+#@ ## Both modes are based on same underlying flow steps
+#@ 
+#@ if {$ICC_DP_EXPLORE_MODE} {
+#@ 
+#@ 	if !{[info exists env(DISPLAY)]} {
+#@ 		echo "SCRIPT-Info: DISPLAY is not set. GUI snapshot will be skipped."
+#@ 	}
+#@ 
+#@ 	## // Explore mode //
+#@ 	## macro_placement_exploration_dp.tcl : It contains all the runs to be performed. You can customize this file based on your needs. See the file for more details.
+#@ 	## gen_explore_table : It runs a Perl script to parse the outputs and generate an HTML table: ./${DESIGN_NAME}_explore.html
+#@ 	save_mw_cel -as saved_cel_before_explore_mode -overwrite
+#@ 	close_mw_cel
+#@ 	source macro_placement_exploration_dp.tcl
+#@ 	sh rm_icc_dp_scripts/gen_explore_table ${REPORTS_DIR_DP} ${DESIGN_NAME}_explore.html
+#@ 
+#@ } else {
+#@ 
+#@ 	## // Baseline mode //
+#@ 	## baseline.tcl : Plain script without automation which can be used as a template or starting point
+#@ 	source baseline.tcl
+#@ 
+#@ }
+#@ ### Updated added $CUSTOM_ICC_DP_PREROUTE_STD_CELL_SCRIPT
+#@ 
+#@ #########################################################################################
+#@ # ICC Design Planning RM
+#@ # baseline.tcl: Virtual flat placement, PNS, PNA, IPO, and Proto Route
+#@ # Version: D-2010.03-SP2 (July 6, 2010)
+#@ # Copyright (C) 2007-2010 Synopsys All rights reserved.
+#@ #########################################################################################
+#@ 
+#@ ##############################################################################################################################
+#@ ## Set placement strategies
+#@ ##############################################################################################################################
+#@ 
+#@ ## Set placement strategies to further fine tune the placer based on your design style.
+#@ ## To find all available strategies and current values, use:
+#@ #       report_fp_placement_strategy
+#@ 
+#@ ## To place macros on edge of chip or plan group which is default is off:
+#@ #	set_fp_placement_strategy -macros_on_edge on
+#@ 
+#@ ## To control channels among macros which std cell can not be placed which is default 0:
+#@ set_fp_placement_strategy -sliver_size 10
+#@ 
+#@ ## For multi-voltage designs, to place level shifters and isolation cells closer to the boundary, set voltage area interface net weight:
+#@ # set_fp_placement_strategy -voltage_area_interface_net_weight $ICC_DP_PLACEMENT_VA_NET_WEIGHT
+#@ # set_fp_placement_strategy -voltage_area_net_weight_LS_only on
+#@ 
+#@ 
+#@ ##############################################################################################################################
+#@ ## Create virtual flat placement
+#@ ##############################################################################################################################
+#@ 
+#@ ## create_fp_placement is default with -effort low
+#@ ## Alternatively, you can break the placement into 3 steps and fine tune the results gradually :
+#@ # 	create_fp_placement -effort low -no_legalize
+#@ # 	1st placement is intended to give you a fast and default macro placement result which allows you to observe design characteristics.
+#@ #   	Then please check GUI for macro locations and connectivity.
+#@ #
+#@ #	legalize_fp_placement
+#@ #
+#@ #	create_fp_placement -effort high -incremental all
+#@ # 	2nd placement is intended to let you add appropriate options to improve results
+#@ #	 for ex,
+#@ #	-timing_driven
+#@ #	-congestion_driven
+#@ create_fp_placement
+#@ 
+#@ 
+#@ ##############################################################################################################################
+#@ ## Check routability & timing
+#@ ##############################################################################################################################
+#@ route_fp_proto -effort medium
+#@ save_mw_cel -as flat_dp_groute_after_place
+#@ remove_route_by_type -signal_detail_route -clock_tie_off -pg_tie_off
+#@ 
+#@ extract_rc -estimate
+#@ create_qor_snapshot -name flat_dp_place -qor -timing -constraint
+#@ 
+#@ 
+#@ ##############################################################################################################################
+#@ ## Power Network Synthesis (PNS)
+#@ ##############################################################################################################################
+#@ #######################
+#@ ## Setup constraints ##
+#@ #######################
+#@ ## To use your existing virtual pad file, please load it before PNS by the following:
+#@ ## (virtual pad is created by user or tool to serve as temporary source of power or ground for power network synthesis consideration)
+#@ #       create_fp_virtual_pad -load_file $YOUR_PNS_VIRTUAL_PAD_FILE
+#@ #################################################################
+#@ ## Setup synthesize_fp_rail options based on your design style ##
+#@ #################################################################
+#@ ## To run it on block level with existing PG pins, you can use following option
+#@ #	-use_pins_as_pads
+#@ ## To run it on a block without existing PG pins, you can use following option
+#@ #       -use_strap_ends_as_pads
+#@ ## To run it on top level with existing power pads, you can use one of the following options
+#@ #	-pad_masters $PNS_PAD_MASTERS                   (specify pad cell masters) or
+#@ #	-read_pad_master_file $PNS_PAD_MASTER_FILE      (specify a file with pad cell masters) or
+#@ #	-read_pad_instance_file $PNS_PAD_INSTANCE_FILE  (specify a file with pad cell instances)
+#@ ## To run it on top level without existing power pads, you can use following option
+#@ #       -synthesize_power_pads
+#@ ## To simulate standard cell rail during PNS, you can use following option
+#@ #       -create_virtual_rails $PNS_VIRTUAL_RAIL_LAYER
+#@ #synthesize_fp_rail -power_budget $PNS_POWER_BUDGET -voltage_supply $PNS_VOLTAGE_SUPPLY -output_directory $PNS_OUTPUT_DIR -nets $PNS_POWER_NETS -synthesize_power_plan
+#@ synthesize_fp_rail -power_budget $PNS_POWER_BUDGET -voltage_supply $PNS_VOLTAGE_SUPPLY -output_directory $PNS_OUTPUT_DIR -nets $PNS_POWER_NETS -synthesize_power_plan -target_voltage_drop $PNS_TARGET_VOLTAGE_DROP -create_virtual_rails $PNS_VIRTUAL_RAIL_LAYER -use_strap_ends_as_pads -synthesize_power_pads
+#@ load_fp_rail_map -nets VDD -type IR -min 0.000000 -max 0.000000 -directory ./pna_output
+
+#@ commit_fp_rail
+#@ create_power_straps  -direction vertical  -start_at 128.670 -nets VDD -layer 18 -width 0.480 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -keep_floating_wire_pieces -ignore_parallel_targets -define_parallel_targets_by_wire_directions -mark_as_ring
+
+#@ create_power_straps  -direction vertical  -start_at 0.770 -nets VDD -layer 18 -width 0.480 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -keep_floating_wire_pieces -ignore_parallel_targets -define_parallel_targets_by_wire_directions -mark_as_ring
+
+#@ create_power_straps  -direction horizontal  -start_at 1.050 -nets VDD -layer 19 -width 1.040 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.910 -extend_low_ends off -extend_high_ends off -keep_floating_wire_pieces -ignore_parallel_targets -define_parallel_targets_by_wire_directions -mark_as_ring
+
+#@ create_power_straps  -direction horizontal  -start_at 128.070 -nets VDD -layer 19 -width 1.040 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.910 -extend_low_ends off -extend_high_ends off -keep_floating_wire_pieces -ignore_parallel_targets -define_parallel_targets_by_wire_directions -mark_as_ring
+
+#@ create_power_straps  -direction vertical  -start_at 127.950 -nets VSS -layer 18 -width 0.480 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -keep_floating_wire_pieces -ignore_parallel_targets -define_parallel_targets_by_wire_directions -mark_as_ring
+
+#@ create_power_straps  -direction vertical  -start_at 1.490 -nets VSS -layer 18 -width 0.480 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -keep_floating_wire_pieces -ignore_parallel_targets -define_parallel_targets_by_wire_directions -mark_as_ring
+
+#@ create_power_straps  -direction horizontal  -start_at 2.620 -nets VSS -layer 19 -width 1.040 -start_low_ends coordinate  -start_low_ends_coordinate 1.250 -start_high_ends coordinate  -start_high_ends_coordinate 128.190 -extend_low_ends off -extend_high_ends off -keep_floating_wire_pieces -ignore_parallel_targets -define_parallel_targets_by_wire_directions -mark_as_ring
+
+#@ create_power_straps  -direction horizontal  -start_at 126.500 -nets VSS -layer 19 -width 1.040 -start_low_ends coordinate  -start_low_ends_coordinate 1.250 -start_high_ends coordinate  -start_high_ends_coordinate 128.190 -extend_low_ends off -extend_high_ends off -keep_floating_wire_pieces -ignore_parallel_targets -define_parallel_targets_by_wire_directions -mark_as_ring
+
+#@ create_power_straps  -direction vertical  -start_at 4.800 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 8.640 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 12.480 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 16.320 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 20.160 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 24.000 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 31.680 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 35.520 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 39.360 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 43.200 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 47.040 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 50.880 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 54.720 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 58.560 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 62.400 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 66.240 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 70.080 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 73.920 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 77.760 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 81.600 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 85.440 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 89.280 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 93.120 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 100.800 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 104.640 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 108.480 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 112.320 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 116.160 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 120.000 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 123.840 -nets VDD  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.590 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 5.280 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 9.120 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 12.960 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 16.800 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 20.640 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 24.480 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 32.160 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 36.000 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 39.840 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 43.680 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 47.520 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 51.360 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 55.200 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 59.040 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 62.880 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 66.720 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 70.560 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 74.400 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 78.240 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 82.080 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 85.920 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 89.760 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 93.600 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 101.280 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 105.120 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 108.960 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 112.800 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 116.640 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 120.480 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction vertical  -start_at 124.320 -nets VSS  -layer 18 -width 0.240 -pitch_within_group 4.060 -start_low_ends coordinate  -start_low_ends_coordinate 2.100 -start_high_ends coordinate  -start_high_ends_coordinate 127.020 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 8.990 -nets VDD  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.910 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 14.110 -nets VDD  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.910 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 24.350 -nets VDD  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.910 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 29.470 -nets VDD  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.910 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 34.590 -nets VDD  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.910 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 39.710 -nets VDD  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.910 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 49.950 -nets VDD  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.910 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 55.070 -nets VDD  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.910 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 60.190 -nets VDD  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.910 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 65.310 -nets VDD  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.910 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 75.550 -nets VDD  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.910 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 80.670 -nets VDD  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.910 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 85.790 -nets VDD  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.910 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 90.910 -nets VDD  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.910 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 101.150 -nets VDD  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.910 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 106.270 -nets VDD  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.910 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 111.390 -nets VDD  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.910 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 116.510 -nets VDD  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 0.530 -start_high_ends coordinate  -start_high_ends_coordinate 128.910 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 10.050 -nets VSS  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 1.250 -start_high_ends coordinate  -start_high_ends_coordinate 128.190 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 15.170 -nets VSS  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 1.250 -start_high_ends coordinate  -start_high_ends_coordinate 128.190 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 25.410 -nets VSS  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 1.250 -start_high_ends coordinate  -start_high_ends_coordinate 128.190 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 30.530 -nets VSS  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 1.250 -start_high_ends coordinate  -start_high_ends_coordinate 128.190 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 35.650 -nets VSS  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 1.250 -start_high_ends coordinate  -start_high_ends_coordinate 128.190 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 40.770 -nets VSS  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 1.250 -start_high_ends coordinate  -start_high_ends_coordinate 128.190 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 51.010 -nets VSS  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 1.250 -start_high_ends coordinate  -start_high_ends_coordinate 128.190 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 56.130 -nets VSS  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 1.250 -start_high_ends coordinate  -start_high_ends_coordinate 128.190 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 61.250 -nets VSS  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 1.250 -start_high_ends coordinate  -start_high_ends_coordinate 128.190 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 66.370 -nets VSS  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 1.250 -start_high_ends coordinate  -start_high_ends_coordinate 128.190 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 76.610 -nets VSS  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 1.250 -start_high_ends coordinate  -start_high_ends_coordinate 128.190 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 81.730 -nets VSS  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 1.250 -start_high_ends coordinate  -start_high_ends_coordinate 128.190 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 86.850 -nets VSS  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 1.250 -start_high_ends coordinate  -start_high_ends_coordinate 128.190 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 91.970 -nets VSS  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 1.250 -start_high_ends coordinate  -start_high_ends_coordinate 128.190 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 102.210 -nets VSS  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 1.250 -start_high_ends coordinate  -start_high_ends_coordinate 128.190 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 107.330 -nets VSS  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 1.250 -start_high_ends coordinate  -start_high_ends_coordinate 128.190 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 112.450 -nets VSS  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 1.250 -start_high_ends coordinate  -start_high_ends_coordinate 128.190 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ create_power_straps  -direction horizontal  -start_at 117.570 -nets VSS  -layer 19 -width 0.520 -pitch_within_group 6.460 -start_low_ends coordinate  -start_low_ends_coordinate 1.250 -start_high_ends coordinate  -start_high_ends_coordinate 128.190 -extend_low_ends off -extend_high_ends off -num_placement_strap 1 -keep_floating_wire_pieces  -ignore_parallel_targets -define_parallel_targets_by_wire_directions 
+
+#@ 
+#@ ##############################################################################################################################
+#@ ## Power Network Synthesis (PNA)
+#@ ##############################################################################################################################
+#@ ## To run it on block level with existing PG pins, you can use following option
+#@ #	-use_pins_as_pads
+#@ ## To run it on a block without existing PG pins, you can use following commands before analyze_fp_rail
+#@ #       create_fp_virtual_pad -load_file pna_output/strap_end.VDD.vpad (VDD is your power net name)
+#@ #       create_fp_virtual_pad -load_file pna_output/strap_end.VSS.vpad (VSS is your ground net name
+#@ ##   then add the following option to analyze_fp_rail
+#@ #       -use_pins_as_pads
+#@ ## To run it on top level with existing power pads, you can use one of the following options
+#@ #       -pad_masters $PNS_PAD_MASTERS                   (specify pad cell masters) or
+#@ #       -read_pad_master_file $PNS_PAD_MASTER_FILE      (specify a file with pad cell masters) or
+#@ #       -read_pad_instance_file $PNS_PAD_INSTANCE_FILE  (specify a file with pad cell instances)
+#@ ## To run it on top level without existing power pads, you cna use following commands before analyze_fp_rail
+#@ #       create_fp_virtual_pad -load_file pna_output/strap_end.VDD.vpad (VDD is your power net name)
+#@ #       create_fp_virtual_pad -load_file pna_output/strap_end.VSS.vpad (VSS is your ground net name
+#@ ## To simulate standard cell rail during PNA, you can use the following option
+#@ #       -create_virtual_rails $PNS_VIRTUAL_RAIL_LAYER
+#@ ## To use more accurate power consumption of each instance calculated in ICC, you can use the following option
+#@ #	-analyze_power
+#@ analyze_fp_rail -power_budget $PNS_POWER_BUDGET -voltage_supply $PNS_VOLTAGE_SUPPLY -output_directory $PNS_OUTPUT_DIR -nets $PNS_POWER_NETS
+#@ 
+#@ source common_optimization_settings_icc.tcl
+#@ ##########################################################################################
+#@ # Version: D-2010.03-SP2 (July 6, 2010)
+#@ # Copyright (C) 2007-2010 Synopsys, Inc. All rights reserved.
+#@ ##########################################################################################
+#@ 
+#@ 
+#@ echo "\tLoading :\t\t [info script]"
+#@ ## Optimization Common Session Options - set in all sessions
+#@ 
+#@ set_host_options -max_cores $ICC_NUM_CORES
+#@ 
+#@ ## General Optimization
+#@ # enable the recovery and removal timing checks
+#@ set_app_var enable_recovery_removal_arcs true
+#@ set_app_var timing_enable_multiple_clocks_per_reg true
+#@ set_app_var case_analysis_with_logic_constants true
+#@ set_fix_multiple_port_nets -all -buffer_constants
+#@ set_auto_disable_drc_nets -constant false
+#@ set timing_scgc_override_library_setup_hold false
+#@ ##Evaluate whether you library and design requires timing_use_enhanced_capacitance_modeling or not. Also only needed for OCV
+#@ #set_app_var timing_use_enhanced_capacitance_modeling true ;#PT default -  libraries with capacitance ranges (also see Solvnet 021686)
+#@ 
+#@ 
+#@ if {$ICC_MAX_AREA != ""} {
+#@      set_max_area $ICC_MAX_AREA
+#@    }
+#@ 
+#@ 
+#@ ## Set Area Critical Range
+#@ ## Typical value: 10 percent of critical clock period
+#@ if {$AREA_CRITICAL_RANGE_PRE_CTS != ""} {set_app_var physopt_area_critical_range $AREA_CRITICAL_RANGE_PRE_CTS}
+#@ 
+#@ 
+#@ ## Set Power Critical Range
+#@ ## Typical value: 9 percent of critical clock period
+#@ if {$POWER_CRITICAL_RANGE_PRE_CTS != ""} {set_app_var physopt_power_critical_range $POWER_CRITICAL_RANGE_PRE_CTS}
+#@ 
+#@ 
+#@ ## Set dont use cells
+#@ ## Examples, big drivers (EM issues), very weak drivers, delay cells,
+#@ ## clock cells
+#@ 
+#@ if {[file exists [which $ICC_IN_DONT_USE_FILE]] } {
+#@         source -echo  $ICC_IN_DONT_USE_FILE
+#@ }
+#@ 
+#@ 
+#@ ## Fixing the locations of the hard macros
+#@ if {[all_macro_cells] != "" } {
+#@   set_dont_touch_placement [all_macro_cells]
+#@ }
+#@ 
+#@ 
+#@ ## To reset power options to default to override what is stored in Milkyway database
+#@ #  set_power_options -default
+#@ 
+#@ if {$ICC_CTS_CLOCK_GATE_MERGE} {
+#@  set_power_options -clock_gating true
+#@ } else {
+#@  set_power_options -clock_gating false
+#@ }
+#@ 
+#@ if {$ICC_LOW_POWER_PLACEMENT} {
+#@   set_power_options -low_power_placement true
+#@ } else {
+#@   set_power_options -low_power_placement false
+#@ }
+#@ 
+#@ if {$LEAKAGE_POWER} {
+#@ ## Turn on leakage
+#@   set_power_options -leakage true
+#@ } else {
+#@ ## Turn off leakage
+#@   set_power_options -leakage false
+#@ }
+#@ 
+#@ if {$DYNAMIC_POWER} {
+#@ ## Dynamic power opto throughout the flow
+#@   set_power_options -dynamic true
+#@ } else {
+#@ ## No dynamic power opto
+#@   set_power_options -dynamic false
+#@ }
+#@ 
+#@ ## End of Common Optimization Session Options
+#@ 
+#@ # -- End source common_optimization_settings_icc.tcl
+
+#@ extract_rc -estimate
+#@ report_timing -cap -tran -input -net -delay max > $REPORTS_DIR_DP/optimize_fp_timing_before.rpt
+#@ 
+#@ set compile_instance_name_prefix dp_ipo
+#@ optimize_fp_timing
+#@ 
+#@ if {[file exists [which $CUSTOM_ICC_DP_PREROUTE_STD_CELL_SCRIPT]]} {
+#@         source $CUSTOM_ICC_DP_PREROUTE_STD_CELL_SCRIPT
+#@ }
+#@ 
+#@ route_fp_proto -effort medium
+#@ save_mw_cel -as flat_dp_groute
+#@ remove_route_by_type -signal_detail_route -clock_tie_off -pg_tie_off
+#@ 
+#@ extract_rc -estimate
+#@ create_qor_snapshot -name flat_dp -qor -timing -constraint
+#@ report_qor_snapshot > ${REPORTS_DIR_DP}/final.qor
+#@ report_timing -cap -tran -input -net -delay max > ${REPORTS_DIR_DP}/final.rpt
+#@ 
+#@ set_dont_touch_placement [all_macro_cells]
+#@ save_mw_cel -overwrite
+#@ write_floorplan -placement {io hard_macro soft_macro} ${RESULTS_DIR}/dump.floorplan
+#@ write_floorplan -preroute ${RESULTS_DIR}/dump.route
+#@ write_floorplan -all ${RESULTS_DIR}/dump.complete_floorplan
+#@ write_pin_pad_physical_constraints -cel [get_object_name  [current_mw_cel]] -io_only -constraint_type side_order ${RESULTS_DIR}/dump.tdf
+#@ 
+#@ ### Outputs for DCT ###
+#@ write_def -version 5.7 -rows_tracks_gcells -macro -pins -blockages -specialnets -vias -regions_groups -verbose -output ${RESULTS_DIR}/dump.DCT.def
+#@ write_floorplan -create_terminal -create_bound -row -preroute -placement {io hard_macro soft_macro} ${RESULTS_DIR}/dump.DCT.fp
+#@ 
+#@ close_mw_cel
+#@ 
+#@ # -- End source baseline.tcl
+
+#@ 
+#@ 
+#@ 
+#@ ##################################################################################################################################################
+#@ ## If you use explore mode,
+#@ ## how to use explore run results and continue in ICC-RM?
+#@ ##################################################################################################################################################
+#@ ##
+#@ ## After explore mode is done, please review results in HTML table ${DESIGN_NAME}_explore.html and pick one result you like to continue ICC-RM
+#@ ## You can do this by either of the following depending on your preference:
+#@ ##
+#@ ## - Use the saved CEL from the run you like as starting point for ICC-RM
+#@ ##   -> Please change varible ICC_FLOORPLAN_CEL in icc_setup.tcl to this CEL name
+#@ ##    * This CEL will contain fixed macro placement or In Place Optimization or Power Network Synthesis changes depeding on what option you choose
+#@ ##    * ICC_FLOORPLAN_CEL is the variable which you specify the starting CEL of ICC-RM
+#@ ##
+#@ ## - Use the dumped floorplan_file and routes from the run you like and load it to original CEL
+#@ ##   -> Open CEL saved_cel_before_explore_mode, load the dumped floorplan file and routes from the run you like
+#@ ##   -> save the CEL as for example, flat_dp and change ICC_FLOORPLAN_CEL to flat_dp
+#@ ##    * This approach ensures no netlist change and only macro placement and PG routes.
+#@ ##    * saved_cel_before_explore_mode is the CEL saved before explore mode starts which is your clean starting point.
+#@ ##    * the dumped floorplan file is in $RESULTS_DIR, for ex, you can load it by:
+#@ ##		read_floorplan $RESULTS_DIR/run0_default_dump.floorplan
+#@ ##    * the dumped route file is in $RESULTS_DIR, for ex, you can load it by:
+#@ ##		read_floorplan $RESULTS_DIR/run0_default_dump.route
+#@ 
+#@ 
+#@ exit

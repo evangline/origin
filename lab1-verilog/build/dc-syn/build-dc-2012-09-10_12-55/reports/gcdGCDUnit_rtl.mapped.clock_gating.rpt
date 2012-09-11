@@ -1,0 +1,24 @@
+ 
+****************************************
+Report : clock_gating
+        -nosplit
+Design : gcdGCDUnit_rtl
+Version: F-2011.09-SP4
+Date   : Mon Sep 10 12:56:04 2012
+****************************************
+
+  
+
+                             Clock Gating Summary
+          ------------------------------------------------------------
+          |    Number of Clock gating elements    |        2         |
+          |                                       |                  |
+          |    Number of Gated registers          |     32 (94.12%)  |
+          |                                       |                  |
+          |    Number of Ungated registers        |     2 (5.88%)    |
+          |                                       |                  |
+          |    Total number of registers          |        34        |
+          ------------------------------------------------------------
+  
+
+1
