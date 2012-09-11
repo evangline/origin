@@ -1,0 +1,134 @@
+--- Snapshot Timing Progress ---
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+QoR Report                                                      WNS        TNS     Hold     LogicDRC     RouteDRC     Cell Cnt     Area     Buf/Inv       Util     CPU/Elps(hr)    Mem(Mb)                         Host
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+flat_dp                                                      -0.010      -0.01        0            0            0          495     4114          66     73.37%        0.00/0.00        216     bcom16.EECS.Berkeley.EDU
+flat_dp_place                                                -0.146     -7.046        0            0            0          487     3946          61     70.38%        0.00/0.00        216     bcom16.EECS.Berkeley.EDU
+
+
+***********************************************
+Report          : create_qor_snapshot (flat_dp)
+Design          : GCD
+Version         : F-2011.09-ICC-SP4
+Date            : Tue Sep 11 00:01:40 2012
+Time unit       : 1.0e-09 Second(ns)
+Capacitance unit: N/A
+Voltage unit    : 1 Volt
+Power unit      : N/A
+Location        : /work/cs250-af/lab1-chisel/vlsi/build/icc-par/build-iccdp-2012-09-11_00-01/snapshot
+***********************************************
+No. of scenario = 1
+---------------------------------------------
+WNS of each timing group:           
+---------------------------------------------
+ideal_clock1                           -0.010 
+---------------------------------------------
+Setup WNS:                             -0.010  
+Setup TNS:                              -0.01  
+Number of setup violations:                 1  
+Hold WNS:                               0.000  
+Hold TNS:                               0.000  
+Number of hold violations:                  0  
+Number of max trans violations:             0  
+Number of max cap violations:               0  
+Number of min pulse width violations:       0  
+Route drc violations:                       0
+---------------------------------------------
+Area:                                    4114
+Cell count:                               495
+Buf/inv cell count:                        66
+Std cell utilization:                  73.37%
+CPU/ELAPSE(hr):                     0.00/0.00
+Mem(Mb):                                  216
+Host name:                          bcom16.EECS.Berkeley.EDU
+---------------------------------------------
+Histogram:           
+---------------------------------------------
+Max violations:         1 
+   above ~ -0.7  ---    0 
+    -0.6 ~ -0.7  ---    0 
+    -0.5 ~ -0.6  ---    0 
+    -0.4 ~ -0.5  ---    0 
+    -0.3 ~ -0.4  ---    0 
+    -0.2 ~ -0.3  ---    0 
+    -0.1 ~ -0.2  ---    0 
+       0 ~ -0.1  ---    1 
+---------------------------------------------
+Min violations:         0 
+  -0.06 ~ above  ---    0 
+  -0.05 ~ -0.06  ---    0 
+  -0.04 ~ -0.05  ---    0 
+  -0.03 ~ -0.04  ---    0 
+  -0.02 ~ -0.03  ---    0 
+  -0.01 ~ -0.02  ---    0 
+      0 ~ -0.01  ---    0 
+---------------------------------------------
+
+
+
+
+
+***********************************************
+Report          : create_qor_snapshot (flat_dp_place)
+Design          : GCD
+Version         : F-2011.09-ICC-SP4
+Date            : Tue Sep 11 00:01:35 2012
+Time unit       : 1.0e-09 Second(ns)
+Capacitance unit: N/A
+Voltage unit    : 1 Volt
+Power unit      : N/A
+Location        : /work/cs250-af/lab1-chisel/vlsi/build/icc-par/build-iccdp-2012-09-11_00-01/snapshot
+***********************************************
+No. of scenario = 1
+---------------------------------------------
+WNS of each timing group:           
+---------------------------------------------
+REGIN                                  -0.097 
+ideal_clock1                           -0.146 
+REGOUT                                 -0.126 
+---------------------------------------------
+Setup WNS:                             -0.146  
+Setup TNS:                             -7.046  
+Number of setup violations:                88  
+Hold WNS:                               0.000  
+Hold TNS:                               0.000  
+Number of hold violations:                  0  
+Number of max trans violations:             0  
+Number of max cap violations:               0  
+Number of min pulse width violations:       0  
+Route drc violations:                       0
+---------------------------------------------
+Area:                                    3946
+Cell count:                               487
+Buf/inv cell count:                        61
+Std cell utilization:                  70.38%
+CPU/ELAPSE(hr):                     0.00/0.00
+Mem(Mb):                                  216
+Host name:                          bcom16.EECS.Berkeley.EDU
+---------------------------------------------
+Histogram:           
+---------------------------------------------
+Max violations:        88 
+   above ~ -0.7  ---    0 
+    -0.6 ~ -0.7  ---    0 
+    -0.5 ~ -0.6  ---    0 
+    -0.4 ~ -0.5  ---    0 
+    -0.3 ~ -0.4  ---    0 
+    -0.2 ~ -0.3  ---    0 
+    -0.1 ~ -0.2  ---   32 
+       0 ~ -0.1  ---   56 
+---------------------------------------------
+Min violations:         0 
+  -0.06 ~ above  ---    0 
+  -0.05 ~ -0.06  ---    0 
+  -0.04 ~ -0.05  ---    0 
+  -0.03 ~ -0.04  ---    0 
+  -0.02 ~ -0.03  ---    0 
+  -0.01 ~ -0.02  ---    0 
+      0 ~ -0.01  ---    0 
+---------------------------------------------
+
+
+
+Snapshot report (index) is created and can be viewed using file "/work/cs250-af/lab1-chisel/vlsi/build/icc-par/build-iccdp-2012-09-11_00-01/snapshot/index.html"
+1

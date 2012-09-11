@@ -1,0 +1,110 @@
+Information: Updating graph... (UID-83)
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : qor
+Design : GCD
+Version: F-2011.09-ICC-SP4
+Date   : Tue Sep 11 00:01:34 2012
+****************************************
+
+
+  Timing Path Group 'FEEDTHROUGH'
+  -----------------------------------
+  Levels of Logic:              4.000
+  Critical Path Length:         0.347
+  Critical Path Slack:          0.153
+  Critical Path Clk Period:     0.900
+  Total Negative Slack:         0.000
+  No. of Violating Paths:       0.000
+  Worst Hold Violation:         0.000
+  Total Hold Violation:         0.000
+  No. of Hold Violations:       0.000
+  -----------------------------------
+
+  Timing Path Group 'REGIN'
+  -----------------------------------
+  Levels of Logic:              4.000
+  Critical Path Length:         0.715
+  Critical Path Slack:         -0.097
+  Critical Path Clk Period:     0.900
+  Total Negative Slack:        -1.485
+  No. of Violating Paths:      32.000
+  Worst Hold Violation:         0.000
+  Total Hold Violation:         0.000
+  No. of Hold Violations:       0.000
+  -----------------------------------
+
+  Timing Path Group 'REGOUT'
+  -----------------------------------
+  Levels of Logic:              8.000
+  Critical Path Length:         0.826
+  Critical Path Slack:         -0.126
+  Critical Path Clk Period:     0.900
+  Total Negative Slack:        -1.711
+  No. of Violating Paths:      16.000
+  Worst Hold Violation:         0.000
+  Total Hold Violation:         0.000
+  No. of Hold Violations:       0.000
+  -----------------------------------
+
+  Timing Path Group 'ideal_clock1'
+  -----------------------------------
+  Levels of Logic:             15.000
+  Critical Path Length:         0.964
+  Critical Path Slack:         -0.146
+  Critical Path Clk Period:     0.900
+  Total Negative Slack:        -3.850
+  No. of Violating Paths:      40.000
+  Worst Hold Violation:         0.000
+  Total Hold Violation:         0.000
+  No. of Hold Violations:       0.000
+  -----------------------------------
+
+
+  Cell Count
+  -----------------------------------
+  Hierarchical Cell Count:          2
+  Hierarchical Port Count:         12
+  Leaf Cell Count:                487
+  Buf/Inv Cell Count:              61
+  CT Buf/Inv Cell Count:            0
+  Combinational Cell Count:       451
+  Sequential Cell Count:           36
+  -----------------------------------
+
+
+  Area
+  -----------------------------------
+  Combinational Area:        3008.102
+  Noncombinational Area:      938.189
+  Net Area:                   190.408
+  Net XLength        :       5713.970
+  Net YLength        :       5039.900
+  -----------------------------------
+  Cell Area:                 3946.292
+  Design Area:               4136.699
+  Net Length        :       10753.870
+
+
+  Design Rules
+  -----------------------------------
+  Total Number of Nets:           555
+  Nets With Violations:             0
+  Max Trans Violations:             0
+  Max Cap Violations:               0
+  -----------------------------------
+
+
+  Hostname: bcom16.EECS.Berkeley.EDU
+
+  Compile CPU Statistics
+  -----------------------------------------
+  Resource Sharing:                   0.484
+  Logic Optimization:                 3.556
+  Mapping Optimization:               1.548
+  -----------------------------------------
+  Overall Compile Time:              14.849
+  Overall Compile Wall Clock Time:   16.973
+
+1

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<opml version="1.0">
+	<head>
+		<title>VCS dump file for DVE debugging</title>
+		<vcsVersion>D-2010.06_Full64</vcsVersion>
+		<dateCreated>Tue Sep 11 00:00:55 2012</dateCreated>
+	</head>
+	<body>
+		<!-- VCS compile options -->
+		<vcsCompileOptions text="/home/ff/cs250/tools/synopsys/vcs/current/amd64/bin/vcs1 -Mcc=gcc -Mcplusplus=g++ -Masflags= -Mcfl= -pipe -O -I/home/ff/cs250/tools/synopsys/vcs/current/include  -Mldflags=  -Mout=simv -Mamsrun= -Mvcsaceobjs= -Mcmodrun= -Mobjects= /home/ff/cs250/tools/synopsys/vcs/current/amd64/lib/libvirsim.so /home/ff/cs250/tools/synopsys/vcs/current/amd64/lib/liberrorinf.so /home/ff/cs250/tools/synopsys/vcs/current/amd64/lib/libsnpsmalloc.so  -Msaverestoreobj=/home/ff/cs250/tools/synopsys/vcs/current/amd64/lib/vcs_save_restore_new.o -Mcrt0= -Mcrtn= -Mcsrc= -Msyslibs=-ldl -lm  -full64 -Xnotice -pp_used +vcsd +itf+/home/ff/cs250/tools/synopsys/vcs/current/amd64/lib/vcsdp.tab -line +lint=all,noVCDE,noTFIPC,noIWU,noOUDPE +v2k -timescale=1ns/1ps -P ../dc-syn/current-dc/access.tab -Xcbug=0x1 -o simv +define+CLOCK_PERIOD=0.5 -cm_xmldb +cli+4 -debug=4 +memcbk +vpi -gen_obj +incdir+../../generated-src +incdir+/home/ff/cs250/install/vclib -v /home/ff/cs250/install/vclib/vcQueues.v -v /home/ff/cs250/install/vclib/vcStateElements.v -v /home/ff/cs250/install/vclib/vcTest.v -v /home/ff/cs250/install/vclib/vcTestSource.v -v /home/ff/cs250/install/vclib/vcTestSink.v /home/ff/cs250/stdcells/synopsys-90nm/default/verilog/cells.v ../dc-syn/current-dc/results/GCD.mapped.v ../../generated-src/../testbench/gcdTestHarness_rtl.v "/>
+		<!-- File list for the whole design -->
+		<fileList>
+			<file fid="1" path="/work/cs250-af/lab1-chisel/vlsi/build/dc-syn/current-dc/results/GCD.mapped.v" />
+			<file fid="3" path="/home/ff/cs250/install/vclib/vcTest.v" />
+			<file fid="2" path="/work/cs250-af/lab1-chisel/vlsi/testbench/gcdTestHarness_rtl.v" />
+			<file fid="7" path="/home/ff/cs250/install/vclib/vcTestSink.v" />
+			<file fid="6" path="/home/ff/cs250/install/vclib/vcTestSource.v" />
+			<file fid="0" path="/home/ff/cs250/stdcells/synopsys-90nm/default/verilog/cells.v" />
+			<file fid="4" path="/home/ff/cs250/install/vclib/vcQueues.v" />
+			<file fid="5" path="/home/ff/cs250/install/vclib/vcStateElements.v" />
+		</fileList>
+		<!-- Include file list for the whole design -->
+		<includeFileList>
+			<incfile fid="2" lineno="6" includeID="3" />
+			<incfile fid="7" lineno="7" includeID="3" />
+			<incfile fid="6" lineno="7" includeID="3" />
+		</includeFileList>
+		<!-- Encrypted codes list for the whole design -->
+		<encryptedCodesList>
+		</encryptedCodesList>
+		<!-- Inactive codes list for the whole design -->
+		<inactiveCodesList>
+			<inactiveCodes fid="0" lineno="10:12 47:49 81:83 115:117 151:153 187:189 223:225 260:262 297:299 335:337 357:359 402:404 447:449 533:535 619:621 789:791 959:961 1023:1025 1087:1089 1120:1122 1153:1155 1186:1188 1201:1201 1336:1338 1351:1351 1484:1486 1499:1499 1633:1635 1648:1648 1778:1780 1823:1825 1868:1870 1957:1959 2046:2048 2223:2225 2401:2403 2466:2468 2531:2533 2564:2566 2597:2599 2631:2633 2671:2673 2711:2713 2751:2753 2775:2777 2790:2793 2898:2900 2913:2916 3022:3024 3037:3040 3148:3150 3163:3166 3275:3277 3290:3293 3400:3402 3415:3418 3525:3527 3540:3540 3545:3545 3549:3549 3557:3557 3595:3596 3648:3650 3664:3664 3669:3669 3673:3673 3681:3681 3720:3721 3816:3818 3831:3834 3943:3945 3958:3961 4070:4072 4085:4088 4196:4198 4211:4214 4322:4324 4346:4348 4366:4368 4480:4482 4594:4596 4627:4629 4660:4662 4693:4695 4708:4708 4838:4840 4853:4853 4982:4984 4997:4998 5232:5234 5247:5248 5484:5486 5499:5499 5629:5631 5644:5644 5778:5780 5793:5793 5925:5927 5940:5940 6072:6074 6087:6087 6268:6270 6283:6283 6463:6465 6478:6478 6657:6659 6672:6672 6851:6853 6866:6867 7101:7103 7116:7117 7353:7355 7368:7368 7499:7501 7514:7514 7645:7647 7660:7660 7742:7744 7757:7757 7838:7840 7853:7853 8023:8025 8038:8038 8208:8210 8223:8223 8304:8306 8319:8319 8401:8403 8424:8426 8447:8449 8470:8472 8586:8588 8703:8705 8750:8752 8798:8800 8837:8839 8876:8878 8915:8917 8954:8956 8993:8995 9018:9020 9043:9045 9068:9070 9093:9095 9117:9119 9150:9152 9183:9185 9216:9218 9249:9251 9282:9284 9315:9317 9348:9350 9381:9383 9414:9416 9447:9449 9480:9482 9513:9515 9548:9550 9583:9585 9618:9620 9653:9655 9687:9689 9721:9723 9755:9757 9789:9791 9804:9807 9950:9952 9965:9968 10110:10112 10125:10129 10309:10311 10324:10328 10507:10509 10522:10526 10703:10705 10718:10722 10900:10902 10915:10919 11151:11153 11166:11170 11401:11403 11416:11419 11563:11565 11578:11581 11725:11727 11740:11742 11823:11825 11838:11840 11922:11924 11994:11996 12090:12092 12128:12130 12162:12164 12200:12202 12241:12243 12279:12281 12317:12319 12356:12358 12392:12394 12425:12427 12458:12460 12493:12495 12530:12532 12568:12570 12605:12607 12641:12643 12679:12681 12717:12719 12755:12757 12793:12795 12826:12828 12859:12861 12892:12894 12925:12927 12988:12990 13051:13053 13264:13266 13477:13479 13512:13514 13547:13549 13582:13584 13617:13619 13653:13655 13689:13691 13725:13727 13761:13763 13799:13801 13837:13839 13870:13872 13903:13905 13936:13938 13969:13971 14003:14005 14030:14032 14057:14059 14083:14085 14118:14120 14153:14155 14188:14190 14223:14225 14259:14261 14295:14297 14331:14333 14367:14369 14405:14407 14443:14445 14488:14490 14533:14535 14619:14621 14705:14707 14875:14877 15045:15047 15109:15111 15173:15175 15218:15220 15263:15265 15352:15354 15441:15443 15619:15621 15797:15799 15862:15864 15927:15929 15961:15963 15995:15997 16029:16031 16065:16067 16101:16103 16137:16139 16174:16176 16211:16213 16250:16252 16291:16293 16332:16334 16373:16375 16400:16402 16427:16429 16453:16455 16583:16585 16716:16718 16847:16849 17652:17654 17667:17667 17776:17778 17791:17791 17900:17902 17915:17915 18030:18032 18045:18045 18159:18161 18174:18174 18366:18368 18381:18381 18574:18576 18589:18589 18802:18804 18817:18817 19029:19031 19044:19044 19279:19281 19294:19294 19528:19530 19544:19546 19557:19559 20210:20212 20225:20227 20884:20886 20899:20900 21404:21406 21419:21420 21919:21921 21934:21934 22168:22170 22183:22183 22417:22419 22432:22432 22665:22667 22680:22680 22913:22915 22928:22929 23427:23429 23442:23443 23941:23943 23956:23956 24190:24192 24205:24205 24440:24442 24455:24455 24592:24594 24607:24607 24744:24746 24759:24759 25082:25084 25097:25097 25427:25429 25442:25442 25580:25582 25595:25595 25741:25743 25767:25769 25789:25791 25809:25811 25830:25832 25866:25868 25902:25904 25938:25940 25974:25976 26010:26012 26046:26048 26087:26089 26128:26130 26190:26192 26252:26254 26293:26295 26334:26336 26396:26398" />
+		</inactiveCodesList>
+		<!-- Compile options UUM based -->
+		<langKeywords>
+			<v2kFiles fid="0-7" />
+		</langKeywords>
+		<!--  Case insensitive file list -->
+		<caseInsensitiveFiles fid="" />
+		<!-- Macro definition list for the whole design --> 
+		<macroDefinitionList>
+			<macro name="CLOCK_PERIOD" module="gcdTestHarness_rtl" sourceID="2" lineno="12" defID="0" defLine="0" value="1" />
+			<macro name="VC_TEST_SUITE_BEGIN" module="gcdTestHarness_rtl" sourceID="2" lineno="14" defID="3" defLine="62" value="2" />
+			<macro name="VC_TEST_CASE_BEGIN" module="gcdTestHarness_rtl" sourceID="2" lineno="109" defID="3" defLine="91" value="3" />
+			<macro name="VC_TEST_CHECK" module="gcdTestHarness_rtl" sourceID="2" lineno="120" defID="3" defLine="113" value="4" />
+			<macro name="VC_TEST_CASE_END" module="gcdTestHarness_rtl" sourceID="2" lineno="123" defID="3" defLine="101" value="5" />
+			<macro name="VC_TEST_SUITE_END" module="gcdTestHarness_rtl" sourceID="2" lineno="125" defID="3" defLine="79" value="6" />
+			<macro name="VC_TEST_EQUAL" module="vcTestSink" sourceID="7" lineno="148" defID="3" defLine="129" value="7" />
+		</macroDefinitionList>
+		<!-- Macro value list for the whole design --> 
+		<macroValueList>
+			<mv i="2" n="reg          verbose = 0; 
+  reg [1023:0] test_case_num = 0; 
+  reg [1023:0] next_test_case_num = 0; 
+  initial $value$plusargs( &quot;verbose=%d&quot;, verbose ); 
+  initial $display(&quot; Entering Test Suite: %s&quot;, &quot;gcdGCDUnit_rtl&quot; ); 
+  initial $vcdpluson(0); 
+  always @( posedge clk ) test_case_num &lt;= next_test_case_num; 
+" />
+			<mv i="3" n="always @(*) begin 
+    if ( test_case_num == 0 ) begin 
+      $display( &quot;  + Running Test Case: %s&quot;, &quot;gcdGCDUnit_rtl&quot; ); 
+" />
+			<mv i="1" n="0.5" />
+			<mv i="5" n="next_test_case_num = test_case_num + 1; 
+    end 
+  end " />
+			<mv i="6" n="always @(*) if ( test_case_num == 1 ) begin #25; $display(&quot;&quot;); $finish; end 
+" />
+			<mv i="4" n="if ( done ) 
+     begin 
+       if ( verbose ) 
+         $display( &quot;     [ passed ] Test ( %s ) succeeded &quot;, &quot;Is sink finished?&quot; ); 
+     end 
+   else 
+     $display( &quot;     [ FAILED ] Test ( %s ) failed&quot;, &quot;Is sink finished?&quot; );" />
+			<mv i="7" n="if ( correct_bits === inputQ_deq_bits ) 
+     begin 
+       if ( verbose ) 
+         if ( (|(correct_bits ^ correct_bits)) == 1&apos;b0) 
+            $display( &quot;     [ passed ] Test ( %s ) succeeded, [ %x == %x ] (hex)&quot;, &quot;vcTestSink&quot;, correct_bits, inputQ_deq_bits ); 
+         else 
+            $display( &quot;     [ passed ] Test ( %s ) succeeded, [ %b == %b ] (binary)&quot;, &quot;vcTestSink&quot;, correct_bits, inputQ_deq_bits ); 
+     end 
+   else 
+     if ( (|(correct_bits ^ correct_bits)) == 1&apos;b0) 
+        $display( &quot;     [ FAILED ] Test ( %s ) failed, [ %x != %x ] (hex)&quot;, &quot;vcTestSink&quot;, correct_bits, inputQ_deq_bits ); 
+     else 
+        $display( &quot;     [ FAILED ] Test ( %s ) failed, [ %b != %b ] (binary)&quot;, &quot;vcTestSink&quot;, correct_bits, inputQ_deq_bits );" />
+		</macroValueList>
+	</body>
+</opml>

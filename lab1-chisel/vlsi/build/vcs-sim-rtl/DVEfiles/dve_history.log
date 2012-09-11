@@ -1,0 +1,74 @@
+# Preference setting overrides
+gui_create_pref_key -category {Globals} -key {load_detail_for_funcov} -value_type {bool} -value {false}
+
+# State setting overrides
+gui_state_default_create -off -ini
+gui_set_state_value -category Globals -key recent_databases -value {{gui_open_db -file vcdplus.vpd} {gui_open_db -file /work/cs250-af/lab1-chisel/vlsi/build/vcs-sim-rtl/vcdplus.vpd -design V1}}
+gui_set_state_value -category Layout -key child_console_size_x -value 709
+gui_set_state_value -category Layout -key child_console_size_y -value 170
+gui_set_state_value -category Layout -key child_data_size_x -value 233
+gui_set_state_value -category Layout -key child_data_size_y -value 223
+gui_set_state_value -category Layout -key child_hier_size_x -value 165
+gui_set_state_value -category Layout -key child_hier_size_y -value 223
+gui_set_state_value -category Layout -key child_hier_sort_order -value 1
+gui_set_state_value -category Layout -key child_source_docknewline -value false
+gui_set_state_value -category Layout -key child_source_pos_x -value {-2}
+gui_set_state_value -category Layout -key child_source_pos_y -value {-15}
+gui_set_state_value -category Layout -key child_source_size_x -value 314
+gui_set_state_value -category Layout -key child_source_size_y -value 218
+gui_set_state_value -category Layout -key child_wave_colname -value 137
+gui_set_state_value -category Layout -key child_wave_colvalue -value 137
+gui_set_state_value -category Layout -key child_wave_left -value 279
+gui_set_state_value -category Layout -key child_wave_right -value 679
+gui_set_state_value -category Layout -key main_pos_x -value 15
+gui_set_state_value -category Layout -key main_pos_y -value 70
+gui_set_state_value -category Layout -key main_size_y -value 614
+gui_set_state_value -category Layout -key stand_wave_child_docknewline -value false
+gui_set_state_value -category Layout -key stand_wave_child_pos_x -value {-2}
+gui_set_state_value -category Layout -key stand_wave_child_pos_y -value {-15}
+gui_set_state_value -category Layout -key stand_wave_child_size_x -value 968
+gui_set_state_value -category Layout -key stand_wave_child_size_y -value 414
+gui_set_state_value -category Layout -key stand_wave_top_pos_x -value 65
+gui_set_state_value -category Layout -key stand_wave_top_pos_y -value 67
+gui_set_state_value -category Layout -key stand_wave_top_size_x -value 1028
+gui_set_state_value -category Layout -key stand_wave_top_size_y -value 614
+gui_create_state_key -category FindDialog -key m_pMatchCase -value_type bool -value false
+gui_create_state_key -category FindDialog -key m_pMatchWord -value_type bool -value false
+gui_create_state_key -category FindDialog -key m_pUseCombo -value_type string -value {}
+gui_create_state_key -category FindDialog -key m_pWrapAround -value_type bool -value true
+gui_state_default_create -off
+
+# Begin command logging
+gui_open_db   -file  vcdplus.vpd
+gui_list_expand -id  Hier.1   gcdTestHarness_rtl
+gui_list_select -id Hier.1 {  gcdTestHarness_rtl   gcdTestHarness_rtl.gcd   }
+gui_list_select -id Data.1 {  gcdTestHarness_rtl.gcd.clk   }
+gui_open_window Wave
+gui_list_add -id Wave.1 -from Data.1 { gcdTestHarness_rtl.gcd.clk } -insertionbar
+gui_list_select -id Data.1 {  gcdTestHarness_rtl.gcd.clk   {gcdTestHarness_rtl.gcd.io_operands_bits_A[15:0]}   }
+gui_list_add -id Wave.1 -from Data.1 { {gcdTestHarness_rtl.gcd.io_operands_bits_A[15:0]} } -insertionbar
+gui_list_select -id Data.1 {  {gcdTestHarness_rtl.gcd.io_operands_bits_A[15:0]}   {gcdTestHarness_rtl.gcd.io_operands_bits_B[15:0]}   }
+gui_list_add -id Wave.1 -from Data.1 { {gcdTestHarness_rtl.gcd.io_operands_bits_B[15:0]} } -insertionbar
+gui_list_select -id Data.1 {  {gcdTestHarness_rtl.gcd.io_operands_bits_B[15:0]}   gcdTestHarness_rtl.gcd.io_operands_val   }
+gui_list_add -id Wave.1 -from Data.1 { gcdTestHarness_rtl.gcd.io_operands_val } -insertionbar
+gui_list_select -id Data.1 {  gcdTestHarness_rtl.gcd.io_operands_val   gcdTestHarness_rtl.gcd.io_operands_rdy   }
+gui_list_add -id Wave.1 -from Data.1 { gcdTestHarness_rtl.gcd.io_operands_rdy } -insertionbar
+gui_list_select -id Data.1 {  gcdTestHarness_rtl.gcd.io_operands_rdy   {gcdTestHarness_rtl.gcd.io_result_bits_data[15:0]}   }
+gui_list_add -id Wave.1 -from Data.1 { {gcdTestHarness_rtl.gcd.io_result_bits_data[15:0]} } -insertionbar
+gui_list_select -id Data.1 {  {gcdTestHarness_rtl.gcd.io_result_bits_data[15:0]}   gcdTestHarness_rtl.gcd.io_result_val   }
+gui_list_add -id Wave.1 -from Data.1 { gcdTestHarness_rtl.gcd.io_result_val } -insertionbar
+gui_list_select -id Data.1 {  gcdTestHarness_rtl.gcd.io_result_val   gcdTestHarness_rtl.gcd.io_result_rdy   }
+gui_list_add -id Wave.1 -from Data.1 { gcdTestHarness_rtl.gcd.io_result_rdy } -insertionbar
+gui_marker_move -id  Wave.1 C1 138
+gui_zoom -window Wave.1 -full
+gui_wv_zoom_timerange -id  Wave.1 469 16427
+gui_wv_zoom_timerange -id  Wave.1 1816 8718
+gui_wv_scroll_hslidermove -id  Wave.1 0
+gui_wv_zoom_timerange -id  Wave.1 0 9814
+gui_wv_zoom_timerange -id  Wave.1 2053 7394
+gui_wv_zoom_timerange -id  Wave.1 2052 6897
+gui_wv_zoom_timerange -id  Wave.1 2052 6646
+gui_wv_zoom_timerange -id  Wave.1 2052 6435
+gui_wv_zoom_timerange -id  Wave.1 2052 6281
+gui_marker_move -id  Wave.1 C1 6179
+gui_marker_select -id  Wave.1 { C1 }

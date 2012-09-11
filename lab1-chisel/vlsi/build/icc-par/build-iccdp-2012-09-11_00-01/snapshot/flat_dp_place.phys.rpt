@@ -1,0 +1,83 @@
+ 
+****************************************
+Report : design
+        -physical
+Design : GCD
+Version: F-2011.09-ICC-SP4
+Date   : Tue Sep 11 00:01:34 2012
+****************************************
+
+****************************** P&R Summary ********************************
+Date : Tue Sep 11 00:01:34 2012
+Machine Host Name: bcom16.EECS.Berkeley.EDU
+Working Directory: /work/cs250-af/lab1-chisel/vlsi/build/icc-par/build-iccdp-2012-09-11_00-01
+Library Name:      GCD_LIB
+Cell Name:         flat_dp.CEL;1
+Design Statistics:
+    Number of Module Cells:        487
+    Number of Pins:                2477
+    Number of IO Pins:             54
+    Number of Nets:                553
+    Average Pins Per Net (Signal): 2.81125
+
+Chip Utilization:
+    Total Std Cell Area:           3946.29
+    Core Size:     width 74.88, height 74.88; area 5607.01
+    Chip Size:     width 134.88, height 134.88; area 18192.61
+    Std cells utilization:         70.38% 
+    Cell/Core Ratio:               70.38%
+    Cell/Chip Ratio:               21.69%
+    Number of Cell Rows:            26
+
+Master Instantiation:
+	MasterName	Type	InstCount
+	=================================
+	NAND2X0		STD	185
+	NOR2X0		STD	92
+	INVX0		STD	61
+	XOR2X1		STD	29
+	DFFX1		STD	28
+	NAND2X1		STD	22
+	OAI21X1		STD	14
+	AOI21X1		STD	13
+	NAND3X0		STD	10
+	NOR2X1		STD	6
+	DFFSSRX1	STD	6
+	NAND4X0		STD	5
+	XNOR2X1		STD	4
+	NOR3X0		STD	3
+	NOR2X2		STD	3
+	CGLPPRX2	STD	2
+	AO21X1		STD	1
+	NOR4X0		STD	1
+	NAND2X2		STD	1
+	NOR4X1		STD	1
+	=================================
+
+Timing/Optimization Information:
+
+Global Routing Information:
+
+Track Assignment Information:
+
+Detailed Routing Information:
+
+DRC information: 
+      Total error number: 0
+
+Ring Wiring Statistics:
+
+Stripe Wiring Statistics:
+
+User Wiring Statistics:
+
+PG follow-pin Wiring Statistics:
+
+Signal Wiring Statistics:
+      Mask Name      Contact Code    Number Of Contacts    Percentage
+
+  Horizontal/Vertical Wire Distribution:
+    Layer      Hor. Wire (% of Hor.)     Ver. Wire (% of Ver.)
+  ==============================================================
+    Total              0.00                      0.00
+1

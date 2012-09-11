@@ -1,0 +1,75 @@
+ 
+****************************************
+Report : reference
+Design : GCD
+Version: F-2011.09-ICC-SP4
+Date   : Mon Sep 10 16:55:08 2012
+****************************************
+
+Attributes:
+    b - black box (unknown)
+   bo - allows boundary optimization
+    d - dont_touch
+   mo - map_only
+    h - hierarchical
+    n - noncombinational
+    r - removable
+    s - synthetic operator
+    u - contains unmapped logic
+
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+AND2X1             saed90nm_typ     7.372800       3    22.118400 
+AO21X1             saed90nm_typ    10.137600       1    10.137600 
+AOI21X1            saed90nm_typ    11.980800      13   155.750396 
+DELLN1X2           saed90nm_typ    14.745600      30   442.367992 
+DFFSSRX1           saed90nm_typ    33.177601       6   199.065605 n
+DFFX1              saed90nm_typ    24.883200      25   622.079992 n
+DFFX2              saed90nm_typ    31.334400       3    94.003201 n
+INVX0              saed90nm_typ     5.529600      84   464.486412 
+INVX1              saed90nm_typ     6.451200      12    77.414400 
+INVX2              saed90nm_typ     6.451200      10    64.512000 
+INVX4              saed90nm_typ     9.216000       2    18.431999 
+NAND2X0            saed90nm_typ     5.529600     129   713.318419 
+NAND2X1            saed90nm_typ     5.529600      51   282.009607 
+NAND2X2            saed90nm_typ     9.216000      35   322.559986 
+NAND2X4            saed90nm_typ    14.745600       2    29.491199 
+NAND3X0            saed90nm_typ     7.372800      10    73.727999 
+NAND4X0            saed90nm_typ     8.294400       5    41.472001 
+NBUFFX2            saed90nm_typ     5.529600      14    77.414402 
+NBUFFX4            saed90nm_typ    10.137600       1    10.137600 
+NOR2X0             saed90nm_typ     5.529600      61   337.305609 
+NOR2X1             saed90nm_typ     6.451200      12    77.414400 
+NOR2X2             saed90nm_typ     9.216000      20   184.319992 
+NOR2X4             saed90nm_typ    14.745600       7   103.219198 
+NOR3X0             saed90nm_typ     8.294400       3    24.883201 
+NOR4X1             saed90nm_typ    15.667200       1    15.667200 
+OAI21X1            saed90nm_typ    11.059200      13   143.769604 
+OR2X1              saed90nm_typ     7.372800       1     7.372800 
+OR2X2              saed90nm_typ     9.216000       1     9.216000 
+OR3X2              saed90nm_typ    11.059200       1    11.059200 
+SNPS_CLOCK_GATE_HIGH_GCD_0       21.197001       1     21.197001  b, h
+SNPS_CLOCK_GATE_HIGH_GCD_1       21.197001       1     21.197001  b, h
+XNOR2X1            saed90nm_typ    13.824000       4    55.296001 
+XOR2X1             saed90nm_typ    13.824000      29   400.896010 
+-----------------------------------------------------------------------------
+Total 33 references                                  5133.312427
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_GCD_0 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2           saed90nm_typ_cg    21.197001       1    21.197001 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                     21.197001
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_GCD_1 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2           saed90nm_typ_cg    21.197001       1    21.197001 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                     21.197001
+1

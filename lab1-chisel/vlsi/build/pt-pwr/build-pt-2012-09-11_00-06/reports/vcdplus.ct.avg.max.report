@@ -1,0 +1,166 @@
+Information: Checking 'no_input_delay'.
+Information: Checking 'no_driving_cell'.
+Warning: There are 36 ports with parasitics but with no driving cell.
+
+Ports
+------------------------------------------------------------
+clk
+io_operands_bits_A[0]
+io_operands_bits_A[1]
+io_operands_bits_A[2]
+io_operands_bits_A[3]
+io_operands_bits_A[4]
+io_operands_bits_A[5]
+io_operands_bits_A[6]
+io_operands_bits_A[7]
+io_operands_bits_A[8]
+io_operands_bits_A[9]
+io_operands_bits_A[10]
+io_operands_bits_A[11]
+io_operands_bits_A[12]
+io_operands_bits_A[13]
+io_operands_bits_A[14]
+io_operands_bits_A[15]
+io_operands_bits_B[0]
+io_operands_bits_B[1]
+io_operands_bits_B[2]
+io_operands_bits_B[3]
+io_operands_bits_B[4]
+io_operands_bits_B[5]
+io_operands_bits_B[6]
+io_operands_bits_B[7]
+io_operands_bits_B[8]
+io_operands_bits_B[9]
+io_operands_bits_B[10]
+io_operands_bits_B[11]
+io_operands_bits_B[12]
+io_operands_bits_B[13]
+io_operands_bits_B[14]
+io_operands_bits_B[15]
+io_operands_val
+io_result_rdy
+reset
+
+Information: Checking 'unconstrained_endpoints'.
+Warning: There are 66 endpoints which are not constrained for maximum delay.
+
+Endpoint
+------------------------------------------------------------
+A_reg_0_/D
+A_reg_1_/D
+A_reg_2_/D
+A_reg_3_/D
+A_reg_4_/D
+A_reg_5_/D
+A_reg_6_/D
+A_reg_7_/D
+A_reg_8_/D
+A_reg_9_/D
+A_reg_10_/D
+A_reg_10_/RSTB
+A_reg_10_/SETB
+A_reg_11_/D
+A_reg_11_/RSTB
+A_reg_11_/SETB
+A_reg_12_/D
+A_reg_13_/D
+A_reg_13_/RSTB
+A_reg_13_/SETB
+A_reg_14_/D
+A_reg_15_/D
+B_reg_0_/D
+B_reg_1_/D
+B_reg_2_/D
+B_reg_3_/D
+B_reg_4_/D
+B_reg_5_/D
+B_reg_6_/D
+B_reg_7_/D
+B_reg_8_/D
+B_reg_9_/D
+B_reg_10_/D
+B_reg_10_/RSTB
+B_reg_10_/SETB
+B_reg_11_/D
+B_reg_11_/RSTB
+B_reg_11_/SETB
+B_reg_12_/D
+B_reg_13_/D
+B_reg_13_/RSTB
+B_reg_13_/SETB
+B_reg_14_/D
+B_reg_15_/D
+clk_gate_A_reg/latch/EN
+clk_gate_B_reg/latch/EN
+io_operands_rdy
+io_result_bits_data[0]
+io_result_bits_data[1]
+io_result_bits_data[2]
+io_result_bits_data[3]
+io_result_bits_data[4]
+io_result_bits_data[5]
+io_result_bits_data[6]
+io_result_bits_data[7]
+io_result_bits_data[8]
+io_result_bits_data[9]
+io_result_bits_data[10]
+io_result_bits_data[11]
+io_result_bits_data[12]
+io_result_bits_data[13]
+io_result_bits_data[14]
+io_result_bits_data[15]
+io_result_val
+state_reg_0_/D
+state_reg_1_/D
+
+Information: Checking 'unexpandable_clocks'.
+Information: Checking 'latch_fanout'.
+Information: Checking 'no_clock'.
+Warning: There are 36 register clock pins with no clock.
+
+Clock Pin
+------------------------------------------------------------
+A_reg_0_/CLK
+A_reg_1_/CLK
+A_reg_2_/CLK
+A_reg_3_/CLK
+A_reg_4_/CLK
+A_reg_5_/CLK
+A_reg_6_/CLK
+A_reg_7_/CLK
+A_reg_8_/CLK
+A_reg_9_/CLK
+A_reg_10_/CLK
+A_reg_11_/CLK
+A_reg_12_/CLK
+A_reg_13_/CLK
+A_reg_14_/CLK
+A_reg_15_/CLK
+B_reg_0_/CLK
+B_reg_1_/CLK
+B_reg_2_/CLK
+B_reg_3_/CLK
+B_reg_4_/CLK
+B_reg_5_/CLK
+B_reg_6_/CLK
+B_reg_7_/CLK
+B_reg_8_/CLK
+B_reg_9_/CLK
+B_reg_10_/CLK
+B_reg_11_/CLK
+B_reg_12_/CLK
+B_reg_13_/CLK
+B_reg_14_/CLK
+B_reg_15_/CLK
+clk_gate_A_reg/latch/CLK
+clk_gate_B_reg/latch/CLK
+state_reg_0_/CLK
+state_reg_1_/CLK
+
+Information: Checking 'partial_input_delay'.
+Information: Checking 'generic'.
+Information: Checking 'loops'.
+Information: Checking 'generated_clocks'.
+Information: Checking 'pulse_clock_non_pulse_clock_merge'.
+Information: Checking 'pll_configuration'.
+0

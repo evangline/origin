@@ -1,0 +1,124 @@
+ 
+****************************************
+Report : constraint
+        -all_violators
+        -max_delay
+        -min_delay
+        -max_capacitance
+        -max_transition
+Design : GCD
+Version: F-2011.09-ICC-SP4
+Date   : Tue Sep 11 00:01:35 2012
+****************************************
+
+
+   max_delay/setup ('REGIN' group)
+
+                             Required        Actual
+   Endpoint                 Path Delay     Path Delay        Slack
+   -----------------------------------------------------------------
+   A_reg_1_/D                  0.817          0.915 r       -0.097  (VIOLATED)
+   B_reg_13_/SETB              0.729          0.817 f       -0.089  (VIOLATED)
+   A_reg_0_/D                  0.820          0.901 r       -0.082  (VIOLATED)
+   A_reg_3_/D                  0.817          0.892 r       -0.074  (VIOLATED)
+   A_reg_15_/D                 0.820          0.890 r       -0.070  (VIOLATED)
+   A_reg_2_/D                  0.818          0.887 r       -0.069  (VIOLATED)
+   A_reg_14_/D                 0.819          0.888 r       -0.068  (VIOLATED)
+   A_reg_13_/SETB              0.731          0.799 f       -0.068  (VIOLATED)
+   B_reg_8_/D                  0.817          0.883 r       -0.066  (VIOLATED)
+   A_reg_11_/SETB              0.732          0.795 f       -0.063  (VIOLATED)
+   A_reg_5_/D                  0.817          0.879 r       -0.062  (VIOLATED)
+   A_reg_12_/D                 0.817          0.878 r       -0.061  (VIOLATED)
+   B_reg_9_/D                  0.818          0.875 r       -0.057  (VIOLATED)
+   B_reg_7_/D                  0.818          0.874 r       -0.056  (VIOLATED)
+   A_reg_4_/D                  0.817          0.868 r       -0.051  (VIOLATED)
+   B_reg_5_/D                  0.818          0.866 r       -0.048  (VIOLATED)
+   B_reg_6_/D                  0.821          0.868 r       -0.047  (VIOLATED)
+   B_reg_4_/D                  0.817          0.860 r       -0.043  (VIOLATED)
+   A_reg_7_/D                  0.819          0.857 r       -0.039  (VIOLATED)
+   A_reg_6_/D                  0.821          0.853 r       -0.031  (VIOLATED)
+   B_reg_14_/D                 0.822          0.851 r       -0.029  (VIOLATED)
+   B_reg_1_/D                  0.821          0.848 r       -0.027  (VIOLATED)
+   B_reg_15_/D                 0.822          0.847 r       -0.025  (VIOLATED)
+   A_reg_10_/D                 0.679          0.701 f       -0.023  (VIOLATED)
+   B_reg_10_/SETB              0.738          0.760 f       -0.022  (VIOLATED)
+   B_reg_11_/D                 0.679          0.700 f       -0.021  (VIOLATED)
+   B_reg_3_/D                  0.817          0.837 r       -0.020  (VIOLATED)
+   clk_gate_B_reg/latch/EN     0.797          0.817 f       -0.019  (VIOLATED)
+   B_reg_0_/D                  0.821          0.839 r       -0.018  (VIOLATED)
+   clk_gate_A_reg/latch/EN     0.798          0.816 f       -0.018  (VIOLATED)
+   B_reg_12_/D                 0.823          0.834 r       -0.012  (VIOLATED)
+   B_reg_2_/D                  0.820          0.828 r       -0.008  (VIOLATED)
+
+
+   max_delay/setup ('REGOUT' group)
+
+                             Required        Actual
+   Endpoint                 Path Delay     Path Delay        Slack
+   -----------------------------------------------------------------
+   io_result_bits_data[9]      0.700          0.826 r       -0.126  (VIOLATED)
+   io_result_bits_data[8]      0.700          0.821 r       -0.121  (VIOLATED)
+   io_result_bits_data[10]     0.700          0.821 r       -0.121  (VIOLATED)
+   io_result_bits_data[11]     0.700          0.814 r       -0.114  (VIOLATED)
+   io_result_bits_data[7]      0.700          0.809 r       -0.109  (VIOLATED)
+   io_result_bits_data[0]      0.700          0.808 r       -0.108  (VIOLATED)
+   io_result_bits_data[12]     0.700          0.805 r       -0.105  (VIOLATED)
+   io_result_bits_data[6]      0.700          0.804 r       -0.104  (VIOLATED)
+   io_result_bits_data[1]      0.700          0.803 r       -0.103  (VIOLATED)
+   io_result_bits_data[15]     0.700          0.802 r       -0.102  (VIOLATED)
+   io_result_bits_data[5]      0.700          0.802 r       -0.102  (VIOLATED)
+   io_result_bits_data[13]     0.700          0.801 r       -0.101  (VIOLATED)
+   io_result_bits_data[4]      0.700          0.801 r       -0.101  (VIOLATED)
+   io_result_bits_data[3]      0.700          0.799 r       -0.099  (VIOLATED)
+   io_result_bits_data[2]      0.700          0.799 r       -0.099  (VIOLATED)
+   io_result_bits_data[14]     0.700          0.797 r       -0.097  (VIOLATED)
+
+
+   max_delay/setup ('ideal_clock1' group)
+
+                             Required        Actual
+   Endpoint                 Path Delay     Path Delay        Slack
+   -----------------------------------------------------------------
+   B_reg_3_/D                  0.817          0.964 r       -0.146  (VIOLATED)
+   B_reg_2_/D                  0.820          0.966 r       -0.146  (VIOLATED)
+   B_reg_0_/D                  0.821          0.966 r       -0.145  (VIOLATED)
+   B_reg_11_/SETB              0.756          0.900 f       -0.144  (VIOLATED)
+   B_reg_8_/D                  0.817          0.958 r       -0.141  (VIOLATED)
+   B_reg_4_/D                  0.817          0.956 r       -0.139  (VIOLATED)
+   B_reg_5_/D                  0.818          0.956 r       -0.138  (VIOLATED)
+   B_reg_7_/D                  0.818          0.954 r       -0.136  (VIOLATED)
+   B_reg_9_/D                  0.818          0.953 r       -0.136  (VIOLATED)
+   B_reg_1_/D                  0.821          0.956 r       -0.134  (VIOLATED)
+   B_reg_12_/D                 0.823          0.951 r       -0.128  (VIOLATED)
+   B_reg_6_/D                  0.821          0.946 r       -0.125  (VIOLATED)
+   B_reg_15_/D                 0.822          0.946 r       -0.124  (VIOLATED)
+   B_reg_14_/D                 0.822          0.944 r       -0.122  (VIOLATED)
+   A_reg_1_/D                  0.817          0.939 r       -0.122  (VIOLATED)
+   B_reg_13_/SETB              0.729          0.842 f       -0.113  (VIOLATED)
+   B_reg_10_/RSTB              0.733          0.845 f       -0.113  (VIOLATED)
+   B_reg_13_/RSTB              0.733          0.845 f       -0.112  (VIOLATED)
+   A_reg_0_/D                  0.820          0.926 r       -0.106  (VIOLATED)
+   A_reg_3_/D                  0.817          0.916 r       -0.099  (VIOLATED)
+   A_reg_15_/D                 0.820          0.914 r       -0.095  (VIOLATED)
+   A_reg_2_/D                  0.818          0.912 r       -0.093  (VIOLATED)
+   A_reg_14_/D                 0.819          0.912 r       -0.093  (VIOLATED)
+   A_reg_13_/SETB              0.731          0.823 f       -0.092  (VIOLATED)
+   A_reg_10_/SETB              0.772          0.860 r       -0.088  (VIOLATED)
+   A_reg_11_/SETB              0.732          0.819 f       -0.087  (VIOLATED)
+   A_reg_5_/D                  0.817          0.903 r       -0.087  (VIOLATED)
+   A_reg_12_/D                 0.817          0.903 r       -0.085  (VIOLATED)
+   A_reg_4_/D                  0.817          0.895 r       -0.078  (VIOLATED)
+   A_reg_7_/D                  0.819          0.890 r       -0.072  (VIOLATED)
+   A_reg_8_/D                  0.823          0.892 r       -0.069  (VIOLATED)
+   A_reg_6_/D                  0.821          0.880 r       -0.058  (VIOLATED)
+   A_reg_9_/D                  0.823          0.881 r       -0.058  (VIOLATED)
+   B_reg_10_/SETB              0.738          0.785 f       -0.047  (VIOLATED)
+   A_reg_11_/RSTB              0.766          0.804 f       -0.038  (VIOLATED)
+   A_reg_13_/RSTB              0.766          0.804 f       -0.038  (VIOLATED)
+   A_reg_10_/D                 0.679          0.707 f       -0.028  (VIOLATED)
+   B_reg_11_/D                 0.679          0.706 f       -0.027  (VIOLATED)
+   clk_gate_B_reg/latch/EN     0.797          0.822 f       -0.025  (VIOLATED)
+   clk_gate_A_reg/latch/EN     0.798          0.821 f       -0.023  (VIOLATED)
+
+
+1

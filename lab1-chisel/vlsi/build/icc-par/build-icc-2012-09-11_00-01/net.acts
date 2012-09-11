@@ -1,0 +1,10 @@
+clk
+net86
+net80
+clk_G1B3I1
+clk_G1B2I1
+clk_G1B1I1
+clk_gate_B_reg/CLK
+clk_gate_B_reg/ENCLK
+clk_gate_A_reg/CLK
+clk_gate_A_reg/ENCLK
