@@ -1,0 +1,88 @@
+ 
+****************************************
+Report : design
+        -physical
+Design : gcdGCDUnit_rtl
+Version: F-2011.09-ICC-SP4
+Date   : Mon Sep 10 12:58:51 2012
+****************************************
+
+****************************** P&R Summary ********************************
+Date : Mon Sep 10 12:58:51 2012
+Machine Host Name: bcom16.EECS.Berkeley.EDU
+Working Directory: /work/cs250-af/lab1-verilog/build/icc-par/build-iccdp-2012-09-10_12-58
+Library Name:      gcdGCDUnit_rtl_LIB
+Cell Name:         flat_dp.CEL;1
+Design Statistics:
+    Number of Module Cells:        372
+    Number of Pins:                1950
+    Number of IO Pins:             54
+    Number of Nets:                443
+    Average Pins Per Net (Signal): 2.85034
+
+Chip Utilization:
+    Total Std Cell Area:           3380.43
+    Core Size:     width 69.44, height 69.12; area 4799.69
+    Chip Size:     width 129.44, height 129.12; area 16713.29
+    Std cells utilization:         70.43% 
+    Cell/Core Ratio:               70.43%
+    Cell/Chip Ratio:               20.23%
+    Number of Cell Rows:            24
+
+Master Instantiation:
+	MasterName	Type	InstCount
+	=================================
+	NAND2X0		STD	105
+	NOR2X0		STD	70
+	INVX0		STD	36
+	DFFARX1		STD	32
+	NAND3X0		STD	24
+	NAND2X1		STD	24
+	MUX21X1		STD	17
+	XOR2X1		STD	14
+	OR2X1		STD	8
+	NOR2X2		STD	7
+	NOR4X0		STD	6
+	INVX1		STD	6
+	NAND4X0		STD	4
+	NOR2X1		STD	3
+	NAND2X2		STD	3
+	CGLPPRX2	STD	2
+	DFFX1		STD	2
+	NOR3X0		STD	2
+	OA21X1		STD	1
+	AND2X1		STD	1
+	INVX2		STD	1
+	INVX16		STD	1
+	AND4X1		STD	1
+	AO21X1		STD	1
+	NBUFFX8		STD	1
+	=================================
+
+Timing/Optimization Information:
+
+Global Routing Information:
+
+Track Assignment Information:
+
+Detailed Routing Information:
+
+DRC information: 
+      Total error number: 0
+
+Ring Wiring Statistics:
+
+Stripe Wiring Statistics:
+
+User Wiring Statistics:
+
+PG follow-pin Wiring Statistics:
+
+Signal Wiring Statistics:
+      Mask Name      Contact Code    Number Of Contacts    Percentage
+
+  Horizontal/Vertical Wire Distribution:
+    Layer      Hor. Wire (% of Hor.)     Ver. Wire (% of Ver.)
+  ==============================================================
+    Total              0.00                      0.00
+1

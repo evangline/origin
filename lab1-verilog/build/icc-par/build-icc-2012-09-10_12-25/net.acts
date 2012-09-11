@@ -1,0 +1,12 @@
+clk
+GCDctrl0/clk
+GCDctrl0/clk_G1B3I1
+GCDctrl0/clk_G1B2I1
+GCDctrl0/clk_G1B1I1
+GCDdpath0/clk
+GCDdpath0/net169
+GCDdpath0/net163
+GCDdpath0/clk_gate_A_reg_reg/CLK
+GCDdpath0/clk_gate_A_reg_reg/ENCLK
+GCDdpath0/clk_gate_B_reg_reg/CLK
+GCDdpath0/clk_gate_B_reg_reg/ENCLK

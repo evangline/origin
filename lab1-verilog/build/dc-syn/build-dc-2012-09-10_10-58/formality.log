@@ -1,0 +1,7 @@
+Info:  Net i:/WORK/gcdGCDUnitCtrl/B_mux_sel is undriven.
+Info:  guide_change_names 12 (Line: 83)  Cannot find or apply name change to port 'A_mux_sel[0]_hfs_netlink_1' in design 'gcdGCDUnitDpath_W16'.
+Info:  SVF Operation 12 (Line: 83) - change_names.  Status: rejected
+
+Info:  guide_change_names 13 (Line: 120)  Cannot find or apply name change to port 'A_mux_sel[0]_hfs_netlink_0' in design 'gcdGCDUnitCtrl'.
+Info:  SVF Operation 13 (Line: 120) - change_names.  Status: rejected
+

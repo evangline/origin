@@ -1,0 +1,19 @@
+ 
+****************************************
+Report : clock timing
+        -type skew
+        -nworst 1
+        -setup
+Design : gcdGCDUnit_rtl
+Version: F-2011.09-ICC-SP4
+Date   : Mon Sep 10 13:00:50 2012
+****************************************
+
+  Clock: ideal_clock1
+  Clock Pin                              Latency    CRP      Skew
+----------------------------------------------------------------------------
+  GCDdpath0/B_reg_reg_12_/CLK            0.39                          wrp-+
+  GCDdpath0/A_reg_reg_6_/CLK             0.38      -0.00     0.01      wrp-+
+----------------------------------------------------------------------------
+
+1

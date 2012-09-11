@@ -1,0 +1,44 @@
+**************************************************
+Report         : unmatched_points
+
+Reference      : r:/WORK/gcdGCDUnit_rtl
+Implementation : i:/WORK/gcdGCDUnit_rtl
+Version        : G-2012.06
+Date           : Mon Sep 10 10:59:54 2012
+**************************************************
+
+2 Unmatched points (0 reference, 2 implementation):
+
+  Impl LATCG      i:/WORK/gcdGCDUnit_rtl/GCDdpath0/clk_gate_A_reg_reg/latch
+
+  Impl LATCG      i:/WORK/gcdGCDUnit_rtl/GCDdpath0/clk_gate_B_reg_reg/latch
+
+ [BBNet: multiply-driven net
+  BBox:  black-box
+  BBPin: black-box pin
+  Block: hierarchical block
+  BlPin: hierarchical block pin
+  Cut:   cut-point
+  DFF:   non-constant DFF register
+  DFF0:  constant 0 DFF register
+  DFF1:  constant 1 DFF register
+  DFFX:  constant X DFF register
+  DFF0X: constrained 0X DFF register
+  DFF1X: constrained 1X DFF register
+  LAT:   non-constant latch register
+  LAT0:  constant 0 latch register
+  LAT1:  constant 1 latch register
+  LATX:  constant X latch register
+  LAT0X: constrained 0X latch register
+  LAT1X: constrained 1X latch register
+  LATCG: clock-gating latch register
+  TLA:   transparent latch register
+  TLA0X: transparent constrained 0X latch register
+  TLA1X: transparent constrained 1X latch register
+  Loop:  cycle break point
+  Net:   matchable net
+  Port:  primary (top-level) port
+  Und:   undriven signal cut-point
+  Unk:   unknown signal cut-point]
+
+1

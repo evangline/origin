@@ -1,0 +1,39 @@
+ 
+****************************************
+Report : constraint
+        -all_violators
+        -max_delay
+        -min_delay
+        -max_capacitance
+        -max_transition
+Design : gcdGCDUnit_rtl
+Version: F-2011.09-ICC-SP4
+Date   : Mon Sep 10 12:26:06 2012
+****************************************
+
+
+   max_delay/setup ('ideal_clock1' group)
+
+                             Required        Actual
+   Endpoint                 Path Delay     Path Delay        Slack
+   -----------------------------------------------------------------
+   GCDdpath0/A_reg_reg_1_/D    0.803          0.910 r       -0.107  (VIOLATED)
+   GCDdpath0/A_reg_reg_4_/D    0.804          0.906 r       -0.102  (VIOLATED)
+   GCDdpath0/A_reg_reg_2_/D    0.810          0.900 r       -0.090  (VIOLATED)
+   GCDdpath0/A_reg_reg_3_/D    0.810          0.897 r       -0.086  (VIOLATED)
+   GCDdpath0/A_reg_reg_6_/D    0.810          0.884 r       -0.074  (VIOLATED)
+   GCDdpath0/A_reg_reg_5_/D    0.811          0.879 r       -0.068  (VIOLATED)
+   GCDdpath0/A_reg_reg_0_/D    0.810          0.875 r       -0.065  (VIOLATED)
+   GCDdpath0/A_reg_reg_7_/D    0.808          0.869 r       -0.061  (VIOLATED)
+   GCDdpath0/A_reg_reg_14_/D    0.803         0.861 r       -0.058  (VIOLATED)
+   GCDdpath0/A_reg_reg_15_/D    0.808         0.861 r       -0.053  (VIOLATED)
+   GCDdpath0/A_reg_reg_9_/D    0.804          0.856 r       -0.051  (VIOLATED)
+   GCDdpath0/A_reg_reg_8_/D    0.809          0.859 r       -0.050  (VIOLATED)
+   GCDdpath0/A_reg_reg_13_/D    0.810         0.853 r       -0.043  (VIOLATED)
+   GCDdpath0/A_reg_reg_11_/D    0.809         0.852 r       -0.043  (VIOLATED)
+   GCDdpath0/A_reg_reg_12_/D    0.811         0.841 r       -0.030  (VIOLATED)
+   GCDdpath0/clk_gate_A_reg_reg/latch/EN    0.808    0.831 f   -0.023 (VIOLATED)
+   GCDdpath0/A_reg_reg_10_/D    0.813         0.834 r       -0.021  (VIOLATED)
+
+
+1

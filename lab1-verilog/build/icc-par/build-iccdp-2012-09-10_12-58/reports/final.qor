@@ -1,0 +1,131 @@
+--- Snapshot Timing Progress ---
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+QoR Report                                                      WNS        TNS     Hold     LogicDRC     RouteDRC     Cell Cnt     Area     Buf/Inv       Util     CPU/Elps(hr)    Mem(Mb)                         Host
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+flat_dp                                                       0.002        0.0        0            0            0          411     3795          87     79.07%        0.00/0.01        216     bcom16.EECS.Berkeley.EDU
+flat_dp_place                                                -0.128     -1.536        0            0            0          372     3380          45     70.43%        0.00/0.00        216     bcom16.EECS.Berkeley.EDU
+
+
+***********************************************
+Report          : create_qor_snapshot (flat_dp)
+Design          : gcdGCDUnit_rtl
+Version         : F-2011.09-ICC-SP4
+Date            : Mon Sep 10 12:58:57 2012
+Time unit       : 1.0e-09 Second(ns)
+Capacitance unit: N/A
+Voltage unit    : 1 Volt
+Power unit      : N/A
+Location        : /work/cs250-af/lab1-verilog/build/icc-par/build-iccdp-2012-09-10_12-58/snapshot
+***********************************************
+No. of scenario = 1
+---------------------------------------------
+WNS of each timing group:           
+---------------------------------------------
+---------------------------------------------
+Setup WNS:                              0.002  
+Setup TNS:                                0.0  
+Number of setup violations:                 0  
+Hold WNS:                               0.000  
+Hold TNS:                               0.000  
+Number of hold violations:                  0  
+Number of max trans violations:             0  
+Number of max cap violations:               0  
+Number of min pulse width violations:       0  
+Route drc violations:                       0
+---------------------------------------------
+Area:                                    3795
+Cell count:                               411
+Buf/inv cell count:                        87
+Std cell utilization:                  79.07%
+CPU/ELAPSE(hr):                     0.00/0.01
+Mem(Mb):                                  216
+Host name:                          bcom16.EECS.Berkeley.EDU
+---------------------------------------------
+Histogram:           
+---------------------------------------------
+Max violations:         0 
+   above ~ -0.7  ---    0 
+    -0.6 ~ -0.7  ---    0 
+    -0.5 ~ -0.6  ---    0 
+    -0.4 ~ -0.5  ---    0 
+    -0.3 ~ -0.4  ---    0 
+    -0.2 ~ -0.3  ---    0 
+    -0.1 ~ -0.2  ---    0 
+       0 ~ -0.1  ---    0 
+---------------------------------------------
+Min violations:         0 
+  -0.06 ~ above  ---    0 
+  -0.05 ~ -0.06  ---    0 
+  -0.04 ~ -0.05  ---    0 
+  -0.03 ~ -0.04  ---    0 
+  -0.02 ~ -0.03  ---    0 
+  -0.01 ~ -0.02  ---    0 
+      0 ~ -0.01  ---    0 
+---------------------------------------------
+
+
+
+
+
+***********************************************
+Report          : create_qor_snapshot (flat_dp_place)
+Design          : gcdGCDUnit_rtl
+Version         : F-2011.09-ICC-SP4
+Date            : Mon Sep 10 12:58:52 2012
+Time unit       : 1.0e-09 Second(ns)
+Capacitance unit: N/A
+Voltage unit    : 1 Volt
+Power unit      : N/A
+Location        : /work/cs250-af/lab1-verilog/build/icc-par/build-iccdp-2012-09-10_12-58/snapshot
+***********************************************
+No. of scenario = 1
+---------------------------------------------
+WNS of each timing group:           
+---------------------------------------------
+ideal_clock1                           -0.128 
+---------------------------------------------
+Setup WNS:                             -0.128  
+Setup TNS:                             -1.536  
+Number of setup violations:                21  
+Hold WNS:                               0.000  
+Hold TNS:                               0.000  
+Number of hold violations:                  0  
+Number of max trans violations:             0  
+Number of max cap violations:               0  
+Number of min pulse width violations:       0  
+Route drc violations:                       0
+---------------------------------------------
+Area:                                    3380
+Cell count:                               372
+Buf/inv cell count:                        45
+Std cell utilization:                  70.43%
+CPU/ELAPSE(hr):                     0.00/0.00
+Mem(Mb):                                  216
+Host name:                          bcom16.EECS.Berkeley.EDU
+---------------------------------------------
+Histogram:           
+---------------------------------------------
+Max violations:        21 
+   above ~ -0.7  ---    0 
+    -0.6 ~ -0.7  ---    0 
+    -0.5 ~ -0.6  ---    0 
+    -0.4 ~ -0.5  ---    0 
+    -0.3 ~ -0.4  ---    0 
+    -0.2 ~ -0.3  ---    0 
+    -0.1 ~ -0.2  ---    5 
+       0 ~ -0.1  ---   16 
+---------------------------------------------
+Min violations:         0 
+  -0.06 ~ above  ---    0 
+  -0.05 ~ -0.06  ---    0 
+  -0.04 ~ -0.05  ---    0 
+  -0.03 ~ -0.04  ---    0 
+  -0.02 ~ -0.03  ---    0 
+  -0.01 ~ -0.02  ---    0 
+      0 ~ -0.01  ---    0 
+---------------------------------------------
+
+
+
+Snapshot report (index) is created and can be viewed using file "/work/cs250-af/lab1-verilog/build/icc-par/build-iccdp-2012-09-10_12-58/snapshot/index.html"
+1

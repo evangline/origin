@@ -1,0 +1,57 @@
+ 
+****************************************
+Report : area
+Design : gcdGCDUnit_rtl
+Version: F-2011.09-SP4
+Date   : Mon Sep 10 10:59:17 2012
+****************************************
+
+Library(s) Used:
+
+    saed90nm_typ (File: /home/ff/cs250/stdcells/synopsys-90nm/default/db/cells.db)
+    saed90nm_typ_cg (File: /home/ff/cs250/stdcells/synopsys-90nm/default/db/cells_cg.db)
+
+Number of ports:                           54
+Number of nets:                            62
+Number of cells:                            4
+Number of combinational cells:              2
+Number of sequential cells:                 0
+Number of macros:                           0
+Number of buf/inv:                          2
+Number of references:                       4
+
+Combinational area:       2288.332832
+Noncombinational area:    1124.352417
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:          3412.685249
+Total area:                 undefined
+
+Core Area:                      6296
+Aspect Ratio:                 1.0328
+Utilization Ratio:            0.5420
+
+
+The above information was reported from the logical library. The following are from the physical library:
+
+  Total moveable cell area: 3412.7
+  Total fixed cell area: 0.0
+  Core area: (0 0 78080 80640)
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area          Local cell area
+                                  ------------------  ---------------------------- 
+Hierarchical cell                 Absolute   Percent  Combi-     Noncombi-  Black
+                                  Total      Total    national   national   boxes   Design
+--------------------------------  ---------  -------  ---------  ---------  ------  ------------------------------------------
+gcdGCDUnit_rtl                    3412.6852    100.0    33.1776     0.0000  0.0000  gcdGCDUnit_rtl
+GCDctrl0                           186.1632      5.5   136.3968    49.7664  0.0000  gcdGCDUnitCtrl
+GCDdpath0                         3193.3444     93.6  2118.7584  1032.1920  0.0000  gcdGCDUnitDpath_W16
+GCDdpath0/clk_gate_A_reg_reg        21.1970      0.6     0.0000    21.1970  0.0000  SNPS_CLOCK_GATE_HIGH_gcdGCDUnitDpath_W16_1
+GCDdpath0/clk_gate_B_reg_reg        21.1970      0.6     0.0000    21.1970  0.0000  SNPS_CLOCK_GATE_HIGH_gcdGCDUnitDpath_W16_0
+--------------------------------  ---------  -------  ---------  ---------  ------  ------------------------------------------
+Total                                                 2288.3328  1124.3524  0.0000
+
+1
