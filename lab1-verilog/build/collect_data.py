@@ -42,45 +42,47 @@ def ColPower (report,line,index):
   f_report.close()
   return pwr[index]
 
-def DFFCount (report):
+def DFFCount (report,index2):
   f_report=open(report)
-  count=[]
   sum=[]
   summation=0
-  for line in f_report:
-    
-    if 'DFF' in line:
-      spline=line.rsplit(' ',40)
-      for i in range(len(spline)):
-        if spline[i] != '':
-          count.append(spline[i])
-      sum.append(count[-3])
-  for i in range(len(sum)):
-    summation=summation+int(sum[i])
+  dff=0
+  list_f=f_report.readlines()
+  for i in range(index2,len(list_f)):
+    if list_f[i].startswith('----'):
+      break
+    spline=list_f[i].split(' ',40)
+    temp=[]
+    for j in range(len(spline)):     #remove all the '' in the array
+      if spline[j] != '':
+        temp.append(spline[j])
+    if 'SNPS' in temp[0]:            #Exception
+      summation=summation+int(temp[2])
+    else: 
+      summation=summation+int(temp[3])
+    if 'DFF' in temp[0]:             #count DFF
+      dff=dff+int(temp[3])
   f_report.close()
-  return summation
+  return summation, dff              #all cell count & dff count
 
-def ColData (work_dir,dcsyn_dir,icc_dir,pt_dir,dcsyn_qor,dcsyn_pwr,icc_qor,icc_pwr,index):
+def ColData (work_dir,dcsyn_dir,icc_dir,pt_dir,dcsyn_qor,dcsyn_pwr,icc_qor,icc_pwr,index,index2,index3):
   avg_pwr=  'vcdplus.power.avg.max.report'
   peak_pwr= 'vcdplus.power.time.max.report'
   spec=[]
-  spec.append(ColValue(work_dir+dcsyn_dir+dcsyn_qor,'Critical Path Length:'))
-  spec.append(ColValue(work_dir+dcsyn_dir+dcsyn_qor,'Design Area:'))
-  spec.append(ColPower(work_dir+dcsyn_dir+dcsyn_pwr,index,-2))
-  spec.append(ColValue(work_dir+icc_dir+icc_qor,'Critical Path Length:'))
-  spec.append(ColValue(work_dir+icc_dir+icc_qor,'Design Area:'))
-  spec.append(ColPower(work_dir+icc_dir+icc_pwr,index,-2))
-  spec.append(ColPower(work_dir+pt_dir+avg_pwr,index-2,-2))
-  spec.append(ColPower(work_dir+pt_dir+peak_pwr,index-2,-6))
-  spec.append(DFFCount(work_dir+icc_dir+dff_count))
+  spec.append(ColValue(work_dir+dcsyn_dir+dcsyn_qor,'Critical Path Length:')) #Post Syn Crit Path Length
+  spec.append(ColValue(work_dir+dcsyn_dir+dcsyn_qor,'Design Area:'))          #Post Syn Area
+  spec.append(ColPower(work_dir+dcsyn_dir+dcsyn_pwr,index,-2))                #Post Syn Power
+  spec.append(ColValue(work_dir+icc_dir+icc_qor,'Critical Path Length:'))     #Post PaR Crit Path Lengh
+  spec.append(ColValue(work_dir+icc_dir+icc_qor,'Design Area:'))              #Post PaR Area
+  spec.append(ColPower(work_dir+icc_dir+icc_pwr,index,-2))                    #Post PaR Power
+  spec.append(ColPower(work_dir+pt_dir+avg_pwr,index-2,-2))                   #PrimeTime Avg Power
+  spec.append(ColPower(work_dir+pt_dir+peak_pwr,index-2,-6))                  #PrimeTime Peak Power
+  spec.append(DFFCount(work_dir+icc_dir+dff_count,index2))                    #Cell count (for GCDUnitCtrl)
+  spec.append(DFFCount(work_dir+icc_dir+dff_count,index3))                    #Cell count (for GCDUnitDpath)
+#for Chisel only consider one part of of cell count
   return spec
 
-print ColData(work_dir,dir_dcsyn,dir_icc,dir_pt,qor,pwr,icc_qor,icc_pwr,-4) #90nm
-print ColData(work_dir_32b,dir_dcsyn,dir_icc,dir_pt,qor,pwr,icc_qor,icc_pwr,-4) #90nm_32b
-print ColData(work_dir_32nm,dir_dcsyn,dir_icc,dir_pt,qor,pwr,icc_qor,icc_pwr,-4) #32nm
-print ColData(work_dir_chs,dir_dcsyn,dir_icc,dir_pt,chs_qor,chs_pwr,icc_qor,icc_pwr,-2) #chisel
-"""print '%40s %20s %20s' %('Unit', 'W=16', 'W=32')
-print '%-30s'% ('P_Syn Crit Path Length')+'%-10s'%('ns'),
-for i in range(3):
-  print '%-20s'%(ColValue(work_dir[i]+dir_dcsyn,'Critical Path Length:')),
-print '%-20s'%(ColValue(work_dir[3]+'','Critical Path Length:')"""
+print ColData(work_dir,dir_dcsyn,dir_icc,dir_pt,qor,pwr,icc_qor,icc_pwr,-4,34,56) #90nm
+print ColData(work_dir_32b,dir_dcsyn,dir_icc,dir_pt,qor,pwr,icc_qor,icc_pwr,-4,36,62) #90nm_32b
+print ColData(work_dir_32nm,dir_dcsyn,dir_icc,dir_pt,qor,pwr,icc_qor,icc_pwr,-4,36,62) #32nm
+print ColData(work_dir_chs,dir_dcsyn,dir_icc,dir_pt,chs_qor,chs_pwr,icc_qor,icc_pwr,-2,21,21) #chisel
