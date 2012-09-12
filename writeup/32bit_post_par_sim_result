@@ -1,0 +1,27 @@
+./simv -ucli -do run.tcl +verbose=1
+Chronologic VCS simulator copyright 1991-2010
+Contains Synopsys proprietary information.
+Compiler version D-2010.06_Full64; Runtime version D-2010.06_Full64;  Sep 11 21:51 2012
+Doing SDF annotation ...... Done
+ucli% source ../icc-par/current-icc/force_regs.ucli
+ucli% run
+ Entering Test Suite: gcdGCDUnit_rtl
+VCD+ Writer D-2010.06_Full64 Copyright (c) 1991-2010 by Synopsys Inc.
+  + Running Test Case: gcdGCDUnit_rtl
+     [ passed ] Test ( vcTestSink ) succeeded, [ 00000003 == 00000003 ] (hex)
+     [ passed ] Test ( vcTestSink ) succeeded, [ 00000007 == 00000007 ] (hex)
+     [ passed ] Test ( vcTestSink ) succeeded, [ 00000005 == 00000005 ] (hex)
+     [ passed ] Test ( vcTestSink ) succeeded, [ 00000001 == 00000001 ] (hex)
+     [ passed ] Test ( vcTestSink ) succeeded, [ 00000028 == 00000028 ] (hex)
+     [ passed ] Test ( vcTestSink ) succeeded, [ 0000000a == 0000000a ] (hex)
+     [ passed ] Test ( vcTestSink ) succeeded, [ 00000005 == 00000005 ] (hex)
+     [ passed ] Test ( vcTestSink ) succeeded, [ 00000000 == 00000000 ] (hex)
+     [ passed ] Test ( Is sink finished? ) succeeded 
+
+$finish called from file "../../src/gcdTestHarness_rtl_32b.v", line 124.
+$finish at simulation time              1546500
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 1546500 ps
+CPU Time:      0.900 seconds;       Data structure size:   9.1Mb
+Tue Sep 11 21:51:57 2012
+date > timestamp
