@@ -1,5 +1,6 @@
 #include "medianFilter.h"
 #include "medianFilter-emulator.h"
+#include "median.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,73 +12,6 @@
 
 // uncomment next line to enable trace output
 // #define DEBUG
-
-uint8_t getMedian(uint8_t *data, int len)
-{
-  // only odd-length sequences
-  assert (len % 2 == 1);
-  uint8_t buf[len];
-  memcpy(buf, data, len);
-
-  for (int i=0;i<=len/2;i++)
-  {
-    int min = buf[i];
-    int pos = i;
-    for (int j=i;j<len;j++)
-    {
-      if (buf[j] < min)
-      {
-        min = buf[j];
-        pos = j;
-      }
-    }
-
-    if (pos != i)
-    {
-      uint8_t temp = buf[i];
-      buf[i] = buf[pos];
-      buf[pos] = temp;
-    }
-  }
-  return buf[len/2];
-}
-
-uint8_t *medianFilter3x3(uint8_t *in, int width, int height)
-{
-  uint8_t *buf = (uint8_t*) malloc(width*height);
-  uint8_t window[9];
-  assert(buf);
-
-  // copy top and bottom lines from input to output unchanged
-  for (int x=0; x<width; x++)
-  {
-    int offset = (height-1)*width;
-    buf[x] = in[x]; 
-    buf[x+offset] = in[x+offset];
-  }
-
-  for (int y=1; y<height-1; y++)
-  {
-    // copy first and last pixel in each line from input to output
-    int offset = y*width;
-    buf[offset] = in[offset];
-    buf[offset+width-1] = in[offset+width-1];
-
-    for (int x=1; x<width-1; x++)
-    {
-      // copy values from input buffer to window buffer
-      int pos = 0;
-      for (int yy=0;yy<3;yy++)
-        for (int xx=0;xx<3;xx++)
-          window[pos++] = in[(x+xx-1) + ((y+yy-1)*width)];
-      // find median
-      uint8_t median = getMedian(window, 9);
-      buf[x+y*width] = median;
-    }
-  }
-
-  return buf;
-}
 
 int main (int argc, char* argv[]) {
   // Load our design
