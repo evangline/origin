@@ -27,18 +27,19 @@ int main (int argc, char* argv[]) {
   int done = 0;
   int fail = 0;
   int pixelCount = -1;
-  
-  uint8_t *outputBuffer;
-
   int height = IMAGE_HEIGHT;
   int width = IMAGE_WIDTH;
   int frameBufferSize = height * width;
+  
+  // create a random input image
   uint8_t inputBuffer[frameBufferSize];
   for (int i=0;i<frameBufferSize;i++)
     inputBuffer[i] = (uint8_t) rand();
 
   // calculate correct output
-  outputBuffer = medianFilter3x3(inputBuffer, width, height);
+  uint8_t *outputBuffer = (uint8_t*) malloc(frameBufferSize);
+  assert(outputBuffer);
+  medianFilter(inputBuffer, outputBuffer, 1, width, height);
 
   // Start simulation
   // Every loop iteration simulates one clock cycle
