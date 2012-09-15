@@ -20,8 +20,19 @@ medianFilter-emulator: medianFilter-emulator.o medianFilter.o median.o
 run : medianFilter-emulator
 	./medianFilter-emulator
 
+# sed line is a hack in case trace file generation is interrupted (e.g. by a segfault)
+# just remove the last line
+#	sed -i '$$d' trace.vcd
+
+run-debug : medianFilter-emulator
+	./medianFilter-emulator -t
+
+run-trace : medianFilter-emulator
+	-./medianFilter-emulator -v
+	vcd2vpd -q trace.vcd trace.vpd
+
 all : medianFilter-emulator
 
 clean :
-	rm -f median.o medianFilter-emulator.o medianFilter.o medianFilter-emulator
+	rm -f median.o medianFilter-emulator.o medianFilter.o medianFilter-emulator *.vcd *.vpd
 
