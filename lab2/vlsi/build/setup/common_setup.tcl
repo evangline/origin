@@ -34,7 +34,7 @@ set HIERARCHICAL_CELLS             "" ;# List of hierarchical block cell instanc
 #set TARGET_LIBRARY_FILES          ""  ;#  Target technology logical libraries
 set ADDITIONAL_LINK_LIB_FILES     ""  ;#  Extra link logical libraries not included in TARGET_LIBRARY_FILES
 
-set MIN_LIBRARY_FILES             ""  ;#  List of max min library pairs "max1 min1 max2 min2 max3 min3"...
+#set MIN_LIBRARY_FILES             ""  ;#  List of max min library pairs "max1 min1 max2 min2 max3 min3"...
 
 #YUNSUP: this is set by make_generated_vars.tcl
 #set MW_REFERENCE_LIB_DIRS         ""  ;#  Milkyway reference libraries (include IC Compiler ILMs here)

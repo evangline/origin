@@ -28,8 +28,6 @@ vsrcs = \
 # Specify what the toplevel verilog module is
 
 toplevel = medianFilter
-testharness = medianFilterTestHarness_rtl
-toplevelinst = median_filter
 
 #--------------------------------------------------------------------
 # Build rules
@@ -63,10 +61,10 @@ constraints_tcl := constraints.tcl
 
 vars = \
 	set DESIGN_NAME                 "$(toplevel)";\n \
-	set STRIP_PATH                  "$(testharness)/$(toplevelinst)";\n \
 	set ADDITIONAL_SEARCH_PATH      "$(db_cells_dir) ../$(srcdir)";\n \
-	set TARGET_LIBRARY_FILES        "cells.db";\n \
-	set MW_REFERENCE_LIB_DIRS       "$(mw_cells_dir)/cells.mw";\n \
+	set TARGET_LIBRARY_FILES        "$(target_library_files)";\n \
+        set MIN_LIBRARY_FILES           "$(min_library)";\n \
+	set MW_REFERENCE_LIB_DIRS       "$(mw_cells_dir)/cells_rvt.mw";\n \
 	set TECH_FILE                   "$(techfile_dir)/techfile.tf";\n \
 	set MAP_FILE                    "$(techfile_dir)/tech2itf.map";\n \
 	set TLUPLUS_MAX_FILE            "$(tluplus_dir)/max.tluplus";\n \
@@ -97,7 +95,6 @@ $(dc_ddc): $(dc_timestamp)
 	cd $(cur_build_dc_dir); \
 	mkdir -p $(log_dir); \
 	$(dc_exec) -f $(notdir $(dc_tcl)) | tee $(log_dir)/dc.log; \
-	sdfcorrect.py results/$(toplevel).mapped.sdf results/$(toplevel).mapped.corrected.sdf \
 	cd ..
 
 dc: $(dc_ddc)
