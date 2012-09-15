@@ -27,6 +27,7 @@ source ${DCRM_CONSTRAINTS_INPUT_FILE}
 
 # Set operating condition on top level
 set_operating_conditions \
+  -analysis_type bc_wc \
   -max ss0p95v125c -max_library saed32rvt_ss0p95v125c \
   -min ff1p16vn40c -min_library saed32rvt_ff1p16vn40c
 
@@ -64,7 +65,9 @@ set_fix_multiple_port_nets -all -buffer_constants
 # Compile the Design
 #################################################################################
 
-compile_ultra -gate_clock
+#compile_ultra -gate_clock
+# normally would use clock gating, but there's really no point for this design
+compile_ultra
 check_design
 
 #################################################################################

@@ -56,7 +56,7 @@ $(vcs_sim) : Makefile $(vsrcs) $(csrcs)
 
 vpd = vcdplus.vpd
 $(vpd): $(vcs_sim)
-	./simv
+	./simv +vcdpluson=1
 
 run: $(vpd)
 
