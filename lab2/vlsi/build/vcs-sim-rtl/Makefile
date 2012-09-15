@@ -56,8 +56,7 @@ $(vcs_sim) : Makefile $(vsrcs) $(csrcs)
 
 vpd = vcdplus.vpd
 $(vpd): $(vcs_sim)
-	./simv +verbose=1
-	date > timestamp
+	./simv
 
 run: $(vpd)
 
@@ -76,4 +75,4 @@ all : $(vcs_sim)
 junk += simv* csrc *.vpd *.key DVE* .vcs* timestamp
 
 clean :
-	rm -rf $(junk) *~ \#* *.log *.cmd *.daidir
+	rm -rf $(junk) *~ \#* *.log *.cmd *.daidir vc_hdrs.h
