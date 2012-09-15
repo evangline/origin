@@ -1,11 +1,6 @@
 #=======================================================================
 # UCB VLSI Makefile for vcs-sim-gl-par
 #-----------------------------------------------------------------------
-# Yunsup Lee (yunsup@cs.berkeley.edu)
-#
-# This makefile will build a rtl simulator and run various tests to
-# verify proper functionality.
-#
 
 include ../Makefrag
 
@@ -52,15 +47,19 @@ VCS_OPTS = -notice -PP +lint=all,noVCDE,noTFIPC,noIWU,noOUDPE \
 vcs_sim = simv
 $(vcs_sim) : Makefile $(vsrcs) $(csrcs)
 	$(VCS) $(VCS_OPTS) +incdir+$(srcdir) -o $(vcs_sim) \
-	       +define+CLOCK_PERIOD=$(vcs_clock_period) \
-               -v $(verilog_cells_dir)/cells.v $(vsrcs) $(csrcs)
+	+define+CLOCK_PERIOD=$(vcs_clock_period) \
+	-v $(verilog_cells_dir)/cells_lvt.v \
+	-v $(verilog_cells_dir)/cells_rvt.v \
+	-v $(verilog_cells_dir)/cells_hvt.v \
+	$(vsrcs) $(csrcs)
+
 #--------------------------------------------------------------------
 # Run
 #--------------------------------------------------------------------
 
 vpd = vcdplus.vpd
 $(vpd): $(vcs_sim)
-	./simv
+	./simv +vcdpluson=1
 
 run: $(vpd)
 
@@ -71,8 +70,7 @@ run: $(vpd)
 convert_saif = vcdplus.saif
 
 $(convert_saif): %.saif: %.vpd
-	vpd2vcd $(patsubst %.saif,%.vpd,$@) $(patsubst %.saif, %.vcd, $@)
-	vcd2saif -input $(patsubst %.saif, %.vcd, $@) -output $@
+	vcd2saif -input $(patsubst %.saif, %.vcd, $@)  -output $@ -pipe "vpd2vcd $(patsubst %.saif,%.vpd,$@) $(patsubst %.saif,%.vcd,$@)"
 	date > timestamp
 
 convert: $(convert_saif)

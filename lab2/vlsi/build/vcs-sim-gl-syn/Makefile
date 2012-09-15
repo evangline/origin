@@ -45,7 +45,10 @@ vcs_sim = simv
 $(vcs_sim) : Makefile $(vsrcs) $(csrcs)
 	$(VCS) $(VCS_OPTS)  -o $(vcs_sim) \
 	+define+CLOCK_PERIOD=$(vcs_clock_period) +define+functional=1 \
-	-v $(verilog_cells_dir)/cells.v $(vsrcs) $(csrcs)
+	-v $(verilog_cells_dir)/cells_lvt.v \
+	-v $(verilog_cells_dir)/cells_rvt.v \
+	-v $(verilog_cells_dir)/cells_hvt.v \
+	$(vsrcs) $(csrcs)
 
 #--------------------------------------------------------------------
 # Run

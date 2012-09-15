@@ -422,7 +422,7 @@ if { ! [file exists $REPORTS_DIR_DP_PREPARE_BLOCK] } { file mkdir $REPORTS_DIR_D
 if { ! [file exists $REPORTS_DIR_FORMALITY] } { file mkdir $REPORTS_DIR_FORMALITY }
 
 ## Logical libraries
-  set_app_var search_path	". ./icc_scripts ./icc_zrt_scripts ./icc_dp_scripts $ADDITIONAL_SEARCH_PATH $search_path"
+  set_app_var search_path	". ./icc_scripts $ADDITIONAL_SEARCH_PATH $search_path"
   set_app_var target_library	"$TARGET_LIBRARY_FILES"
   set_app_var link_library	"* $TARGET_LIBRARY_FILES $ADDITIONAL_LINK_LIB_FILES"
 
@@ -453,7 +453,6 @@ if { ![file exists [which $MW_REFERENCE_CONTROL_FILE]]} {
 ## PD4 is not always used
 if {![info exists PD4]} {set PD4 ""}
 
-
 ## Avoiding too many messages
 set_message_info -id PSYN-040 -limit 10 ;# Dont_touch for fixed cells
 set_message_info -id PSYN-087 -limit 10 ;# Port inherits its location from pad pin
@@ -479,5 +478,3 @@ source check_icc_rm_values.tcl
 }
 
 #################################################################################
-
-

@@ -7,7 +7,6 @@
 ##                   generates a zero interconnect timing report
 ##########################################################################################
 
-
 source icc_setup.tcl
 
 ########################################################################################
@@ -99,20 +98,13 @@ if {$ICC_INIT_DESIGN_INPUT == "VERILOG" } {
 
 if { [check_error -verbose] != 0} { echo "SCRIPT-Error, flagging ..." }
 
-
-
-
   if {$DFT && $ICC_DP_DFT_FLOW && !$ICC_SKIP_IN_BLOCK_IMPLEMENTATION} {
     redirect -file $REPORTS_DIR_INIT_DESIGN/$DESIGN_NAME.full_chip_check_scan_chain.rpt {check_scan_chain}
   }
 
-
-
-
   if {$ICC_CTS_INTERCLOCK_BALANCING && [file exists [which $ICC_CTS_INTERCLOCK_BALANCING_OPTIONS_FILE]]} {
    source $ICC_CTS_INTERCLOCK_BALANCING_OPTIONS_FILE
   }
-
 
   if {$ICC_INIT_DESIGN_INPUT == "VERILOG" } {
         set ports_clock_root {}
@@ -126,10 +118,8 @@ if { [check_error -verbose] != 0} { echo "SCRIPT-Error, flagging ..." }
         group_path -name FEEDTHROUGH -from [remove_from_collection [all_inputs] $ports_clock_root] -to [all_outputs]
   }
 
-
  remove_propagated_clock [all_fanout -clock]
  remove_propagated_clock *
-
 
  # Timing derate
  ## if you add below your own set_timing_derate commands on lib cells, you'll need to apply the following for every step in the flow
@@ -246,17 +236,6 @@ if {[file exists [which $ICC_PHYSICAL_CONSTRAINTS_FILE]] } {
   source $ICC_PHYSICAL_CONSTRAINTS_FILE
 }
 
-
-## Also support for Well proximity effect (WPE) end cap cells
-if {$ICC_H_CAP_CEL != "" } {
-  if {$ICC_V_CAP_CEL == ""} {
-    add_end_cap -respect_blockage -lib_cell $ICC_H_CAP_CEL
-  } else {
-    add_end_cap -respect_blockage -lib_cell $ICC_H_CAP_CEL -vertical_cells $ICC_V_CAP_CEL -fill_corner
-  }
-}
-
-
 source common_optimization_settings_icc.tcl
 source common_placement_settings_icc.tcl
 
@@ -273,17 +252,16 @@ source common_placement_settings_icc.tcl
     if {!$ICC_TIE_CELL_FLOW} {derive_pg_connection -power_net $MW_POWER_NET -ground_net $MW_GROUND_NET -tie}
    }
 
-
 save_mw_cel -as $ICC_FLOORPLAN_CEL
 
 ########################################################################################
 # Saving the cell + snapshot creation
 ########################################################################################
+
 if {$ICC_REPORTING_EFFORT != "OFF" } {
  create_qor_snapshot -name $ICC_FLOORPLAN_CEL
  redirect -file $REPORTS_DIR_INIT_DESIGN/$ICC_FLOORPLAN_CEL.qor_snapshot.rpt {report_qor_snapshot -no_display}
 }
-
 
 if {$ICC_REPORTING_EFFORT != "OFF" } {
 ########################################################################################
@@ -294,7 +272,6 @@ redirect -tee -file $REPORTS_DIR_INIT_DESIGN/$ICC_FLOORPLAN_CEL.sum {report_desi
 set_zero_interconnect_delay_mode true
 redirect -tee -file $REPORTS_DIR_INIT_DESIGN/$ICC_FLOORPLAN_CEL.zic.qor {report_qor}
 set_zero_interconnect_delay_mode false
-
 
 ########################################################################################
 # Checks : Library + technology checks

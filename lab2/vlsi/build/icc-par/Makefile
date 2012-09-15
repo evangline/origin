@@ -80,8 +80,9 @@ outputs_misc_tcl        := icc_scripts/find_regs.tcl
 vars = \
 	set DESIGN_NAME                 "$(toplevel)";\n \
 	set ADDITIONAL_SEARCH_PATH      "$(db_cells_dir) $(mw_cells_dir) ../$(dc_dir)";\n \
-	set TARGET_LIBRARY_FILES        "cells.db";\n \
-	set MW_REFERENCE_LIB_DIRS       "$(mw_cells_dir)/cells.mw";\n \
+	set TARGET_LIBRARY_FILES        "$(target_library_files)";\n \
+        set MIN_LIBRARY_FILES           "$(min_library)";\n \
+	set MW_REFERENCE_LIB_DIRS       "$(mw_cells_dir)/cells_rvt.mw";\n \
 	set TECH_FILE                   "$(techfile_dir)/techfile.tf";\n \
 	set MAP_FILE                    "$(techfile_dir)/tech2itf.map";\n \
 	set TLUPLUS_MAX_FILE            "$(tluplus_cells_dir)/max.tluplus";\n \
