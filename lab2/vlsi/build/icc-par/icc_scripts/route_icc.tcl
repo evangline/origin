@@ -28,7 +28,7 @@ source common_post_cts_timing_settings.tcl
 #    LOAD THE ROUTE AND SI SETTINGS    #
 ########################################
 
-source common_route_si_settings_icc.tcl
+source common_route_si_settings_zrt_icc.tcl
 
 ####Pre route_opt checks
 ##Check for Ideal Nets
@@ -46,7 +46,21 @@ foreach thres $hfn_thres {
 }
 
 
-set_route_mode_options -zroute false
+
+if {$ICC_DBL_VIA } {
+
+  ########################################
+  #           REDUNDANT VIA              #
+  ########################################
+
+
+  ## When running Via insertion in MCMM mode, be aware that it works only from the current_scenario -
+  ## You can use [get_dominant scenarios] to get a critical one loaded
+  # set_active_scenarios [get_dominant_scenarios]
+
+  ## Setting this option prior to routing, starts the via doubling, without the need for the standalone command
+  set_route_zrt_common_options -post_detail_route_redundant_via_insertion medium
+}
 
 if { [check_error -verbose] != 0} { echo "SCRIPT-Error, flagging ..." }
 
@@ -61,33 +75,24 @@ report_preferred_routing_direction
 ## Route first the design
   report_tlu_plus_files
 
-  ## Enabling a different distributed algorithm for Detail Route
-  # set_app_var droute_enable_one_pass_partitioning 1
-  route_opt -initial_route_only -num_cpus $ICC_NUM_CPUS
-if { [check_error -verbose] != 0} { echo "SCRIPT-Error, flagging ..." }
-if {$ICC_CTS_UPDATE_LATENCY} {
-   update_clock_latency
+
+## Optimizing wirelenght and vias . Add the switch : -optimize_wire_via_effort_level to the set_route_zrt_detail_options command.
+## Use default low for your runs except when you run double via insertion, use in that case medium effort to reduce the initail amount of vias.
+#   set_route_zrt_detail_options -optimize_wire_via_effort_level medium
+
+if {$ICC_DBL_VIA && $ICC_DBL_VIA_FLOW_EFFORT == "HIGH"} {
+  set_route_zrt_common_options -concurrent_redundant_via_mode reserve_space
+  set_route_zrt_common_options -concurrent_redundant_via_effort_level medium   ;#low is default: low|medium|high
 }
 
+  route_opt -initial_route_only
+if { [check_error -verbose] != 0} { echo "SCRIPT-Error, flagging ..." }
 
-if {$ICC_DBL_VIA} {
-  save_mw_cel -as ${ICC_ROUTE_CEL}_NO_DBL_VIA
-## To get optimal double via rate, perform first a non-timing driven double via insertion.
-## Later on, during chipfinishing, we will execute a Timing Driven double via insertion.
-
-## Auto mode for insert_redundant_via
-  insert_redundant_vias -auto_mode preview
-  insert_redundant_vias -auto_mode insert -num_cpus $ICC_NUM_CPUS
-
-## Optionally, manual mode for insert_redundant_via
-# insert_redundant_vias \
-   #-num_cpus $ICC_NUM_CPUS \
-   #-from_via "from_via_list" \
-   #-to_via "to_via_list" \
-   #-to_via_x_size "list_of_via_x_sizes" \
-   #-to_via_y_size "list_of_via_y_sizes"
-
-   ##example: -from_via "VIA45 VIA45 VIA12A" -to_via "VIA45f VIA45 VIA12f" -to_via_x_size "1 1 1" -to_via_y_size "2 2 2"
+if {$ICC_DBL_VIA && $ICC_DBL_VIA_FLOW_EFFORT == "HIGH"} {
+  set_route_zrt_common_options -concurrent_redundant_via_mode off
+}
+if {$ICC_CTS_UPDATE_LATENCY} {
+   update_clock_latency
 }
 
 ########################################
@@ -116,6 +121,14 @@ if {$ICC_REPORTING_EFFORT != "OFF" } {
  redirect -file $REPORTS_DIR_ROUTE/$ICC_ROUTE_CEL.max.tim {report_timing -capacitance -transition_time -input_pins -nets -delay max}
  redirect -file $REPORTS_DIR_ROUTE/$ICC_ROUTE_CEL.min.tim {report_timing -capacitance -transition_time -input_pins -nets -delay min}
 }
+
+## Uncomment if you want detailed routing violation report with or without antenna info
+# if {$ICC_FIX_ANTENNA} {
+#    verify_zrt_route -antenna true ;
+# } else {
+#    verify_zrt_route -antenna false ;
+#   }
+
 
 save_mw_cel -as $ICC_ROUTE_CEL
 
@@ -148,4 +161,3 @@ if {$ICC_CREATE_GR_PNG} {
 }
 
 exit
-

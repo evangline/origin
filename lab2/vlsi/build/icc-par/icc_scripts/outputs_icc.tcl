@@ -3,7 +3,6 @@
 # Copyright (C) 2007-2010 Synopsys, Inc. All rights reserved.
 ##########################################################################################
 
-#source icc_setup.tcl
 source icc_setup.tcl
 
 #######################################
@@ -11,7 +10,8 @@ source icc_setup.tcl
 #######################################
 
 ##Open Design
-open_mw_cel $ICC_METAL_FILL_CEL -lib $MW_DESIGN_LIBRARY
+# YUNSUP: since we skipped the metal fill part
+open_mw_cel $ICC_CHIP_FINISH_CEL -lib $MW_DESIGN_LIBRARY
 
   ########################
   #     SIGNOFF DRC      #
@@ -51,6 +51,9 @@ write_verilog -diode_ports -pg $RESULTS_DIR/$DESIGN_NAME.output.pg.lvs.v
 #  write_verilog -diode_ports -no_physical_only_cells -force_output_references [list of your DCAP cells] \
 #  $RESULTS_DIR/$DESIGN_NAME.output.pt.v
 
+#YUNSUP: write sdf
+write_sdf $RESULTS_DIR/$DESIGN_NAME.output.sdf
+
 ##SDC
 set_app_var write_sdc_output_lumped_net_capacitance false
 set_app_var write_sdc_output_net_resistance false
@@ -64,6 +67,8 @@ write_parasitics  -format SBPF -output $RESULTS_DIR/$DESIGN_NAME.output.sbpf
 ##DEF
 write_def -output  $RESULTS_DIR/$DESIGN_NAME.output.def
 
+source find_regs.tcl
+find_regs ${STRIP_PATH}
 
 ###GDSII
 ##Set options - usually also include a mapping file (-map_layer)
@@ -83,7 +88,7 @@ if {$ICC_CREATE_MODEL } {
   close_mw_cel
   open_mw_cel $DESIGN_NAME
   create_ilm -include_xtalk
-  ## Validating ILM using write_interface_timing and compare_interface_timing
+  ## Validating ILM using write_interface_timing and compare_interface_timing:
   #  	write_interface_timing cel.rpt
   #  	close_mw_cel
   #  	open_mw_cel $DESIGN_NAME.ILM
@@ -95,11 +100,9 @@ if {$ICC_CREATE_MODEL } {
   create_macro_fram
   if {$ICC_FIX_ANTENNA} {
   ##create Antenna Info
-    set_droute_options -name doAntennaConx -value 4
-    extract_hier_antenna_property -cell_name $DESIGN_NAME
+    extract_zrt_hier_antenna_property -cell_name $DESIGN_NAME
   }
   close_mw_cel
 }
 
 exit
-

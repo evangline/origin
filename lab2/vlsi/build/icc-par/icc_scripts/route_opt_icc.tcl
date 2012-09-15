@@ -24,7 +24,7 @@ source common_placement_settings_icc.tcl
 source common_post_cts_timing_settings.tcl
 
 ## Load the route and si settings
-source common_route_si_settings_icc.tcl
+source common_route_si_settings_zrt_icc.tcl
 
 
 
@@ -61,7 +61,6 @@ if {$LEAKAGE_POWER} {
 
 ## start the post route optimization
 set_app_var compile_instance_name_prefix icc_route_opt
-set_route_mode_options -zroute false
 
 if {$ICC_ENABLE_CHECKPOINT} {
 echo "SCRIPT-Info : Please ensure there's enough disk space before enabling the set_checkpoint_strategy feature."
@@ -69,7 +68,8 @@ set_checkpoint_strategy -enable -overwrite
 # The -overwrite option is used by default. Remove it if needed.
 }
 
-set route_opt_cmd "route_opt -skip_initial_route -effort $ROUTE_OPT_EFFORT -xtalk_reduction"
+# YUNSUP: changed for fast p&r
+set route_opt_cmd "route_opt -skip_initial_route -effort $ROUTE_OPT_EFFORT"
 
 ## route_opt -power performs both power aware optimization (PAO) and power recovery (PR).
 #  If only PAO is desired and not PR, then please do the following:
@@ -93,9 +93,6 @@ if {$ICC_ENABLE_CHECKPOINT} {set_checkpoint_strategy -disable}
 #  violations.
 #  set_app_var routeopt_drc_over_timing true
 #  route_opt -effort high -incremental -only_design_rule
-
-## Optimizing wirelenght and vias . Add the switch : -optimize_wire_via to the route_opt command :
-#   route_opt -optimize_wire_via -effort low -xtalk_reduction
 
 ## Improving QoR after the default route_opt run :
 #   route_opt -inc
@@ -139,14 +136,20 @@ if {$ICC_REPORTING_EFFORT != "OFF" } {
  redirect -file $REPORTS_DIR_ROUTE_OPT/$ICC_ROUTE_OPT_CEL.min.tim {report_timing -crosstalk_delta -capacitance -transition_time -input_pins -nets -delay min}
 }
 
+## Uncomment if you want detailed routing violation report with or without antenna info
+# if {$ICC_FIX_ANTENNA} {
+#    verify_zrt_route -antenna true ;
+# } else {
+#    verify_zrt_route -antenna false ;
+#   }
+
+
 save_mw_cel -as $ICC_ROUTE_OPT_CEL
-## Create Snapshot and Save
 if {$ICC_REPORTING_EFFORT != "OFF" } {
- create_qor_snapshot -name $ICC_ROUTE_OPT_CEL
+ create_qor_snapshot -clock_tree -name $ICC_ROUTE_OPT_CEL
  redirect -file $REPORTS_DIR_ROUTE_OPT/$ICC_ROUTE_OPT_CEL.qor_snapshot.rpt {report_qor_snapshot -no_display}
 }
 if {[file exists [which $ICC_SIGNOFF_OPT_CHECK_CORRELATION_POSTROUTE_SCRIPT]]} {
   source $ICC_SIGNOFF_OPT_CHECK_CORRELATION_POSTROUTE_SCRIPT
 }
 exit
-

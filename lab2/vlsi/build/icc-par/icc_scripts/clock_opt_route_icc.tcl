@@ -31,7 +31,7 @@ source common_cts_settings_icc.tcl
 source common_post_cts_timing_settings.tcl
 
 ## Source Route Options
-source common_route_si_settings_icc.tcl
+source common_route_si_settings_zrt_icc.tcl
 ## Turning off SI for clock routing
 set_si_options -delta_delay false -min_delta_delay false -route_xtalk_prevention false
 
@@ -43,9 +43,7 @@ if { [check_error -verbose] != 0} { echo "SCRIPT-Error, flagging ..." }
 #       CLOCK ROUTING            #
 ##################################
 set_delay_calculation -clock_arnoldi
-set_route_mode_options -zroute false
-
-route_group -all_clock_nets -search_repair_loop 15
+route_zrt_group -all_clock_nets -reuse_existing_global_route true
 
 if { [check_error -verbose] != 0} { echo "SCRIPT-Error, flagging ..." }
 if {$ICC_POST_CLOCK_ROUTE_CTO} {
@@ -94,4 +92,3 @@ if {$ICC_REPORTING_EFFORT != "OFF" } {
 
 
 exit
-

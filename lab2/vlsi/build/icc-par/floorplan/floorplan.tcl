@@ -54,4 +54,7 @@ set_power_plan_strategy core \
 
 compile_power_plan
 
+create_fp_placement
+
+verify_pg_nets
 

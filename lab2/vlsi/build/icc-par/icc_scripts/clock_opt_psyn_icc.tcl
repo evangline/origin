@@ -63,7 +63,8 @@ echo "SCRIPT-Info : Please ensure there's enough disk space before enabling the 
 set_checkpoint_strategy -enable -overwrite
 # The -overwrite option is used by default. Remove it if needed.
 }
-set clock_opt_psyn_cmd "clock_opt -no_clock_route -only_psyn -area_recovery"
+# YUNSUP: changed for fast p&r
+set clock_opt_psyn_cmd "clock_opt -no_clock_route -only_psyn"
 if {$DFT} {lappend clock_opt_psyn_cmd -optimize_dft}
 if {$LEAKAGE_POWER || $DYNAMIC_POWER} {lappend clock_opt_psyn_cmd -power}
 echo $clock_opt_psyn_cmd
@@ -71,7 +72,7 @@ eval $clock_opt_psyn_cmd
 
 if {$ICC_ENABLE_CHECKPOINT} {set_checkpoint_strategy -disable}
 
-route_group -all_clock_nets -no_track -no_detail
+route_zrt_group -all_clock_nets -reuse_existing_global_route true -stop_after_global_route true
 if { [check_error -verbose] != 0} { echo "SCRIPT-Error, flagging ..." }
 ############################################################################################################
 # ADDITIONAL FEATURES FOR THE POST CTS OPTIMIZATION
@@ -154,4 +155,3 @@ if {$ICC_REPORTING_EFFORT != "OFF" } {
 
 
 exit
-
