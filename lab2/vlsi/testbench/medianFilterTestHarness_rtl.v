@@ -47,7 +47,7 @@ module medianFilterTestHarness_rtl;
 
     // Get number of test images to try before finishing
     if (!$value$plusargs("num-images=%d", num_images))
-      num_images = 1;
+      num_images = 2;
 
     // Get max number of cycles to run simulation for from command line
     // defaults to number neccessary to compute specified number of test
@@ -90,6 +90,7 @@ module medianFilterTestHarness_rtl;
   // pixel values
   reg started = 1'b0;
   reg image_failed = 1'b0;
+  reg mismatch = 1'b0;
   reg [31:0] input_offset = 32'd0;
   reg [31:0] output_offset = 32'd0;
   reg [31:0] data_in_reg;
@@ -133,10 +134,13 @@ module medianFilterTestHarness_rtl;
       get_output_pixel(output_offset, correct_dout);
       if (data_out != correct_dout[7:0])
       begin
-        $display("ERROR: Mismatch at cycle %d : expected %03d : actual %03d", cycle_count, correct_dout, data_out);
+        $display("ERROR: Mismatch at cycle %d : expected %02x : actual %02x", cycle_count, correct_dout, data_out);
         failed <= 1'b1;
         image_failed <= 1'b1;
+        mismatch <= 1'b1;
       end
+      else
+        mismatch <= 1'b0;
 
       if (output_offset == `IMAGE_SIZE-1)
       begin
