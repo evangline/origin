@@ -461,6 +461,19 @@ set_message_info -id LINT-8   -limit 10 ;# input port is unloaded
 
 set_app_var check_error_list "$check_error_list LINK-5 PSYN-375"
 
+## RIMAS - disable (benign and annoying) messages
+# technology file related warnings (benign)
+suppress_message TFCHK-012
+suppress_message TFCHK-049
+suppress_message TFCHK-050
+suppress_message TFCHK-080
+suppress_message TFCHK-089
+
+suppress_message RCEX-011
+
+suppress_message ZRT-054
+suppress_message ZRT-021
+
 source check_icc_rm_values.tcl
 
 }
