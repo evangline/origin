@@ -87,7 +87,7 @@ int main (int argc, char* argv[]) {
     uint32_t frame_sync_out = c->medianFilter__io_frame_sync_out.lo_word();
     uint32_t data_out       = c->medianFilter__io_data_out.lo_word();
 
-    printf("cycle: %04d frame_sync_in: %d data_in: %03d frame_sync_out: %d data_out: %03d", \
+    printf("cycle: %04d frame_sync_in: %d data_in: %03d frame_sync_out: %d data_out: %03d\n", \
         cycle, frame_sync_in, data_in, frame_sync_out, data_out);
 #endif
 
