@@ -22,6 +22,7 @@ void generateInputImage(uint8_t *buf, int len)
 
 int main (int argc, char* argv[]) {
   int cycle;
+  int lim = 0;
   int done = 0;
   int fail = 0;
   int imageFailed = 0;
@@ -44,22 +45,55 @@ int main (int argc, char* argv[]) {
   int ch;
   char *cvalue = NULL;
   opterr = 0;
-  while ((ch = getopt(argc,argv,"n:tv")) != -1)
+  while ((ch = getopt(argc,argv,"h:n:tvw:")) != -1)
   {
     switch(ch)
     {
-      case 't':
-        print_trace = 1;
+      // specify image height
+      case 'h':
+        errno = 0;
+        imageHeight = strtol(optarg, NULL, 10);
+        if (errno != 0 && imageHeight == 0)
+        {
+          printf("-h command line option requires an integer argument!\n");
+          return -1;
+        }
         break;
-      case 'v':
-        generate_vcd = 1;
+      // specify cycle limit for simulation
+      case 'l':
+        errno = 0;
+        lim = strtol(optarg, NULL, 10);
+        if (errno != 0 && lim == 0)
+        {
+          printf("-l command line option requires an integer argument!\n");
+          return -1;
+        }
         break;
+      // specify number of images to simulate
       case 'n':
         errno = 0;
         numImages = strtol(optarg, NULL, 10);
         if (errno != 0 && numImages == 0)
         {
           printf("-n command line option requires an integer argument!\n");
+          return -1;
+        }
+        break;
+      // enable text trace output
+      case 't':
+        print_trace = 1;
+        break;
+      // enable vcd file generation
+      case 'v':
+        generate_vcd = 1;
+        break;
+      // specify image width
+      case 'w':
+        errno = 0;
+        imageWidth = strtol(optarg, NULL, 10);
+        if (errno != 0 && imageWidth == 0)
+        {
+          printf("-h command line option requires an integer argument!\n");
           return -1;
         }
         break;
@@ -75,8 +109,12 @@ int main (int argc, char* argv[]) {
   }
 
   int imageBufferSize = imageHeight*imageWidth;
+
   // number of clock cycles to simulate before exiting
-  int lim = (numImages*imageBufferSize) + (imageWidth*3);
+  // if not specified on command line, set based on number
+  // of images in simulation
+  if (lim == 0)
+    lim = (numImages*imageBufferSize) + (imageWidth*3);
  
   // allocate input/output image buffers
   uint8_t *inputBuffer = (uint8_t*) malloc(imageBufferSize);
@@ -88,10 +126,11 @@ int main (int argc, char* argv[]) {
   medianFilter_t* dut = new medianFilter_t();
   dut->init();
 
-  printf("Input image dimensions are %4d x %4d\n", imageWidth, imageHeight);
-  printf("Number of test images to simulate : %d", numImages);
+  printf("Image dimensions : %d x %d\n", imageWidth, imageHeight);
+  printf("Number of images to be simulated: %d\n", numImages);
+  printf("Simulation will timeout after %d clock cycles.\n", lim);
   if (generate_vcd)
-    printf("VCD generation enabled, filename = %s\n", vcdFileName);
+    printf("VCD generation enabled, output filename = %s\n", vcdFileName);
 
   // Start simulation
   // Every loop iteration simulates one clock cycle
@@ -109,6 +148,7 @@ int main (int argc, char* argv[]) {
         perror("fopen: ");
         return -1;
       }
+      // add some extra signals to the vcd file to help debugging
       fprintf(vcdFile, "$scope module medianFilterTestHarness $end\n");
       fprintf(vcdFile, "$var reg 32 NCYCLE cycle $end\n");
       fprintf(vcdFile, "$var reg 8 EXPECTED dout_expected $end\n");
@@ -127,6 +167,7 @@ int main (int argc, char* argv[]) {
     {
       if (inputOffset == 0)
       {
+        // generate new input image, assert frame_sync_in
         generateInputImage(inputBuffer, imageBufferSize);
         dut->medianFilter__io_frame_sync_in = LIT<1>(1);
       }
@@ -141,10 +182,11 @@ int main (int argc, char* argv[]) {
         inputOffset++;
     }
 
-    // advance simulator
+    // advance simulation
     dut->clock_lo(reset);
-  
-    // if frame_sync_out is asserted, start verifying output
+ 
+    // examine output port values
+    // if frame_sync_out is asserted, start verification
     if (dut->medianFilter__io_frame_sync_out.lo_word())
     {
       // generated expected output image for current input
@@ -199,12 +241,16 @@ int main (int argc, char* argv[]) {
     if (generate_vcd)
     {
       dut->dump(vcdFile, cycle);
+      // add extra signals for debugging
+      // cycle count
       dat_dump(vcdFile, dat_t<32>(cycle), "NCYCLE");
+      // expected value (for verification)
       dat_dump(vcdFile, dat_t<8>(dout_expected), "EXPECTED");
+      // mismatch signal (high when output doesn't match expected output)
       dat_dump(vcdFile, dat_t<1>(dout_mismatch), "MISMATCH");
     }
 
-    // advance simulator
+    // advance simulation
     dut->clock_hi(reset);
   }
 

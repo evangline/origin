@@ -30,6 +30,7 @@ run-debug : medianFilter-emulator
 run-trace : medianFilter-emulator
 	-./medianFilter-emulator -v
 	vcd2vpd -q trace.vcd trace.vpd
+	rm -f trace.vcd
 
 all : medianFilter-emulator
 

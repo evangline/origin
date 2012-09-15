@@ -39,5 +39,6 @@ median-test: sbt/src/main/scala/median.scala
 
 clean:
 	rm -rf vlsi/generated-src/* emulator/generated-src/* sbt/target sbt/work sbt/project/target
+	cd emulator ; make clean ; cd ..
 
 .PHONY: vlsi emulator
