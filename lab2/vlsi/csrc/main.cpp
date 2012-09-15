@@ -17,12 +17,16 @@ static uint8_t inputImage[IMAGE_HEIGHT * IMAGE_WIDTH];
 static uint8_t outputImage[IMAGE_HEIGHT * IMAGE_WIDTH];
 static int imageSize = 0;
 
-  void generate_image()
+  void generate_input_image()
   {
     imageSize = IMAGE_HEIGHT*IMAGE_WIDTH;
     for (int i=0;i<imageSize;i++)
       inputImage[i] = (uint8_t) rand();
-    
+  }
+
+  void generate_output_image()
+  {
+    assert(imageSize > 0);
     medianFilter(inputImage, outputImage, 1, IMAGE_HEIGHT, IMAGE_WIDTH);
   }
 
