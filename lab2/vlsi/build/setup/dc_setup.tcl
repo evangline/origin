@@ -74,11 +74,11 @@ if {$synopsys_program_name == "dc_shell"}  {
   set_app_var link_library "* $target_library $ADDITIONAL_LINK_LIB_FILES $synthetic_library"
 
   # Set min libraries if they exist
-  echo MIN_LIBRARY_FILES = $MIN_LIBRARY_FILES
-  foreach {max_library min_library} $MIN_LIBRARY_FILES {
-    echo "set_min_library $max_library -min_version $min_library"
-    set_min_library $max_library -min_version $min_library
-  }
+#  echo MIN_LIBRARY_FILES = $MIN_LIBRARY_FILES
+#  foreach {max_library min_library} $MIN_LIBRARY_FILES {
+#    echo "set_min_library $max_library -min_version $min_library"
+#    set_min_library $max_library -min_version $min_library
+#  }
 
   if {[shell_is_in_topographical_mode]} {
     # Only create new Milkyway design library if it doesn't already exist

@@ -10,7 +10,7 @@
 #UCB_STDCELLS = synopsys-32nm/default
 UCB_STDCELLS = synopsys-32nm/multi_vt
 
-clock_period = 5
+clock_period = 4 
 vcs_clock_period = 0$(shell echo "scale=4; ${clock_period}*0.5" | bc)
 dc_clock_period = 0$(shell echo "scale=4; ${clock_period}*0.9" | bc)
 
@@ -19,10 +19,14 @@ tt_corner_stdcells = tt1p05v25c
 ff_corner_stdcells = ff1p16vn40c
 
 target_library_files = \
-  saed32rvt_$(ss_corner_stdcells).db \
-  saed32sram_ccs_$(ss_corner_stdcells).db \
+  saed32rvt_$(tt_corner_stdcells).db \
+  saed32sram_ccs_$(tt_corner_stdcells).db \
+
+#target_library_files = \
+#  saed32rvt_$(ss_corner_stdcells).db \
+#  saed32sram_ccs_$(ss_corner_stdcells).db \
   
-min_library = \
-  saed32rvt_$(ss_corner_stdcells).db saed32rvt_$(ff_corner_stdcells).db \
-  saed32sram_ccs_$(ss_corner_stdcells).db saed32sram_ccs_$(ff_corner_stdcells).db \
+#min_library = \
+#  saed32rvt_$(ss_corner_stdcells).db saed32rvt_$(ff_corner_stdcells).db \
+#  saed32sram_ccs_$(ss_corner_stdcells).db saed32sram_ccs_$(ff_corner_stdcells).db \
 

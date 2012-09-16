@@ -64,7 +64,7 @@ vars = \
 	set ADDITIONAL_SEARCH_PATH      "$(db_cells_dir) ../$(srcdir)";\n \
 	set TARGET_LIBRARY_FILES        "$(target_library_files)";\n \
         set MIN_LIBRARY_FILES           "$(min_library)";\n \
-	set MW_REFERENCE_LIB_DIRS       "$(mw_cells_dir)/cells_rvt.mw $(mw_cells_dir)/sram.mw";\n \
+	set MW_REFERENCE_LIB_DIRS       "$(mw_cells_dir)/cells_lvt.mw $(mw_cells_dir)/cells_rvt.mw $(mw_cells_dir)/cells_hvt.mw $(mw_cells_dir)/sram.mw";\n \
 	set TECH_FILE                   "$(techfile_dir)/techfile.tf";\n \
 	set MAP_FILE                    "$(techfile_dir)/tech2itf.map";\n \
 	set TLUPLUS_MAX_FILE            "$(tluplus_dir)/max.tluplus";\n \
@@ -81,6 +81,7 @@ define new-build-dir-cmds
 	rm -f $(cur_build_dc_dir)
 	ln -s $(build_dc_dir) $(cur_build_dc_dir)
 	cp $(dc_tcl) $(dc_misc_tcl) $(constraints_tcl) $(vars_tcl) $(cur_build_dc_dir)
+	cp ../Makefrag $(cur_build_dc_dir)
 	echo -e '$(vars)' > $(cur_build_dc_dir)/$(makegen_tcl)
 	date > $(dc_timestamp)
 endef

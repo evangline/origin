@@ -23,9 +23,9 @@ module medianFilterTestHarness_rtl;
 
   // instantiate and connect median filter module
   reg frame_sync_in_reg = 1'b0;
-  wire #4 frame_sync_in = frame_sync_in_reg;
+  wire #3 frame_sync_in = frame_sync_in_reg;
   reg [7:0] data_in_reg = 8'd0;
-  wire [7:0] #4 data_in = data_in_reg;
+  wire [7:0] #3 data_in = data_in_reg;
   wire [7:0] data_out;
   wire frame_sync_out;
 
