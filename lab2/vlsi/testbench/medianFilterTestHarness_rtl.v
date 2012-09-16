@@ -14,22 +14,25 @@ module medianFilterTestHarness_rtl;
   always #`CLOCK_PERIOD clk = ~clk;
 
   // reset signal
-  reg  reset, reset_ext;
+  reg  reset = 1'b1;
+  reg  reset_ext;
   always @(posedge clk)
     reset <= reset_ext;
 
+  wire #4 reset_in = reset;
+
   // instantiate and connect median filter module
   reg frame_sync_in_reg = 1'b0;
-  wire #0.1 frame_sync_in = frame_sync_in_reg;
+  wire #4 frame_sync_in = frame_sync_in_reg;
   reg [7:0] data_in_reg = 8'd0;
-  wire [7:0] #0.1 data_in = data_in_reg;
+  wire [7:0] #4 data_in = data_in_reg;
   wire [7:0] data_out;
   wire frame_sync_out;
 
   medianFilter median_filter
   ( 
     .clk              (clk),
-    .reset            (reset),
+    .reset            (reset_in),
 
     .io_frame_sync_in    (frame_sync_in),
     .io_data_in          (data_in),
@@ -60,6 +63,9 @@ module medianFilterTestHarness_rtl;
     if ($value$plusargs("vcdpluson=%d", vcdpluson))
       if (vcdpluson != 0) 
         $vcdpluson(0);
+
+    // enable warnings about comparisons with X's or Z's
+    $xzcheckon;
 
     // Strobe reset
     reset_ext = 1;
@@ -136,15 +142,15 @@ module medianFilterTestHarness_rtl;
       begin
         // get value of expected output image at specified offset
         get_output_pixel(output_offset, correct_dout);
-        if (data_out != correct_dout[7:0])
+        if (data_out == correct_dout[7:0])
+          mismatch <= 1'b0;
+        else
         begin
           $display("ERROR: Mismatch at cycle %d : expected %02x : actual %02x", cycle_count, correct_dout, data_out);
           failed <= 1'b1;
           image_failed <= 1'b1;
           mismatch <= 1'b1;
         end
-        else
-          mismatch <= 1'b0;
 
         if (output_offset == `IMAGE_SIZE-1)
         begin

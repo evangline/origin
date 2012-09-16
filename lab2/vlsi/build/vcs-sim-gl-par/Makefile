@@ -35,7 +35,7 @@ verilog_cells_dir = $(UCB_VLSI_HOME)/stdcells/$(UCB_STDCELLS)/verilog
 
 VCS      = vcs -full64
 VCS_OPTS = -notice -PP +lint=all,noVCDE,noTFIPC,noIWU,noOUDPE \
-           +vc+list +v2k -timescale=1ns/1ps +neg_tchk +sdfverbose \
+           +vc+list +v2k -timescale=1ns/1ps +neg_tchk +sdfverbose -negdelay \
            -sdf typ:$(toplevel):../icc-par/current-icc/results/$(toplevel).output.corrected.sdf \
 
 #	-P ../icc-par/current-icc/access.tab -debug \
@@ -51,6 +51,7 @@ $(vcs_sim) : Makefile $(vsrcs) $(csrcs)
 	-v $(verilog_cells_dir)/cells_lvt.v \
 	-v $(verilog_cells_dir)/cells_rvt.v \
 	-v $(verilog_cells_dir)/cells_hvt.v \
+	-v $(verilog_cells_dir)/sram.v \
 	$(vsrcs) $(csrcs)
 
 #--------------------------------------------------------------------

@@ -48,6 +48,7 @@ $(vcs_sim) : Makefile $(vsrcs) $(csrcs)
 	-v $(verilog_cells_dir)/cells_lvt.v \
 	-v $(verilog_cells_dir)/cells_rvt.v \
 	-v $(verilog_cells_dir)/cells_hvt.v \
+	-v $(verilog_cells_dir)/sram.v \
 	$(vsrcs) $(csrcs)
 
 #--------------------------------------------------------------------

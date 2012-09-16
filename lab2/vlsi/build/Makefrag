@@ -20,8 +20,9 @@ ff_corner_stdcells = ff1p16vn40c
 
 target_library_files = \
   saed32rvt_$(ss_corner_stdcells).db \
+  saed32sram_ccs_$(ss_corner_stdcells).db \
   
 min_library = \
-  saed32rvt_$(ss_corner_stdcells).db saed32rvt_$(ff_corner_stdcells).db
-  
+  saed32rvt_$(ss_corner_stdcells).db saed32rvt_$(ff_corner_stdcells).db \
+  saed32sram_ccs_$(ss_corner_stdcells).db saed32sram_ccs_$(ff_corner_stdcells).db \
 
