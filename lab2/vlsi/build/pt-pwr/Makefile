@@ -66,7 +66,7 @@ vars = \
         set MIN_LIBRARY_FILES           "$(min_library)";\n \
 	set REPORTS_DIR                 "$(reports_dir)";\n \
 	set NETLIST_FILES               "$(notdir $(icc_v))";\n \
-	set CONSTRAINTS_FILES           "../$(icc_sdc)";\n \
+	set CONSTRAINT_FILES           "../$(icc_sdc)";\n \
 
 vars_avg = \
 	set STRIP_PATH                  "$(testharness)/$(toplevelinst)";\n \
