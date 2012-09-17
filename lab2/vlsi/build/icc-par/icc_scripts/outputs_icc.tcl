@@ -42,10 +42,10 @@ open_mw_cel change_names_icc
 write_verilog -diode_ports -no_physical_only_cells $RESULTS_DIR/$DESIGN_NAME.output.v
 
 ## For comparison with a Design Compiler netlist,the option -diode_ports is removed
-write_verilog -no_physical_only_cells $RESULTS_DIR/$DESIGN_NAME.output.dc.v
+#write_verilog -no_physical_only_cells $RESULTS_DIR/$DESIGN_NAME.output.dc.v
 
 ## For LVS use,the option -no_physical_only_cells is removed
-write_verilog -diode_ports -pg $RESULTS_DIR/$DESIGN_NAME.output.pg.lvs.v
+#write_verilog -diode_ports -pg $RESULTS_DIR/$DESIGN_NAME.output.pg.lvs.v
 
 ## For Prime Time use,to include DCAP cells for leakage power analysis,add the option -force_output_references
 #  write_verilog -diode_ports -no_physical_only_cells -force_output_references [list of your DCAP cells] \
@@ -65,10 +65,10 @@ extract_rc -coupling_cap
 write_parasitics  -format SBPF -output $RESULTS_DIR/$DESIGN_NAME.output.sbpf
 
 ##DEF
-write_def -output  $RESULTS_DIR/$DESIGN_NAME.output.def
+#write_def -output  $RESULTS_DIR/$DESIGN_NAME.output.def
 
-source find_regs.tcl
-find_regs ${STRIP_PATH}
+#source find_regs.tcl
+#find_regs ${STRIP_PATH}
 
 ###GDSII
 ##Set options - usually also include a mapping file (-map_layer)
