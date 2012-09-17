@@ -63,8 +63,8 @@ vars = \
 	set DESIGN_NAME                 "$(toplevel)";\n \
 	set ADDITIONAL_SEARCH_PATH      "$(db_cells_dir) ../$(srcdir)";\n \
 	set TARGET_LIBRARY_FILES        "$(target_library_files)";\n \
+	set MW_REFERENCE_LIB_DIRS       "$(addprefix $(mw_cells_dir)/, $(mw_ref_libs))";\n \
         set MIN_LIBRARY_FILES           "$(min_library)";\n \
-	set MW_REFERENCE_LIB_DIRS       "$(mw_cells_dir)/cells_lvt.mw $(mw_cells_dir)/cells_rvt.mw $(mw_cells_dir)/cells_hvt.mw $(mw_cells_dir)/sram.mw";\n \
 	set TECH_FILE                   "$(techfile_dir)/techfile.tf";\n \
 	set MAP_FILE                    "$(techfile_dir)/tech2itf.map";\n \
 	set TLUPLUS_MAX_FILE            "$(tluplus_dir)/max.tluplus";\n \

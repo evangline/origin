@@ -7,7 +7,6 @@
 # will be using.
 #
 
-#UCB_STDCELLS = synopsys-32nm/default
 UCB_STDCELLS = synopsys-32nm/multi_vt
 
 clock_period = 4 
@@ -18,15 +17,18 @@ ss_corner_stdcells = ss0p95v125c
 tt_corner_stdcells = tt1p05v25c
 ff_corner_stdcells = ff1p16vn40c
 
-target_library_files = \
-  saed32rvt_$(tt_corner_stdcells).db \
-  saed32sram_ccs_$(tt_corner_stdcells).db \
+mw_ref_libs = \
+  cells_rvt.mw
 
-#target_library_files = \
-#  saed32rvt_$(ss_corner_stdcells).db \
-#  saed32sram_ccs_$(ss_corner_stdcells).db \
-  
+target_library_files = \
+  saed32rvt_$(tt_corner_stdcells).db
+
+#  saed32sram_$(ss_corner_stdcells).db \
+
+# filler_cells = SHFILL128_HVT SHFILL64_HVT SHFILL3_HVT SHFILL2_HVT SHFILL1_HVT
+filler_cells = SHFILL128_RVT SHFILL64_RVT SHFILL3_RVT SHFILL2_RVT SHFILL1_RVT
+
 #min_library = \
 #  saed32rvt_$(ss_corner_stdcells).db saed32rvt_$(ff_corner_stdcells).db \
-#  saed32sram_ccs_$(ss_corner_stdcells).db saed32sram_ccs_$(ff_corner_stdcells).db \
+#  saed32sram_$(ss_corner_stdcells).db saed32sram_$(ff_corner_stdcells).db \
 

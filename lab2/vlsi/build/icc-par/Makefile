@@ -81,15 +81,15 @@ vars = \
 	set DESIGN_NAME                 "$(toplevel)";\n \
 	set ADDITIONAL_SEARCH_PATH      "$(db_cells_dir) $(mw_cells_dir) ../$(dc_dir)";\n \
 	set TARGET_LIBRARY_FILES        "$(target_library_files)";\n \
+	set MW_REFERENCE_LIB_DIRS       "$(addprefix $(mw_cells_dir)/, $(mw_ref_libs))";\n \
         set MIN_LIBRARY_FILES           "$(min_library)";\n \
-	set MW_REFERENCE_LIB_DIRS       "$(mw_cells_dir)/cells_lvt.mw $(mw_cells_dir)/cells_rvt.mw $(mw_cells_dir)/cells_hvt.mw $(mw_cells_dir)/sram.mw";\n \
 	set TECH_FILE                   "$(techfile_dir)/techfile.tf";\n \
 	set MAP_FILE                    "$(techfile_dir)/tech2itf.map";\n \
 	set TLUPLUS_MAX_FILE            "$(tluplus_cells_dir)/max.tluplus";\n \
 	set TLUPLUS_MIN_FILE            "$(tluplus_cells_dir)/min.tluplus";\n \
 	set REPORTS_DIR                 "$(reports_dir)";\n \
 	set RESULTS_DIR                 "$(results_dir)";\n \
-	set FILLER_CELL                 "SHFILL128_RVT SHFILL64_RVT SHFILL3_RVT SHFILL2_RVT SHFILL1_RVT";\n \
+	set FILLER_CELL                 "$(filler_cells)";\n \
 	set REPORTING_EFFORT            "OFF";\n \
 	set PNR_EFFORT                  "low";\n \
 
@@ -103,6 +103,7 @@ $(iccdp_timestamp): $(dc_timestamp) $(vars_tcl) $(floorplan_tcl) $(init_design_i
 	mkdir $(build_iccdp_dir)
 	rm -f $(cur_build_iccdp_dir)
 	ln -s $(build_iccdp_dir) $(cur_build_iccdp_dir)
+	cp ../Makefrag $(cur_build_iccdp_dir)
 	cp $(dc_timestamp) $(cur_build_iccdp_dir)/timestamp-dc
 	date > $(iccdp_timestamp)
 
@@ -130,6 +131,7 @@ $(icc_timestamp): $(dc_timestamp) $(iccdp_timestamp) $(vars_tcl) $(place_opt_icc
 	ln -s $(build_icc_dir) $(cur_build_icc_dir)
 	cp $(dc_timestamp) $(cur_build_icc_dir)/timestamp-dc
 	cp $(iccdp_timestamp) $(cur_build_icc_dir)/timestamp-iccdp
+	cp ../Makefrag $(cur_build_icc_dir)
 	cp -R $(cur_build_iccdp_dir)/$(toplevel)_LIB $(cur_build_icc_dir)
 	date > $(icc_timestamp)
 

@@ -65,9 +65,7 @@ set_fix_multiple_port_nets -all -buffer_constants
 # Compile the Design
 #################################################################################
 
-#compile_ultra -gate_clock
-# normally would use clock gating, but there's really no point for this design
-compile_ultra
+compile_ultra -gate_clock
 check_design
 
 #################################################################################
