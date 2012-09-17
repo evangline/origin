@@ -71,8 +71,11 @@ run: $(vpd)
 convert_saif = vcdplus.saif
 
 $(convert_saif): %.saif: %.vpd
-	vcd2saif -input $(patsubst %.saif, %.vcd, $@)  -output $@ -pipe "vpd2vcd $(patsubst %.saif,%.vpd,$@) $(patsubst %.saif,%.vcd,$@)"
+	vpd2vcd $(patsubst %.saif,%.vpd,$@) $(patsubst %.saif,%.vcd,$@)
+	vcd2saif -input $(patsubst %.saif, %.vcd, $@)  -output $@
 	date > timestamp
+
+#	vcd2saif -input $(patsubst %.saif, %.vcd, $@)  -output $@ -pipe "vpd2vcd $(patsubst %.saif,%.vpd,$@) $(patsubst %.saif,%.vcd,$@)"
 
 convert: $(convert_saif)
 
