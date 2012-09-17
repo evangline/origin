@@ -43,6 +43,9 @@ group_path -name REGOUT -to [all_outputs]
 group_path -name REGIN -from [remove_from_collection [all_inputs] $ports_clock_root]
 group_path -name FEEDTHROUGH -from [remove_from_collection [all_inputs] $ports_clock_root] -to [all_outputs]
 
+# multi-vt flow
+set_leakage_optimization true
+
 ##################################################################################
 # Specify ignored layers for routing to improve correlation
 # Use the same ignored layers that will be used during place and route
