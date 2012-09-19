@@ -4,6 +4,7 @@
 
 default : all
 basedir  = ../..
+refdir = $(basedir)/../ref
 include ../Makefrag
 
 #--------------------------------------------------------------------
@@ -52,15 +53,16 @@ $(vcs_sim) : Makefile $(vsrcs) $(csrcs)
 	-v $(verilog_cells_dir)/cells_lvt.v \
 	-v $(verilog_cells_dir)/cells_rvt.v \
 	-v $(verilog_cells_dir)/cells_hvt.v \
-	-v $(verilog_cells_dir)/sram.v \
+        -v $(refdir)/SRAM2RW128x16.v \
 	$(vsrcs) $(csrcs)
 
 #--------------------------------------------------------------------
 # Run
 #--------------------------------------------------------------------
 
+force_regs = ../dc-syn/current-dc/force_regs.ucli
 vpd = vcdplus.vpd
-$(vpd): $(vcs_sim)
+$(vpd): $(vcs_sim) $(force_regs)
 	./simv -ucli -do run.tcl +vcdpluson=1
 
 run: $(vpd)
@@ -74,9 +76,6 @@ convert_saif = vcdplus.saif
 $(convert_saif): %.saif: %.vpd
 	vcd2saif -input $(patsubst %.saif, %.vcd, $@)  -output $@ -pipe "vpd2vcd $(patsubst %.saif,%.vpd,$@) $(patsubst %.saif,%.vcd,$@)"
 	date > timestamp
-
-#	vpd2vcd $(patsubst %.saif,%.vpd,$@) $(patsubst %.saif,%.vcd,$@)
-#	vcd2saif -input $(patsubst %.saif, %.vcd, $@)  -output $@
 
 convert: $(convert_saif)
 

@@ -4,6 +4,7 @@
 
 default : all
 basedir  = ../..
+refdir = $(basedir)/../ref
 include ../Makefrag
 
 # Specify what the toplevel verilog module is
@@ -49,18 +50,19 @@ $(vcs_sim) : Makefile $(vsrcs) $(csrcs)
 	-v $(verilog_cells_dir)/cells_lvt.v \
 	-v $(verilog_cells_dir)/cells_rvt.v \
 	-v $(verilog_cells_dir)/cells_hvt.v \
-	-v $(verilog_cells_dir)/sram.v \
+        -v $(refdir)/SRAM2RW128x16.v \
 	$(vsrcs) $(csrcs)
 
 #--------------------------------------------------------------------
 # Run
 #--------------------------------------------------------------------
 
+force_regs = ../dc-syn/current-dc/force_regs.ucli
 vpd = vcdplus.vpd
-$(vpd): $(vcs_sim)
+$(vpd): $(vcs_sim) $(force_regs)
 	./simv -ucli -do run.tcl +vcdpluson=1 
 
-run: $(vcs_sim)
+run: $(vcs_sim) $(force_regs)
 	./simv -ucli -do run.tcl 
 
 run-trace: $(vpd)

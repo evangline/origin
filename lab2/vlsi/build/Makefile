@@ -134,4 +134,5 @@ clean:
 	  done; \
 	  rm -rf *~ \#*; \
 	fi; \
+        rm -f ../generated-src/*.conf ../generated-src/*.v; \
 	echo "";

@@ -9,6 +9,7 @@
 
 default : all
 basedir  = ../..
+refdir = $(basedir)/../ref
 include ../Makefrag
 
 #--------------------------------------------------------------------
@@ -47,7 +48,7 @@ $(vcs_sim) : Makefile $(vsrcs) $(csrcs)
 	+define+CLOCK_PERIOD=$(vcs_clock_period) \
 	+define+INPUT_DELAY=$(input_delay) \
 	+define+OUTPUT_DELAY=$(output_delay) \
-        -v $(verilog_cells_dir)/sram.v \
+        -v $(refdir)/SRAM2RW128x16.v \
 	$(vsrcs) $(csrcs)
 
 #--------------------------------------------------------------------

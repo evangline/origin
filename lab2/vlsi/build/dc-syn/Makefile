@@ -11,6 +11,7 @@
 
 default: all
 basedir  = ../..
+refdir = $(basedir)/../ref
 include ../Makefrag
 
 #--------------------------------------------------------------------
@@ -57,14 +58,14 @@ makegen_tcl     := make_generated_vars.tcl
 dc_tcl          := dc_scripts/dc.tcl
 dc_misc_tcl     := dc_scripts/find_regs.tcl
 fm_tcl          := dc_scripts/fm.tcl
-constraints_tcl := constraints.tcl
+constraints_tcl := setup/constraints.tcl
 
 vars = \
 	set DESIGN_NAME                 "$(toplevel)";\n \
         set STRIP_PATH                  "$(testharness)/$(toplevelinst)";\n \
-	set ADDITIONAL_SEARCH_PATH      "$(db_cells_dir) ../$(srcdir)";\n \
-	set TARGET_LIBRARY_FILES        "$(target_library_files)";\n \
-	set MW_REFERENCE_LIB_DIRS       "$(addprefix $(mw_cells_dir)/, $(mw_ref_libs))";\n \
+	set ADDITIONAL_SEARCH_PATH      "$(db_cells_dir) ../$(srcdir) ../$(refdir)";\n \
+	set TARGET_LIBRARY_FILES        "$(target_library_files) $(db_sram_libs)";\n \
+	set MW_REFERENCE_LIB_DIRS       "$(addprefix $(mw_cells_dir)/, $(mw_ref_libs)) $(mw_sram_libs)";\n \
         set MIN_LIBRARY_FILES           "$(min_library)";\n \
 	set TECH_FILE                   "$(techfile_dir)/techfile.tf";\n \
 	set MAP_FILE                    "$(techfile_dir)/tech2itf.map";\n \
