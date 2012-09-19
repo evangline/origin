@@ -9,26 +9,52 @@
 
 UCB_STDCELLS = synopsys-32nm/multi_vt
 
-clock_period = 4 
+vlsidir = vlsi
+
+include $(basedir)/../Makefrag
+
+$(basedir)/generated-src/medianFilter.v: $(basedir)/../src/*.scala
+	cd $(basedir)/../sbt && $(SBT) "project work" "run filter --backend v --targetDir ../$(vlsidir)/generated-src"
+
+# invokes vlsi_mem_gen script to create verilog for SRAM macros
+#$(basedir)/generated-src/medianFilter.v: $(basedir)/../src/*.scala
+#	cd $(basedir)/../sbt && $(SBT) "project work" "run filter --backend v --targetDir ../$(vlsidir)/generated-src --noInlineMem"
+#	cd $(basedir)/generated-src && \
+#	sed -i 's/^/..\/src\/vlsi_mem_gen /' medianFilter.conf && \
+#	sed -i 's/$$/ >> medianFilter.v/' medianFilter.conf && \
+#	sh medianFilter.conf
+
+clock_period = 4
 vcs_clock_period = 0$(shell echo "scale=4; ${clock_period}*0.5" | bc)
-dc_clock_period = 0$(shell echo "scale=4; ${clock_period}*0.9" | bc)
+dc_clock_period = 0$(shell echo "scale=4; ${clock_period}*1.0" | bc)
+
+clock_uncertainty = 0$(shell echo "scale=4; ${clock_period}*0.1" | bc)
+input_delay = 0$(shell echo "scale=4; ${clock_period}*0.2" | bc)
+output_delay = 0$(shell echo "scale=4; ${clock_period}*0.2" | bc)
 
 ss_corner_stdcells = ss0p95v125c
 tt_corner_stdcells = tt1p05v25c
 ff_corner_stdcells = ff1p16vn40c
 
-mw_ref_libs = \
-  cells_rvt.mw
-
-target_library_files = \
-  saed32rvt_$(tt_corner_stdcells).db
-
-#  saed32sram_$(ss_corner_stdcells).db \
-
-# filler_cells = SHFILL128_HVT SHFILL64_HVT SHFILL3_HVT SHFILL2_HVT SHFILL1_HVT
 filler_cells = SHFILL128_RVT SHFILL64_RVT SHFILL3_RVT SHFILL2_RVT SHFILL1_RVT
 
-#min_library = \
-#  saed32rvt_$(ss_corner_stdcells).db saed32rvt_$(ff_corner_stdcells).db \
-#  saed32sram_$(ss_corner_stdcells).db saed32sram_$(ff_corner_stdcells).db \
+# only use regular VT standard cells for synthesis/p&r
+mw_ref_libs = \
+  cells_rvt.mw \
+
+target_library_files = \
+  saed32rvt_$(tt_corner_stdcells).db \
+
+# use multiple vt libraries + SRAM
+#mw_ref_libs = \
+#  cells_hvt.mw \
+#  cells_rvt.mw \
+#  cells_lvt.mw \
+#  sram.mw \
+#
+#target_library_files = \
+#  saed32hvt_$(tt_corner_stdcells).db \
+#  saed32rvt_$(tt_corner_stdcells).db \
+#  saed32lvt_$(tt_corner_stdcells).db \
+#  sram.db \
 

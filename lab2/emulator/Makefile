@@ -1,39 +1,49 @@
+basedir = ..
+include ../Makefrag
+
+CXX = g++
+CXXFLAGS = -g -O2 -I./generated-src -I./testbench
 LDFLAGS = -g
-CPPFLAGS = -g -O2 -I./generated-src -I./testbench
-CPP = g++
-INCLUDES = generated-src/emulator.h generated-src/medianFilter.h testbench/median.h
+
+INCLUDES = generated-src/emulator.h generated-src/$(MODEL).h testbench/median.h
 
 default : all
 
-medianFilter.o: generated-src/medianFilter.cpp $(INCLUDES)
-	$(CPP) $(CPPFLAGS) -c $<
+generated-src/$(MODEL).cpp: $(basedir)/src/*.scala
+	cd $(basedir)/sbt && $(SBT) "project work" "run filter --backend c --targetDir ../emulator/generated-src"
+
+generated-src-debug/$(MODEL).cpp: $(basedir)/src/*.scala
+	cd $(basedir)/sbt && $(SBT) "project work" "run filter --backend c --debug --vcd --targetDir ../emulator/generated-src-debug"
+
+$(MODEL).o: generated-src/$(MODEL).cpp $(INCLUDES)
+	$(CXX) $(CXXFLAGS) -c $<
 
 median.o: testbench/median.cpp testbench/median.h
-	$(CPP) $(CPPFLAGS) -c $<
+	$(CXX) $(CXXFLAGS) -c $<
 
-medianFilter-emulator.o: testbench/medianFilter-emulator.cpp $(INCLUDES)
-	$(CPP) $(CPPFLAGS) -c $<
+$(MODEL)-emulator.o: testbench/$(MODEL)-emulator.cpp $(INCLUDES)
+	$(CXX) $(CXXFLAGS) -c $<
 
-medianFilter-emulator: medianFilter-emulator.o medianFilter.o median.o
-	$(CPP) $(LDFLAGS) -o $@ $+
+$(MODEL)-emulator: $(MODEL)-emulator.o $(MODEL).o median.o
+	$(CXX) $(LDFLAGS) -o $@ $+
 
-run : medianFilter-emulator
-	./medianFilter-emulator
+run : $(MODEL)-emulator
+	./$(MODEL)-emulator
 
 # sed line is a hack in case trace file generation is interrupted (e.g. by a segfault)
 # just remove the last line
 #	sed -i '$$d' trace.vcd
 
-run-debug : medianFilter-emulator
-	./medianFilter-emulator -t
+run-debug : $(MODEL)-emulator
+	./$(MODEL)-emulator -t
 
-run-trace : medianFilter-emulator
-	-./medianFilter-emulator -v
+run-trace : $(MODEL)-emulator
+	-./$(MODEL)-emulator -v
 	vcd2vpd -q trace.vcd trace.vpd
 	rm -f trace.vcd
 
-all : medianFilter-emulator
+all : $(MODEL)-emulator
 
 clean :
-	rm -f median.o medianFilter-emulator.o medianFilter.o medianFilter-emulator *.vcd *.vpd
+	rm -f median.o $(MODEL)-emulator.o $(MODEL).o $(MODEL)-emulator *.vcd *.vpd
 

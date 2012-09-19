@@ -2,11 +2,10 @@
 # UCB VLSI FLOW: Makefile for icc-par
 #-----------------------------------------------------------------------
 
-include ../Makefrag
 
 default: all
-
 basedir  = ../..
+include ../Makefrag
 
 #--------------------------------------------------------------------
 # Sources
@@ -15,6 +14,8 @@ basedir  = ../..
 # Specify what the toplevel verilog module is
 
 toplevel = medianFilter
+testharness = medianFilterTestHarness_rtl
+toplevelinst = median_filter
 
 #--------------------------------------------------------------------
 # Build rules
@@ -79,6 +80,7 @@ outputs_misc_tcl        := icc_scripts/find_regs.tcl
 
 vars = \
 	set DESIGN_NAME                 "$(toplevel)";\n \
+        set STRIP_PATH                  "$(testharness)/$(toplevelinst)";\n \
 	set ADDITIONAL_SEARCH_PATH      "$(db_cells_dir) $(mw_cells_dir) ../$(dc_dir)";\n \
 	set TARGET_LIBRARY_FILES        "$(target_library_files)";\n \
 	set MW_REFERENCE_LIB_DIRS       "$(addprefix $(mw_cells_dir)/, $(mw_ref_libs))";\n \

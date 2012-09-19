@@ -1,0 +1,5 @@
+# Makefile snippet used by emulator/vlsi/fpga backends
+
+MODEL := medianFilter
+SBT := java -Xmx1024M -Xss8M -XX:MaxPermSize=128M -jar sbt-launch.jar
+

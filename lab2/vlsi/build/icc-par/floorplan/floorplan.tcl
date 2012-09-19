@@ -7,7 +7,7 @@ set_preferred_routing_direction   -layers {M1 M3 M5 M7 M9} -direction horizontal
 set_preferred_routing_direction   -layers {M2 M4 M6 M8 MRDL} -direction vertical
 
 create_floorplan \
-        -core_utilization 0.7 \
+        -core_utilization 0.65 \
         -flip_first_row \
         -start_first_row \
   	-left_io2core 5 \
@@ -22,22 +22,9 @@ add_row \
   -flip_first_row \
   -tile_name unit
 
-# preroute standard cell rails
-insert_stdcell_filler   \
-        -cell_without_metal "SHFILL128_RVT SHFILL64_RVT SHFILL3_RVT SHFILL2_RVT SHFILL1_RVT" \
-        -connect_to_power {VDD} \
-        -connect_to_ground {VSS}
+create_fp_placement
 
-preroute_standard_cells \
-  -connect horizontal     \
-  -port_filter_mode off   \
-  -cell_master_filter_mode off    \
-  -cell_instance_filter_mode off  \
-  -voltage_area_filter_mode off
-
-remove_stdcell_filler -stdcell
-
-#POWER GRID
+# create power distribution network
 synthesize_fp_rings \
   -nets {VDD VSS} \
   -core \
@@ -52,9 +39,30 @@ set_power_plan_strategy core \
   -template saed_32nm.tpl:m45_mesh(0.5,1.0) \
   -extension {stop: outermost_ring}
 
+#set macros [collection_to_list -no_braces -name_only [get_cells -hierarchical -filter "mask_layout_type==macro"]]
+#set_power_plan_strategy macros \
+  -nets {VDD VSS} \
+  -macros $macros \
+
 compile_power_plan
 
-create_fp_placement
+# preroute standard cell rails
+insert_stdcell_filler   \
+        -cell_without_metal "SHFILL128_RVT SHFILL64_RVT SHFILL3_RVT SHFILL2_RVT SHFILL1_RVT" \
+        -connect_to_power {VDD} \
+        -connect_to_ground {VSS}
+
+preroute_standard_cells \
+  -within [get_attribute [get_core_area] bbox] \
+  -connect horizontal     \
+  -port_filter_mode off   \
+  -cell_master_filter_mode off    \
+  -cell_instance_filter_mode off  \
+  -voltage_area_filter_mode off \
+  -do_not_route_over_macros \
+  -no_routing_outside_working_area \
+
+remove_stdcell_filler -stdcell
 
 verify_pg_nets
 

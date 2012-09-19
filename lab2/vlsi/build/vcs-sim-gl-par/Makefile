@@ -2,11 +2,9 @@
 # UCB VLSI Makefile for vcs-sim-gl-par
 #-----------------------------------------------------------------------
 
-include ../Makefrag
-
 default : all
-
 basedir  = ../..
+include ../Makefrag
 
 #--------------------------------------------------------------------
 # Sources
@@ -37,8 +35,9 @@ VCS      = vcs -full64
 VCS_OPTS = -notice -PP +lint=all,noVCDE,noTFIPC,noIWU,noOUDPE \
            +vc+list +v2k -timescale=1ns/1ps +neg_tchk +sdfverbose -negdelay \
            -sdf typ:$(toplevel):../icc-par/current-icc/results/$(toplevel).output.corrected.sdf \
+  	   -P ../icc-par/current-icc/access.tab -debug \
 
-#	-P ../icc-par/current-icc/access.tab -debug \
+
 
 #--------------------------------------------------------------------
 # Build the simulator
@@ -48,6 +47,8 @@ vcs_sim = simv
 $(vcs_sim) : Makefile $(vsrcs) $(csrcs)
 	$(VCS) $(VCS_OPTS) +incdir+$(srcdir) -o $(vcs_sim) \
 	+define+CLOCK_PERIOD=$(vcs_clock_period) \
+	+define+INPUT_DELAY=$(input_delay) \
+	+define+OUTPUT_DELAY=$(output_delay) \
 	-v $(verilog_cells_dir)/cells_lvt.v \
 	-v $(verilog_cells_dir)/cells_rvt.v \
 	-v $(verilog_cells_dir)/cells_hvt.v \
@@ -60,7 +61,7 @@ $(vcs_sim) : Makefile $(vsrcs) $(csrcs)
 
 vpd = vcdplus.vpd
 $(vpd): $(vcs_sim)
-	./simv +vcdpluson=1
+	./simv -ucli -do run.tcl +vcdpluson=1
 
 run: $(vpd)
 
@@ -71,11 +72,11 @@ run: $(vpd)
 convert_saif = vcdplus.saif
 
 $(convert_saif): %.saif: %.vpd
-	vpd2vcd $(patsubst %.saif,%.vpd,$@) $(patsubst %.saif,%.vcd,$@)
-	vcd2saif -input $(patsubst %.saif, %.vcd, $@)  -output $@
+	vcd2saif -input $(patsubst %.saif, %.vcd, $@)  -output $@ -pipe "vpd2vcd $(patsubst %.saif,%.vpd,$@) $(patsubst %.saif,%.vcd,$@)"
 	date > timestamp
 
-#	vcd2saif -input $(patsubst %.saif, %.vcd, $@)  -output $@ -pipe "vpd2vcd $(patsubst %.saif,%.vpd,$@) $(patsubst %.saif,%.vcd,$@)"
+#	vpd2vcd $(patsubst %.saif,%.vpd,$@) $(patsubst %.saif,%.vcd,$@)
+#	vcd2saif -input $(patsubst %.saif, %.vcd, $@)  -output $@
 
 convert: $(convert_saif)
 

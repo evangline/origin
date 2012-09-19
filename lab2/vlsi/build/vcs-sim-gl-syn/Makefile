@@ -2,11 +2,9 @@
 # UCB VLSI FLOW: Makefile for vcs-sim-gl-syn
 #-----------------------------------------------------------------------
 
-include ../Makefrag
-
 default : all
-
 basedir  = ../..
+include ../Makefrag
 
 # Specify what the toplevel verilog module is
 toplevel = medianFilter
@@ -36,6 +34,7 @@ verilog_cells_dir = $(UCB_VLSI_HOME)/stdcells/$(UCB_STDCELLS)/verilog
 VCS      = vcs -full64
 VCS_OPTS = -notice -PP +lint=all,noVCDE,noTFIPC,noIWU,noOUDPE \
            +v2k +vc+list -timescale=1ns/1ps \
+           -P ../dc-syn/current-dc/access.tab -debug \
 
 #--------------------------------------------------------------------
 # Build the simulator
@@ -45,6 +44,8 @@ vcs_sim = simv
 $(vcs_sim) : Makefile $(vsrcs) $(csrcs)
 	$(VCS) $(VCS_OPTS)  -o $(vcs_sim) \
 	+define+CLOCK_PERIOD=$(vcs_clock_period) +define+functional=1 \
+	+define+INPUT_DELAY=$(input_delay) \
+	+define+OUTPUT_DELAY=$(output_delay) \
 	-v $(verilog_cells_dir)/cells_lvt.v \
 	-v $(verilog_cells_dir)/cells_rvt.v \
 	-v $(verilog_cells_dir)/cells_hvt.v \
@@ -57,10 +58,10 @@ $(vcs_sim) : Makefile $(vsrcs) $(csrcs)
 
 vpd = vcdplus.vpd
 $(vpd): $(vcs_sim)
-	./simv +vcdpluson=1 
+	./simv -ucli -do run.tcl +vcdpluson=1 
 
 run: $(vcs_sim)
-	./simv
+	./simv -ucli -do run.tcl 
 
 run-trace: $(vpd)
 

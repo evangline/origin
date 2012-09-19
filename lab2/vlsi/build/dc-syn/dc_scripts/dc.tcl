@@ -19,7 +19,7 @@ write -hierarchy -format ddc -output ${RESULTS_DIR}/${DCRM_ELABORATED_DESIGN_DDC
 # Apply Logical Design Constraints
 #################################################################################
 
-source ${DCRM_CONSTRAINTS_INPUT_FILE}
+source -echo ${DCRM_CONSTRAINTS_INPUT_FILE}
 
 #################################################################################
 # Apply The Operating Conditions
@@ -68,6 +68,7 @@ set_fix_multiple_port_nets -all -buffer_constants
 # Compile the Design
 #################################################################################
 
+#compile_ultra -gate_clock -no_autoungroup
 compile_ultra -gate_clock
 check_design
 
@@ -86,6 +87,9 @@ set_svf -off
 write -format ddc -hierarchy -output ${RESULTS_DIR}/${DCRM_FINAL_DDC_OUTPUT_FILE}
 write -f verilog -hierarchy -output ${RESULTS_DIR}/${DCRM_FINAL_VERILOG_OUTPUT_FILE}
 write_sdc -nosplit ${RESULTS_DIR}/${DCRM_FINAL_SDC_OUTPUT_FILE}
+
+source find_regs.tcl
+find_regs ${STRIP_PATH}
 
 #################################################################################
 # Generate Final Reports

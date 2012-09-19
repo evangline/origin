@@ -1,30 +1,16 @@
-# This constraint sets the target clock period for the chip in
-# nanoseconds. Note that the first parameter is the name of the clock
-# signal in your verlog design. If you called it something different than
-# clk you will need to change this. You should set this constraint
-# carefully. If the period is unrealistically small then the tools will
-# spend forever trying to meet timing and ultimately fail. If the period
-# is too large the tools will have no trouble but you will get a very
-# conservative implementation.
-
+# create clock
 create_clock clk -name ideal_clock1 -period ${CLOCK_PERIOD}
-
-# This constrainst sets the load capacitance in picofarads of the
-# output pins of your design. 4fF is reasonable if your design is
-# driving another block of on-chip logic.
-
-set_load -pin_load 0.004 [all_outputs]
-
-# This constraint sets the input drive strength of the input pins of
-# your design. We specifiy a specific standard cell which models what
-# would be driving the inputs. INVX1 is a small inverter and is
-# reasonable if another block of on-chip logic is driving your inputs.
-
-set_driving_cell -lib_cell INVX1_RVT [all_inputs]
+set_clock_uncertainty ${CLOCK_UNCERTAINTY} [get_clocks ideal_clock1]
 
 # Set timing contraints for the input and output I/O ports
-set_input_delay 3.0 -clock [get_clocks ideal_clock1] [all_inputs]
-set_output_delay 3.0 -clock [get_clocks ideal_clock1] [all_outputs]
+set all_inputs_but_clk [remove_from_collection [all_inputs] [get_ports clk]]
+set_input_delay ${INPUT_DELAY} -clock [get_clocks ideal_clock1] $all_inputs_but_clk
+set_output_delay ${OUTPUT_DELAY} -clock [get_clocks ideal_clock1] [all_outputs]
+
+# set capacitance of input ports, load of output ports
+set max_cap [expr [load_of saed32rvt_tt1p05v25c/AND2X1_RVT/A1] * 5]
+set_max_capacitance $max_cap $all_inputs_but_clk
+set_load [expr 3 * $max_cap] [all_outputs]
 
 # preserve (parts of) hierarchy
 set_ungroup windowBuf false

@@ -67,8 +67,8 @@ write_parasitics  -format SBPF -output $RESULTS_DIR/$DESIGN_NAME.output.sbpf
 ##DEF
 #write_def -output  $RESULTS_DIR/$DESIGN_NAME.output.def
 
-#source find_regs.tcl
-#find_regs ${STRIP_PATH}
+source find_regs.tcl
+find_regs ${STRIP_PATH}
 
 ###GDSII
 ##Set options - usually also include a mapping file (-map_layer)

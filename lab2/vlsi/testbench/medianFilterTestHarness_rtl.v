@@ -15,17 +15,19 @@ module medianFilterTestHarness_rtl;
 
   // reset signal
   reg  reset = 1'b1;
-  reg  reset_ext;
+  reg  reset_ext = 1'b1;
   always @(posedge clk)
     reset <= reset_ext;
 
-  wire #4 reset_in = reset;
+  wire #`INPUT_DELAY reset_in = reset;
 
   // instantiate and connect median filter module
   reg frame_sync_in_reg = 1'b0;
-  wire #3 frame_sync_in = frame_sync_in_reg;
+  wire #`INPUT_DELAY frame_sync_in = frame_sync_in_reg;
+//  wire frame_sync_in = frame_sync_in_reg;
   reg [7:0] data_in_reg = 8'd0;
-  wire [7:0] #3 data_in = data_in_reg;
+  wire [7:0] #`INPUT_DELAY data_in = data_in_reg;
+//  wire [7:0] data_in = data_in_reg;
   wire [7:0] data_out;
   wire frame_sync_out;
 
@@ -69,7 +71,7 @@ module medianFilterTestHarness_rtl;
 
     // Strobe reset
     reset_ext = 1;
-    #5 reset_ext = 0;
+    #4 reset_ext = 0;
 
   end
 
@@ -111,7 +113,7 @@ module medianFilterTestHarness_rtl;
 
   always @(posedge clk)
   begin
-    if (cycle_count > 1)
+    if (cycle_count > 4)
     begin
       if (input_offset == 0)
       begin

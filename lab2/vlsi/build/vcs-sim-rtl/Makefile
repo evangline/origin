@@ -7,18 +7,15 @@
 # verify proper functionality.
 #
 
-include ../Makefrag
-
 default : all
-
 basedir  = ../..
+include ../Makefrag
 
 #--------------------------------------------------------------------
 # Sources
 #--------------------------------------------------------------------
 
 # Verilog sources
-
 srcdir = $(basedir)/generated-src
 vsrcs = \
 	$(srcdir)/medianFilter.v \
@@ -30,7 +27,6 @@ csrcs = \
         $(csrcdir)/main.cpp \
         $(csrcdir)/median.cpp \
 
-
 #--------------------------------------------------------------------
 # Build rules
 #--------------------------------------------------------------------
@@ -39,8 +35,7 @@ verilog_cells_dir = $(UCB_VLSI_HOME)/stdcells/$(UCB_STDCELLS)/verilog
 
 VCS      = vcs -full64
 VCS_OPTS = -notice -PP -line +lint=all,noVCDE +v2k -timescale=1ns/10ps \
-           +vc+list -CC "-I$(VCS_HOME)/include -I$(basedir)/include" \
-           +libext+.v \
+           +vc+list +libext+.v \
           
 #--------------------------------------------------------------------
 # Build the simulator
@@ -50,6 +45,8 @@ vcs_sim = simv
 $(vcs_sim) : Makefile $(vsrcs) $(csrcs)
 	$(VCS) $(VCS_OPTS) +incdir+$(srcdir) -o $(vcs_sim) \
 	+define+CLOCK_PERIOD=$(vcs_clock_period) \
+	+define+INPUT_DELAY=$(input_delay) \
+	+define+OUTPUT_DELAY=$(output_delay) \
         -v $(verilog_cells_dir)/sram.v \
 	$(vsrcs) $(csrcs)
 

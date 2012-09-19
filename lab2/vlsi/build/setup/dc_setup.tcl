@@ -20,6 +20,10 @@ suppress_message TFCHK-049
 suppress_message TFCHK-050
 suppress_message TFCHK-080
 suppress_message TFCHK-089
+# SRAM MW lib warning
+# Warning: layerNumber 73 does not exist or is out of range. (MWLIBP-311)
+suppress_message MWLIBP-311
+# Information: The library cell 'PMT3_HVT' in the library 'saed32hvt_tt1p05v25c' is not characterized for internal power. (PWR-536)
 
 suppress_message UID-401
 suppress_message RCEX-011

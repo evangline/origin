@@ -7,11 +7,9 @@
 # power of your gate-level verilog netlist.
 #
 
-include ../Makefrag
-
 default: all
-
 basedir  = ../..
+include ../Makefrag
 
 #--------------------------------------------------------------------
 # Sources
@@ -142,7 +140,7 @@ $(pt_time_max_rpt): $(cur_build_pt_dir)/$(reports_dir)/%.power.time.max.report: 
 	$(pt_exec) -f $(notdir $(pt_time_tcl)) | tee $(log_dir)/$(notdir $(patsubst %.vcd, %, $<)).pt.time.max.log; \
 	cd ..
 
-pt: $(pt_avg_max_rpt) $(pt_time_max_rpt)
+pt: $(pt_avg_max_rpt)
 
 #--------------------------------------------------------------------
 # Default make target

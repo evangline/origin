@@ -9,11 +9,9 @@
 # generated gate-level verilog netlist against your RTL implementation.
 #
 
-include ../Makefrag
-
 default: all
-
 basedir  = ../..
+include ../Makefrag
 
 #--------------------------------------------------------------------
 # Sources
@@ -28,6 +26,8 @@ vsrcs = \
 # Specify what the toplevel verilog module is
 
 toplevel = medianFilter
+testharness = medianFilterTestHarness_rtl
+toplevelinst = median_filter
 
 #--------------------------------------------------------------------
 # Build rules
@@ -61,6 +61,7 @@ constraints_tcl := constraints.tcl
 
 vars = \
 	set DESIGN_NAME                 "$(toplevel)";\n \
+        set STRIP_PATH                  "$(testharness)/$(toplevelinst)";\n \
 	set ADDITIONAL_SEARCH_PATH      "$(db_cells_dir) ../$(srcdir)";\n \
 	set TARGET_LIBRARY_FILES        "$(target_library_files)";\n \
 	set MW_REFERENCE_LIB_DIRS       "$(addprefix $(mw_cells_dir)/, $(mw_ref_libs))";\n \
@@ -75,6 +76,9 @@ vars = \
 	set REPORTS_DIR                 "$(reports_dir)";\n \
 	set RESULTS_DIR                 "$(results_dir)";\n \
 	set CLOCK_PERIOD                "$(dc_clock_period)";\n \
+	set CLOCK_UNCERTAINTY           "$(clock_uncertainty)";\n \
+	set INPUT_DELAY                 "$(input_delay)";\n \
+	set OUTPUT_DELAY                "$(output_delay)";\n \
 
 define new-build-dir-cmds
 	mkdir $(build_dc_dir)
