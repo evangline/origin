@@ -7,7 +7,7 @@ set_preferred_routing_direction   -layers {M1 M3 M5 M7 M9} -direction horizontal
 set_preferred_routing_direction   -layers {M2 M4 M6 M8 MRDL} -direction vertical
 
 create_floorplan \
-        -core_utilization 0.65 \
+        -core_utilization 0.7 \
         -flip_first_row \
         -start_first_row \
   	-left_io2core 5 \
@@ -15,6 +15,9 @@ create_floorplan \
   	-right_io2core 5 \
   	-top_io2core 5 \
 
+# there's something funky about the synopsys 32nm educational library
+# which results in create_floorplan leaving gaps between the standard cell rows it creates
+# removing and regenerating the standard cell rows seems to get around the propblem
 cut_row -all
 add_row \
   -within [get_attr [get_core_area] bbox] \
@@ -22,6 +25,7 @@ add_row \
   -flip_first_row \
   -tile_name unit
 
+# create initial placement
 create_fp_placement
 
 # create power distribution network
@@ -46,12 +50,14 @@ set_power_plan_strategy core \
 
 compile_power_plan
 
-# preroute standard cell rails
+# add filler cells so all cell sites are populated
+# synopsys recommends you do this before routing standard cell power rails
 insert_stdcell_filler   \
         -cell_without_metal "SHFILL128_RVT SHFILL64_RVT SHFILL3_RVT SHFILL2_RVT SHFILL1_RVT" \
         -connect_to_power {VDD} \
         -connect_to_ground {VSS}
 
+# preroute standard cell rails
 preroute_standard_cells \
   -within [get_attribute [get_core_area] bbox] \
   -connect horizontal     \
@@ -62,7 +68,9 @@ preroute_standard_cells \
   -do_not_route_over_macros \
   -no_routing_outside_working_area \
 
+# get rid of filler cells
 remove_stdcell_filler -stdcell
 
+# verify connectivity of power/ground nets
 verify_pg_nets
 

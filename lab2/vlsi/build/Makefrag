@@ -10,25 +10,24 @@
 UCB_STDCELLS = synopsys-32nm/multi_vt
 
 vlsidir = vlsi
-
 include $(basedir)/../Makefrag
 
-$(basedir)/generated-src/medianFilter.v: $(basedir)/../src/*.scala
-	cd $(basedir)/../sbt && $(SBT) "project work" "run filter --backend v --targetDir ../$(vlsidir)/generated-src"
+#$(basedir)/generated-src/medianFilter.v: $(basedir)/../src/*.scala
+#	cd $(basedir)/../sbt && $(SBT) "project work" "run filter --backend v --targetDir ../$(vlsidir)/generated-src"
 
 # invokes vlsi_mem_gen script to create verilog for SRAM macros
-#$(basedir)/generated-src/medianFilter.v: $(basedir)/../src/*.scala
-#	cd $(basedir)/../sbt && $(SBT) "project work" "run filter --backend v --targetDir ../$(vlsidir)/generated-src --noInlineMem"
-#	cd $(basedir)/generated-src && \
-#	sed -i 's/^/..\/src\/vlsi_mem_gen /' medianFilter.conf && \
-#	sed -i 's/$$/ >> medianFilter.v/' medianFilter.conf && \
-#	sh medianFilter.conf
+$(basedir)/generated-src/medianFilter.v: $(basedir)/../src/*.scala
+	cd $(basedir)/../sbt && $(SBT) "project work" "run filter --backend v --targetDir ../$(vlsidir)/generated-src --noInlineMem"
+	cd $(basedir)/generated-src && \
+	sed -i 's/^/..\/src\/vlsi_mem_gen /' medianFilter.conf && \
+	sed -i 's/$$/ >> medianFilter.v/' medianFilter.conf && \
+	sh medianFilter.conf
 
 clock_period = 4
 vcs_clock_period = 0$(shell echo "scale=4; ${clock_period}*0.5" | bc)
 dc_clock_period = 0$(shell echo "scale=4; ${clock_period}*1.0" | bc)
 
-clock_uncertainty = 0$(shell echo "scale=4; ${clock_period}*0.1" | bc)
+clock_uncertainty = 0$(shell echo "scale=4; ${clock_period}*0.05" | bc)
 input_delay = 0$(shell echo "scale=4; ${clock_period}*0.2" | bc)
 output_delay = 0$(shell echo "scale=4; ${clock_period}*0.2" | bc)
 
@@ -45,16 +44,17 @@ mw_ref_libs = \
 target_library_files = \
   saed32rvt_$(tt_corner_stdcells).db \
 
-# use multiple vt libraries + SRAM
+mw_sram_libs = ../$(refdir)/SRAM2RW128x16.mw
+db_sram_libs = SRAM2RW128x16.db
+
+# use multiple vt libraries
 #mw_ref_libs = \
 #  cells_hvt.mw \
 #  cells_rvt.mw \
 #  cells_lvt.mw \
-#  sram.mw \
 #
 #target_library_files = \
 #  saed32hvt_$(tt_corner_stdcells).db \
 #  saed32rvt_$(tt_corner_stdcells).db \
 #  saed32lvt_$(tt_corner_stdcells).db \
-#  sram.db \
 
