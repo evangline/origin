@@ -45,5 +45,5 @@ run-trace : $(MODEL)-emulator
 all : $(MODEL)-emulator
 
 clean :
-	rm -f median.o $(MODEL)-emulator.o $(MODEL).o $(MODEL)-emulator *.vcd *.vpd
+	rm -rf median.o $(MODEL)-emulator.o $(MODEL).o $(MODEL)-emulator *.vcd *.vpd DVEfiles
 
