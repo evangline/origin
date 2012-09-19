@@ -28,10 +28,14 @@ ff_corner_stdcells = ff1p16vn40c
 
 filler_cells = SHFILL128_RVT SHFILL64_RVT SHFILL3_RVT SHFILL2_RVT SHFILL1_RVT
 
-# only use regular VT standard cells for synthesis/p&r
+# use multiple vt libraries
 mw_ref_libs = \
+  cells_hvt.mw \
   cells_rvt.mw \
+  cells_lvt.mw \
 
 target_library_files = \
+  saed32hvt_$(tt_corner_stdcells).db \
   saed32rvt_$(tt_corner_stdcells).db \
+  saed32lvt_$(tt_corner_stdcells).db \
 
