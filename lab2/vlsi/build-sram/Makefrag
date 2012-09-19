@@ -12,9 +12,9 @@ vlsidir = vlsi
 include $(basedir)/../Makefrag
 
 # invokes vlsi_mem_gen script to create verilog for SRAM macros
-$(basedir)/generated-src/medianFilter.v: $(basedir)/../src/*.scala
-	cd $(basedir)/../sbt && $(SBT) "project work" "run filter --backend v --targetDir ../$(vlsidir)/generated-src --noInlineMem"
-	cd $(basedir)/generated-src && \
+$(basedir)/generated-src-sram/medianFilter.v: $(basedir)/../src/*.scala
+	cd $(basedir)/../sbt && $(SBT) "project work" "run filter --backend v --targetDir ../$(vlsidir)/generated-src-sram --noInlineMem"
+	cd $(basedir)/generated-src-sram && \
 	sed -i 's/^/..\/src\/vlsi_mem_gen /' medianFilter.conf && \
 	sed -i 's/$$/ >> medianFilter.v/' medianFilter.conf && \
 	sh medianFilter.conf
