@@ -9,6 +9,7 @@
 
 default: all
 basedir  = ../..
+refdir = $(basedir)/../ref
 include ../Makefrag
 
 #--------------------------------------------------------------------
@@ -59,8 +60,9 @@ pt_time_max_rpt = $(addprefix $(cur_build_pt_dir)/$(reports_dir)/, $(addsuffix .
 
 vars = \
 	set DESIGN_NAME                 "$(toplevel)";\n \
-	set ADDITIONAL_SEARCH_PATH      "$(db_cells_dir) ../$(icc_dir)";\n \
-	set TARGET_LIBRARY_FILES        "$(target_library_files)";\n \
+	set ADDITIONAL_SEARCH_PATH      "$(db_cells_dir) $(mw_cells_dir) ../$(icc_dir) ../$(refdir)";\n \
+	set TARGET_LIBRARY_FILES        "$(target_library_files) $(db_sram_libs)";\n \
+	set MW_REFERENCE_LIB_DIRS       "$(addprefix $(mw_cells_dir)/, $(mw_ref_libs)) $(mw_sram_libs)";\n \
         set MIN_LIBRARY_FILES           "$(min_library)";\n \
 	set REPORTS_DIR                 "$(reports_dir)";\n \
 	set NETLIST_FILES               "$(notdir $(icc_v))";\n \
