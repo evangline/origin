@@ -13,10 +13,7 @@ median-test: $(basedir)/src/median.scala
 	cd $(basedir)/sbt ; $(SBT) "project work" "run median9test --backend c --compile --targetDir ../emulator/generated-src --genHarness --test"
 
 generated-src/$(MODEL).cpp: $(basedir)/src/*.scala
-	cd $(basedir)/sbt && $(SBT) "project work" "run filter --backend c --targetDir ../emulator/generated-src"
-
-generated-src-debug/$(MODEL).cpp: $(basedir)/src/*.scala
-	cd $(basedir)/sbt && $(SBT) "project work" "run filter --backend c --debug --vcd --targetDir ../emulator/generated-src-debug"
+	cd $(basedir)/sbt && $(SBT) "project work" "run filter --backend c --targetDir ../emulator/generated-src --debug --vcd"
 
 $(MODEL).o: generated-src/$(MODEL).cpp $(INCLUDES)
 	$(CXX) $(CXXFLAGS) -c $<
@@ -48,5 +45,5 @@ run-trace : $(MODEL)-emulator
 all : $(MODEL)-emulator
 
 clean :
-	rm -rf median.o $(MODEL)-emulator.o $(MODEL).o $(MODEL)-emulator *.vcd *.vpd DVEfiles
+	rm -rf median.o $(MODEL)-emulator.o $(MODEL).o $(MODEL)-emulator *.vcd *.vpd DVEfiles generated-src/*
 
