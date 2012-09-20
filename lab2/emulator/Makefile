@@ -9,6 +9,9 @@ INCLUDES = generated-src/emulator.h generated-src/$(MODEL).h testbench/median.h
 
 default : all
 
+median-test: $(basedir)/src/median.scala
+	cd $(basedir)/sbt ; $(SBT) "project work" "run median9test --backend c --compile --targetDir ../emulator/generated-src --genHarness --test"
+
 generated-src/$(MODEL).cpp: $(basedir)/src/*.scala
 	cd $(basedir)/sbt && $(SBT) "project work" "run filter --backend c --targetDir ../emulator/generated-src"
 
