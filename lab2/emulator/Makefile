@@ -21,7 +21,7 @@ $(MODEL).o: generated-src/$(MODEL).cpp $(INCLUDES)
 median.o: testbench/median.cpp testbench/median.h
 	$(CXX) $(CXXFLAGS) -c $<
 
-$(MODEL)-emulator.o: testbench/$(MODEL)-emulator.cpp $(INCLUDES)
+$(MODEL)-emulator.o: testbench/$(MODEL)-emulator.cpp generated-src/$(MODEL).cpp
 	$(CXX) $(CXXFLAGS) -c $<
 
 $(MODEL)-emulator: $(MODEL)-emulator.o $(MODEL).o median.o
