@@ -1,0 +1,45 @@
+****************************************
+Report : Time Based Power
+	-hierarchy
+	-verbose
+	-nosplit
+Design : GCD
+Version: D-2010.06-SP1
+Date   : Tue Sep 11 00:06:06 2012
+****************************************
+
+Simulation Periods: 0 ns - 1546.5 ns
+
+Sampling Interval: 0.001 ns
+
+Library(s) Used:
+
+    saed90nm_typ (File: /home/ff/cs250/stdcells/synopsys-90nm/default/db/cells.db)
+    saed90nm_typ_cg (File: /home/ff/cs250/stdcells/synopsys-90nm/default/db/cells_cg.db)
+
+
+Operating Conditions: TYPICAL   Library: saed90nm_typ
+Wire Load Model Mode: enclosed
+
+Cell               Design       Wire_model  Library       Selection_type
+--------------------------------------------------------------------------------
+                   GCD          8000        saed90nm_typ  automatic-by-area
+clk_gate_A_reg     SNPS_CLOCK_GATE_HIGH_GCD_0 ForQA saed90nm_typ automatic-by-area
+clk_gate_B_reg     SNPS_CLOCK_GATE_HIGH_GCD_1 ForQA saed90nm_typ automatic-by-area
+
+Power-specific unit information :
+    Voltage Units = 1 V
+    Capacitance Units = 1 pf
+    Time Units = 1 ns
+    Dynamic Power Units = 1 W
+    Leakage Power Units = 1 W
+
+
+
+                                      Switch   Int      Leak      Peak     Peak            Glitch   X-tran   Total
+Hierarchy                             Power    Power    Power     Power    Time            Power    Power    Power    %
+---------------------------------------------------------------------------------------------------------------------------
+GCD                                   5.13e-05 1.84e-04 2.69e-05  4.45e-02  21.500-21.501  2.20e-07 3.39e-08 2.62e-04 100.0
+  clk_gate_A_reg (SNPS_CLOCK_GATE_HIGH_GCD_0) 1.65e-06 1.03e-05 1.04e-07 5.18e-04  26.000-26.001  4.29e-09    0.000 1.21e-05   4.6
+  clk_gate_B_reg (SNPS_CLOCK_GATE_HIGH_GCD_1) 3.12e-06 1.06e-05 1.03e-07 5.07e-04   1.000-1.001      0.000 3.39e-08 1.38e-05   5.3
+1

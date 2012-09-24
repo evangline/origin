@@ -1,0 +1,63 @@
+ 
+****************************************
+Report : reference
+Design : GCD
+Version: F-2011.09-SP4
+Date   : Mon Sep 10 23:59:53 2012
+****************************************
+
+Attributes:
+    b - black box (unknown)
+   bo - allows boundary optimization
+    d - dont_touch
+   mo - map_only
+    h - hierarchical
+    n - noncombinational
+    r - removable
+    s - synthetic operator
+    u - contains unmapped logic
+
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+AO21X1             saed90nm_typ    10.137600       1    10.137600 
+AOI21X1            saed90nm_typ    11.980800      13   155.750396 
+DFFSSRX1           saed90nm_typ    33.177601       6   199.065605 n
+DFFX1              saed90nm_typ    24.883200      28   696.729591 n
+INVX0              saed90nm_typ     5.529600      61   337.305609 
+NAND2X0            saed90nm_typ     5.529600     185  1022.976027 
+NAND2X1            saed90nm_typ     5.529600      22   121.651203 
+NAND2X2            saed90nm_typ     9.216000       1     9.216000 
+NAND3X0            saed90nm_typ     7.372800      10    73.727999 
+NAND4X0            saed90nm_typ     8.294400       5    41.472001 
+NOR2X0             saed90nm_typ     5.529600      92   508.723213 
+NOR2X1             saed90nm_typ     6.451200       6    38.707200 
+NOR2X2             saed90nm_typ     9.216000       3    27.647999 
+NOR3X0             saed90nm_typ     8.294400       3    24.883201 
+NOR4X0             saed90nm_typ     9.216000       1     9.216000 
+NOR4X1             saed90nm_typ    15.667200       1    15.667200 
+OAI21X1            saed90nm_typ    11.059200      14   154.828804 
+SNPS_CLOCK_GATE_HIGH_GCD_0       21.197001       1     21.197001  b, h
+SNPS_CLOCK_GATE_HIGH_GCD_1       21.197001       1     21.197001  b, h
+XNOR2X1            saed90nm_typ    13.824000       4    55.296001 
+XOR2X1             saed90nm_typ    13.824000      29   400.896010 
+-----------------------------------------------------------------------------
+Total 21 references                                  3946.291659
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_GCD_0 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2           saed90nm_typ_cg    21.197001       1    21.197001 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                     21.197001
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_GCD_1 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2           saed90nm_typ_cg    21.197001       1    21.197001 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                     21.197001
+1

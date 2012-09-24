@@ -1,0 +1,22 @@
+
+# ***************************** SDF Annotate *****************************
+#
+# Annotate SDF file "../icc-par/current-icc/results/gcdGCDUnit_rtl.output.corrected.sdf".
+#
+# Read from SDF file:
+#
+#  IOPATH           =        904
+#  INTERCONNECT     =        874
+#  SETUP            =         72
+#  HOLD             =        104
+#  RECOVERY         =         32
+#  WIDTH            =        100
+#
+# Design objects annotated:
+#
+#  Module path delays  =       1195
+#  MIPDs               =          6
+#  Timing checks       =       1048
+#
+# ************************************************************************
+#

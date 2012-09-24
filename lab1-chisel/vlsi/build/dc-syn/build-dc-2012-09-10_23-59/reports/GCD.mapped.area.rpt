@@ -1,0 +1,55 @@
+ 
+****************************************
+Report : area
+Design : GCD
+Version: F-2011.09-SP4
+Date   : Mon Sep 10 23:59:52 2012
+****************************************
+
+Library(s) Used:
+
+    saed90nm_typ (File: /home/ff/cs250/stdcells/synopsys-90nm/default/db/cells.db)
+    saed90nm_typ_cg (File: /home/ff/cs250/stdcells/synopsys-90nm/default/db/cells_cg.db)
+
+Number of ports:                           54
+Number of nets:                           552
+Number of cells:                          487
+Number of combinational cells:            451
+Number of sequential cells:                34
+Number of macros:                           0
+Number of buf/inv:                         61
+Number of references:                      21
+
+Combinational area:       3008.102462
+Noncombinational area:     938.189198
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:          3946.291659
+Total area:                 undefined
+
+Core Area:                      6868
+Aspect Ratio:                 1.0156
+Utilization Ratio:            0.5745
+
+
+The above information was reported from the logical library. The following are from the physical library:
+
+  Total moveable cell area: 3946.3
+  Total fixed cell area: 0.0
+  Core area: (0 0 82240 83520)
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area          Local cell area
+                                  ------------------  ---------------------------- 
+Hierarchical cell                 Absolute   Percent  Combi-     Noncombi-  Black
+                                  Total      Total    national   national   boxes   Design
+--------------------------------  ---------  -------  ---------  ---------  ------  --------------------------
+GCD                               3946.2917    100.0  3008.1025   895.7952  0.0000  GCD
+clk_gate_A_reg                      21.1970      0.5     0.0000    21.1970  0.0000  SNPS_CLOCK_GATE_HIGH_GCD_0
+clk_gate_B_reg                      21.1970      0.5     0.0000    21.1970  0.0000  SNPS_CLOCK_GATE_HIGH_GCD_1
+--------------------------------  ---------  -------  ---------  ---------  ------  --------------------------
+Total                                                 3008.1025   938.1892  0.0000
+
+1

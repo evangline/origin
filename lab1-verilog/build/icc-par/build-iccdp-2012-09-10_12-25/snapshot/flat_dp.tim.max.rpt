@@ -1,0 +1,121 @@
+ 
+****************************************
+Report : timing
+        -path full_clock
+        -delay max
+        -physical
+        -derate
+        -input_pins
+        -nets
+        -max_paths 1
+        -transition_time
+        -crosstalk_delta
+        -capacitance
+Design : gcdGCDUnit_rtl
+Version: F-2011.09-ICC-SP4
+Date   : Mon Sep 10 12:26:11 2012
+****************************************
+
+ * Some/all delay information is back-annotated.
+
+Operating Conditions: TYPICAL   Library: saed90nm_typ
+
+  Startpoint: GCDdpath0/B_reg_reg_0_
+              (rising edge-triggered flip-flop clocked by ideal_clock1)
+  Endpoint: GCDdpath0/A_reg_reg_15_
+            (rising edge-triggered flip-flop clocked by ideal_clock1)
+  Path Group: ideal_clock1
+  Path Type: max
+
+Attributes:
+    d - dont_touch
+    u - dont_use
+   mo - map_only
+   so - size_only
+    i - ideal_net or ideal_network
+
+  Point                                       Fanout       Cap     DTran     Trans     Delta    Derate      Incr       Path      Location / Load        Attributes
+  ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+  clock ideal_clock1 (rise edge)                                                                           0.000      0.000
+  clock network delay (ideal)                                                                              0.000      0.000
+  GCDdpath0/B_reg_reg_0_/CLK (DFFARX1)                             0.000     0.000     0.000     1.010     0.000      0.000 r    (61.56,54.67)          so i 
+  GCDdpath0/B_reg_reg_0_/Q (DFFARX1)                                         0.062               1.010     0.209      0.209 f    (70.41,55.06)          so 
+  GCDdpath0/B_reg[0] (net)                      3       13.248                                   1.010     0.000      0.209 f    [3.47,13.25]
+  GCDdpath0/U324/IN1 (NAND2X2)                                     0.000     0.062     0.000     1.010     0.000 *    0.209 f    (89.04,51.78)
+  GCDdpath0/U324/QN (NAND2X2)                                                0.043               1.010     0.025      0.234 r    (89.13,51.52)
+  GCDdpath0/n91 (net)                           2        6.699                                   1.010     0.000      0.234 r    [1.48,6.70]
+  GCDdpath0/U89/INP (INVX1)                                        0.000     0.043     0.000     1.010     0.000 *    0.234 r    (98.09,51.74)
+  GCDdpath0/U89/ZN (INVX1)                                                   0.033               1.010     0.026      0.260 f    (98.61,51.67)
+  GCDdpath0/n80 (net)                           2        6.709                                   1.010     0.000      0.260 f    [0.52,6.71]
+  GCDdpath0/U43/IN1 (NAND2X1)                                      0.000     0.033     0.000     1.010     0.000 *    0.260 f    (96.38,52.12)
+  GCDdpath0/U43/QN (NAND2X1)                                                 0.051               1.010     0.025      0.285 r    (96.34,51.51)
+  GCDdpath0/n43 (net)                           1        3.580                                   1.010     0.000      0.285 r    [0.79,3.58]
+  GCDdpath0/U42/IN1 (NAND2X1)                                      0.000     0.051     0.000     1.010     0.000 *    0.285 r    (98.62,48.21)
+  GCDdpath0/U42/QN (NAND2X1)                                                 0.044               1.010     0.031      0.316 f    (98.58,48.81)
+  GCDdpath0/n42 (net)                           1        4.104                                   1.010     0.000      0.316 f    [1.27,4.10]
+  GCDdpath0/U41/IN2 (NAND2X1)                                      0.000     0.044     0.000     1.010     0.000 *    0.316 f    (98.18,40.58)
+  GCDdpath0/U41/QN (NAND2X1)                                                 0.044               1.010     0.030      0.346 r    (98.58,39.99)
+  GCDdpath0/n41 (net)                           1        3.207                                   1.010     0.000      0.346 r    [0.42,3.21]
+  GCDdpath0/U14/IN1 (NAND2X1)                                      0.000     0.044     0.000     1.010     0.000 *    0.346 r    (98.62,42.44)
+  GCDdpath0/U14/QN (NAND2X1)                                                 0.055               1.010     0.038      0.384 f    (98.58,43.05)
+  GCDdpath0/n14 (net)                           1        7.566                                   1.010     0.000      0.384 f    [2.11,7.57]
+  GCDdpath0/U9/IN1 (NAND2X2)                                       0.000     0.055     0.000     1.010     0.000 *    0.384 f    (98.00,57.54)
+  GCDdpath0/U9/QN (NAND2X2)                                                  0.043               1.010     0.024      0.407 r    (98.09,57.28)
+  GCDdpath0/n8 (net)                            1        6.404                                   1.010     0.000      0.407 r    [0.98,6.40]
+  GCDdpath0/U5/IN2 (NAND2X2)                                       0.000     0.043     0.000     1.010     0.000 *    0.407 r    (97.47,63.31)
+  GCDdpath0/U5/QN (NAND2X2)                                                  0.037               1.010     0.026      0.433 f    (98.09,63.04)
+  GCDdpath0/n4 (net)                            1        7.414                                   1.010     0.000      0.433 f    [1.92,7.41]
+  GCDdpath0/U3/IN1 (NOR2X2)                                        0.000     0.037     0.000     1.010     0.000 *    0.433 f    (92.33,71.27)
+  GCDdpath0/U3/QN (NOR2X2)                                                   0.063               1.010     0.034      0.467 r    (91.91,71.41)
+  GCDdpath0/n2 (net)                            1       12.706                                   1.010     0.000      0.467 r    [0.98,12.71]
+  GCDdpath0/U2/IN2 (NOR2X4)                                        0.000     0.063     0.000     1.010     0.000 *    0.467 r    (90.94,77.16)
+  GCDdpath0/U2/QN (NOR2X4)                                                   0.059               1.010     0.047      0.515 f    (90.12,77.14)
+  GCDdpath0/A_lt_B (net)                        3       23.334                                   1.010     0.000      0.515 f    [12.30,23.33]
+  GCDdpath0/A_lt_B (gcdGCDUnitDpath_W16)                                                         1.010     0.000      0.515 f    (netlink)
+  A_lt_B (net)                                          23.334                                   1.010     0.000      0.515 f    [12.30,23.33]
+  GCDctrl0/A_lt_B (gcdGCDUnitCtrl)                                                               1.010     0.000      0.515 f    (netlink)
+  GCDctrl0/A_lt_B (net)                                 23.334                                   1.010     0.000      0.515 f    [12.30,23.33]
+  GCDctrl0/U5/INP (INVX2)                                          0.000     0.059     0.000     1.010     0.001 *    0.515 f    (43.29,37.00)
+  GCDctrl0/U5/ZN (INVX2)                                                     0.036               1.010     0.022      0.538 r    (43.45,37.20)
+  GCDctrl0/n9 (net)                             2        8.726                                   1.010     0.000      0.538 r    [0.76,8.73]
+  GCDctrl0/U9/IN1 (NOR2X2)                                         0.000     0.036     0.000     1.010     0.000 *    0.538 r    (43.05,40.57)
+  GCDctrl0/U9/QN (NOR2X2)                                                    0.058               1.010     0.029      0.567 f    (42.63,40.43)
+  GCDctrl0/A_mux_sel[0] (net)                   1        7.868                                   1.010     0.000      0.567 f    [1.30,7.87]
+  GCDctrl0/A_mux_sel[0] (gcdGCDUnitCtrl)                                                         1.010     0.000      0.567 f    (netlink)
+  n20 (net)                                              7.868                                   1.010     0.000      0.567 f    [1.30,7.87]
+  dp_ipo5/INP (NBUFFX16)                                           0.000     0.058     0.000     1.010     0.000 *    0.567 f    (53.07,40.24)
+  dp_ipo5/Z (NBUFFX16)                                                       0.066               1.010     0.100      0.667 f    (48.56,40.06)
+  n21 (net)                                    52      221.821                                   1.010     0.000      0.667 f    [52.60,221.82]
+  GCDdpath0/A_mux_sel[0] (gcdGCDUnitDpath_W16)                                                   1.010     0.000      0.667 f    (netlink)
+  GCDdpath0/A_mux_sel[0] (net)                         221.821                                   1.010     0.000      0.667 f    [52.60,221.82]
+  GCDdpath0/U223/IN1 (NAND2X1)                                     0.000     0.066     0.000     1.010     0.003 *    0.670 f    (60.54,86.68)
+  GCDdpath0/U223/QN (NAND2X1)                                                0.053               1.010     0.032      0.701 r    (60.50,86.07)
+  GCDdpath0/n309 (net)                          1        3.987                                   1.010     0.000      0.701 r    [1.16,3.99]
+  GCDdpath0/dp_ipo107/IN2 (NAND2X1)                                0.000     0.053     0.000     1.010     0.000 *    0.701 r    (55.58,82.79)
+  GCDdpath0/dp_ipo107/QN (NAND2X1)                                           0.055               1.010     0.039      0.740 f    (55.18,83.37)
+  GCDdpath0/n1 (net)                            1        7.986                                   1.010     0.000      0.740 f    [0.90,7.99]
+  GCDdpath0/dp_ipo109/INP (INVX2)                                  0.000     0.055     0.000     1.010     0.000 *    0.740 f    (58.33,86.36)
+  GCDdpath0/dp_ipo109/ZN (INVX2)                                             0.031               1.010     0.019      0.760 r    (58.49,86.16)
+  GCDdpath0/n11 (net)                           1        5.852                                   1.010     0.000      0.760 r    [0.40,5.85]
+  GCDdpath0/dp_ipo108/IN1 (NAND2X2)                                0.000     0.031     0.000     1.010     0.000 *    0.760 r    (55.76,86.34)
+  GCDdpath0/dp_ipo108/QN (NAND2X2)                                           0.032               1.010     0.021      0.781 f    (55.85,86.08)
+  GCDdpath0/n312 (net)                          1        5.898                                   1.010     0.000      0.781 f    [3.07,5.90]
+  GCDdpath0/U142/IN2 (NAND2X1)                                     0.000     0.032     0.000     1.010     0.000 *    0.781 f    (77.39,88.54)
+  GCDdpath0/U142/QN (NAND2X1)                                                0.048               1.010     0.030      0.810 r    (77.78,89.13)
+  GCDdpath0/A_next[15] (net)                    1        4.333                                   1.010     0.000      0.810 r    [2.84,4.33]
+  GCDdpath0/A_reg_reg_15_/D (DFFARX1)                              0.000     0.048     0.000     1.010     0.000 *    0.810 r    (89.51,98.70)          so 
+  data arrival time                                                                                                   0.810
+
+  clock ideal_clock1 (rise edge)                                                                           0.900      0.900
+  clock network delay (ideal)                                                                              0.000      0.900
+  GCDdpath0/A_reg_reg_15_/CLK (DFFARX1)                                                                    0.000      0.900 r
+  library setup time                                                                                      -0.090      0.810
+  data required time                                                                                                  0.810
+  ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+  data required time                                                                                                  0.810
+  data arrival time                                                                                                  -0.810
+  ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+  slack (VIOLATED: increase signficant digits)                                                                        0.000
+
+
+1

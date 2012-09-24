@@ -1,0 +1,1458 @@
+
+                          IC Compiler (TM)
+                         IC Compiler-PC (TM)
+                         IC Compiler-XP (TM)
+                         IC Compiler-DP (TM)
+
+         Version F-2011.09-ICC-SP4 for amd64 -- Feb 29, 2012
+
+Zroute is the default router for ICC, ICC-PC and ICC-DP in IC Compiler.
+         Classic router will continue to be fully supported.
+
+               Copyright (c) 1988-2012 Synopsys, Inc.
+
+This software and the associated documentation are confidential and 
+proprietary to Synopsys, Inc. Your use or disclosure of this software 
+is subject to the terms and conditions of a written license agreement 
+between you, or your company, and Synopsys, Inc.
+
+Initializing...
+##########################################################################################
+# Version: D-2010.03-SP2 (July 6, 2010)
+# Copyright (C) 2007-2010 Synopsys, Inc. All rights reserved.
+##########################################################################################
+source -echo icc_setup.tcl
+##########################################################################################
+# Variables for ICC-RM, ICC DP-RM, and ICC Hierarchical-RM
+# Script: icc_setup.tcl
+# Version: D-2010.03-SP2 (July 6, 2010)
+# Copyright (C) 2007-2010 Synopsys, Inc. All rights reserved.
+##########################################################################################
+# sourcing the common variables
+source -echo -verbose make_generated_vars.tcl
+set DESIGN_NAME                 "GCD";
+GCD
+set STRIP_PATH                  "gcdTestHarness_rtl/gcd";
+gcdTestHarness_rtl/gcd
+set ADDITIONAL_SEARCH_PATH      "/home/ff/cs250/stdcells/synopsys-90nm/default/db /home/ff/cs250/stdcells/synopsys-90nm/default/mw ../../dc-syn/current-dc/results";
+/home/ff/cs250/stdcells/synopsys-90nm/default/db /home/ff/cs250/stdcells/synopsys-90nm/default/mw ../../dc-syn/current-dc/results
+set TARGET_LIBRARY_FILES        "cells.db cells_cg.db";
+cells.db cells_cg.db
+set MW_REFERENCE_LIB_DIRS       "/home/ff/cs250/stdcells/synopsys-90nm/default/mw/cells.mw";
+/home/ff/cs250/stdcells/synopsys-90nm/default/mw/cells.mw
+set TECH_FILE                   "/home/ff/cs250/stdcells/synopsys-90nm/default/techfile/techfile.tf";
+/home/ff/cs250/stdcells/synopsys-90nm/default/techfile/techfile.tf
+set MAP_FILE                    "/home/ff/cs250/stdcells/synopsys-90nm/default/techfile/tech2itf.map";
+/home/ff/cs250/stdcells/synopsys-90nm/default/techfile/tech2itf.map
+set TLUPLUS_MAX_FILE            "/home/ff/cs250/stdcells/synopsys-90nm/default/tluplus/max.tluplus";
+/home/ff/cs250/stdcells/synopsys-90nm/default/tluplus/max.tluplus
+set TLUPLUS_MIN_FILE            "/home/ff/cs250/stdcells/synopsys-90nm/default/tluplus/min.tluplus";
+/home/ff/cs250/stdcells/synopsys-90nm/default/tluplus/min.tluplus
+set REPORTS_DIR                 "reports";
+reports
+set RESULTS_DIR                 "results";
+results
+set FILLER_CELL                 "SHFILL128 SHFILL64 SHFILL3 SHFILL2 SHFILL1";
+SHFILL128 SHFILL64 SHFILL3 SHFILL2 SHFILL1
+set REPORTING_EFFORT            "OFF";
+OFF
+set PNR_EFFORT                  "low";
+low
+set ICC_FLOORPLAN_CEL            "flat_dp";
+flat_dp
+source -echo common_setup.tcl
+##########################################################################################
+# Variables common to all RM scripts
+# Script: common_setup.tcl
+# Version: D-2010.03-SP2 (July 6, 2010)
+# Copyright (C) 2007-2010 Synopsys All rights reserved.
+##########################################################################################
+#YUNSUP: this is set by make_generated_vars.tcl
+#set DESIGN_NAME                   ""  ;#  The name of the top-level design
+set DESIGN_REF_DATA_PATH          ""  ;#  Absolute path prefix variable for library/design data.
+#  Use this variable to prefix the common absolute path to
+#  the common variables defined below.
+#  Absolute paths are mandatory for hierarchical RM flow.
+##########################################################################################
+# Hierarchical Flow Design Variables
+##########################################################################################
+set HIERARCHICAL_DESIGNS           "" ;# List of hierarchical block design names "DesignA DesignB" ...
+set HIERARCHICAL_CELLS             "" ;# List of hierarchical block cell instance names "u_DesignA u_DesignB" ...
+##########################################################################################
+# Library Setup Variables
+##########################################################################################
+# For the following variables, use a blank space to separate multiple entries
+# Example: set TARGET_LIBRARY_FILES "lib1.db lib2.db lib3.db"
+#YUNSUP: this is set by make_generated_vars.tcl
+#set ADDITIONAL_SEARCH_PATH        ""  ;#  Additional search path to be added to the default search path
+#YUNSUP: this is set by make_generated_vars.tcl
+#set TARGET_LIBRARY_FILES          ""  ;#  Target technology logical libraries
+set ADDITIONAL_LINK_LIB_FILES     ""  ;#  Extra link logical libraries not included in TARGET_LIBRARY_FILES
+set MIN_LIBRARY_FILES             ""  ;#  List of max min library pairs "max1 min1 max2 min2 max3 min3"...
+#YUNSUP: this is set by make_generated_vars.tcl
+#set MW_REFERENCE_LIB_DIRS         ""  ;#  Milkyway reference libraries (include IC Compiler ILMs here)
+set MW_REFERENCE_CONTROL_FILE     ""  ;#  Reference Control file to define the MW ref libs
+#YUNSUP: this is set by make_generated_vars.tcl
+#set TECH_FILE                     ""  ;#  Milkyway technology file
+#set MAP_FILE                      ""  ;#  Mapping file for TLUplus
+#set TLUPLUS_MAX_FILE              ""  ;#  Max TLUplus file
+#set TLUPLUS_MIN_FILE              ""  ;#  Min TLUplus file
+set MW_POWER_NET                "VDD" ;#
+set MW_POWER_PORT               "VDD" ;#
+set MW_GROUND_NET               "VSS" ;#
+set MW_GROUND_PORT              "VSS" ;#
+set MIN_ROUTING_LAYER            ""   ;# Min routing layer
+set MAX_ROUTING_LAYER            ""   ;# Max routing layer
+set LIBRARY_DONT_USE_FILE        ""   ;# Tcl file with library modifications for dont_use
+##########################################################################################
+# Multi-Voltage Common Variables
+#
+# Define the following MV common variables for the RM scripts for multi-voltage flows.
+# Use as few or as many of the following definitions as needed by your design.
+##########################################################################################
+set PD1                          ""           ;# Name of power domain/voltage area  1
+set PD1_CELLS                    ""           ;# Instances to include in power domain/voltage area 1
+set VA1_COORDINATES              {}           ;# Coordinates for voltage area 1
+set MW_POWER_NET1                "VDD1"       ;# Power net for voltage area 1
+set MW_POWER_PORT1               "VDD"        ;# Power port for voltage area 1
+set PD2                          ""           ;# Name of power domain/voltage area  2
+set PD2_CELLS                    ""           ;# Instances to include in power domain/voltage area 2
+set VA2_COORDINATES              {}           ;# Coordinates for voltage area 2
+set MW_POWER_NET2                "VDD2"       ;# Power net for voltage area 2
+set MW_POWER_PORT2               "VDD"        ;# Power port for voltage area 2
+set PD3                          ""           ;# Name of power domain/voltage area  3
+set PD3_CELLS                    ""           ;# Instances to include in power domain/voltage area 3
+set VA3_COORDINATES              {}           ;# Coordinates for voltage area 3
+set MW_POWER_NET3                "VDD3"       ;# Power net for voltage area 3
+set MW_POWER_PORT3               "VDD"        ;# Power port for voltage area 3
+set PD4                          ""           ;# Name of power domain/voltage area  4
+set PD4_CELLS                    ""           ;# Instances to include in power domain/voltage area 4
+set VA4_COORDINATES              {}           ;# Coordinates for voltage area 4
+set MW_POWER_NET4                "VDD4"       ;# Power net for voltage area 4
+set MW_POWER_PORT4               "VDD"        ;# Power port for voltage area 4
+###############################
+## General ICC variables
+###############################
+set ICC_INPUT_CEL                 "${DESIGN_NAME}_DCT" ;# CEL created in DCT
+set PNET_METAL_LIST               ""           ;# List of metals in the design to be used for (partial) pnet options
+set PNET_METAL_LIST_COMPLETE	  ""	       ;# List of metals in the design to be used for (complete) pnet options
+set ICC_IN_DONT_USE_FILE          "$LIBRARY_DONT_USE_FILE" ;# file of master don't use commands
+set ICC_FIX_HOLD_PREFER_CELLS     ""           ;# Syntax: library/cell_name - Example: slow/DLY1X1 slow/DLY1X4
+set ICC_MAX_AREA                  ""           ;# max_area value used during area optimization
+set AREA_CRITICAL_RANGE_PRE_CTS   ""           ;# area critical range use during area opto during place_opt
+set AREA_CRITICAL_RANGE_POST_CTS  ""           ;# area critical range use during area opto during post CTS opt
+set AREA_CRITICAL_RANGE_POST_RT   ""           ;# area critical range use during area opto during route_opt
+set POWER_CRITICAL_RANGE_PRE_CTS  ""           ;# power critical range use during area opto during place_opt
+set POWER_CRITICAL_RANGE_POST_CTS ""           ;# power critical range use during area opto during post CTS opt
+set POWER_CRITICAL_RANGE_POST_RT  ""           ;# power critical range use during area opto during route_opt
+set ICC_NUM_CPUS                  1            ;# number of cpus for distributed processing;
+;# specify a number greater than 1 to enable it for classic router based route_opt and insert_redundant_via commands
+set ICC_NUM_CORES                 1            ;# number of cores on the local host for multicore support;
+;# specify a number greater than 1 to enable it for the core commands
+# YUNSUP: changed for fast p&r
+set ICC_REPORTING_EFFORT          ${REPORTING_EFFORT}        ;# OFF|MED|LOW when set to OFF,no reporting is done; when set to LOW, report_timing/report_qor are skipped in clock_opt_cts
+# YUNSUP: changed for fast p&r
+set ICC_SANITY_CHECK              FALSE         ;# TRUE|FALSE, set TRUE to perform check_physical_design
+set ICC_ENABLE_CHECKPOINT	  FALSE	       ;# TRUE|FALSE, set TRUE to perform checkpoint strategy for optimization commands
+;# Please ensure there's enough disk space before enabling this feature. Refer to set_checkpoint_strategy man page for details.
+set ICC_TIE_CELL_FLOW             FALSE        ;# TRUE|FALSE, set TRUE if you want TIE-CELLS to be used during opto instead of TIE-nets
+set ICC_LOW_POWER_PLACEMENT	  FALSE	       ;# TRUE|FALSE, when set to TRUE, set_power_options -low_power_placement will be set to true
+set LEAKAGE_POWER                 FALSE	       ;# TRUE|FALSE; set to TRUE to enable leakage optimization flow
+set DYNAMIC_POWER                 FALSE	       ;# TRUE|FALSE; set to TRUE to enable dynamic power optimization flow
+set DFT                           FALSE	       ;# TRUE|FALSE; set to TRUE to enable scan reordering flow
+# YUNSUP: changed for fast p&r
+set ICC_DBL_VIA                   FALSE        ;# TRUE|FALSE; set to TRUE to enable detail route wire spreading
+set ICC_FIX_ANTENNA               FALSE        ;# TRUE|FALSE: set to TRUE to enable antenna fixing
+set ADD_FILLER_CELL               TRUE         ;# TRUE|FALSE; set to TRUE to enable std cells filler insertion
+# YUNSUP: changed for fast p&r
+set ICC_REDUCE_CRITICAL_AREA      FALSE        ;# TRUE|FALSE; set to TRUE to enable detail route wire spreading
+set ICC_CREATE_MODEL              FALSE        ;# TRUE|FALSE; used for ILM/FRAM creation for the blocks in HRM
+# YUNSUP: read from ddc
+set ICC_INIT_DESIGN_INPUT         "DDC"         ;# VERILOG|DDC|MW; specify starting point
+# YUNSUP: make our own floorplan
+set ICC_FLOORPLAN_INPUT           "CREATE"        ;# DEF|FP_FILE|CREATE|USER_FILE|SKIP
+set ADD_METAL_FILL                "ICC"        ;# NONE|ICC|HERCULES|ICV; will start metal fill
+;# ICC : will start timing driven metal fill using ICC's command
+;# HERCULES : will start signoff metal fill using Hercules
+;# ICV : will start signoff metal fill using ICV
+# YUNSUP: changed for fast p&r
+set PLACE_OPT_EFFORT 		 ${PNR_EFFORT}      ;# low|medium|high; choose effort level for place_opt command
+# YUNSUP: changed for fast p&r
+set ROUTE_OPT_EFFORT 		 ${PNR_EFFORT}      ;# low|medium|high; choose effort level for route_opt command
+set PLACE_OPT_CONGESTION         TRUE          ;# TRUE|FALSE; set TRUE to enable congestion removal during place_opt
+###############################
+## Cellname variables
+###############################
+#YUNSUP: this is set by make_generated_vars.tcl
+#set ICC_FLOORPLAN_CEL            "init_design_icc"
+set ICC_PLACE_OPT_CEL            "place_opt_icc"
+set ICC_CLOCK_OPT_CTS_CEL        "clock_opt_cts_icc"
+set ICC_CLOCK_OPT_PSYN_CEL       "clock_opt_psyn_icc"
+set ICC_CLOCK_OPT_ROUTE_CEL      "clock_opt_route_icc"
+set ICC_ROUTE_CEL                "route_icc"
+set ICC_ROUTE_OPT_CEL            "route_opt_icc"
+set ICC_CHIP_FINISH_CEL          "chip_finish_icc"
+set ICC_SIGNOFF_CEL              "signoff_icc"
+set ICC_SIGNOFF_OPT_CEL          "signoff_opt_icc"
+set ICC_METAL_FILL_CEL           "metal_fill_icc"
+set ICC_ECO_STARTING_CEL	 $ICC_METAL_FILL_CEL         ;# CEL to run ECO on (contains original pre-tape-out database)
+set ICC_ECO_CEL             	 "eco_icc"                   ;# CEL after running the ECO (contains new eco netlist)
+set ICC_FOCAL_OPT_STARTING_CEL	 $ICC_CHIP_FINISH_CEL        ;# CEL to run focal_opt on
+set ICC_FOCAL_OPT_CEL       	 "focal_opt_icc"             ;# CEL after running focal_opt
+set ICC_DP_CREATE_PLANGROUPS_CEL "create_plangroups_dp"
+set ICC_DP_ROUTEABILITY_ON_PLANGROUPS_CEL "routeability_on_plangroups_dp"
+set ICC_DP_PIN_ASSIGNMENT_BUDGETING_CEL	 "pin_assignment_budgeting_dp"
+set ICC_DP_COMMIT_CEL		 "commit_dp"
+###############################
+## Timing variables
+###############################
+set ICC_APPLY_RM_DERATING               TRUE 	;# TRUE|FALSE; when set to FALSE, the derating is assumed to be in the SDC
+set ICC_LATE_DERATING_FACTOR	        1.01 	;# Late derating factor, used for both data and clock
+set ICC_EARLY_DERATING_FACTOR	        0.99 	;# Early derating factor, used for both data and clock
+set ICC_APPLY_RM_UNCERTAINTY_PRECTS     FALSE	;# TRUE|FALSE; when set to TRUE, user uncertainty will be replaced by $ICC_UNCERTAINTY_PRECTS
+set ICC_APPLY_RM_UNCERTAINTY_POSTCTS    FALSE	;# TRUE|FALSE; when set to TRUE, user uncertainty will be replaced by $ICC_UNCERTAINTY_POSTCTS
+set ICC_UNCERTAINTY_PRECTS_FILE         ""   	;# pre-cts uncertainty file used during place_opt
+set ICC_UNCERTAINTY_POSTCTS_FILE        ""   	;# post-cts uncertainty file used during post cts opto and route_opt
+set ICC_MAX_TRANSITION                  ""   	;# max_transition value set on the design
+set ICC_CRITICAL_RANGE                  ""   	;# critical_range set on the design ; default = 50% of each clock period
+set ICC_MAX_FANOUT                      ""   	;# max_fanout value set on the design
+set ICC_FULL_ARNOLDI                    FALSE	;# TRUE|FALSE; when set to TRUE, will enable full arnoldi, i.e. no net filtering
+###############################
+## Floorplan Input variables          		
+###############################
+set ICC_IN_DEF_FILE		  	""	;# Complete floorplan file in DEF format
+set ICC_IN_FLOORPLAN_FILE	  	""	;# Complete floorplan file generated by write_floorplan
+set ICC_IN_FLOORPLAN_USER_FILE	  	""	;# Complete floorplan file generated by user ;this file will simply be sourced
+set ICC_IN_TDF_FILE 		  	""	;# TDF file which contains pad or pin information
+set ICC_IN_PHYSICAL_ONLY_CELLS_CREATION_FILE "" ;# a file to include physical only cell creation commands to be sourced
+;# e.g. create_cell {vdd1left vdd1right vdd1top vdd1bottom} pvdi
+set ICC_IN_PHYSICAL_ONLY_CELLS_CONNECTION_FILE "" ;# a file to include physical only cell connection commands to be sourced
+;# e.g. derive_pg_connection -power_net $MW_POWER_NET -power_pin $MW_POWER_PORT -ground_net $MW_GROUND_NET -ground_pin $MW_GROUND_PORT -cells {vdd1left vdd1right vdd1top vdd1bottom}
+set ICC_PHYSICAL_CONSTRAINTS_FILE 	""	;# Can you used to add extra floorplan info  -sourced after floorplan creation
+set CUSTOM_CONNECT_PG_NETS_SCRIPT 	""      ;# If not defined as "", source this file
+###############################
+## MV Input variables
+###############################
+set AO_INSTANCES                        {}     	;# list of instances that require AO synthesis (e.g. {TOP/INST2, TOP/INST3}
+set ICC_DP_AUTO_CREATE_VA               FALSE  	;# TRUE|FALSE; if TRUE, automatically creates voltage area based on user specified utilization
+set CUSTOM_POWER_SWITCH_SCRIPT          ""     	;# script to define the headers_footers and connect the sleep pin
+set CUSTOM_CREATE_VA_SCRIPT             ""     	;# script to define the voltage area creation commands for your design
+set CUSTOM_SECONDARY_POWER_ROUTE_SCRIPT ""     	;# script to define the pre_route_standard_cells command for the AO/RR cells.
+set RR_CELLS                            ""     	;# e.g. "RSD" if each Retention Register contains RSD in its name
+set CUSTOM_LOAD_ASCII_UPF_SCRIPT_LIST   ""     	;# for upf flow with ascii inputs, provide a list of scripts for each power domain and top
+set ICC_UPF_PM_CELL_EXISTING		FALSE	;# TRUE|FALSE; specify if design contains pre-existing power_management cells
+set ICC_UPF_PM_CELL_INSERTION		FALSE	;# TRUE|FALSE; if TRUE, runs insert_mv_cells
+###############################
+## MCMM Input variables
+###############################
+set ICC_MCMM_SCENARIOS_FILE             ""     	;# file containing all scenario definitions - example in rm_icc_scripts/mcmm.scenarios.example
+set ICC_MCMM_PLACE_OPT_SCENARIOS        ""     	;# list of scenarios to be made active during place_opt; optional; by default all scenarios will be made active
+set ICC_MCMM_CLOCK_OPT_PSYN_SCENARIOS   ""     	;# list of scenarios to be made active during post CTS opto (pre-route); optional; by default all scenarios will be made active
+set ICC_MCMM_CLOCK_OPT_ROUTE_SCENARIOS  ""     	;# list of scenarios to be made active during clock routing; optional; by default all scenarios will be made active
+set ICC_MCMM_ROUTE_SCENARIOS            ""     	;# list of scenarios to be made active during signal routing; optional; by default all scenarios will be made active
+set ICC_MCMM_ROUTE_OPT_SCENARIOS        ""     	;# list of scenarios to be made active during route_opt; optional; by default all scenarios will be made active
+set ICC_MCMM_CHIP_FINISH_SCENARIOS      ""     	;# list of scenarios to be made active during route_opt post chipfinish; optional; by default all scenarios will be made active
+set ICC_MCMM_METAL_FILL_SCENARIOS       ""     	;# list of scenarios to be made active during metal filling; optional; by default all scenarios will be made active
+set ICC_MCMM_PLACE_OPT_HIGH_CAP         FALSE  	;# TRUE|FALSE : if TRUE, enables High Capacity MCMM mode for place_opt (Adaptive MCMM)
+set ICC_MCMM_CLOCK_OPT_HIGH_CAP         FALSE  	;# TRUE|FALSE : if TRUE, enables High Capacity MCMM mode for post cts opto ( pre-route) (Adaptive MCMM)
+###############################
+## ECO FLOW VARIABLES
+###############################
+set ICC_ECO_FLOW                        "NONE" 	;# NONE|UNCONSTRAINED|FREEZE_SILICON
+;# UNCONSTRAINED : NO spare cell insertion ; cells can be added (pre tapeout)
+;# FREEZE_SILICON : spare cell insertion/freeze silicon ECO
+set ICC_SPARE_CELL_FILE                 ""     	;# TCL script to insert the spare cells, e.g. :
+;# insert_spare_cells -lib_cell {INV8 DFF1} -cell_name spares -num_instances 300
+set ICC_ECO_NETLIST                     ""     	;# new verilog netlist containing the ECO changes
+###############################
+## GATE MERGE/SPLIT
+###############################
+set ICC_CTS_CLOCK_GATE_MERGE           FALSE                         ;# set to TRUE to enable clock gate merging for power reduction
+set ICC_CTS_CLOCK_GATE_SPLIT           FALSE                         ;# set to TRUE to enable clock gate splitting for reducing enable pin violations
+###############################
+## EMULATION TLU+ FILES
+###############################
+set TLUPLUS_MAX_EMULATION_FILE         ""  ;#  Max TLUplus file
+set TLUPLUS_MIN_EMULATION_FILE         ""  ;#  Min TLUplus file
+###############################
+## PNG creation
+###############################
+set ICC_CREATE_GR_PNG                  FALSE  ;# set to TRUE to create the Global route congestion map PNG after initial route
+###############################
+## SIGNOFF_OPT Input variables
+###############################
+set PT_DIR ""                          ;# path to PT bin directory
+set PT_SDC_FILE ""                     ;# optional file in case PT has different SDC that what is available in the ICC database
+set STARRC_DIR ""                      ;# path to StarRC bin directory
+set STARRC_MAX_NXTGRD ""               ;# MAX NXTGRD file
+set STARRC_MIN_NXTGRD ""               ;# MIN NXTGRD file
+set STARRC_MAP_FILE "$MAP_FILE"        ;# NXTGRD mapping file, defaults to TLUPlus mapping file, but could be different
+set ICC_SIGNOFF_OPT_CHECK_CORRELATION_PREROUTE_SCRIPT "" ;# a file to be sourced to run check_signoff_correlation at end of place_opt_icc step;
+;# example - rm_icc_scripts/signoff_opt_check_correlation_preroute_icc.example.tcl
+set ICC_SIGNOFF_OPT_CHECK_CORRELATION_POSTROUTE_SCRIPT "" ;# a file to be sourced to run at check_signoff_correlation end of route_opt_icc step;
+;# example - rm_icc_scripts/signoff_opt_check_correlation_postroute_icc.example.tcl
+###############################
+## SIGNOFF Physical variables
+###############################
+## Hercules - ensure env variable HERCULES_HOME_DIR is set and that hercules is included in path in shell ICC executed from
+## ICV Metal Fill - ensure env variable PRIMEYIELD_HOME_DIR is set and that icv is included in path in shell ICC executed from
+## ICV DRC - ensure env variable ICV_HOME_DIR is set and that icv is included in path in shell ICC executed from
+set SIGNOFF_FILL_RUNSET ""             ;# ICV|Hercules runset for signoff_metal_fill
+set SIGNOFF_DRC_RUNSET  ""             ;# ICV|Hercules runset for signoff_drc
+set SIGNOFF_MAPFILE     ""             ;# Mapping file for ICV|Hercules signoff_metal_fill|signoff_drc
+set SIGNOFF_DRC_ENGINE	"HERCULES"     ;# ICV|HERCULES
+set SIGNOFF_METAL_FILL_TIMING_DRIVEN FALSE  ;# TRUE|FALSE : set this to TRUE to enable timing driven for ICV metal fill 	
+set TIMING_PRESERVE_SLACK_SETUP	"0.1"  ;# float : setup slack threshold for wire_spreading/widening/timing driven ICV metal fill; default 0.1
+set TIMING_PRESERVE_SLACK_HOLD "0"     ;# float : hold slack threshold for wire_spreading/widening; default 0
+###############################
+## Clock Tree variables
+###############################
+set ICC_CTS_RULE_NAME		"iccrm_clock_double_spacing" ;# specify clock routing rule
+;# default will be 2x NDR applied to all layers
+set ICC_CTS_LAYER_LIST		""		;# clock tree layers, usually M3 and above
+;# e.g. set ICC_CTS_LAYER_LIST "M3 M4 M5"
+set ICC_CTS_REF_LIST		""		;# cells ;# used for CTS
+;#   space deliminated list: cell1 cell2
+set ICC_CTS_REF_DEL_INS_ONLY	""		;# cells for CTS delay insertion :
+;#   space deliminated list: cell1 cell2
+set ICC_CTS_REF_SIZING_ONLY	""		;# cells for CTS that are for sizing only
+set ICC_CTS_INTERCLOCK_BALANCING	FALSE	;# set this to TRUE to perform ICDB
+set ICC_CTS_INTERCLOCK_BALANCING_OPTIONS_FILE	""	;# set here the interclock_delay options
+set ICC_CTS_UPDATE_LATENCY	FALSE		;# set this to TRUE to perform clock latency update post CTS
+set ICC_CTS_LATENCY_OPTIONS_FILE	""	;# define here the latency adjustment options options
+set ICC_POST_CLOCK_ROUTE_CTO	FALSE  	       	;# set to TRUE if you want to run Post route CTO after clock routing
+###############################
+## Chipfinishing variables
+###############################
+set ICC_METAL_FILL_SPACE           2                   ;# space amount used during ICC's insert_metal_fill command
+set ICC_METAL_FILL_TIMING_DRIVEN  TRUE                 ;# enables timing driven metal fill for ICC's insert_metal_fill
+## end cap cels
+set ICC_H_CAP_CEL                  ""           ;# defines the horizontal CAP CELL libcell
+set ICC_V_CAP_CEL                  ""           ;# defines the vertical CAP CELL libcell (for the Well Proximity Effect)
+## antenna fixing
+set ANTENNA_RULES_FILE           ""             ;# defines the antenna rules
+set ICC_USE_DIODES               FALSE          ;# TRUE|FALSE : control variable to allow diodes to be inserted both by the
+;# insert_port_protection_diodes command as well as the router
+set ICC_ROUTING_DIODES           ""             ;# space separated list of diode names
+set ICC_PORT_PROTECTION_DIODE    ""             ;# diode name for insert_port_protection_diodes
+;# Format = library_name/diode_name
+## filler cell insertion
+set FILLER_CELL_METAL            ""             ;# space separated list of filler cells
+set FILLER_CELL                  ""             ;# ADD_FILLER_CELL - space separated
+## double via insertion
+set ICC_DBL_VIA_FLOW_EFFORT      LOW            ;# LOW|MED|HIGH  - MED enables concurrent soft-rule dbl via insertion
+;# HIGH runs another dbl via, timing driven, after chipfinishing
+set ICC_CUSTOM_DBL_VIA_DEFINE_SCRIPT ""         ;# script to define the dbl via definitions
+## focal opt
+set ICC_FOCAL_OPT_HOLD_VIOLS     ""             ;# filename containing the hold violations
+set ICC_FOCAL_OPT_SETUP_VIOLS    ""             ;# filename containing the setup violations
+set ICC_FOCAL_OPT_DRC_NET_VIOLS  ""             ;# filename containing the DRC net violations
+set ICC_FOCAL_OPT_DRC_PIN_VIOLS  ""             ;# filename containing the DRC pin violations
+set ICC_FOCAL_OPT_XTALK_VIOLS    ""             ;# filename containing the crosstalk violations
+######################################################################################################################
+#####################   ICC DESIGN PLANNING SPECIFIC (variables for ICC DP-RM and ICC Hierarchical-RM)  ##############
+######################################################################################################################
+#######################################################################
+## Common variables (applied to both ICC DP RM and ICC Hierarchical RM)
+#######################################################################
+set ICC_DP_VERBOSE_REPORTING		FALSE		;# TRUE|FALSE; generate additional reports before placement
+set ICC_DP_SET_HFNS_AS_IDEAL_THRESHOLD	""		;# integer; specify a threshold to set nets with fanout larger than it as ideal nets
+set ICC_DP_SET_MIXED_AS_IDEAL		TRUE		;# TRUE|FALSE; set mixed clock/signal paths as ideal nets
+set ICC_DP_FIX_MACRO_LIST		""		;# ""|skip|"a_list_of_macros"; unfix all macos OR skip fix OR fix specified macros before placement
+set CUSTOM_ICC_DP_PLACE_CONSTRAINT_SCRIPT ""            ;# Put your set_keepout_margin and fp_set_macro_placement_constraint in this file
+set ICC_DP_PLACEMENT_VA_NET_WEIGHT 	1		;# valid values are from 0 to 9; applied for MV designs and used by set_fp_placement_strategy -voltage_area_interface_net_weight
+set CUSTOM_ICC_DP_PREROUTE_STD_CELL_SCRIPT ""		;# File to perform customized preroute_standard_cell commands
+set ICC_DP_USE_ZROUTE                   TRUE            ;# TRUE|FALSE; use zroute for ICC DP RM and pin assignment of ICC Hierarchical RM
+## PNS and PNA control variables
+set CUSTOM_ICC_DP_PNS_CONSTRAINT_SCRIPT ""              ;# File to add PNS constraints which is loaded before running PNS
+set PNS_POWER_NETS         		"${MW_POWER_NET} ${MW_GROUND_NET}" ;# Target nets for PNS; syntax is "your_power_net your_ground_net"
+set PNS_POWER_BUDGET       		1000          	;# Unit in milliWatts; default is 1000
+set PNS_VOLTAGE_SUPPLY     		1.5           	;# Unit in Volts; default is 1.5
+#YUNSUP: add virtual rail layer
+set PNS_VIRTUAL_RAIL_LAYER 		"M1"              ;# Specify the metal layer you want to use as virtual rail
+set PNS_OUTPUT_DIR         		"./pna_output"  ;# Output directory for PNS and PNA output files
+###################################################
+## ICC Hierarchical RM specific variables
+###################################################
+set ICC_SKIP_IN_BLOCK_IMPLEMENTATION    FALSE           ;# TRUE|FALSE; set TRUE to disable "Creating the physical MV objects" and "MTCMOS CELL INSTANTIATION"
+;# sections in init_design_icc.tcl if you have already done so on full chip level
+set MW_ILM_LIBS                         ""              ;# add ILMs for block level FRAMs not used by DCT
+set BUDGETING_SDC_OUTPUT_DIR            "./sdc"         ;# budgeting SDC output directory; default is "./sdc"
+set ICC_DP_PLAN_GROUPS		"$HIERARCHICAL_CELLS"	;# full module names from which plan groups will be created
+;#   space deliminated list: "top/A top/B top/C"
+;# default to $HIERARCHICAL_CELLS from common_setup.tcl if using DCT
+set ICC_DP_PLANGROUP_FILE               ""              ;# floorplan file containing plan group creation and location which should be the output of write_floorplan
+set ICC_DP_CTP				FALSE		;# TRUE|FALSE; set TRUE to enable clock tree planning; please uncomment the section in hierarchical_dp.tcl first
+set ICC_DP_CTP_ANCHOR_CEL               ""              ;# anchor cell for clock tree planning (anchor cell is required if you uncomment clock tree planning in scripts);
+;#   cell master of one mid-sized buffer
+set ICC_DP_ALLOW_FEEDTHROUGH	        FALSE		;# TRUE|FALSE; allow feedthrough creation during pin assignment
+set CUSTOM_ICC_DP_PNS_SCRIPT 		""              ;# customized PNS script; replacing PNS section in scripts
+set CUSTOM_ICC_DP_PNA_SCRIPT 		""              ;# customized PNA script; replacing PNA section in scripts
+## DFT-aware hierarchical design planning variables
+set ICC_DP_DFT_FLOW			FALSE		;# TRUE|FALSE; enable DFT-aware hierarchical design planning flow; requires ICC_IN_FULL_CHIP_SCANDEF_FILE
+set ICC_IN_FULL_CHIP_SCANDEF_FILE "$DESIGN_NAME.mapped.expanded.scandef"		
+;# ASCII full-chip SCANDEF file for DFT-aware hierarchical design planning flow (ICC_DP_DFT_FLOW)
+;# it is used for hierarchical design planning phase; not needed for block level implementations
+###################################################
+## ICC DP RM (Flat) specific variables
+###################################################
+## explore mode: flow control variables
+#YUNSUP: don't explore floorplans
+set ICC_DP_EXPLORE_MODE			FALSE	;# TRUE|FALSE; turn on exploration mode
+set ICC_DP_EXPLORE_STYLE		default		;# valid options are: default | placement_only | no_pns_pna | no_ipo
+;# default: place -> pns/pna -> ipo -> final groute,snapshot,QOR,timing,and outputs
+;# placement_only: skips pns/pna and ipo from default | no_pns_pna: skips pna/pns from default
+;# | no_ipo: skips ipo from default
+set ICC_DP_EXPLORE_SAVE_CEL_EACH_STEP 	FALSE		;# TRUE|FALSE; save 3 additional CEL after placement, ipo, and pns in explore mode (requires more disk space)
+set ICC_DP_EXPLORE_REPORTING_EACH_STEP	FALSE		;# TRUE|FALSE; generate QoR snapshot and timing report after each step (longer run time)
+set ICC_DP_EXPLORE_USE_GLOBAL_ROUTE 	FALSE		;# TRUE|FALSE; use route_global OR route_fp_proto (default); if ICC_DP_USE_ZROUTE is true, route_zrt_global will be used
+set ICC_DP_EXPLORE_SAVE_CEL_AFTER_GROUTE TRUE		;# TRUE|FALSE; save 2 additional CEL after global route: one after placement and one at the end
+set ICC_DP_EXPLORE_CUSTOM_PG_SCRIPT	""		;# string; script to be loaded to create customized PG straps after placement in explore mode;
+;# valid only if ICC_DP_EXPLORE_STYLE is placement_only or no_pns_pna
+## explore mode: additional PNS control variables
+set PNS_TARGET_VOLTAGE_DROP     	250	        ;# Unit in milliVolts. Tool default is 10% of PNS_POWER_BUDGET
+set PNS_BLOCK_MODE         		FALSE           ;# TRUE|FALSE; specify if the design is block or top level; It turns on correspondant options in PNS and PNA
+set PNS_PAD_MASTERS        		""		;# Only for top level design with power pads. Specify cell masters for power pads, e.g. "pv0i.FRAM pv0a.FRAM"
+set PNS_PAD_INSTANCE_FILE  		""              ;# Only for top level design with power pads. Specify the file with a list of power pad instances
+set PNS_PAD_MASTER_FILE    		""		;# Only for top level design with power pads. Specify the file with a list of power pad masters
+## Please provide only one of PNS_PAD_MASTERS, OR PNS_PAD_INSTANCE_FILE, OR PNS_PAD_MASTER_FILE
+##########################################################################################
+#####################      NO NEED TO CHANGE IF DC-RM IS USED BEFORE          ##############
+##########################################################################################
+set ICC_IN_VERILOG_NETLIST_FILE "$DESIGN_NAME.mapped.v" ;#1 to n verilog input files, spaced by blanks
+set ICC_IN_SDC_FILE             "$DESIGN_NAME.mapped.sdc"
+set ICC_IN_DDC_FILE             "$DESIGN_NAME.mapped.ddc"
+set ICC_IN_UPF_FILE             "$DESIGN_NAME.mapped.upf"
+set ICC_IN_SCAN_DEF_FILE        "$DESIGN_NAME.mapped.scandef"
+set MW_DESIGN_LIBRARY           "${DESIGN_NAME}_LIB"    ;# milkyway design library
+##########################################################################################
+#########################     USAGE OF ABOVE VARIABLES      ##############################
+#########################   DO NOT CHANGE BELOW THIS LINE   ##############################
+##########################################################################################
+set ICC_IN_SAIF_FILE            "$DESIGN_NAME.saif"     ;# SAIF file for dynamic power opto
+set ICC_SAIF_INSTANCE_NAME      $DESIGN_NAME            ;# the instance in the SAIF file containing the switching activity
+set REPORTS_DIR                 "reports"               ;# Directory to write reports.
+set RESULTS_DIR                 "results"               ;# Directory to write output data files
+set REPORTS_DIR_INIT_DESIGN                     $REPORTS_DIR
+set REPORTS_DIR_PLACE_OPT                       $REPORTS_DIR
+set REPORTS_DIR_CLOCK_OPT_CTS                   $REPORTS_DIR
+set REPORTS_DIR_CLOCK_OPT_PSYN                  $REPORTS_DIR
+set REPORTS_DIR_CLOCK_OPT_ROUTE                 $REPORTS_DIR
+set REPORTS_DIR_ROUTE                           $REPORTS_DIR
+set REPORTS_DIR_ROUTE_OPT                       $REPORTS_DIR
+set REPORTS_DIR_CHIP_FINISH                     $REPORTS_DIR
+set REPORTS_DIR_ECO                        	$REPORTS_DIR
+set REPORTS_DIR_FOCAL_OPT                       $REPORTS_DIR
+set REPORTS_DIR_SIGNOFF_OPT                     $REPORTS_DIR
+set REPORTS_DIR_METAL_FILL                      $REPORTS_DIR
+set REPORTS_DIR_DP            			$REPORTS_DIR
+set REPORTS_DIR_DP_CREATE_PLANGROUPS		$REPORTS_DIR
+set REPORTS_DIR_DP_ROUTEABILITY_ON_PLANGROUPS   $REPORTS_DIR
+set REPORTS_DIR_DP_PIN_ASSIGNMENT_BUDGETING     $REPORTS_DIR
+set REPORTS_DIR_DP_COMMIT                       $REPORTS_DIR
+set REPORTS_DIR_DP_PREPARE_BLOCK                $REPORTS_DIR
+set REPORTS_DIR_FORMALITY			$REPORTS_DIR
+if { ! [file exists $REPORTS_DIR_INIT_DESIGN] } { file mkdir $REPORTS_DIR_INIT_DESIGN }
+if { ! [file exists $REPORTS_DIR_PLACE_OPT] } { file mkdir $REPORTS_DIR_PLACE_OPT }
+if { ! [file exists $REPORTS_DIR_CLOCK_OPT_CTS] } { file mkdir $REPORTS_DIR_CLOCK_OPT_CTS }
+if { ! [file exists $REPORTS_DIR_CLOCK_OPT_PSYN] } { file mkdir $REPORTS_DIR_CLOCK_OPT_PSYN }
+if { ! [file exists $REPORTS_DIR_CLOCK_OPT_ROUTE] } { file mkdir $REPORTS_DIR_CLOCK_OPT_ROUTE }
+if { ! [file exists $REPORTS_DIR_ROUTE] } { file mkdir $REPORTS_DIR_ROUTE }
+if { ! [file exists $REPORTS_DIR_ROUTE_OPT] } { file mkdir $REPORTS_DIR_ROUTE_OPT }
+if { ! [file exists $REPORTS_DIR_CHIP_FINISH] } { file mkdir $REPORTS_DIR_CHIP_FINISH }
+if { ! [file exists $REPORTS_DIR_ECO] } { file mkdir $REPORTS_DIR_ECO }
+if { ! [file exists $REPORTS_DIR_FOCAL_OPT] } { file mkdir $REPORTS_DIR_FOCAL_OPT }
+if { ! [file exists $REPORTS_DIR_SIGNOFF_OPT] } { file mkdir $REPORTS_DIR_SIGNOFF_OPT }
+if { ! [file exists $REPORTS_DIR_METAL_FILL] } { file mkdir $REPORTS_DIR_METAL_FILL }
+if { ! [file exists $REPORTS_DIR_DP] } { file mkdir $REPORTS_DIR_DP }
+if { ! [file exists $REPORTS_DIR_DP_CREATE_PLANGROUPS] } { file mkdir $REPORTS_DIR_DP_CREATE_PLANGROUPS }
+if { ! [file exists $REPORTS_DIR_DP_ROUTEABILITY_ON_PLANGROUPS] } { file mkdir $REPORTS_DIR_DP_ROUTEABILITY_ON_PLANGROUPS }
+if { ! [file exists $REPORTS_DIR_DP_PIN_ASSIGNMENT_BUDGETING] } { file mkdir $REPORTS_DIR_DP_PIN_ASSIGNMENT_BUDGETING }
+if { ! [file exists $REPORTS_DIR_DP_COMMIT] } { file mkdir $REPORTS_DIR_DP_COMMIT }
+if { ! [file exists $REPORTS_DIR_DP_PREPARE_BLOCK] } { file mkdir $REPORTS_DIR_DP_PREPARE_BLOCK }
+if { ! [file exists $REPORTS_DIR_FORMALITY] } { file mkdir $REPORTS_DIR_FORMALITY }
+## Logical libraries
+set_app_var search_path	". ./rm_icc_scripts ./rm_icc_zrt_scripts ./rm_icc_dp_scripts $ADDITIONAL_SEARCH_PATH $search_path"
+set_app_var target_library	"$TARGET_LIBRARY_FILES"
+set_app_var link_library	"* $TARGET_LIBRARY_FILES $ADDITIONAL_LINK_LIB_FILES"
+if { ! [file exists $RESULTS_DIR] } {
+  file mkdir $RESULTS_DIR
+}
+if { ! [file exists $REPORTS_DIR] } {
+  file mkdir $REPORTS_DIR
+}
+if {$synopsys_program_name == "icc_shell"} {
+
+## Min max library relationships
+## Not common for MCMM setup, but can be used also for MCMM
+if {$MIN_LIBRARY_FILES != "" } {
+  foreach {max_library min_library} $MIN_LIBRARY_FILES {
+    set_min_library $max_library -min_version $min_library
+  }
+}
+
+## Reference libraries
+if { ![file exists [which $MW_REFERENCE_CONTROL_FILE]]} {
+ if {[file exists $MW_DESIGN_LIBRARY/lib]} {
+   set_mw_lib_reference $MW_DESIGN_LIBRARY -mw_reference_library "$MW_REFERENCE_LIB_DIRS $MW_ILM_LIBS"
+ }
+}
+
+## PD4 is not always used
+if {![info exists PD4]} {set PD4 ""}
+
+
+## Avoiding too many messages
+set_message_info -id PSYN-040 -limit 10 ;# Dont_touch for fixed cells
+set_message_info -id PSYN-087 -limit 10 ;# Port inherits its location from pad pin
+set_message_info -id LINT-8   -limit 10 ;# input port is unloaded
+
+set_app_var check_error_list "$check_error_list LINK-5 PSYN-375"
+
+source check_icc_rm_values.tcl
+
+}
+
+------------------- Internal Reference Library Settings -----------------
+
+Library    /work/cs250-af/lab1-chisel/vlsi/build/icc-par/build-icc-2012-09-11_00-01/GCD_LIB
+  Reference    /home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr
+
+
+------------------- Control File Reference Library Settings -----------
+
+Library    /work/cs250-af/lab1-chisel/vlsi/build/icc-par/build-icc-2012-09-11_00-01/GCD_LIB
+  Reference    /home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr
+-------------------------------------------------------------------------
+
+#################################################################################
+##########################################################################################
+## place_opt_icc: Placement and Placement Optimizations
+##########################################################################################
+open_mw_lib $MW_DESIGN_LIBRARY
+{GCD_LIB}
+redirect /dev/null "remove_mw_cel -version_kept 0 ${ICC_PLACE_OPT_CEL}"
+copy_mw_cel -from $ICC_FLOORPLAN_CEL -to $ICC_PLACE_OPT_CEL
+1
+open_mw_cel $ICC_PLACE_OPT_CEL
+Warning: Conflict unit found: MW tech file capacitance unit is pF; Main Library capacitance unit is fF. (IFS-007)
+Warning: Conflict unit found: MW tech file resistance unit is kOhm; Main Library resistance unit is MOhm. (IFS-007)
+Information: Opened "place_opt_icc.CEL;1" from "/work/cs250-af/lab1-chisel/vlsi/build/icc-par/build-icc-2012-09-11_00-01/GCD_LIB" library. (MWUI-068)
+{place_opt_icc}
+## Optimization Common Session options - set in all sessions
+source -echo common_optimization_settings_icc.tcl
+##########################################################################################
+# Version: D-2010.03-SP2 (July 6, 2010)
+# Copyright (C) 2007-2010 Synopsys, Inc. All rights reserved.
+##########################################################################################
+echo "\tLoading :\t\t [info script]"
+	Loading :		 /work/cs250-af/lab1-chisel/vlsi/build/icc-par/build-icc-2012-09-11_00-01/common_optimization_settings_icc.tcl
+## Optimization Common Session Options - set in all sessions
+set_host_options -max_cores $ICC_NUM_CORES
+## General Optimization
+# enable the recovery and removal timing checks
+set_app_var enable_recovery_removal_arcs true
+set_app_var timing_enable_multiple_clocks_per_reg true
+set_app_var case_analysis_with_logic_constants true
+set_fix_multiple_port_nets -all -buffer_constants
+Loading db file '/home/ff/cs250/stdcells/synopsys-90nm/default/db/cells.db'
+Loading db file '/home/ff/cs250/stdcells/synopsys-90nm/default/db/cells_cg.db'
+Loading db file '/home/ff/cs250/tools/synopsys/icc/current/libraries/syn/gtech.db'
+Information: linking reference library : /home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr. (PSYN-878)
+Warning: The 'RSDFFNSRASRX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASRX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFSRARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFSRARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSDNENX8' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSDNX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSDNX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSDNX4' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSDNX8' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPENCLX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPENCLX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPENCLX4' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFNARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFNARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFSRSSRX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFSRSSRX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFSRX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFSRX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASRNX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASRNX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASRQX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RSDFFNSRASRQX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPX4' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'LSUPX8' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFNSRARX1' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+Warning: The 'RDFFNSRARX2' cell in the '/home/ff/cs250/fa10/stdcells/synopsys-90nm/vendor/SAED_EDK90nm/Digital_Standard_Cell_Library/process/astro/fram/saed90nm_fr' physical library does not 
+	have corresponding logical cell description. (PSYN-025)
+
+  Linking design 'GCD'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  * (3 designs)               place_opt_icc.CEL, etc
+  saed90nm_typ (library)      /home/ff/cs250/stdcells/synopsys-90nm/default/db/cells.db
+  saed90nm_typ_cg (library)   /home/ff/cs250/stdcells/synopsys-90nm/default/db/cells_cg.db
+
+Load global CTS reference options from NID to stack
+set_auto_disable_drc_nets -constant false
+set timing_scgc_override_library_setup_hold false
+##Evaluate whether you library and design requires timing_use_enhanced_capacitance_modeling or not. Also only needed for OCV
+#set_app_var timing_use_enhanced_capacitance_modeling true ;#PT default -  libraries with capacitance ranges (also see Solvnet 021686)
+if {$ICC_MAX_AREA != ""} {
+     set_max_area $ICC_MAX_AREA
+   }
+## Set Area Critical Range
+## Typical value: 10 percent of critical clock period
+if {$AREA_CRITICAL_RANGE_PRE_CTS != ""} {set_app_var physopt_area_critical_range $AREA_CRITICAL_RANGE_PRE_CTS}
+## Set Power Critical Range
+## Typical value: 9 percent of critical clock period
+if {$POWER_CRITICAL_RANGE_PRE_CTS != ""} {set_app_var physopt_power_critical_range $POWER_CRITICAL_RANGE_PRE_CTS}
+## Set dont use cells
+## Examples, big drivers (EM issues), very weak drivers, delay cells,
+## clock cells
+if {[file exists [which $ICC_IN_DONT_USE_FILE]] } {
+        source -echo  $ICC_IN_DONT_USE_FILE
+}
+## Fixing the locations of the hard macros
+if {[all_macro_cells] != "" } {
+  set_dont_touch_placement [all_macro_cells]
+}
+## To reset power options to default to override what is stored in Milkyway database
+#  set_power_options -default
+if {$ICC_CTS_CLOCK_GATE_MERGE} {
+ set_power_options -clock_gating true
+} else {
+ set_power_options -clock_gating false
+}
+Warning: Starting from the 2011.09 release, the command set_power_options will no longer be supported (OBS-001)
+Warning: The set_power_options command is retired in the F-2011.09 release. (PWR-808)
+if {$ICC_LOW_POWER_PLACEMENT} {
+  set_power_options -low_power_placement true
+} else {
+  set_power_options -low_power_placement false
+}
+Warning: Starting from the 2011.09 release, the command set_power_options will no longer be supported (OBS-001)
+Warning: The set_power_options command is retired in the F-2011.09 release. (PWR-808)
+if {$LEAKAGE_POWER} {
+## Turn on leakage
+  set_power_options -leakage true
+} else {
+## Turn off leakage
+  set_power_options -leakage false
+}
+Warning: Starting from the 2011.09 release, the command set_power_options will no longer be supported (OBS-001)
+Warning: The set_power_options command is retired in the F-2011.09 release. (PWR-808)
+if {$DYNAMIC_POWER} {
+## Dynamic power opto throughout the flow
+  set_power_options -dynamic true
+} else {
+## No dynamic power opto
+  set_power_options -dynamic false
+}
+Warning: Starting from the 2011.09 release, the command set_power_options will no longer be supported (OBS-001)
+Warning: The set_power_options command is retired in the F-2011.09 release. (PWR-808)
+## End of Common Optimization Session Options
+source -echo common_placement_settings_icc.tcl
+##########################################################################################
+# Version: D-2010.03-SP2 (July 6, 2010)
+# Copyright (C) 2007-2010 Synopsys, Inc. All rights reserved.
+##########################################################################################
+echo "\tLoading :\t\t [info script]"
+	Loading :		 /work/cs250-af/lab1-chisel/vlsi/build/icc-par/build-icc-2012-09-11_00-01/common_placement_settings_icc.tcl
+# Placement Common Session Options - set in all sessions
+## Set Min/Max Routing Layers
+if { $MAX_ROUTING_LAYER != ""} {set_ignored_layers -max_routing_layer $MAX_ROUTING_LAYER}
+if { $MIN_ROUTING_LAYER != ""} {set_ignored_layers -min_routing_layer $MIN_ROUTING_LAYER}
+## Set PNET Options to control cel placement around P/G straps
+if {$PNET_METAL_LIST != "" || $PNET_METAL_LIST_COMPLETE != "" } {
+	remove_pnet_options
+
+	if {$PNET_METAL_LIST_COMPLETE != "" } {
+		set_pnet_options -complete $PNET_METAL_LIST_COMPLETE -see_object {all_types}
+	}
+
+	if {$PNET_METAL_LIST != "" } {
+		set_pnet_options -partial $PNET_METAL_LIST -see_object {all_types}
+	}
+	
+	report_pnet_options
+}
+## Improved congestion analysis by using Global Route info
+# echo "SCRIPT-Info : Enabling Global Gouter during placement"
+# set_app_var placer_enable_enhanced_router true
+## it is recommended to use the default of the tool
+## in case it needs to change ( e.g. for low utlization designs), use the command below :
+# set_congestion_options -max_util 0.85
+## Source CTS Options CTS can be run during place_opt
+source -echo common_cts_settings_icc.tcl
+##########################################################################################
+# Version: D-2010.03-SP2 (July 6, 2010)
+# Copyright (C) 2007-2010 Synopsys, Inc. All rights reserved.
+##########################################################################################
+echo "\tLoading :\t\t [info script]"
+	Loading :		 /work/cs250-af/lab1-chisel/vlsi/build/icc-par/build-icc-2012-09-11_00-01/common_cts_settings_icc.tcl
+## CTS Common Session Options - set in place_opt and clock_opt sessions
+## Clock Tree References
+## Choose Balanced Buffers and Inverters for best results
+## Avoid low strengths for initial CTS (bad CTS)
+## Avoid high strengths for signal EM problems
+## Each of the following take a space separated list of buffers/cels: ex: "buf1 inv1 inv2"
+##Note references are cumulative
+if {$ICC_CTS_REF_LIST != "" || $ICC_CTS_REF_SIZING_ONLY != "" || $ICC_CTS_REF_DEL_INS_ONLY != ""} {reset_clock_tree_references}
+if {$ICC_CTS_REF_LIST != ""} {set_clock_tree_references -references $ICC_CTS_REF_LIST}
+if {$ICC_CTS_REF_DEL_INS_ONLY != ""} {set_clock_tree_references -delay_insertion_only -references $ICC_CTS_REF_DEL_INS_ONLY}
+if {$ICC_CTS_REF_SIZING_ONLY != ""} {set_clock_tree_references -sizing_only -references $ICC_CTS_REF_SIZING_ONLY}
+## CLOCK NDR's
+## Specify the rule prior to CTS so that CTS can predict its effects
+## Avoid setting the rule on metal 1 - avoids pin access issues on
+## buffers and gates in the tree
+## ICC-RM uses by default a 2x spacing and width rule
+redirect -var x {report_routing_rules $ICC_CTS_RULE_NAME}
+if {$ICC_CTS_RULE_NAME == "iccrm_clock_double_spacing" && [regexp "Info: No nondrule" $x]} {
+  ## use -multiplier_width 2 to add double width
+  define_routing_rule iccrm_clock_double_spacing -default_reference_rule  -multiplier_spacing 2
+  report_routing_rule iccrm_clock_double_spacing
+  set_clock_tree_options -routing_rule iccrm_clock_double_spacing -use_default_routing_for_sinks 1
+}
+Information: creating wire rule 'iccrm_clock_double_spacing'...
+================================================================================
+
+Nondefault routing rule name ( iccrm_clock_double_spacing ):
+================================================================================
+
+   Layers:
+   ----------------------------------------------------------------------------
+   layer     width     spacing   Extension      shield_width   shield_spacing
+   ----------------------------------------------------------------------------
+   M1        140       280       DEFAULT        N/A            N/A
+   M2        160       320       DEFAULT        N/A            N/A
+   M3        160       320       DEFAULT        N/A            N/A
+   M4        160       320       DEFAULT        N/A            N/A
+   M5        160       320       DEFAULT        N/A            N/A
+   M6        160       320       DEFAULT        N/A            N/A
+   M7        160       320       DEFAULT        N/A            N/A
+   M8        160       320       DEFAULT        N/A            N/A
+   M9        450       900       DEFAULT        N/A            N/A
+
+   Spacing weights:
+   ----------------------------------------------------------------------------
+   layer     spacing   weight    spc_len_thresh
+   ----------------------------------------------------------------------------
+   M1        280       1.00      0
+   M2        320       1.00      0
+   M3        320       1.00      0
+   M4        320       1.00      0
+   M5        320       1.00      0
+   M6        320       1.00      0
+   M7        320       1.00      0
+   M8        320       1.00      0
+   M9        900       1.00      0
+
+   Vias:
+
+   Same net spacing:
+   ----------------------------------------------------------------------------
+   layer1    layer2    spacing   is_stack
+   ----------------------------------------------------------------------------
+
+Info: Total 1 nondrules are reported
+Information: The design has horizontal rows, and Y-symmetry has been used for sites. (MWDC-217)
+Floorplan loading succeeded.
+Setting global CTS options...
+## Define double vias NDR. Zroute will insert the double via during clock nets routing
+#  Example: To use 1x2 via34 via-array, and allow rotate and swap the via-array
+#  	define_routing_rule $ICC_CTS_RULE_NAME -default_reference_rule #       -via_cuts {{via34 1x2 NR} {via34 2x1 R} {via34 2x1 NR} {via34 1x2 R}}
+#  If there is no via defined in via_cuts, for that layer Zroute will use default via with single cut
+#  Note: if classic router is used, R & NR syntax do not apply and will be ignored
+## Define NDR for spacings and widths in general
+# define_routing_rule $ICC_CTS_RULE_NAME -default_reference_rule #       -spacings "BEST_PRACTICE_clock_ndr_metal_layer_and_spacing" #       -widths "BEST_PRACTICE_clock_ndr_metal_layer_and_width" # report_routing_rule $ICC_CTS_RULE_NAME
+## at 65 nm, better SI protection if you put NDR on sink, provided you
+## don't set the NDR on pin access layers
+## otherwise set -use_default_routing_for_sinks to 1 to avoid NDR on
+## clock sink
+##Typically route clocks on metal3 and above
+if {$ICC_CTS_LAYER_LIST != ""} {set_clock_tree_options -layer_list $ICC_CTS_LAYER_LIST}
+## You can use following commands to further specify CTS constraints and options:
+#  set_clock_tree_options -max_tran 	value -clock_trees [list of clocks]
+#  set_clock_tree_options -max_cap 	value -clock_trees [list of clocks]
+#  set_clock_tree_options -target_skew 	value -clock_trees [list of clocks]
+#  Note: it's not recommended to change -max_fanout unless necessary as doing so may degrade QoR easily.
+## End of CTS Optimization Session Options #############
+## Set Ideal Network so place_opt doesn't buffer clock nets
+## Remove before clock_opt cts
+## Uncertainty handling pre-cts
+set_ideal_network [all_fanout -flat -clock_tree ]
+Information: Updating graph... (UID-83)
+1
+if {$ICC_APPLY_RM_UNCERTAINTY_PRECTS } {
+   if {[file exists [which $ICC_UNCERTAINTY_PRECTS_FILE]] } {
+       echo "SCRIPT-Info: Sourcing the pre-cts uncertainty file : $ICC_UNCERTAINTY_PRECTS_FILE"
+       source -echo  $ICC_UNCERTAINTY_PRECTS_FILE
+   }
+  }
+set_app_var compile_instance_name_prefix icc_place
+icc_place
+#######################
+## MAGNET PLACEMENT  ##
+#######################
+## Define e.g. a ram as a magnet and the command will pull the cells connected to this instance
+## closer to the magnet, depending on the -logical_level amount you provide.
+## When adding the -exclude_buffers option, you instruct the tool to pull buffers as well, but do not consider them in the
+## logical levels calculation
+#magnet_placement -exclude_buffers -logical_level 2 [get_cells "INST_RAM1 INST_RAM2"]
+##############################
+## RP : Relative Placement  ##
+##############################
+## Create RP constraints as shown below
+#create_rp_group Lachd_Result_reg -design ORCA -columns 1 -rows 8 -utilization 1.000000
+#add_to_rp_group ORCA::Lachd_Result_reg -leaf I_ORCA_TOP/I_RISC_CORE/I_ALU/Lachd_Result_reg_0_ -column 0 -row 0
+#add_to_rp_group ORCA::Lachd_Result_reg -leaf I_ORCA_TOP/I_RISC_CORE/I_ALU/Lachd_Result_reg_1_ -column 0 -row 1
+#add_to_rp_group ORCA::Lachd_Result_reg -leaf I_ORCA_TOP/I_RISC_CORE/I_ALU/Lachd_Result_reg_2_ -column 0 -row 2
+#add_to_rp_group ORCA::Lachd_Result_reg -leaf I_ORCA_TOP/I_RISC_CORE/I_ALU/Lachd_Result_reg_3_ -column 0 -row 3
+#add_to_rp_group ORCA::Lachd_Result_reg -leaf I_ORCA_TOP/I_RISC_CORE/I_ALU/Lachd_Result_reg_4_ -column 0 -row 4
+#add_to_rp_group ORCA::Lachd_Result_reg -leaf I_ORCA_TOP/I_RISC_CORE/I_ALU/Lachd_Result_reg_5_ -column 0 -row 5
+#add_to_rp_group ORCA::Lachd_Result_reg -leaf I_ORCA_TOP/I_RISC_CORE/I_ALU/Lachd_Result_reg_6_ -column 0 -row 6
+#add_to_rp_group ORCA::Lachd_Result_reg -leaf I_ORCA_TOP/I_RISC_CORE/I_ALU/Lachd_Result_reg_7_ -column 0 -row 7
+## Other commands that can be used for RP group creation are : extract_rp_group and order_rp_groups
+#extract_rp_group -group_name Lachd_Result_reg -objects [get_cells -hier Lachd_Result_reg*] -col 1 -apply
+#extract_rp_group -group_name Oprnd_A_reg -objects [get_cells -hier Oprnd_A_reg*] -col 1 -apply
+#extract_rp_group -group_name Oprnd_B_reg -objects [get_cells -hier Oprnd_B_reg*] -col 1 -apply
+#order_rp_group -group_name Oprnd_reg {ORCA::Oprnd_A_reg ORCA::Oprnd_B_reg} -apply
+if {$DYNAMIC_POWER} {
+  if {[file exists [which $ICC_IN_SAIF_FILE]]} {
+    read_saif -input $ICC_IN_SAIF_FILE -instance_name $ICC_SAIF_INSTANCE_NAME
+  }
+}
+if {$DFT && !$ICC_DP_DFT_FLOW} {
+  ##Read Scan Chain Information from DEF
+  if {[file exists [which $ICC_IN_SCAN_DEF_FILE]] } {
+       read_def $ICC_IN_SCAN_DEF_FILE
+     } else {
+       echo "SCRIPT-Error: Scan Def file $ICC_IN_SCAN_DEF_FILE is not found, but DFT is enabled. Please investigate it"
+       exit
+  }
+  check_scan_chain
+  redirect -file $REPORTS_DIR_PLACE_OPT/scan_chain_pre_ordering.rpt {report_scan_chain}
+}
+if {$LEAKAGE_POWER} {
+  set_multi_vth_constraint -reset
+
+  ############################################################
+  # %LVT leakage optimization flow (edit before using it)
+  ############################################################
+  # For limiting the number of low Vth cells in the design, set a multithreshold
+  # voltage constraint. This is a faster flow than the default leakage
+  # optimization flow, and does not use the leakage power values in the library.
+
+  # Edit the following to set the threshold voltage groups in the libraries
+  # set_attribute <my_hvt_lib> default_threshold_voltage_group HVT -type string
+  # set_attribute <my_lvt_lib> default_threshold_voltage_group LVT -type string
+
+  # Edit the following to set the multithreshold voltage constraint
+  # set_multi_vth_constraint -lvth_groups { LVT } -lvth_percentage <percent value>
+}
+################################################################################
+## Save the environment snapshot for the Consistency Checker utility.
+#
+#  This utility checks for inconsistent settings between Design Compiler and
+#  IC Compiler which can contribute to correlation mismatches.
+#  Download this utility from SolvNet. See the following SolvNet article for
+#  complete details: https://solvnet.synopsys.com/retrieve/026366.html
+#  Uncomment the following lines to snapshot the environment.
+#	write_environment -consistency -output $RESULTS_DIR/${ICC_PLACE_OPT_CEL}.write_environment
+################################################################################
+if {$ICC_SANITY_CHECK} {check_physical_design -stage pre_place_opt -no_display}
+if { [check_error -verbose] != 0} { echo "SCRIPT-Error, flagging ..." }
+if {$ICC_ENABLE_CHECKPOINT} {
+echo "SCRIPT-Info : Please ensure there's enough disk space before enabling the set_checkpoint_strategy feature."
+set_checkpoint_strategy -enable -overwrite
+# The -overwrite option is used by default. Remove it if needed.
+}
+# YUNSUP: changed for fast p&r
+set place_opt_cmd "place_opt -effort $PLACE_OPT_EFFORT"
+place_opt -effort low
+if {$PLACE_OPT_CONGESTION} {lappend place_opt_cmd -congestion}
+place_opt -effort low -congestion
+if {$DFT} {lappend place_opt_cmd -optimize_dft}
+if {$LEAKAGE_POWER || $DYNAMIC_POWER || $ICC_LOW_POWER_PLACEMENT} {lappend place_opt_cmd -power}
+echo $place_opt_cmd
+place_opt -effort low -congestion
+eval $place_opt_cmd
+
+The options for place_opt:
+--------------------------
+POPT:  place_opt effort level               : low
+POPT:  Congestion removal                   : Yes
+POPT:  Area recovery                        : No
+POPT:  Optimize dft                         : No
+POPT:  Clock Tree Synthesis                 : No
+POPT:  Optimize power                       : No
+---------------------------------------------------
+
+Settings of some common used Tcl variables for place_opt:
+---------------------------------------------------------
+---------------------------------------------------------
+
+  Loading design 'GCD'
+
+
+
+
+Information: Library Manufacturing Grid(GridResolution) : 5
+Information: Time Unit from Milkyway design library: 'ns' 
+Information: Design Library and main library timing units are matched - 1.000 ns. 
+Information: Resistance Unit from Milkyway design library: 'kohm' 
+Warning: Mismatch in the main library and the Milkyway library resistance units. In the main library it is 1000.000 kohm and in the Milkyway design library it is 1.000 kohm. Check and correct the resistance units in the .tf and .db files. (PSYN-476)
+Information: Capacitance Unit from Milkyway design library: 'pf' 
+Warning: Mismatch in the main and the Milkyway library capacitance units. In the main library it is 0.001 pf and in the Milkyway design library it is 1.000 pf. Check and correct the capacitance units in the .tf and .db files. (PSYN-477)
+
+TLU+ File = /home/ff/cs250/stdcells/synopsys-90nm/default/tluplus/max.tluplus
+TLU+ File = /home/ff/cs250/stdcells/synopsys-90nm/default/tluplus/min.tluplus
+
+--------- Sanity Check on TLUPlus Files -------------
+1. Checking the conducting layer names in ITF and mapping file ... 
+[ Passed! ]
+2. Checking the via layer names in ITF and mapping file ... 
+[ Passed! ]
+3. Checking the consistency of Min Width and Min Spacing between MW-tech and ITF ... 
+[ Passed! ]
+----------------- Check Ends ------------------
+****************************************************************
+Information: TLUPlus based RC computation is enabled. (RCEX-141)
+****************************************************************
+Information: The distance unit in Capacitance and Resistance is 1 micron. (RCEX-007)
+Information: The RC model used is TLU+. (RCEX-015)
+Information: Library Derived Cap for layer M1 : 0.22 0.19 (RCEX-011)
+Information: Library Derived Res for layer M1 : 6.4e-07 6.4e-07 (RCEX-011)
+Information: Library Derived Cap for layer M2 : 0.25 0.21 (RCEX-011)
+Information: Library Derived Res for layer M2 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M3 : 0.14 0.12 (RCEX-011)
+Information: Library Derived Res for layer M3 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M4 : 0.14 0.12 (RCEX-011)
+Information: Library Derived Res for layer M4 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M5 : 0.13 0.1 (RCEX-011)
+Information: Library Derived Res for layer M5 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M6 : 0.13 0.1 (RCEX-011)
+Information: Library Derived Res for layer M6 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M7 : 0.13 0.098 (RCEX-011)
+Information: Library Derived Res for layer M7 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M8 : 0.13 0.098 (RCEX-011)
+Information: Library Derived Res for layer M8 : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Library Derived Cap for layer M9 : 0.16 0.12 (RCEX-011)
+Information: Library Derived Res for layer M9 : 6.2e-08 6.2e-08 (RCEX-011)
+Information: Library Derived Horizontal Cap : 0.16 0.13 (RCEX-011)
+Information: Library Derived Horizontal Res : 4.8e-07 4.8e-07 (RCEX-011)
+Information: Library Derived Vertical Cap : 0.16 0.13 (RCEX-011)
+Information: Library Derived Vertical Res : 5.6e-07 5.6e-07 (RCEX-011)
+Information: Using derived R and C coefficients. (RCEX-008)
+Information: Using region-based R and C coefficients. (RCEX-013)
+Information: Library Derived Via Res : 8e-07 8e-07 (RCEX-011)
+
+ Beginning Coarse Placement
+  --------------------------
+
+Information: Running stand-alone coarse placer in a separate process using temp directory '/tmp'. (PSYN-605)
+Warning: Scan DEF information is required. (PSYN-1099)
+...33%...67%...100% done.
+
+  Coarse Placement Complete
+  --------------------------
+
+Information: Updating graph... (UID-83)
+
+ Beginning Buffering Optimizations
+ ---------------------------------
+
+ Estimating Design ...... 
+ Done
+
+ Updating Timing ........ 
+ Done
+
+ Collecting Buffer Trees ... Found 4
+
+ Processing Buffer Trees ... 
+
+    [1]  10% ...
+    [2]  20% ...
+    [3]  30% ...
+    [4]  40% ...
+    [4] 100% Done ...
+
+
+Information: Automatic high-fanout synthesis deletes 1 cells. (HFS-802)
+Information: Automatic high-fanout synthesis adds 1 new cells. (PSYN-864)
+
+
+
+
+
+
+  WNS: 0.01  TNS: 0.02  Number of Violating Paths: 4
+  Nets with DRC Violations: 0
+  Total moveable cell area: 4117.7
+  Total fixed cell area: 0.0
+  Total physical cell area: 4117.7
+  Core area: (30000 30000 104880 104880)
+
+
+  Timing and DRC Optimization (Stage 1)
+  --------------------------------------
+
+
+
+  Beginning Timing Optimizations
+  ------------------------------
+
+   ELAPSED            WORST NEG TOTAL NEG  DESIGN                            
+    TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:04    4117.7      0.01       0.0       0.0                          
+
+  Optimization Complete
+  ---------------------
+
+
+  Beginning Timing Optimizations
+  ------------------------------
+
+   ELAPSED            WORST NEG TOTAL NEG  DESIGN                            
+    TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:04    4117.7      0.01       0.0       0.0                          
+    0:00:04    4059.6      0.00       0.0       0.0                          
+
+  Optimization Complete
+  ---------------------
+
+  WNS: 0.00  TNS: 0.00  Number of Violating Paths: 0
+  Nets with DRC Violations: 0
+  Total moveable cell area: 4059.6
+  Total fixed cell area: 0.0
+  Total physical cell area: 4059.6
+  Core area: (30000 30000 104880 104880)
+
+
+
+
+
+
+  Beginning Coarse Placement (Congestion Driven)
+  ---------------------------------------------
+
+Information: Running stand-alone coarse placer in a separate process using temp directory '/tmp'. (PSYN-605)
+Warning: Scan DEF information is required. (PSYN-1099)
+100% done.
+50%...75%...100% done.
+
+  Coarse Placement Complete
+  --------------------------
+
+[begin initializing data for legality checker]
+Initializing Data Structure ...
+  Reading technology information ...
+    Technology table contains 9 routable metal layers
+    This is considered as a 9-metal-layer design
+    Reading library information from DB ...
+  Reading misc information ...
+    array <unit> has 0 vertical and 26 horizontal rows
+    104 pre-routes for placement blockage/checking
+    244 pre-routes for map congestion calculation
+  Checking information read in ...
+    design style = Horizontal masters, Horizontal rows
+  Preprocessing design ...
+    splitting rows by natural obstacles ...
+[end initializing data for legality checker]
+ 
+****************************************
+  Report : Chip Summary
+  Design : GCD
+  Version: F-2011.09-ICC-SP4
+  Date   : Tue Sep 11 00:01:55 2012
+****************************************
+Std cell utilization: 72.40%  (4405/(6084-0))
+(Non-fixed + Fixed)
+Std cell utilization: 72.40%  (4405/(6084-0))
+(Non-fixed only)
+Chip area:            6084     sites, bbox (30.00 30.00 104.88 104.88) um
+Std cell area:        4405     sites, (non-fixed:4405   fixed:0)
+                      492      cells, (non-fixed:492    fixed:0)
+Macro cell area:      0        sites
+                      0        cells
+Placement blockages:  0        sites, (excluding fixed std cells)
+                      0        sites, (include fixed std cells & chimney area)
+                      0        sites, (complete p/g net blockages)
+Routing blockages:    0        sites, (partial p/g net blockages)
+                      0        sites, (routing blockages and signal pre-route)
+Lib cell count:       25 
+Avg. std cell width:  4.07 um 
+Site array:           unit     (width: 0.32 um, height: 2.88 um, rows: 26)
+Physical DB scale:    1000 db_unit = 1 um 
+
+ 
+****************************************
+  Report : pnet options
+  Design : GCD
+  Version: F-2011.09-ICC-SP4
+  Date   : Tue Sep 11 00:01:55 2012
+****************************************
+
+
+--------------------------------------------------------------------
+Layer      Blockage   Min_width   Min_height   Via_additive     Density
+--------------------------------------------------------------------
+M1         none          ---         ---       via additive      ---
+M2         none          ---         ---       via additive      ---
+M3         none          ---         ---       via additive      ---
+M4         none          ---         ---       via additive      ---
+M5         none          ---         ---       via additive      ---
+M6         none          ---         ---       via additive      ---
+M7         none          ---         ---       via additive      ---
+M8         none          ---         ---       via additive      ---
+M9         none          ---         ---       via additive      ---
+Legalizing 492 illegal cells...
+Starting legalizer.
+Initial legalization:  100% (0 sec)
+Optimizations pass 1: 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% (0.0 sec)
+Optimizations pass 2: 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% (0.0 sec)
+Optimizations pass 3: 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% (0.0 sec)
+Legalization complete (0 total sec)
+ 
+****************************************
+  Report : Legalize Displacement
+  Design : GCD
+  Version: F-2011.09-ICC-SP4
+  Date   : Tue Sep 11 00:01:55 2012
+****************************************
+
+avg cell displacement:    0.798 um ( 0.28 row height)
+max cell displacement:    2.051 um ( 0.71 row height)
+std deviation:            0.427 um ( 0.15 row height)
+number of cell moved:       492 cells (out of 492 cells)
+
+Total 0 cells has large displacement (e.g. > 8.640 um or 3 row height)
+
+
+
+
+
+
+  WNS: 0.00  TNS: 0.00  Number of Violating Paths: 0
+  Nets with DRC Violations: 0
+  Total moveable cell area: 4059.6
+  Total fixed cell area: 0.0
+  Total physical cell area: 4059.6
+  Core area: (30000 30000 104880 104880)
+
+
+  Timing and DRC Optimization (Stage 1)
+  --------------------------------------
+
+
+
+  Beginning Timing Optimizations
+  ------------------------------
+
+   ELAPSED            WORST NEG TOTAL NEG  DESIGN                            
+    TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:06    4059.6      0.00       0.0       0.0                          
+
+  Optimization Complete
+  ---------------------
+
+  Placement Optimization (Stage 1)
+  ---------------------------------
+
+[begin initializing data for legality checker]
+Initializing Data Structure ...
+  Reading technology information ...
+    Technology table contains 9 routable metal layers
+    This is considered as a 9-metal-layer design
+    Reading library information from DB ...
+  Reading misc information ...
+    array <unit> has 0 vertical and 26 horizontal rows
+    104 pre-routes for placement blockage/checking
+    244 pre-routes for map congestion calculation
+  Checking information read in ...
+    design style = Horizontal masters, Horizontal rows
+  Preprocessing design ...
+    splitting rows by natural obstacles ...
+[end initializing data for legality checker]
+ 
+****************************************
+  Report : Chip Summary
+  Design : GCD
+  Version: F-2011.09-ICC-SP4
+  Date   : Tue Sep 11 00:01:56 2012
+****************************************
+Std cell utilization: 72.40%  (4405/(6084-0))
+(Non-fixed + Fixed)
+Std cell utilization: 72.40%  (4405/(6084-0))
+(Non-fixed only)
+Chip area:            6084     sites, bbox (30.00 30.00 104.88 104.88) um
+Std cell area:        4405     sites, (non-fixed:4405   fixed:0)
+                      492      cells, (non-fixed:492    fixed:0)
+Macro cell area:      0        sites
+                      0        cells
+Placement blockages:  0        sites, (excluding fixed std cells)
+                      0        sites, (include fixed std cells & chimney area)
+                      0        sites, (complete p/g net blockages)
+Routing blockages:    0        sites, (partial p/g net blockages)
+                      0        sites, (routing blockages and signal pre-route)
+Lib cell count:       25 
+Avg. std cell width:  4.07 um 
+Site array:           unit     (width: 0.32 um, height: 2.88 um, rows: 26)
+Physical DB scale:    1000 db_unit = 1 um 
+
+ 
+****************************************
+  Report : pnet options
+  Design : GCD
+  Version: F-2011.09-ICC-SP4
+  Date   : Tue Sep 11 00:01:56 2012
+****************************************
+
+
+--------------------------------------------------------------------
+Layer      Blockage   Min_width   Min_height   Via_additive     Density
+--------------------------------------------------------------------
+M1         none          ---         ---       via additive      ---
+M2         none          ---         ---       via additive      ---
+M3         none          ---         ---       via additive      ---
+M4         none          ---         ---       via additive      ---
+M5         none          ---         ---       via additive      ---
+M6         none          ---         ---       via additive      ---
+M7         none          ---         ---       via additive      ---
+M8         none          ---         ---       via additive      ---
+M9         none          ---         ---       via additive      ---
+ 
+****************************************
+  Report : Legalize Displacement
+  Design : GCD
+  Version: F-2011.09-ICC-SP4
+  Date   : Tue Sep 11 00:01:56 2012
+****************************************
+
+No cell displacement.
+
+
+  Placement Optimization Complete
+  -------------------------------
+
+
+  WNS: 0.00  TNS: 0.00  Number of Violating Paths: 0
+  Nets with DRC Violations: 0
+  Total moveable cell area: 4059.6
+  Total fixed cell area: 0.0
+  Total physical cell area: 4059.6
+  Core area: (30000 30000 104880 104880)
+
+[begin initializing data for legality checker]
+Initializing Data Structure ...
+  Reading technology information ...
+    Technology table contains 9 routable metal layers
+    This is considered as a 9-metal-layer design
+    Reading library information from DB ...
+  Reading misc information ...
+    array <unit> has 0 vertical and 26 horizontal rows
+    104 pre-routes for placement blockage/checking
+    244 pre-routes for map congestion calculation
+  Checking information read in ...
+    design style = Horizontal masters, Horizontal rows
+  Preprocessing design ...
+    splitting rows by natural obstacles ...
+[end initializing data for legality checker]
+Warning: Die area is not integer multiples of min site height (2880), object's width and height(134880,134880). (PSYN-523)
+Warning: Die area is not integer multiples of min site width (320), object's width and height(134880,134880). (PSYN-523)
+
+**************************************************** 
+Check_legality: Report for Fixed Placement Cells
+Information: Use the -verbose option to get details about the legality violations. (PSYN-054)
+**************************************************** 
+(fixed placement) Cells Not on Row            : 0
+(fixed placement) Cell Overlaps               : 0
+(fixed placement) Cells overlapping blockages : 0
+(fixed placement) Orientation Violations      : 0
+(fixed placement) Site Violations             : 0
+(fixed placement) Power Strap Violations      : 0
+****************************************************** 
+
+****************************************************** 
+Check_legality: Report for Non-fixed Placement Cells
+Information: Use the -verbose option to get details about the legality violations. (PSYN-054)
+****************************************************** 
+Number of Cells Not on Row            : 0
+Number of Cell Overlaps               : 0
+Number of Cells overlapping blockages : 0
+Number of Orientation Violations      : 0
+Number of Site Violations             : 0
+Number of Power Strap Violations      : 0
+******************************************** 
+Information: Updating database...
+1
+if {$ICC_ENABLE_CHECKPOINT} {set_checkpoint_strategy -disable}
+if { [check_error -verbose] != 0} { echo "SCRIPT-Error, flagging ..." }
+############################################################################################################
+# ADDING ADDITIONAL FEATURES TO THE DEFAULT PLACE_OPT COMMAND
+############################################################################################################
+##
+## When you want to add area recovery, execute :
+#
+#   place_opt -area_recovery -effort low
+#
+## When the design has congestion issues, you have following choices :
+#
+#   place_opt -congestion -area_recovery -effort low ; # for medium effort congestion removal
+#   place_opt -effort high -congestion -area_recovery ; # for high eff cong removal
+## What commands do you need when you want to optimize SCAN ?
+#   read_def $ICC_IN_SCAN_DEF_FILE
+#   check_scan_chain > $REPORTS_DIR_PLACE_OPT/scan_chain_pre_ordering.rpt
+#   report_scan_chain >>  $REPORTS_DIR_PLACE_OPT/scan_chain_pre_ordering.rpt
+#   place_opt -effort low -optimize_dft
+## What commands do you need when you want to reduce leakage power ?
+#   set_power_options -leakage true
+#   place_opt -effort low -area_recovery -power
+## What commands do you need when you want to reduce dynamic power ?
+#   set_power_options -dynamic true -low_power_placement true
+#   read_saif -input $ICC_IN_SAIF_FILE
+#   place_opt -effort low -area_recovery -power
+#          Note : option -low_power_placement enables the register clumping algorithm in
+#                 place_opt, whereas the option -dynamic enables the
+#                 Gate Level Power Optimization (GLPO)
+## When you want to do scan opto, leakage opto, dynamic opto, and you have congestion issues,
+## use all options together :
+#   read_def $ICC_IN_SCAN_DEF_FILE
+#   set_power_options -leakage true -dynamic true -low_power_placement true
+#   place_opt -effort low -congestion -area_recovery -optimize_dft -power
+##############################
+## RP : Relative Placement  ##
+##############################
+## Checking any RP violations.
+## It is recommended to open up the GUI and bring up the RP hierarchical browser and
+## RP visual mode to see if RP groups were created correctly
+#check_rp_groups -all
+if {$ICC_ECO_FLOW == "FREEZE_SILICON"} {
+
+ echo "SCRIPT-Info: Starting the Freeze Silicon eco flow, inserting the spare cells"
+
+ ## spare cell file typically contains commands like :
+ ## insert_spare_cells -num_cells {ANDa 10 ANDb 20 ANDc 23} -cell_name spares
+
+ if {[file exists [which $ICC_SPARE_CELL_FILE]]} {
+   source -echo $ICC_SPARE_CELL_FILE
+ }
+
+}
+########################################
+#           CONNECT P/G                #
+########################################
+## Connect Power & Ground for non-MV and MV-mode
+if {[file exists [which $CUSTOM_CONNECT_PG_NETS_SCRIPT]]} {
+   source -echo $CUSTOM_CONNECT_PG_NETS_SCRIPT
+ } else {
+    derive_pg_connection -power_net $MW_POWER_NET -power_pin $MW_POWER_PORT -ground_net $MW_GROUND_NET -ground_pin $MW_GROUND_PORT
+    if {!$ICC_TIE_CELL_FLOW} {derive_pg_connection -power_net $MW_POWER_NET -ground_net $MW_GROUND_NET -tie}
+   }
+Information: connected 8 power ports and 8 ground ports
+reconnected total 0 tie highs and 0 tie lows
+1
+if { [check_error -verbose] != 0} { echo "SCRIPT-Error, flagging ..." }
+if {$ICC_TIE_CELL_FLOW} {
+  echo "SCRIPT-Info : List of TIE-CELL instances in your design :"
+  all_tieoff_cells
+} else { report_tie_nets
+  }
+Design has 0 tie high net(s):
+
+
+Design has 0 tie low net(s):
+
+
+1
+if {$ICC_REPORTING_EFFORT != "OFF" } {
+   redirect -file $REPORTS_DIR_PLACE_OPT/$ICC_PLACE_OPT_CEL.max.tim {report_timing -capacitance -transition_time -input_pins -nets -delay max}
+   redirect -file $REPORTS_DIR_PLACE_OPT/$ICC_PLACE_OPT_CEL.min.tim {report_timing -capacitance -transition_time -input_pins -nets -delay min}
+  }
+save_mw_cel -as $ICC_PLACE_OPT_CEL
+Information: Performing CEL netlist consistency check. (MWDC-118)
+Information: CEL consistency check PASSED. (MWDC-119)
+Information: Saved design named place_opt_icc. (UIG-5)
+1
+## Create Snapshot and Save
+if {$ICC_REPORTING_EFFORT != "OFF" } {
+    redirect -file $REPORTS_DIR_PLACE_OPT/$ICC_PLACE_OPT_CEL.placement_utilization.rpt {report_placement_utilization -verbose}
+    create_qor_snapshot -name $ICC_PLACE_OPT_CEL
+    redirect -file $REPORTS_DIR_PLACE_OPT/$ICC_PLACE_OPT_CEL.qor_snapshot.rpt {report_qor_snapshot -no_display}
+    redirect -tee -file $REPORTS_DIR_PLACE_OPT/$ICC_PLACE_OPT_CEL.qor {report_qor}
+    redirect -file $REPORTS_DIR_PLACE_OPT/$ICC_PLACE_OPT_CEL.con {report_constraints}
+  }
+if {[file exists [which $ICC_SIGNOFF_OPT_CHECK_CORRELATION_PREROUTE_SCRIPT]]} {
+  source $ICC_SIGNOFF_OPT_CHECK_CORRELATION_PREROUTE_SCRIPT
+}
+## Categorized Timing Report (CTR)
+#  Use CTR in the interactive mode to view the results of create_qor_snapshot.
+#	query_qor_snapshot -display
+#  query_qor_snapshot condenses the timing report into a cross-referencing table for quick analysis.
+#  It can be used to highlight violating paths and metric in the layout window and timing reports.
+#  CTR also provides special options to focus on top-level and hierarchical timing issues.
+#  When dealing with dirty designs, increasing the number violations per path to 20-30 when generating a snapshot can help
+#  find more issues after each run (create_qor_snapshot -nworst 20).
+exit
+
+Thank you...
+Exit IC Compiler!

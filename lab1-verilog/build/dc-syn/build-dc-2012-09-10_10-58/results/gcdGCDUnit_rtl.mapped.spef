@@ -1,0 +1,3997 @@
+*SPEF "IEEE 1481-1999"
+*DESIGN "gcdGCDUnit_rtl"
+*DATE "Mon Sep 10 10:59:17 2012"
+*VENDOR "SYNOPSYS INC"
+*PROGRAM "Synopsys Design Compiler cmos"
+*VERSION "F-2011.09-SP4"
+*DESIGN_FLOW "SYNTHESIS"
+*DIVIDER /
+*DELIMITER :
+*BUS_DELIMITER []
+*T_UNIT 1.0 NS
+*C_UNIT 0.0010 PF
+*R_UNIT 1000.0 KOHM
+*L_UNIT 1.0 HENRY
+
+*PORTS
+
+clk I *L 0.000e+00 *S 1.612e-02 1.658e-02 *D INVX1 
+reset I *L 0.000e+00 *S 1.126e-02 1.169e-02 *D INVX1 
+operands_bits_A\[15\] I *L 0.000e+00 *S 3.953e-03 4.156e-03 *D INVX1 
+operands_bits_A\[14\] I *L 0.000e+00 *S 5.351e-03 5.625e-03 *D INVX1 
+operands_bits_A\[13\] I *L 0.000e+00 *S 4.109e-03 4.320e-03 *D INVX1 
+operands_bits_A\[12\] I *L 0.000e+00 *S 4.733e-03 4.977e-03 *D INVX1 
+operands_bits_A\[11\] I *L 0.000e+00 *S 5.538e-03 5.823e-03 *D INVX1 
+operands_bits_A\[10\] I *L 0.000e+00 *S 4.730e-03 4.973e-03 *D INVX1 
+operands_bits_A\[9\] I *L 0.000e+00 *S 4.338e-03 4.560e-03 *D INVX1 
+operands_bits_A\[8\] I *L 0.000e+00 *S 3.623e-03 3.809e-03 *D INVX1 
+operands_bits_A\[7\] I *L 0.000e+00 *S 5.005e-03 5.262e-03 *D INVX1 
+operands_bits_A\[6\] I *L 0.000e+00 *S 3.946e-03 4.149e-03 *D INVX1 
+operands_bits_A\[5\] I *L 0.000e+00 *S 3.469e-03 3.647e-03 *D INVX1 
+operands_bits_A\[4\] I *L 0.000e+00 *S 4.364e-03 4.589e-03 *D INVX1 
+operands_bits_A\[3\] I *L 0.000e+00 *S 4.188e-03 4.403e-03 *D INVX1 
+operands_bits_A\[2\] I *L 0.000e+00 *S 3.350e-03 3.522e-03 *D INVX1 
+operands_bits_A\[1\] I *L 0.000e+00 *S 5.084e-03 5.345e-03 *D INVX1 
+operands_bits_A\[0\] I *L 0.000e+00 *S 4.213e-03 4.429e-03 *D INVX1 
+operands_bits_B\[15\] I *L 0.000e+00 *S 3.261e-03 3.429e-03 *D INVX1 
+operands_bits_B\[14\] I *L 0.000e+00 *S 6.085e-03 6.398e-03 *D INVX1 
+operands_bits_B\[13\] I *L 0.000e+00 *S 3.456e-03 3.634e-03 *D INVX1 
+operands_bits_B\[12\] I *L 0.000e+00 *S 3.474e-03 3.652e-03 *D INVX1 
+operands_bits_B\[11\] I *L 0.000e+00 *S 3.589e-03 3.773e-03 *D INVX1 
+operands_bits_B\[10\] I *L 0.000e+00 *S 4.424e-03 4.651e-03 *D INVX1 
+operands_bits_B\[9\] I *L 0.000e+00 *S 3.880e-03 4.079e-03 *D INVX1 
+operands_bits_B\[8\] I *L 0.000e+00 *S 3.004e-03 3.158e-03 *D INVX1 
+operands_bits_B\[7\] I *L 0.000e+00 *S 3.426e-03 3.603e-03 *D INVX1 
+operands_bits_B\[6\] I *L 0.000e+00 *S 4.203e-03 4.419e-03 *D INVX1 
+operands_bits_B\[5\] I *L 0.000e+00 *S 3.316e-03 3.486e-03 *D INVX1 
+operands_bits_B\[4\] I *L 0.000e+00 *S 3.815e-03 4.011e-03 *D INVX1 
+operands_bits_B\[3\] I *L 0.000e+00 *S 3.884e-03 4.083e-03 *D INVX1 
+operands_bits_B\[2\] I *L 0.000e+00 *S 3.366e-03 3.539e-03 *D INVX1 
+operands_bits_B\[1\] I *L 0.000e+00 *S 3.498e-03 3.678e-03 *D INVX1 
+operands_bits_B\[0\] I *L 0.000e+00 *S 3.552e-03 3.734e-03 *D INVX1 
+operands_val I *L 0.000e+00 *S 6.327e-03 6.652e-03 *D INVX1 
+operands_rdy O *L 4.000e-03 *S 2.471e-02 2.324e-02 
+result_bits_data\[15\] O *L 4.000e-03 *S 1.966e-02 2.505e-02 
+result_bits_data\[14\] O *L 4.000e-03 *S 1.693e-02 2.166e-02 
+result_bits_data\[13\] O *L 4.000e-03 *S 1.912e-02 2.438e-02 
+result_bits_data\[12\] O *L 4.000e-03 *S 1.413e-02 1.813e-02 
+result_bits_data\[11\] O *L 4.000e-03 *S 1.604e-02 2.055e-02 
+result_bits_data\[10\] O *L 4.000e-03 *S 2.336e-02 2.965e-02 
+result_bits_data\[9\] O *L 4.000e-03 *S 2.434e-02 3.088e-02 
+result_bits_data\[8\] O *L 4.000e-03 *S 1.480e-02 1.899e-02 
+result_bits_data\[7\] O *L 4.000e-03 *S 2.318e-02 2.943e-02 
+result_bits_data\[6\] O *L 4.000e-03 *S 1.608e-02 2.060e-02 
+result_bits_data\[5\] O *L 4.000e-03 *S 1.200e-02 1.539e-02 
+result_bits_data\[4\] O *L 4.000e-03 *S 2.558e-02 3.242e-02 
+result_bits_data\[3\] O *L 4.000e-03 *S 1.805e-02 2.305e-02 
+result_bits_data\[2\] O *L 4.000e-03 *S 2.850e-02 3.604e-02 
+result_bits_data\[1\] O *L 4.000e-03 *S 2.218e-02 2.819e-02 
+result_bits_data\[0\] O *L 4.000e-03 *S 2.257e-02 2.868e-02 
+result_val O *L 4.000e-03 *S 3.483e-02 3.465e-02 
+result_rdy I *L 0.000e+00 *S 3.743e-03 3.936e-03 *D INVX1 
+
+*R_NET clk 1.358e+01
+*DRIVER clk
+*CELL INVX1
+*C2_R1_C1 6.789e+00 5.224e-05 6.789e+00 
+*LOADS
+*RC GCDdpath0/clk_gate_A_reg_reg/latch:CLK 2.477e-04
+*RC GCDdpath0/clk_gate_B_reg_reg/latch:CLK 1.530e-04
+*RC GCDctrl0/state_reg_0_:CLK 2.099e-05
+*RC GCDctrl0/state_reg_1_:CLK 5.240e-05
+*END
+
+*R_NET operands_bits_A\[15\] 3.673e+00
+*DRIVER operands_bits_A\[15\]
+*CELL INVX1
+*C2_R1_C1 1.837e+00 8.646e-06 1.837e+00 
+*LOADS
+*RC GCDdpath0/U314:IN2 2.591e-05
+*END
+
+*R_NET operands_bits_A\[14\] 4.972e+00
+*DRIVER operands_bits_A\[14\]
+*CELL INVX1
+*C2_R1_C1 2.486e+00 1.970e-05 2.486e+00 
+*LOADS
+*RC GCDdpath0/U304:IN2 6.757e-05
+*END
+
+*R_NET operands_bits_A\[13\] 3.819e+00
+*DRIVER operands_bits_A\[13\]
+*CELL INVX1
+*C2_R1_C1 1.909e+00 9.860e-06 1.909e+00 
+*LOADS
+*RC GCDdpath0/U300:IN2 3.002e-05
+*END
+
+*R_NET operands_bits_A\[12\] 4.399e+00
+*DRIVER operands_bits_A\[12\]
+*CELL INVX1
+*C2_R1_C1 2.199e+00 1.432e-05 2.199e+00 
+*LOADS
+*RC GCDdpath0/U296:IN2 4.637e-05
+*END
+
+*R_NET operands_bits_A\[11\] 5.146e+00
+*DRIVER operands_bits_A\[11\]
+*CELL INVX1
+*C2_R1_C1 2.573e+00 1.975e-05 2.573e+00 
+*LOADS
+*RC GCDdpath0/U291:IN2 6.886e-05
+*END
+
+*R_NET operands_bits_A\[10\] 4.395e+00
+*DRIVER operands_bits_A\[10\]
+*CELL INVX1
+*C2_R1_C1 2.198e+00 1.504e-05 2.198e+00 
+*LOADS
+*RC GCDdpath0/U287:IN2 4.869e-05
+*END
+
+*R_NET operands_bits_A\[9\] 4.031e+00
+*DRIVER operands_bits_A\[9\]
+*CELL INVX1
+*C2_R1_C1 2.015e+00 1.118e-05 2.015e+00 
+*LOADS
+*RC GCDdpath0/U283:IN2 3.482e-05
+*END
+
+*R_NET operands_bits_A\[8\] 3.367e+00
+*DRIVER operands_bits_A\[8\]
+*CELL INVX1
+*C2_R1_C1 1.683e+00 8.249e-06 1.683e+00 
+*LOADS
+*RC GCDdpath0/U185:IN2 2.207e-05
+*END
+
+*R_NET operands_bits_A\[7\] 4.651e+00
+*DRIVER operands_bits_A\[7\]
+*CELL INVX1
+*C2_R1_C1 2.325e+00 1.852e-05 2.325e+00 
+*LOADS
+*RC GCDdpath0/U177:IN2 5.747e-05
+*END
+
+*R_NET operands_bits_A\[6\] 3.667e+00
+*DRIVER operands_bits_A\[6\]
+*CELL INVX1
+*C2_R1_C1 1.833e+00 1.054e-05 1.833e+00 
+*LOADS
+*RC GCDdpath0/U195:IN2 2.927e-05
+*END
+
+*R_NET operands_bits_A\[5\] 3.223e+00
+*DRIVER operands_bits_A\[5\]
+*CELL INVX1
+*C2_R1_C1 1.612e+00 6.973e-06 1.612e+00 
+*LOADS
+*RC GCDdpath0/U190:IN2 1.832e-05
+*END
+
+*R_NET operands_bits_A\[4\] 4.056e+00
+*DRIVER operands_bits_A\[4\]
+*CELL INVX1
+*C2_R1_C1 2.028e+00 1.342e-05 2.028e+00 
+*LOADS
+*RC GCDdpath0/U181:IN2 3.900e-05
+*END
+
+*R_NET operands_bits_A\[3\] 3.892e+00
+*DRIVER operands_bits_A\[3\]
+*CELL INVX1
+*C2_R1_C1 1.946e+00 1.348e-05 1.946e+00 
+*LOADS
+*RC GCDdpath0/U203:IN2 3.843e-05
+*END
+
+*R_NET operands_bits_A\[2\] 3.113e+00
+*DRIVER operands_bits_A\[2\]
+*CELL INVX1
+*C2_R1_C1 1.557e+00 6.213e-06 1.557e+00 
+*LOADS
+*RC GCDdpath0/U200:IN2 1.610e-05
+*END
+
+*R_NET operands_bits_A\[1\] 4.724e+00
+*DRIVER operands_bits_A\[1\]
+*CELL INVX1
+*C2_R1_C1 2.362e+00 2.043e-05 2.362e+00 
+*LOADS
+*RC GCDdpath0/U187:IN2 6.392e-05
+*END
+
+*R_NET operands_bits_A\[0\] 3.915e+00
+*DRIVER operands_bits_A\[0\]
+*CELL INVX1
+*C2_R1_C1 1.957e+00 1.232e-05 1.957e+00 
+*LOADS
+*RC GCDdpath0/U197:IN2 3.522e-05
+*END
+
+*R_NET operands_bits_B\[15\] 3.031e+00
+*DRIVER operands_bits_B\[15\]
+*CELL INVX1
+*C2_R1_C1 1.515e+00 7.192e-06 1.515e+00 
+*LOADS
+*RC GCDdpath0/U309:IN1 1.781e-05
+*END
+
+*R_NET operands_bits_B\[14\] 5.655e+00
+*DRIVER operands_bits_B\[14\]
+*CELL INVX1
+*C2_R1_C1 2.827e+00 2.962e-05 2.827e+00 
+*LOADS
+*RC GCDdpath0/U303:IN1 9.923e-05
+*END
+
+*R_NET operands_bits_B\[13\] 3.212e+00
+*DRIVER operands_bits_B\[13\]
+*CELL INVX1
+*C2_R1_C1 1.606e+00 8.545e-06 1.606e+00 
+*LOADS
+*RC GCDdpath0/U299:IN1 2.167e-05
+*END
+
+*R_NET operands_bits_B\[12\] 3.228e+00
+*DRIVER operands_bits_B\[12\]
+*CELL INVX1
+*C2_R1_C1 1.614e+00 8.825e-06 1.614e+00 
+*LOADS
+*RC GCDdpath0/U295:IN1 2.243e-05
+*END
+
+*R_NET operands_bits_B\[11\] 3.335e+00
+*DRIVER operands_bits_B\[11\]
+*CELL INVX1
+*C2_R1_C1 1.667e+00 8.931e-06 1.667e+00 
+*LOADS
+*RC GCDdpath0/U290:IN1 2.302e-05
+*END
+
+*R_NET operands_bits_B\[10\] 4.111e+00
+*DRIVER operands_bits_B\[10\]
+*CELL INVX1
+*C2_R1_C1 2.056e+00 1.654e-05 2.056e+00 
+*LOADS
+*RC GCDdpath0/U286:IN1 4.691e-05
+*END
+
+*R_NET operands_bits_B\[9\] 3.606e+00
+*DRIVER operands_bits_B\[9\]
+*CELL INVX1
+*C2_R1_C1 1.803e+00 1.188e-05 1.803e+00 
+*LOADS
+*RC GCDdpath0/U282:IN1 3.170e-05
+*END
+
+*R_NET operands_bits_B\[8\] 2.792e+00
+*DRIVER operands_bits_B\[8\]
+*CELL INVX1
+*C2_R1_C1 1.396e+00 4.651e-06 1.396e+00 
+*LOADS
+*RC GCDdpath0/U279:IN1 1.114e-05
+*END
+
+*R_NET operands_bits_B\[7\] 3.184e+00
+*DRIVER operands_bits_B\[7\]
+*CELL INVX1
+*C2_R1_C1 1.592e+00 8.363e-06 1.592e+00 
+*LOADS
+*RC GCDdpath0/U274:IN1 2.113e-05
+*END
+
+*R_NET operands_bits_B\[6\] 3.906e+00
+*DRIVER operands_bits_B\[6\]
+*CELL INVX1
+*C2_R1_C1 1.953e+00 1.453e-05 1.953e+00 
+*LOADS
+*RC GCDdpath0/U271:IN1 4.023e-05
+*END
+
+*R_NET operands_bits_B\[5\] 3.081e+00
+*DRIVER operands_bits_B\[5\]
+*CELL INVX1
+*C2_R1_C1 1.541e+00 6.917e-06 1.541e+00 
+*LOADS
+*RC GCDdpath0/U268:IN1 1.724e-05
+*END
+
+*R_NET operands_bits_B\[4\] 3.546e+00
+*DRIVER operands_bits_B\[4\]
+*CELL INVX1
+*C2_R1_C1 1.773e+00 1.065e-05 1.773e+00 
+*LOADS
+*RC GCDdpath0/U266:IN1 2.819e-05
+*END
+
+*R_NET operands_bits_B\[3\] 3.609e+00
+*DRIVER operands_bits_B\[3\]
+*CELL INVX1
+*C2_R1_C1 1.804e+00 1.183e-05 1.804e+00 
+*LOADS
+*RC GCDdpath0/U263:IN1 3.157e-05
+*END
+
+*R_NET operands_bits_B\[2\] 3.128e+00
+*DRIVER operands_bits_B\[2\]
+*CELL INVX1
+*C2_R1_C1 1.564e+00 7.244e-06 1.564e+00 
+*LOADS
+*RC GCDdpath0/U260:IN1 1.817e-05
+*END
+
+*R_NET operands_bits_B\[1\] 3.251e+00
+*DRIVER operands_bits_B\[1\]
+*CELL INVX1
+*C2_R1_C1 1.625e+00 8.526e-06 1.625e+00 
+*LOADS
+*RC GCDdpath0/U257:IN1 2.174e-05
+*END
+
+*R_NET operands_bits_B\[0\] 3.300e+00
+*DRIVER operands_bits_B\[0\]
+*CELL INVX1
+*C2_R1_C1 1.650e+00 9.464e-06 1.650e+00 
+*LOADS
+*RC GCDdpath0/U254:IN1 2.428e-05
+*END
+
+*R_NET operands_val 5.880e+00
+*DRIVER operands_val
+*CELL INVX1
+*C2_R1_C1 2.940e+00 5.987e-06 2.940e+00 
+*LOADS
+*RC GCDctrl0/U8:IN2 2.020e-05
+*RC GCDctrl0/U11:IN2 1.643e-05
+*END
+
+*R_NET operands_rdy 4.745e+00
+*DRIVER GCDctrl0/U19:QN
+*CELL NOR2X0
+*C2_R1_C1 2.372e+00 1.556e-05 2.372e+00 
+*LOADS
+*RC GCDctrl0/U8:IN1 5.150e-05
+*RC operands_rdy 5.516e-06
+*END
+
+*R_NET result_bits_data\[15\] 1.002e+01
+*DRIVER GCDdpath0/A_reg_reg_15_:Q
+*CELL DFFARX1
+*C2_R1_C1 5.011e+00 3.610e-05 5.011e+00 
+*LOADS
+*RC GCDdpath0/U156:IN2 1.145e-04
+*RC GCDdpath0/U309:IN2 1.427e-04
+*RC result_bits_data\[15\] 8.599e-05
+*END
+
+*R_NET result_bits_data\[14\] 8.418e+00
+*DRIVER GCDdpath0/A_reg_reg_14_:Q
+*CELL DFFARX1
+*C2_R1_C1 4.209e+00 2.265e-05 4.209e+00 
+*LOADS
+*RC GCDdpath0/U97:IN2 4.330e-05
+*RC GCDdpath0/U303:IN2 1.414e-05
+*RC result_bits_data\[14\] 5.943e-05
+*END
+
+*R_NET result_bits_data\[13\] 9.706e+00
+*DRIVER GCDdpath0/A_reg_reg_13_:Q
+*CELL DFFARX1
+*C2_R1_C1 4.853e+00 1.071e-05 4.853e+00 
+*LOADS
+*RC GCDdpath0/U59:IN2 2.556e-05
+*RC GCDdpath0/U299:IN2 1.153e-05
+*RC result_bits_data\[13\] 2.373e-05
+*END
+
+*R_NET result_bits_data\[12\] 6.893e+00
+*DRIVER GCDdpath0/A_reg_reg_12_:Q
+*CELL DFFARX1
+*C2_R1_C1 3.447e+00 1.055e-05 3.447e+00 
+*LOADS
+*RC GCDdpath0/U84:IN2 1.768e-05
+*RC GCDdpath0/U295:IN2 1.071e-05
+*RC result_bits_data\[12\] 1.466e-05
+*END
+
+*R_NET result_bits_data\[11\] 7.890e+00
+*DRIVER GCDdpath0/A_reg_reg_11_:Q
+*CELL DFFARX1
+*C2_R1_C1 3.945e+00 1.701e-05 3.945e+00 
+*LOADS
+*RC GCDdpath0/U57:IN2 8.420e-06
+*RC GCDdpath0/U290:IN2 3.074e-05
+*RC result_bits_data\[11\] 3.708e-05
+*END
+
+*R_NET result_bits_data\[10\] 1.220e+01
+*DRIVER GCDdpath0/A_reg_reg_10_:Q
+*CELL DFFARX1
+*C2_R1_C1 6.102e+00 2.854e-05 6.102e+00 
+*LOADS
+*RC GCDdpath0/U88:IN2 1.936e-05
+*RC GCDdpath0/U286:IN2 4.882e-05
+*RC result_bits_data\[10\] 9.472e-05
+*END
+
+*R_NET result_bits_data\[9\] 1.279e+01
+*DRIVER GCDdpath0/A_reg_reg_9_:Q
+*CELL DFFARX1
+*C2_R1_C1 6.393e+00 3.377e-05 6.393e+00 
+*LOADS
+*RC GCDdpath0/U86:IN2 2.806e-05
+*RC GCDdpath0/U282:IN2 1.195e-04
+*RC result_bits_data\[9\] 5.468e-05
+*END
+
+*R_NET result_bits_data\[8\] 7.220e+00
+*DRIVER GCDdpath0/A_reg_reg_8_:Q
+*CELL DFFARX1
+*C2_R1_C1 3.610e+00 1.565e-05 3.610e+00 
+*LOADS
+*RC GCDdpath0/U157:IN2 1.332e-05
+*RC GCDdpath0/U279:IN2 5.488e-05
+*RC result_bits_data\[8\] 1.670e-05
+*END
+
+*R_NET result_bits_data\[7\] 1.210e+01
+*DRIVER GCDdpath0/A_reg_reg_7_:Q
+*CELL DFFARX1
+*C2_R1_C1 6.049e+00 5.114e-05 6.049e+00 
+*LOADS
+*RC GCDdpath0/U165:IN2 1.521e-05
+*RC GCDdpath0/U274:IN2 2.339e-04
+*RC result_bits_data\[7\] 5.121e-05
+*END
+
+*R_NET result_bits_data\[6\] 7.915e+00
+*DRIVER GCDdpath0/A_reg_reg_6_:Q
+*CELL DFFARX1
+*C2_R1_C1 3.957e+00 4.579e-05 3.957e+00 
+*LOADS
+*RC GCDdpath0/U271:IN2 1.543e-04
+*RC result_bits_data\[6\] 5.136e-05
+*END
+
+*R_NET result_bits_data\[5\] 5.851e+00
+*DRIVER GCDdpath0/A_reg_reg_5_:Q
+*CELL DFFARX1
+*C2_R1_C1 2.925e+00 2.942e-05 2.925e+00 
+*LOADS
+*RC GCDdpath0/U268:IN2 8.579e-05
+*RC result_bits_data\[5\] 2.493e-05
+*END
+
+*R_NET result_bits_data\[4\] 1.351e+01
+*DRIVER GCDdpath0/A_reg_reg_4_:Q
+*CELL DFFARX1
+*C2_R1_C1 6.756e+00 6.276e-05 6.756e+00 
+*LOADS
+*RC GCDdpath0/U166:IN2 7.519e-05
+*RC GCDdpath0/U266:IN2 2.977e-04
+*RC result_bits_data\[4\] 2.171e-04
+*END
+
+*R_NET result_bits_data\[3\] 9.075e+00
+*DRIVER GCDdpath0/A_reg_reg_3_:Q
+*CELL DFFARX1
+*C2_R1_C1 4.538e+00 2.700e-05 4.538e+00 
+*LOADS
+*RC GCDdpath0/U58:IN2 5.541e-05
+*RC GCDdpath0/U263:IN2 8.561e-05
+*RC result_bits_data\[3\] 7.637e-05
+*END
+
+*R_NET result_bits_data\[2\] 1.526e+01
+*DRIVER GCDdpath0/A_reg_reg_2_:Q
+*CELL DFFARX1
+*C2_R1_C1 7.629e+00 4.759e-05 7.629e+00 
+*LOADS
+*RC GCDdpath0/U90:IN2 2.983e-04
+*RC GCDdpath0/U167:IN2 2.864e-04
+*RC GCDdpath0/U260:IN2 3.479e-05
+*RC result_bits_data\[2\] 2.881e-05
+*END
+
+*R_NET result_bits_data\[1\] 1.151e+01
+*DRIVER GCDdpath0/A_reg_reg_1_:Q
+*CELL DFFARX1
+*C2_R1_C1 5.754e+00 4.816e-05 5.754e+00 
+*LOADS
+*RC GCDdpath0/U169:IN2 2.425e-05
+*RC GCDdpath0/U257:IN2 2.326e-04
+*RC result_bits_data\[1\] 1.195e-04
+*END
+
+*R_NET result_bits_data\[0\] 1.174e+01
+*DRIVER GCDdpath0/A_reg_reg_0_:Q
+*CELL DFFARX1
+*C2_R1_C1 5.870e+00 4.631e-05 5.870e+00 
+*LOADS
+*RC GCDdpath0/U254:IN2 1.790e-04
+*RC GCDdpath0/U255:IN2 2.125e-04
+*RC result_bits_data\[0\] 7.111e-05
+*END
+
+*R_NET result_val 7.715e+00
+*DRIVER GCDctrl0/U12:ZN
+*CELL INVX0
+*C2_R1_C1 3.858e+00 3.978e-05 3.858e+00 
+*LOADS
+*RC GCDctrl0/U25:IN1 9.566e-05
+*RC result_val 5.426e-05
+*END
+
+*R_NET result_rdy 3.478e+00
+*DRIVER result_rdy
+*CELL INVX1
+*C2_R1_C1 1.739e+00 1.594e-05 1.739e+00 
+*LOADS
+*RC GCDctrl0/U18:IN2 3.480e-05
+*END
+
+*R_NET A_en 1.752e+00
+*DRIVER GCDctrl0/U23:Q
+*CELL OR2X1
+*C2_R1_C1 8.761e-01 2.839e-06 8.761e-01 
+*LOADS
+*RC GCDdpath0/clk_gate_A_reg_reg/latch:EN 4.302e-06
+*END
+
+*R_NET B_en 6.056e+00
+*DRIVER GCDctrl0/U7:QN
+*CELL NAND2X1
+*C2_R1_C1 3.028e+00 1.722e-05 3.028e+00 
+*LOADS
+*RC GCDctrl0/U23:IN1 6.091e-05
+*RC GCDdpath0/clk_gate_B_reg_reg/latch:EN 8.821e-06
+*END
+
+*R_NET B_zero 9.450e+00
+*DRIVER GCDdpath0/U321:Q
+*CELL AND4X1
+*C2_R1_C1 4.725e+00 2.208e-05 4.725e+00 
+*LOADS
+*RC GCDctrl0/U3:IN1 6.785e-05
+*RC GCDctrl0/U22:IN1 9.488e-05
+*RC GCDctrl0/U24:IN3 1.028e-04
+*END
+
+*R_NET A_lt_B 1.179e+01
+*DRIVER GCDdpath0/U2:QN
+*CELL NOR2X2
+*C2_R1_C1 5.896e+00 5.652e-06 5.896e+00 
+*LOADS
+*RC GCDctrl0/U5:INP 3.190e-05
+*RC GCDctrl0/U10:IN1 1.752e-05
+*RC GCDctrl0/U16:IN2 1.381e-05
+*END
+
+*R_NET reset 9.908e+00
+*DRIVER reset
+*CELL INVX1
+*C2_R1_C1 4.954e+00 8.574e-06 4.954e+00 
+*LOADS
+*RC GCDctrl0/U25:IN3 1.847e-05
+*RC GCDctrl0/U15:IN2 1.948e-05
+*RC GCDdpath0/U106:INP 3.132e-05
+*END
+
+*R_NET n2 2.371e+00
+*DRIVER GCDctrl0/U10:QN
+*CELL NOR2X0
+*C2_R1_C1 1.185e+00 2.468e-06 1.185e+00 
+*LOADS
+*RC GCDdpath0/U102:INP 5.351e-06
+*END
+
+*R_NET n3 6.783e+00
+*DRIVER GCDctrl0/U9:QN
+*CELL NOR2X2
+*C2_R1_C1 3.392e+00 1.816e-06 3.392e+00 
+*LOADS
+*RC U2:INP 1.205e-05
+*END
+
+*R_NET n4 1.691e+02
+*DRIVER U2:Z
+*CELL NBUFFX16
+*C2_R1_C1 8.454e+01 5.628e-05 8.454e+01 
+*LOADS
+*RC U1:INP 1.250e-04
+*RC GCDdpath0/U104:IN2 2.255e-03
+*RC GCDdpath0/U291:IN1 2.036e-03
+*RC GCDdpath0/U314:IN1 2.666e-03
+*RC GCDdpath0/U304:IN1 1.563e-03
+*RC GCDdpath0/U283:IN1 2.445e-03
+*RC GCDdpath0/U296:IN1 2.281e-03
+*RC GCDdpath0/U287:IN1 1.460e-03
+*RC GCDdpath0/U300:IN1 2.004e-03
+*RC GCDdpath0/U309:S 1.459e-03
+*RC GCDdpath0/U257:S 2.994e-03
+*RC GCDdpath0/U295:S 1.873e-03
+*RC GCDdpath0/U299:S 1.725e-03
+*RC GCDdpath0/U254:S 1.434e-03
+*RC GCDdpath0/U260:S 1.978e-03
+*RC GCDdpath0/U303:S 7.297e-04
+*RC GCDdpath0/U290:S 2.075e-03
+*RC GCDdpath0/U286:S 1.005e-03
+*RC GCDdpath0/U263:S 1.465e-03
+*RC GCDdpath0/U268:S 2.632e-03
+*RC GCDdpath0/U282:S 2.354e-03
+*RC GCDdpath0/U266:S 2.500e-03
+*RC GCDdpath0/U279:S 1.867e-03
+*RC GCDdpath0/U274:S 2.627e-03
+*RC GCDdpath0/U271:S 1.947e-03
+*RC GCDdpath0/U223:IN1 2.400e-03
+*RC GCDdpath0/U222:IN1 2.012e-03
+*RC GCDdpath0/U218:IN1 1.138e-03
+*RC GCDdpath0/U216:IN1 2.072e-03
+*RC GCDdpath0/U214:IN1 1.282e-03
+*RC GCDdpath0/U210:IN1 1.813e-03
+*RC GCDdpath0/U205:IN1 2.093e-03
+*RC GCDdpath0/U203:IN1 1.139e-03
+*RC GCDdpath0/U202:IN1 1.153e-03
+*RC GCDdpath0/U200:IN1 2.504e-03
+*RC GCDdpath0/U199:IN1 2.116e-03
+*RC GCDdpath0/U197:IN1 2.883e-04
+*RC GCDdpath0/U196:IN1 3.168e-04
+*RC GCDdpath0/U195:IN1 1.649e-03
+*RC GCDdpath0/U194:IN1 1.738e-03
+*RC GCDdpath0/U190:IN1 1.933e-03
+*RC GCDdpath0/U189:IN1 2.046e-03
+*RC GCDdpath0/U187:IN1 9.258e-04
+*RC GCDdpath0/U186:IN1 1.110e-03
+*RC GCDdpath0/U185:IN1 1.761e-03
+*RC GCDdpath0/U184:IN1 1.699e-03
+*RC GCDdpath0/U181:IN1 4.325e-04
+*RC GCDdpath0/U179:IN1 5.547e-04
+*RC GCDdpath0/U178:IN1 6.654e-04
+*RC GCDdpath0/U177:IN1 7.526e-04
+*RC GCDdpath0/U175:IN1 8.509e-04
+*RC GCDdpath0/U170:IN1 1.187e-03
+*END
+
+*R_NET n5 3.049e+01
+*DRIVER U1:ZN
+*CELL INVX2
+*C2_R1_C1 1.524e+01 6.041e-05 1.524e+01 
+*LOADS
+*RC GCDctrl0/U7:IN1 3.515e-04
+*RC GCDdpath0/U256:IN1 1.252e-04
+*RC GCDdpath0/U259:IN1 2.386e-04
+*RC GCDdpath0/U262:IN1 2.678e-04
+*RC GCDdpath0/U265:IN1 1.600e-04
+*RC GCDdpath0/U270:IN1 3.111e-04
+*RC GCDdpath0/U273:IN1 2.745e-04
+*RC GCDdpath0/U281:IN1 3.682e-04
+*END
+
+*R_NET GCDdpath0/A_next\[15\] 1.697e+00
+*DRIVER GCDdpath0/U142:QN
+*CELL NAND2X1
+*C2_R1_C1 8.484e-01 1.652e-06 8.484e-01 
+*LOADS
+*RC GCDdpath0/A_reg_reg_15_:D 2.581e-06
+*END
+
+*R_NET GCDdpath0/A_next\[14\] 1.835e+00
+*DRIVER GCDdpath0/U129:QN
+*CELL NAND2X0
+*C2_R1_C1 9.175e-01 2.645e-06 9.175e-01 
+*LOADS
+*RC GCDdpath0/A_reg_reg_14_:D 4.254e-06
+*END
+
+*R_NET GCDdpath0/A_next\[13\] 2.827e+00
+*DRIVER GCDdpath0/U125:QN
+*CELL NAND2X1
+*C2_R1_C1 1.413e+00 1.101e-05 1.413e+00 
+*LOADS
+*RC GCDdpath0/A_reg_reg_13_:D 2.134e-05
+*END
+
+*R_NET GCDdpath0/A_next\[12\] 2.581e+00
+*DRIVER GCDdpath0/U121:QN
+*CELL NAND2X1
+*C2_R1_C1 1.290e+00 9.021e-06 1.290e+00 
+*LOADS
+*RC GCDdpath0/A_reg_reg_12_:D 1.675e-05
+*END
+
+*R_NET GCDdpath0/A_next\[11\] 1.920e+00
+*DRIVER GCDdpath0/U139:QN
+*CELL NAND2X1
+*C2_R1_C1 9.598e-01 3.377e-06 9.598e-01 
+*LOADS
+*RC GCDdpath0/A_reg_reg_11_:D 5.526e-06
+*END
+
+*R_NET GCDdpath0/A_next\[10\] 1.933e+00
+*DRIVER GCDdpath0/U135:QN
+*CELL NAND2X1
+*C2_R1_C1 9.665e-01 3.479e-06 9.665e-01 
+*LOADS
+*RC GCDdpath0/A_reg_reg_10_:D 5.709e-06
+*END
+
+*R_NET GCDdpath0/A_next\[9\] 1.752e+00
+*DRIVER GCDdpath0/U131:QN
+*CELL NAND2X0
+*C2_R1_C1 8.760e-01 2.122e-06 8.760e-01 
+*LOADS
+*RC GCDdpath0/A_reg_reg_9_:D 3.355e-06
+*END
+
+*R_NET GCDdpath0/A_next\[8\] 1.838e+00
+*DRIVER GCDdpath0/U68:QN
+*CELL NAND2X1
+*C2_R1_C1 9.189e-01 2.899e-06 9.189e-01 
+*LOADS
+*RC GCDdpath0/A_reg_reg_8_:D 4.665e-06
+*END
+
+*R_NET GCDdpath0/A_next\[7\] 1.701e+00
+*DRIVER GCDdpath0/U64:QN
+*CELL NAND2X1
+*C2_R1_C1 8.504e-01 1.776e-06 8.504e-01 
+*LOADS
+*RC GCDdpath0/A_reg_reg_7_:D 2.778e-06
+*END
+
+*R_NET GCDdpath0/A_next\[6\] 1.767e+00
+*DRIVER GCDdpath0/U74:QN
+*CELL NAND2X1
+*C2_R1_C1 8.835e-01 2.330e-06 8.835e-01 
+*LOADS
+*RC GCDdpath0/A_reg_reg_6_:D 3.695e-06
+*END
+
+*R_NET GCDdpath0/A_next\[5\] 2.116e+00
+*DRIVER GCDdpath0/U72:QN
+*CELL NAND2X1
+*C2_R1_C1 1.058e+00 5.076e-06 1.058e+00 
+*LOADS
+*RC GCDdpath0/A_reg_reg_5_:D 8.640e-06
+*END
+
+*R_NET GCDdpath0/A_next\[4\] 1.720e+00
+*DRIVER GCDdpath0/U66:QN
+*CELL NAND2X0
+*C2_R1_C1 8.601e-01 1.780e-06 8.601e-01 
+*LOADS
+*RC GCDdpath0/A_reg_reg_4_:D 2.795e-06
+*END
+
+*R_NET GCDdpath0/A_next\[3\] 1.849e+00
+*DRIVER GCDdpath0/U80:QN
+*CELL NAND2X1
+*C2_R1_C1 9.246e-01 2.999e-06 9.246e-01 
+*LOADS
+*RC GCDdpath0/A_reg_reg_3_:D 4.838e-06
+*END
+
+*R_NET GCDdpath0/A_next\[2\] 1.857e+00
+*DRIVER GCDdpath0/U78:QN
+*CELL NAND2X1
+*C2_R1_C1 9.285e-01 2.922e-06 9.285e-01 
+*LOADS
+*RC GCDdpath0/A_reg_reg_2_:D 4.721e-06
+*END
+
+*R_NET GCDdpath0/A_next\[1\] 1.715e+00
+*DRIVER GCDdpath0/U70:QN
+*CELL NAND2X0
+*C2_R1_C1 8.575e-01 1.869e-06 8.575e-01 
+*LOADS
+*RC GCDdpath0/A_reg_reg_1_:D 2.931e-06
+*END
+
+*R_NET GCDdpath0/A_next\[0\] 1.862e+00
+*DRIVER GCDdpath0/U76:QN
+*CELL NAND2X1
+*C2_R1_C1 9.311e-01 2.997e-06 9.311e-01 
+*LOADS
+*RC GCDdpath0/A_reg_reg_0_:D 4.846e-06
+*END
+
+*R_NET GCDdpath0/B_reg\[15\] 8.280e+00
+*DRIVER GCDdpath0/B_reg_reg_15_:Q
+*CELL DFFARX1
+*C2_R1_C1 4.140e+00 1.979e-05 4.140e+00 
+*LOADS
+*RC GCDdpath0/U163:IN2 9.144e-05
+*RC GCDdpath0/U320:IN1 6.633e-05
+*END
+
+*R_NET GCDdpath0/B_reg\[14\] 1.039e+01
+*DRIVER GCDdpath0/B_reg_reg_14_:Q
+*CELL DFFARX1
+*C2_R1_C1 5.194e+00 3.523e-05 5.194e+00 
+*LOADS
+*RC GCDdpath0/U251:IN2 1.080e-04
+*RC GCDdpath0/U320:IN2 1.729e-04
+*END
+
+*R_NET GCDdpath0/B_reg\[13\] 7.633e+00
+*DRIVER GCDdpath0/B_reg_reg_13_:Q
+*CELL DFFARX1
+*C2_R1_C1 3.816e+00 2.017e-05 3.816e+00 
+*LOADS
+*RC GCDdpath0/U249:IN2 4.794e-05
+*RC GCDdpath0/U320:IN3 8.823e-05
+*END
+
+*R_NET GCDdpath0/B_reg\[12\] 9.019e+00
+*DRIVER GCDdpath0/B_reg_reg_12_:Q
+*CELL DFFARX1
+*C2_R1_C1 4.510e+00 2.461e-05 4.510e+00 
+*LOADS
+*RC GCDdpath0/U250:IN2 8.758e-05
+*RC GCDdpath0/U320:IN4 1.122e-04
+*END
+
+*R_NET GCDdpath0/B_reg\[11\] 7.458e+00
+*DRIVER GCDdpath0/B_reg_reg_11_:Q
+*CELL DFFARX1
+*C2_R1_C1 3.729e+00 1.937e-05 3.729e+00 
+*LOADS
+*RC GCDdpath0/U253:IN2 7.659e-05
+*RC GCDdpath0/U319:IN4 5.691e-05
+*END
+
+*R_NET GCDdpath0/B_reg\[10\] 1.108e+01
+*DRIVER GCDdpath0/B_reg_reg_10_:Q
+*CELL DFFARX1
+*C2_R1_C1 5.538e+00 3.995e-05 5.538e+00 
+*LOADS
+*RC GCDdpath0/U252:IN2 1.868e-04
+*RC GCDdpath0/U319:IN1 1.818e-04
+*END
+
+*R_NET GCDdpath0/B_reg\[9\] 8.855e+00
+*DRIVER GCDdpath0/B_reg_reg_9_:Q
+*CELL DFFARX1
+*C2_R1_C1 4.427e+00 2.426e-05 4.427e+00 
+*LOADS
+*RC GCDdpath0/U61:IN2 1.184e-04
+*RC GCDdpath0/U319:IN3 4.987e-05
+*END
+
+*R_NET GCDdpath0/B_reg\[8\] 1.066e+01
+*DRIVER GCDdpath0/B_reg_reg_8_:Q
+*CELL DFFARX1
+*C2_R1_C1 5.328e+00 4.094e-05 5.328e+00 
+*LOADS
+*RC GCDdpath0/U164:IN2 1.566e-04
+*RC GCDdpath0/U319:IN2 9.739e-05
+*END
+
+*R_NET GCDdpath0/B_reg\[7\] 1.164e+01
+*DRIVER GCDdpath0/B_reg_reg_7_:Q
+*CELL DFFARX1
+*C2_R1_C1 5.821e+00 4.951e-05 5.821e+00 
+*LOADS
+*RC GCDdpath0/U161:IN2 2.856e-04
+*RC GCDdpath0/U317:IN4 1.137e-04
+*END
+
+*R_NET GCDdpath0/B_reg\[6\] 1.765e+01
+*DRIVER GCDdpath0/B_reg_reg_6_:Q
+*CELL DFFARX1
+*C2_R1_C1 8.823e+00 4.647e-05 8.823e+00 
+*LOADS
+*RC GCDdpath0/U98:IN2 4.495e-04
+*RC GCDdpath0/U159:IN2 3.498e-04
+*RC GCDdpath0/U317:IN3 1.419e-04
+*END
+
+*R_NET GCDdpath0/B_reg\[5\] 1.448e+01
+*DRIVER GCDdpath0/B_reg_reg_5_:Q
+*CELL DFFARX1
+*C2_R1_C1 7.242e+00 4.127e-05 7.242e+00 
+*LOADS
+*RC GCDdpath0/U83:IN2 2.792e-04
+*RC GCDdpath0/U158:IN2 2.771e-04
+*RC GCDdpath0/U318:IN4 3.190e-05
+*END
+
+*R_NET GCDdpath0/B_reg\[4\] 1.112e+01
+*DRIVER GCDdpath0/B_reg_reg_4_:Q
+*CELL DFFARX1
+*C2_R1_C1 5.559e+00 4.263e-05 5.559e+00 
+*LOADS
+*RC GCDdpath0/U160:IN2 2.330e-04
+*RC GCDdpath0/U317:IN2 1.259e-04
+*END
+
+*R_NET GCDdpath0/B_reg\[3\] 1.140e+01
+*DRIVER GCDdpath0/B_reg_reg_3_:Q
+*CELL DFFARX1
+*C2_R1_C1 5.698e+00 4.290e-05 5.698e+00 
+*LOADS
+*RC GCDdpath0/U87:IN2 2.485e-04
+*RC GCDdpath0/U318:IN3 7.098e-05
+*END
+
+*R_NET GCDdpath0/B_reg\[2\] 4.060e+00
+*DRIVER GCDdpath0/B_reg_reg_2_:Q
+*CELL DFFARX1
+*C2_R1_C1 2.030e+00 9.471e-06 2.030e+00 
+*LOADS
+*RC GCDdpath0/U318:IN2 3.106e-05
+*END
+
+*R_NET GCDdpath0/B_reg\[1\] 1.147e+01
+*DRIVER GCDdpath0/B_reg_reg_1_:Q
+*CELL DFFARX1
+*C2_R1_C1 5.737e+00 4.736e-05 5.737e+00 
+*LOADS
+*RC GCDdpath0/U168:IN2 2.705e-04
+*RC GCDdpath0/U318:IN1 8.816e-05
+*END
+
+*R_NET GCDdpath0/B_reg\[0\] 1.726e+01
+*DRIVER GCDdpath0/B_reg_reg_0_:Q
+*CELL DFFARX1
+*C2_R1_C1 8.631e+00 3.811e-05 8.631e+00 
+*LOADS
+*RC GCDdpath0/U324:IN1 2.356e-04
+*RC GCDdpath0/U255:IN1 4.452e-05
+*RC GCDdpath0/U317:IN1 1.642e-04
+*END
+
+*R_NET GCDdpath0/B_next\[15\] 2.958e+00
+*DRIVER GCDdpath0/U309:Q
+*CELL MUX21X1
+*C2_R1_C1 1.479e+00 1.140e-05 1.479e+00 
+*LOADS
+*RC GCDdpath0/B_reg_reg_15_:D 2.260e-05
+*END
+
+*R_NET GCDdpath0/B_next\[14\] 4.353e+00
+*DRIVER GCDdpath0/U303:Q
+*CELL MUX21X1
+*C2_R1_C1 2.177e+00 2.245e-05 2.177e+00 
+*LOADS
+*RC GCDdpath0/B_reg_reg_14_:D 5.494e-05
+*END
+
+*R_NET GCDdpath0/B_next\[13\] 4.106e+00
+*DRIVER GCDdpath0/U299:Q
+*CELL MUX21X1
+*C2_R1_C1 2.053e+00 2.095e-05 2.053e+00 
+*LOADS
+*RC GCDdpath0/B_reg_reg_13_:D 4.955e-05
+*END
+
+*R_NET GCDdpath0/B_next\[12\] 5.151e+00
+*DRIVER GCDdpath0/U295:Q
+*CELL MUX21X1
+*C2_R1_C1 2.575e+00 2.919e-05 2.575e+00 
+*LOADS
+*RC GCDdpath0/B_reg_reg_12_:D 7.921e-05
+*END
+
+*R_NET GCDdpath0/B_next\[11\] 3.382e+00
+*DRIVER GCDdpath0/U290:Q
+*CELL MUX21X1
+*C2_R1_C1 1.691e+00 1.632e-05 1.691e+00 
+*LOADS
+*RC GCDdpath0/B_reg_reg_11_:D 3.467e-05
+*END
+
+*R_NET GCDdpath0/B_next\[10\] 4.501e+00
+*DRIVER GCDdpath0/U286:Q
+*CELL MUX21X1
+*C2_R1_C1 2.251e+00 2.504e-05 2.251e+00 
+*LOADS
+*RC GCDdpath0/B_reg_reg_10_:D 6.253e-05
+*END
+
+*R_NET GCDdpath0/B_next\[9\] 2.603e+00
+*DRIVER GCDdpath0/U282:Q
+*CELL MUX21X1
+*C2_R1_C1 1.302e+00 9.584e-06 1.302e+00 
+*LOADS
+*RC GCDdpath0/B_reg_reg_9_:D 1.787e-05
+*END
+
+*R_NET GCDdpath0/B_next\[8\] 4.452e+00
+*DRIVER GCDdpath0/U279:Q
+*CELL MUX21X1
+*C2_R1_C1 2.226e+00 2.526e-05 2.226e+00 
+*LOADS
+*RC GCDdpath0/B_reg_reg_8_:D 6.265e-05
+*END
+
+*R_NET GCDdpath0/B_next\[7\] 2.748e+00
+*DRIVER GCDdpath0/U274:Q
+*CELL MUX21X1
+*C2_R1_C1 1.374e+00 1.046e-05 1.374e+00 
+*LOADS
+*RC GCDdpath0/B_reg_reg_7_:D 2.001e-05
+*END
+
+*R_NET GCDdpath0/B_next\[6\] 4.622e+00
+*DRIVER GCDdpath0/U271:Q
+*CELL MUX21X1
+*C2_R1_C1 2.311e+00 2.499e-05 2.311e+00 
+*LOADS
+*RC GCDdpath0/B_reg_reg_6_:D 6.342e-05
+*END
+
+*R_NET GCDdpath0/B_next\[5\] 2.384e+00
+*DRIVER GCDdpath0/U268:Q
+*CELL MUX21X1
+*C2_R1_C1 1.192e+00 7.419e-06 1.192e+00 
+*LOADS
+*RC GCDdpath0/B_reg_reg_5_:D 1.329e-05
+*END
+
+*R_NET GCDdpath0/B_next\[4\] 3.356e+00
+*DRIVER GCDdpath0/U266:Q
+*CELL MUX21X1
+*C2_R1_C1 1.678e+00 1.586e-05 1.678e+00 
+*LOADS
+*RC GCDdpath0/B_reg_reg_4_:D 3.354e-05
+*END
+
+*R_NET GCDdpath0/B_next\[3\] 5.947e+00
+*DRIVER GCDdpath0/U263:Q
+*CELL MUX21X1
+*C2_R1_C1 2.973e+00 3.534e-05 2.973e+00 
+*LOADS
+*RC GCDdpath0/B_reg_reg_3_:D 1.053e-04
+*END
+
+*R_NET GCDdpath0/B_next\[2\] 3.470e+00
+*DRIVER GCDdpath0/U260:Q
+*CELL MUX21X1
+*C2_R1_C1 1.735e+00 1.642e-05 1.735e+00 
+*LOADS
+*RC GCDdpath0/B_reg_reg_2_:D 3.536e-05
+*END
+
+*R_NET GCDdpath0/B_next\[1\] 3.024e+00
+*DRIVER GCDdpath0/U257:Q
+*CELL MUX21X1
+*C2_R1_C1 1.512e+00 1.278e-05 1.512e+00 
+*LOADS
+*RC GCDdpath0/B_reg_reg_1_:D 2.562e-05
+*END
+
+*R_NET GCDdpath0/B_next\[0\] 2.625e+00
+*DRIVER GCDdpath0/U254:Q
+*CELL MUX21X1
+*C2_R1_C1 1.313e+00 9.710e-06 1.313e+00 
+*LOADS
+*RC GCDdpath0/B_reg_reg_0_:D 1.817e-05
+*END
+
+*R_NET GCDdpath0/net163 3.496e+01
+*DRIVER GCDdpath0/clk_gate_B_reg_reg/latch:GCLK
+*CELL CGLPPRX2
+*C2_R1_C1 1.748e+01 6.901e-05 1.748e+01 
+*LOADS
+*RC GCDdpath0/B_reg_reg_15_:CLK 7.197e-05
+*RC GCDdpath0/B_reg_reg_0_:CLK 1.892e-04
+*RC GCDdpath0/B_reg_reg_1_:CLK 6.168e-04
+*RC GCDdpath0/B_reg_reg_2_:CLK 5.528e-04
+*RC GCDdpath0/B_reg_reg_3_:CLK 5.740e-04
+*RC GCDdpath0/B_reg_reg_4_:CLK 5.505e-04
+*RC GCDdpath0/B_reg_reg_5_:CLK 4.732e-04
+*RC GCDdpath0/B_reg_reg_6_:CLK 1.016e-04
+*RC GCDdpath0/B_reg_reg_7_:CLK 5.099e-04
+*RC GCDdpath0/B_reg_reg_8_:CLK 5.334e-04
+*RC GCDdpath0/B_reg_reg_9_:CLK 4.355e-04
+*RC GCDdpath0/B_reg_reg_10_:CLK 1.328e-04
+*RC GCDdpath0/B_reg_reg_11_:CLK 4.661e-04
+*RC GCDdpath0/B_reg_reg_12_:CLK 1.745e-04
+*RC GCDdpath0/B_reg_reg_13_:CLK 1.394e-04
+*RC GCDdpath0/B_reg_reg_14_:CLK 2.341e-04
+*END
+
+*R_NET GCDdpath0/net169 3.601e+01
+*DRIVER GCDdpath0/clk_gate_A_reg_reg/latch:GCLK
+*CELL CGLPPRX2
+*C2_R1_C1 1.800e+01 7.465e-05 1.800e+01 
+*LOADS
+*RC GCDdpath0/A_reg_reg_14_:CLK 3.198e-04
+*RC GCDdpath0/A_reg_reg_4_:CLK 3.640e-05
+*RC GCDdpath0/A_reg_reg_7_:CLK 1.570e-04
+*RC GCDdpath0/A_reg_reg_15_:CLK 5.950e-04
+*RC GCDdpath0/A_reg_reg_11_:CLK 4.779e-04
+*RC GCDdpath0/A_reg_reg_9_:CLK 4.870e-04
+*RC GCDdpath0/A_reg_reg_10_:CLK 3.235e-04
+*RC GCDdpath0/A_reg_reg_12_:CLK 5.630e-04
+*RC GCDdpath0/A_reg_reg_13_:CLK 5.260e-04
+*RC GCDdpath0/A_reg_reg_0_:CLK 1.272e-04
+*RC GCDdpath0/A_reg_reg_1_:CLK 3.691e-04
+*RC GCDdpath0/A_reg_reg_2_:CLK 5.708e-04
+*RC GCDdpath0/A_reg_reg_3_:CLK 2.000e-04
+*RC GCDdpath0/A_reg_reg_5_:CLK 5.512e-04
+*RC GCDdpath0/A_reg_reg_6_:CLK 5.274e-04
+*RC GCDdpath0/A_reg_reg_8_:CLK 6.354e-04
+*END
+
+*R_NET GCDdpath0/n2 6.379e+00
+*DRIVER GCDdpath0/U3:QN
+*CELL NOR2X2
+*C2_R1_C1 3.189e+00 3.451e-06 3.189e+00 
+*LOADS
+*RC GCDdpath0/U2:IN2 2.107e-05
+*END
+
+*R_NET GCDdpath0/n3 6.394e+00
+*DRIVER GCDdpath0/U4:QN
+*CELL NAND2X1
+*C2_R1_C1 3.197e+00 3.391e-06 3.197e+00 
+*LOADS
+*RC GCDdpath0/U3:IN2 2.072e-05
+*END
+
+*R_NET GCDdpath0/n4 7.387e+00
+*DRIVER GCDdpath0/U5:QN
+*CELL NAND2X2
+*C2_R1_C1 3.694e+00 1.533e-05 3.694e+00 
+*LOADS
+*RC GCDdpath0/U3:IN1 9.392e-05
+*END
+
+*R_NET GCDdpath0/n5 6.976e+00
+*DRIVER GCDdpath0/U6:QN
+*CELL NAND2X2
+*C2_R1_C1 3.488e+00 1.277e-05 3.488e+00 
+*LOADS
+*RC GCDdpath0/U2:IN1 7.644e-05
+*END
+
+*R_NET GCDdpath0/n6 5.812e+00
+*DRIVER GCDdpath0/U7:QN
+*CELL NAND2X1
+*C2_R1_C1 2.906e+00 3.062e-06 2.906e+00 
+*LOADS
+*RC GCDdpath0/U6:IN2 1.700e-05
+*END
+
+*R_NET GCDdpath0/n7 5.852e+00
+*DRIVER GCDdpath0/U8:ZN
+*CELL INVX1
+*C2_R1_C1 2.926e+00 3.228e-06 2.926e+00 
+*LOADS
+*RC GCDdpath0/U6:IN1 1.804e-05
+*END
+
+*R_NET GCDdpath0/n8 5.952e+00
+*DRIVER GCDdpath0/U9:QN
+*CELL NAND2X2
+*C2_R1_C1 2.976e+00 4.553e-06 2.976e+00 
+*LOADS
+*RC GCDdpath0/U5:IN2 2.549e-05
+*END
+
+*R_NET GCDdpath0/n9 6.807e+00
+*DRIVER GCDdpath0/U10:QN
+*CELL NOR2X1
+*C2_R1_C1 3.403e+00 1.150e-05 3.403e+00 
+*LOADS
+*RC GCDdpath0/U9:IN2 6.766e-05
+*END
+
+*R_NET GCDdpath0/n10 3.556e+00
+*DRIVER GCDdpath0/U11:QN
+*CELL NAND2X1
+*C2_R1_C1 1.778e+00 3.041e-06 1.778e+00 
+*LOADS
+*RC GCDdpath0/U10:IN2 1.007e-05
+*END
+
+*R_NET GCDdpath0/n12 3.518e+00
+*DRIVER GCDdpath0/U12:ZN
+*CELL INVX0
+*C2_R1_C1 1.759e+00 5.810e-06 1.759e+00 
+*LOADS
+*RC GCDdpath0/U11:IN2 1.778e-05
+*END
+
+*R_NET GCDdpath0/n13 8.572e+00
+*DRIVER GCDdpath0/U13:ZN
+*CELL INVX1
+*C2_R1_C1 4.286e+00 2.841e-05 4.286e+00 
+*LOADS
+*RC GCDdpath0/U11:IN1 1.322e-04
+*RC GCDdpath0/U276:IN1 1.969e-05
+*END
+
+*R_NET GCDdpath0/n14 5.822e+00
+*DRIVER GCDdpath0/U14:QN
+*CELL NAND2X1
+*C2_R1_C1 2.911e+00 2.855e-06 2.911e+00 
+*LOADS
+*RC GCDdpath0/U9:IN1 1.593e-05
+*END
+
+*R_NET GCDdpath0/n15 6.345e+00
+*DRIVER GCDdpath0/U15:QN
+*CELL NAND2X1
+*C2_R1_C1 3.172e+00 7.026e-06 3.172e+00 
+*LOADS
+*RC GCDdpath0/U5:IN1 4.042e-05
+*END
+
+*R_NET GCDdpath0/n16 6.065e+00
+*DRIVER GCDdpath0/U16:QN
+*CELL NAND2X1
+*C2_R1_C1 3.032e+00 2.801e-05 3.032e+00 
+*LOADS
+*RC GCDdpath0/U15:IN2 1.095e-04
+*END
+
+*R_NET GCDdpath0/n18 4.133e+00
+*DRIVER GCDdpath0/U18:QN
+*CELL NAND2X1
+*C2_R1_C1 2.067e+00 5.148e-06 2.067e+00 
+*LOADS
+*RC GCDdpath0/U8:INP 1.918e-05
+*END
+
+*R_NET GCDdpath0/n19 5.209e+00
+*DRIVER GCDdpath0/U19:QN
+*CELL NAND2X1
+*C2_R1_C1 2.604e+00 1.857e-05 2.604e+00 
+*LOADS
+*RC GCDdpath0/U7:IN2 6.729e-05
+*END
+
+*R_NET GCDdpath0/n20 3.054e+00
+*DRIVER GCDdpath0/U20:QN
+*CELL NOR2X0
+*C2_R1_C1 1.527e+00 2.162e-06 1.527e+00 
+*LOADS
+*RC GCDdpath0/U7:IN1 6.223e-06
+*END
+
+*R_NET GCDdpath0/n21 4.704e+00
+*DRIVER GCDdpath0/U22:QN
+*CELL NAND2X1
+*C2_R1_C1 2.352e+00 1.470e-05 2.352e+00 
+*LOADS
+*RC GCDdpath0/U18:IN2 5.079e-05
+*END
+
+*R_NET GCDdpath0/n22 3.255e+00
+*DRIVER GCDdpath0/U23:QN
+*CELL NAND2X1
+*C2_R1_C1 1.627e+00 3.814e-06 1.627e+00 
+*LOADS
+*RC GCDdpath0/U22:IN1 1.123e-05
+*END
+
+*R_NET GCDdpath0/n23 3.015e+00
+*DRIVER GCDdpath0/U24:QN
+*CELL NAND2X1
+*C2_R1_C1 1.507e+00 1.790e-06 1.507e+00 
+*LOADS
+*RC GCDdpath0/U18:IN1 5.129e-06
+*END
+
+*R_NET GCDdpath0/n24 6.139e+00
+*DRIVER GCDdpath0/U25:QN
+*CELL NOR2X0
+*C2_R1_C1 3.069e+00 2.895e-05 3.069e+00 
+*LOADS
+*RC GCDdpath0/U24:IN1 1.131e-04
+*END
+
+*R_NET GCDdpath0/n25 3.054e+00
+*DRIVER GCDdpath0/U26:QN
+*CELL NOR2X0
+*C2_R1_C1 1.527e+00 2.145e-06 1.527e+00 
+*LOADS
+*RC GCDdpath0/U4:IN1 6.174e-06
+*END
+
+*R_NET GCDdpath0/n26 3.250e+00
+*DRIVER GCDdpath0/U323:Q
+*CELL AND2X1
+*C2_R1_C1 1.625e+00 3.827e-06 1.625e+00 
+*LOADS
+*RC GCDdpath0/U15:IN1 1.127e-05
+*END
+
+*R_NET GCDdpath0/n27 3.658e+00
+*DRIVER GCDdpath0/U322:Q
+*CELL AND2X1
+*C2_R1_C1 1.829e+00 7.321e-06 1.829e+00 
+*LOADS
+*RC GCDdpath0/U16:IN1 2.255e-05
+*END
+
+*R_NET GCDdpath0/n28 3.972e+00
+*DRIVER GCDdpath0/U30:QN
+*CELL NAND2X1
+*C2_R1_C1 1.986e+00 1.409e-05 1.986e+00 
+*LOADS
+*RC GCDdpath0/U20:IN2 4.054e-05
+*END
+
+*R_NET GCDdpath0/n30 3.530e+00
+*DRIVER GCDdpath0/U31:QN
+*CELL NAND2X1
+*C2_R1_C1 1.765e+00 5.949e-06 1.765e+00 
+*LOADS
+*RC GCDdpath0/U16:IN2 1.823e-05
+*END
+
+*R_NET GCDdpath0/n31 3.263e+00
+*DRIVER GCDdpath0/U32:ZN
+*CELL INVX0
+*C2_R1_C1 1.631e+00 3.718e-06 1.631e+00 
+*LOADS
+*RC GCDdpath0/U31:IN2 1.106e-05
+*END
+
+*R_NET GCDdpath0/n32 3.657e+00
+*DRIVER GCDdpath0/U33:ZN
+*CELL INVX0
+*C2_R1_C1 1.828e+00 7.480e-06 1.828e+00 
+*LOADS
+*RC GCDdpath0/U31:IN1 2.303e-05
+*END
+
+*R_NET GCDdpath0/n34 3.568e+00
+*DRIVER GCDdpath0/U34:ZN
+*CELL INVX0
+*C2_R1_C1 1.784e+00 6.326e-06 1.784e+00 
+*LOADS
+*RC GCDdpath0/U23:IN1 1.930e-05
+*END
+
+*R_NET GCDdpath0/n35 2.670e+00
+*DRIVER GCDdpath0/U35:QN
+*CELL NOR2X0
+*C2_R1_C1 1.335e+00 3.078e-06 1.335e+00 
+*LOADS
+*RC GCDdpath0/U25:IN1 7.445e-06
+*END
+
+*R_NET GCDdpath0/n36 3.491e+00
+*DRIVER GCDdpath0/U36:ZN
+*CELL INVX0
+*C2_R1_C1 1.745e+00 5.397e-06 1.745e+00 
+*LOADS
+*RC GCDdpath0/U4:IN2 1.647e-05
+*END
+
+*R_NET GCDdpath0/n37 2.585e+00
+*DRIVER GCDdpath0/U37:QN
+*CELL NAND4X0
+*C2_R1_C1 1.292e+00 2.408e-06 1.292e+00 
+*LOADS
+*RC GCDdpath0/U26:IN1 5.755e-06
+*END
+
+*R_NET GCDdpath0/n38 3.703e+00
+*DRIVER GCDdpath0/U38:QN
+*CELL NAND2X1
+*C2_R1_C1 1.852e+00 6.032e-06 1.852e+00 
+*LOADS
+*RC GCDdpath0/U10:IN1 1.947e-05
+*END
+
+*R_NET GCDdpath0/n39 3.059e+00
+*DRIVER GCDdpath0/U39:QN
+*CELL NOR2X0
+*C2_R1_C1 1.529e+00 1.921e-06 1.529e+00 
+*LOADS
+*RC GCDdpath0/U14:IN2 5.583e-06
+*END
+
+*R_NET GCDdpath0/n40 2.573e+00
+*DRIVER GCDdpath0/U40:QN
+*CELL NOR2X0
+*C2_R1_C1 1.287e+00 2.223e-06 1.287e+00 
+*LOADS
+*RC GCDdpath0/U39:IN1 5.304e-06
+*END
+
+*R_NET GCDdpath0/n41 3.203e+00
+*DRIVER GCDdpath0/U41:QN
+*CELL NAND2X1
+*C2_R1_C1 1.602e+00 3.198e-06 1.602e+00 
+*LOADS
+*RC GCDdpath0/U14:IN1 9.365e-06
+*END
+
+*R_NET GCDdpath0/n42 4.698e+00
+*DRIVER GCDdpath0/U42:QN
+*CELL NAND2X1
+*C2_R1_C1 2.349e+00 1.449e-05 2.349e+00 
+*LOADS
+*RC GCDdpath0/U41:IN2 5.003e-05
+*END
+
+*R_NET GCDdpath0/n43 3.165e+00
+*DRIVER GCDdpath0/U43:QN
+*CELL NAND2X1
+*C2_R1_C1 1.582e+00 2.895e-06 1.582e+00 
+*LOADS
+*RC GCDdpath0/U42:IN1 8.439e-06
+*END
+
+*R_NET GCDdpath0/n44 3.189e+00
+*DRIVER GCDdpath0/U44:QN
+*CELL NOR2X0
+*C2_R1_C1 1.594e+00 3.411e-06 1.594e+00 
+*LOADS
+*RC GCDdpath0/U41:IN1 9.974e-06
+*END
+
+*R_NET GCDdpath0/n45 3.289e+00
+*DRIVER GCDdpath0/U45:QN
+*CELL NOR2X0
+*C2_R1_C1 1.645e+00 3.595e-06 1.645e+00 
+*LOADS
+*RC GCDdpath0/U19:IN2 1.073e-05
+*END
+
+*R_NET GCDdpath0/n46 3.287e+00
+*DRIVER GCDdpath0/U46:ZN
+*CELL INVX1
+*C2_R1_C1 1.643e+00 3.921e-06 1.643e+00 
+*LOADS
+*RC GCDdpath0/U19:IN1 1.159e-05
+*END
+
+*R_NET GCDdpath0/n47 3.812e+00
+*DRIVER GCDdpath0/U47:QN
+*CELL NOR2X1
+*C2_R1_C1 1.906e+00 2.403e-06 1.906e+00 
+*LOADS
+*RC GCDdpath0/U46:INP 8.693e-06
+*END
+
+*R_NET GCDdpath0/n48 3.550e+00
+*DRIVER GCDdpath0/U48:QN
+*CELL NOR2X0
+*C2_R1_C1 1.775e+00 2.902e-06 1.775e+00 
+*LOADS
+*RC GCDdpath0/U47:IN2 9.600e-06
+*END
+
+*R_NET GCDdpath0/n50 8.036e+00
+*DRIVER GCDdpath0/A_reg_reg_0_:QN
+*CELL DFFARX1
+*C2_R1_C1 4.018e+00 2.160e-05 4.018e+00 
+*LOADS
+*RC GCDdpath0/U324:IN2 1.359e-04
+*END
+
+*R_NET GCDdpath0/n51 3.162e+00
+*DRIVER GCDdpath0/A_reg_reg_1_:QN
+*CELL DFFARX1
+*C2_R1_C1 1.581e+00 2.987e-06 1.581e+00 
+*LOADS
+*RC GCDdpath0/U168:IN1 8.707e-06
+*END
+
+*R_NET GCDdpath0/n52 3.634e+00
+*DRIVER GCDdpath0/A_reg_reg_3_:QN
+*CELL DFFARX1
+*C2_R1_C1 1.817e+00 5.207e-06 1.817e+00 
+*LOADS
+*RC GCDdpath0/U87:IN1 1.669e-05
+*END
+
+*R_NET GCDdpath0/n53 3.341e+00
+*DRIVER GCDdpath0/A_reg_reg_8_:QN
+*CELL DFFARX1
+*C2_R1_C1 1.671e+00 4.386e-06 1.671e+00 
+*LOADS
+*RC GCDdpath0/U164:IN1 1.305e-05
+*END
+
+*R_NET GCDdpath0/n54 6.480e+00
+*DRIVER GCDdpath0/U81:ZN
+*CELL INVX1
+*C2_R1_C1 3.240e+00 7.994e-06 3.240e+00 
+*LOADS
+*RC GCDdpath0/U60:IN1 4.635e-05
+*END
+
+*R_NET GCDdpath0/n55 5.375e+00
+*DRIVER GCDdpath0/A_reg_reg_15_:QN
+*CELL DFFARX1
+*C2_R1_C1 2.688e+00 2.033e-05 2.688e+00 
+*LOADS
+*RC GCDdpath0/U163:IN1 7.426e-05
+*END
+
+*R_NET GCDdpath0/n56 4.209e+00
+*DRIVER GCDdpath0/A_reg_reg_7_:QN
+*CELL DFFARX1
+*C2_R1_C1 2.105e+00 1.188e-05 2.105e+00 
+*LOADS
+*RC GCDdpath0/U161:IN1 3.877e-05
+*END
+
+*R_NET GCDdpath0/n57 5.120e+00
+*DRIVER GCDdpath0/A_reg_reg_4_:QN
+*CELL DFFARX1
+*C2_R1_C1 2.560e+00 1.994e-05 2.560e+00 
+*LOADS
+*RC GCDdpath0/U160:IN1 7.113e-05
+*END
+
+*R_NET GCDdpath0/n58 1.034e+01
+*DRIVER GCDdpath0/A_reg_reg_6_:QN
+*CELL DFFARX1
+*C2_R1_C1 5.172e+00 1.624e-05 5.172e+00 
+*LOADS
+*RC GCDdpath0/U98:IN1 1.155e-04
+*RC GCDdpath0/U159:IN1 7.791e-05
+*END
+
+*R_NET GCDdpath0/n59 1.248e+01
+*DRIVER GCDdpath0/A_reg_reg_5_:QN
+*CELL DFFARX1
+*C2_R1_C1 6.238e+00 5.378e-05 6.238e+00 
+*LOADS
+*RC GCDdpath0/U83:IN1 3.287e-04
+*RC GCDdpath0/U158:IN1 3.149e-04
+*END
+
+*R_NET GCDdpath0/n60 3.217e+00
+*DRIVER GCDdpath0/A_reg_reg_9_:QN
+*CELL DFFARX1
+*C2_R1_C1 1.609e+00 1.782e-06 1.609e+00 
+*LOADS
+*RC GCDdpath0/U61:IN1 5.464e-06
+*END
+
+*R_NET GCDdpath0/n61 9.556e+00
+*DRIVER GCDdpath0/U60:QN
+*CELL NAND2X2
+*C2_R1_C1 4.778e+00 3.393e-05 4.778e+00 
+*LOADS
+*RC GCDdpath0/U47:IN1 5.621e-05
+*RC GCDdpath0/U26:IN2 1.103e-04
+*END
+
+*R_NET GCDdpath0/n62 2.663e+00
+*DRIVER GCDdpath0/A_reg_reg_11_:QN
+*CELL DFFARX1
+*C2_R1_C1 1.331e+00 2.952e-06 1.331e+00 
+*LOADS
+*RC GCDdpath0/U253:IN1 7.133e-06
+*END
+
+*R_NET GCDdpath0/n63 3.464e+00
+*DRIVER GCDdpath0/A_reg_reg_10_:QN
+*CELL DFFARX1
+*C2_R1_C1 1.732e+00 3.813e-06 1.732e+00 
+*LOADS
+*RC GCDdpath0/U252:IN1 1.201e-05
+*END
+
+*R_NET GCDdpath0/n64 7.167e+00
+*DRIVER GCDdpath0/U162:QN
+*CELL NAND2X1
+*C2_R1_C1 3.583e+00 8.446e-06 3.583e+00 
+*LOADS
+*RC GCDdpath0/U20:IN1 3.002e-05
+*RC GCDdpath0/U36:INP 7.599e-06
+*RC GCDdpath0/U108:INP 1.346e-05
+*END
+
+*R_NET GCDdpath0/n65 3.922e+00
+*DRIVER GCDdpath0/A_reg_reg_14_:QN
+*CELL DFFARX1
+*C2_R1_C1 1.961e+00 7.616e-06 1.961e+00 
+*LOADS
+*RC GCDdpath0/U251:IN1 2.514e-05
+*END
+
+*R_NET GCDdpath0/n66 3.919e+00
+*DRIVER GCDdpath0/A_reg_reg_12_:QN
+*CELL DFFARX1
+*C2_R1_C1 1.960e+00 7.292e-06 1.960e+00 
+*LOADS
+*RC GCDdpath0/U250:IN1 2.406e-05
+*END
+
+*R_NET GCDdpath0/n67 2.889e+00
+*DRIVER GCDdpath0/A_reg_reg_13_:QN
+*CELL DFFARX1
+*C2_R1_C1 1.445e+00 4.645e-06 1.445e+00 
+*LOADS
+*RC GCDdpath0/U249:IN1 1.157e-05
+*END
+
+*R_NET GCDdpath0/n68 3.358e+00
+*DRIVER GCDdpath0/U108:ZN
+*CELL INVX0
+*C2_R1_C1 1.679e+00 4.357e-06 1.679e+00 
+*LOADS
+*RC GCDdpath0/U24:IN2 1.310e-05
+*END
+
+*R_NET GCDdpath0/n69 2.439e+00
+*DRIVER GCDdpath0/U197:QN
+*CELL NOR2X0
+*C2_R1_C1 1.219e+00 1.170e-06 1.219e+00 
+*LOADS
+*RC GCDdpath0/U54:IN1 2.741e-06
+*END
+
+*R_NET GCDdpath0/n70 4.235e+00
+*DRIVER GCDdpath0/B_reg_reg_0_:QN
+*CELL DFFARX1
+*C2_R1_C1 2.118e+00 2.297e-05 2.118e+00 
+*LOADS
+*RC GCDdpath0/U196:IN2 5.596e-05
+*END
+
+*R_NET GCDdpath0/n71 3.723e+00
+*DRIVER GCDdpath0/U196:QN
+*CELL NAND2X0
+*C2_R1_C1 1.862e+00 7.205e-06 1.862e+00 
+*LOADS
+*RC GCDdpath0/U75:IN2 2.254e-05
+*END
+
+*R_NET GCDdpath0/n72 2.959e+00
+*DRIVER GCDdpath0/U54:QN
+*CELL NOR2X0
+*C2_R1_C1 1.479e+00 1.326e-06 1.479e+00 
+*LOADS
+*RC GCDdpath0/U75:IN1 3.775e-06
+*END
+
+*R_NET GCDdpath0/n73 4.884e+00
+*DRIVER GCDdpath0/U255:Q
+*CELL XOR2X1
+*C2_R1_C1 2.442e+00 1.993e-05 2.442e+00 
+*LOADS
+*RC GCDdpath0/U256:IN3 6.629e-05
+*END
+
+*R_NET GCDdpath0/n74 4.106e+00
+*DRIVER GCDdpath0/U256:QN
+*CELL NAND3X0
+*C2_R1_C1 2.053e+00 1.085e-05 2.053e+00 
+*LOADS
+*RC GCDdpath0/U76:IN2 3.534e-05
+*END
+
+*R_NET GCDdpath0/n75 3.188e+00
+*DRIVER GCDdpath0/U75:QN
+*CELL NAND2X1
+*C2_R1_C1 1.594e+00 3.273e-06 1.594e+00 
+*LOADS
+*RC GCDdpath0/U76:IN1 9.568e-06
+*END
+
+*R_NET GCDdpath0/n76 2.434e+00
+*DRIVER GCDdpath0/U187:QN
+*CELL NOR2X0
+*C2_R1_C1 1.217e+00 1.148e-06 1.217e+00 
+*LOADS
+*RC GCDdpath0/U51:IN1 2.686e-06
+*END
+
+*R_NET GCDdpath0/n77 9.904e+00
+*DRIVER GCDdpath0/B_reg_reg_1_:QN
+*CELL DFFARX1
+*C2_R1_C1 4.952e+00 4.650e-05 4.952e+00 
+*LOADS
+*RC GCDdpath0/U169:IN1 2.338e-04
+*RC GCDdpath0/U186:IN2 1.570e-04
+*END
+
+*R_NET GCDdpath0/n78 1.793e+00
+*DRIVER GCDdpath0/U186:QN
+*CELL NAND2X0
+*C2_R1_C1 8.965e-01 2.109e-06 8.965e-01 
+*LOADS
+*RC GCDdpath0/U69:IN2 3.421e-06
+*END
+
+*R_NET GCDdpath0/n79 1.905e+00
+*DRIVER GCDdpath0/U51:QN
+*CELL NOR2X0
+*C2_R1_C1 9.525e-01 1.652e-06 9.525e-01 
+*LOADS
+*RC GCDdpath0/U69:IN1 2.913e-06
+*END
+
+*R_NET GCDdpath0/n80 6.863e+00
+*DRIVER GCDdpath0/U89:ZN
+*CELL INVX1
+*C2_R1_C1 3.431e+00 5.567e-06 3.431e+00 
+*LOADS
+*RC GCDdpath0/U43:IN1 1.410e-05
+*RC GCDdpath0/U258:IN2 9.871e-06
+*END
+
+*R_NET GCDdpath0/n81 4.148e+00
+*DRIVER GCDdpath0/U115:QN
+*CELL NAND2X0
+*C2_R1_C1 2.074e+00 2.526e-06 2.074e+00 
+*LOADS
+*RC GCDdpath0/U258:IN1 9.968e-06
+*END
+
+*R_NET GCDdpath0/n82 3.537e+00
+*DRIVER GCDdpath0/U258:Q
+*CELL XOR2X1
+*C2_R1_C1 1.769e+00 8.366e-06 1.769e+00 
+*LOADS
+*RC GCDdpath0/U259:IN3 2.408e-05
+*END
+
+*R_NET GCDdpath0/n83 2.258e+00
+*DRIVER GCDdpath0/U259:QN
+*CELL NAND3X0
+*C2_R1_C1 1.129e+00 6.085e-06 1.129e+00 
+*LOADS
+*RC GCDdpath0/U70:IN2 1.081e-05
+*END
+
+*R_NET GCDdpath0/n84 1.948e+00
+*DRIVER GCDdpath0/U69:QN
+*CELL NAND2X0
+*C2_R1_C1 9.738e-01 2.153e-06 9.738e-01 
+*LOADS
+*RC GCDdpath0/U70:IN1 3.828e-06
+*END
+
+*R_NET GCDdpath0/n85 2.386e+00
+*DRIVER GCDdpath0/U200:QN
+*CELL NOR2X0
+*C2_R1_C1 1.193e+00 7.338e-07 1.193e+00 
+*LOADS
+*RC GCDdpath0/U55:IN1 1.705e-06
+*END
+
+*R_NET GCDdpath0/n86 1.414e+01
+*DRIVER GCDdpath0/B_reg_reg_2_:QN
+*CELL DFFARX1
+*C2_R1_C1 7.070e+00 5.078e-05 7.070e+00 
+*LOADS
+*RC GCDdpath0/U90:IN1 3.306e-04
+*RC GCDdpath0/U167:IN1 3.266e-04
+*RC GCDdpath0/U199:IN2 2.967e-05
+*END
+
+*R_NET GCDdpath0/n87 3.164e+00
+*DRIVER GCDdpath0/U199:QN
+*CELL NAND2X0
+*C2_R1_C1 1.582e+00 2.697e-06 1.582e+00 
+*LOADS
+*RC GCDdpath0/U77:IN2 7.935e-06
+*END
+
+*R_NET GCDdpath0/n88 3.164e+00
+*DRIVER GCDdpath0/U55:QN
+*CELL NOR2X0
+*C2_R1_C1 1.582e+00 3.080e-06 1.582e+00 
+*LOADS
+*RC GCDdpath0/U77:IN1 8.979e-06
+*END
+
+*R_NET GCDdpath0/n89 5.202e+00
+*DRIVER GCDdpath0/U85:ZN
+*CELL INVX0
+*C2_R1_C1 2.601e+00 4.913e-06 2.601e+00 
+*LOADS
+*RC GCDdpath0/U44:IN1 8.766e-06
+*RC GCDdpath0/U198:IN1 1.379e-05
+*END
+
+*R_NET GCDdpath0/n90 6.986e+00
+*DRIVER GCDdpath0/U168:QN
+*CELL NAND2X1
+*C2_R1_C1 3.493e+00 8.388e-06 3.493e+00 
+*LOADS
+*RC GCDdpath0/U154:IN2 1.992e-05
+*RC GCDdpath0/U42:IN2 3.536e-05
+*RC GCDdpath0/U115:IN2 8.101e-06
+*END
+
+*R_NET GCDdpath0/n91 8.636e+00
+*DRIVER GCDdpath0/U324:QN
+*CELL NAND2X2
+*C2_R1_C1 4.318e+00 2.839e-05 4.318e+00 
+*LOADS
+*RC GCDdpath0/U154:IN1 1.089e-04
+*RC GCDdpath0/U89:INP 1.482e-04
+*END
+
+*R_NET GCDdpath0/n92 8.969e+00
+*DRIVER GCDdpath0/U169:QN
+*CELL NAND2X1
+*C2_R1_C1 4.484e+00 1.230e-05 4.484e+00 
+*LOADS
+*RC GCDdpath0/U43:IN2 3.836e-05
+*RC GCDdpath0/U115:IN1 2.546e-05
+*RC GCDdpath0/U153:IN2 5.639e-05
+*END
+
+*R_NET GCDdpath0/n93 3.120e+00
+*DRIVER GCDdpath0/U154:QN
+*CELL NAND2X0
+*C2_R1_C1 1.560e+00 2.653e-06 1.560e+00 
+*LOADS
+*RC GCDdpath0/U153:IN1 7.696e-06
+*END
+
+*R_NET GCDdpath0/n94 4.359e+00
+*DRIVER GCDdpath0/U198:QN
+*CELL NOR2X0
+*C2_R1_C1 2.179e+00 4.248e-06 2.179e+00 
+*LOADS
+*RC GCDdpath0/U261:IN1 1.706e-05
+*END
+
+*R_NET GCDdpath0/n95 5.745e+00
+*DRIVER GCDdpath0/U261:Q
+*CELL XOR2X1
+*C2_R1_C1 2.873e+00 2.559e-05 2.873e+00 
+*LOADS
+*RC GCDdpath0/U262:IN3 9.248e-05
+*END
+
+*R_NET GCDdpath0/n96 5.432e+00
+*DRIVER GCDdpath0/U262:QN
+*CELL NAND3X0
+*C2_R1_C1 2.716e+00 2.122e-05 2.716e+00 
+*LOADS
+*RC GCDdpath0/U78:IN2 7.848e-05
+*END
+
+*R_NET GCDdpath0/n97 3.672e+00
+*DRIVER GCDdpath0/U77:QN
+*CELL NAND2X1
+*C2_R1_C1 1.836e+00 7.060e-06 1.836e+00 
+*LOADS
+*RC GCDdpath0/U78:IN1 2.178e-05
+*END
+
+*R_NET GCDdpath0/n98 2.474e+00
+*DRIVER GCDdpath0/U203:QN
+*CELL NOR2X0
+*C2_R1_C1 1.237e+00 1.438e-06 1.237e+00 
+*LOADS
+*RC GCDdpath0/U56:IN1 3.385e-06
+*END
+
+*R_NET GCDdpath0/n99 9.144e+00
+*DRIVER GCDdpath0/B_reg_reg_3_:QN
+*CELL DFFARX1
+*C2_R1_C1 4.572e+00 3.658e-05 4.572e+00 
+*LOADS
+*RC GCDdpath0/U58:IN1 1.828e-04
+*RC GCDdpath0/U202:IN2 1.375e-04
+*END
+
+*R_NET GCDdpath0/n100 3.445e+00
+*DRIVER GCDdpath0/U202:QN
+*CELL NAND2X0
+*C2_R1_C1 1.723e+00 4.850e-06 1.723e+00 
+*LOADS
+*RC GCDdpath0/U79:IN2 1.472e-05
+*END
+
+*R_NET GCDdpath0/n101 3.044e+00
+*DRIVER GCDdpath0/U56:QN
+*CELL NOR2X0
+*C2_R1_C1 1.522e+00 2.038e-06 1.522e+00 
+*LOADS
+*RC GCDdpath0/U79:IN1 5.860e-06
+*END
+
+*R_NET GCDdpath0/n102 4.414e+00
+*DRIVER GCDdpath0/U82:ZN
+*CELL INVX0
+*C2_R1_C1 2.207e+00 4.649e-06 2.207e+00 
+*LOADS
+*RC GCDdpath0/U40:IN1 1.191e-05
+*RC GCDdpath0/U99:IN2 4.949e-06
+*END
+
+*R_NET GCDdpath0/n103 2.267e+00
+*DRIVER GCDdpath0/U99:QN
+*CELL NAND2X0
+*C2_R1_C1 1.134e+00 4.916e-06 1.134e+00 
+*LOADS
+*RC GCDdpath0/U120:IN1 9.266e-06
+*END
+
+*R_NET GCDdpath0/n104 4.048e+00
+*DRIVER GCDdpath0/U201:QN
+*CELL NOR2X0
+*C2_R1_C1 2.024e+00 5.207e-06 2.024e+00 
+*LOADS
+*RC GCDdpath0/U264:IN2 1.882e-05
+*END
+
+*R_NET GCDdpath0/n105 5.945e+00
+*DRIVER GCDdpath0/U120:QN
+*CELL NAND2X0
+*C2_R1_C1 2.972e+00 1.793e-05 2.972e+00 
+*LOADS
+*RC GCDdpath0/U264:IN1 8.147e-05
+*END
+
+*R_NET GCDdpath0/n106 3.098e+00
+*DRIVER GCDdpath0/U264:Q
+*CELL XOR2X1
+*C2_R1_C1 1.549e+00 4.630e-06 1.549e+00 
+*LOADS
+*RC GCDdpath0/U265:IN3 1.265e-05
+*END
+
+*R_NET GCDdpath0/n107 5.243e+00
+*DRIVER GCDdpath0/U265:QN
+*CELL NAND3X0
+*C2_R1_C1 2.622e+00 1.995e-05 2.622e+00 
+*LOADS
+*RC GCDdpath0/U80:IN2 7.251e-05
+*END
+
+*R_NET GCDdpath0/n108 3.340e+00
+*DRIVER GCDdpath0/U79:QN
+*CELL NAND2X1
+*C2_R1_C1 1.670e+00 4.606e-06 1.670e+00 
+*LOADS
+*RC GCDdpath0/U80:IN1 1.370e-05
+*END
+
+*R_NET GCDdpath0/n109 2.391e+00
+*DRIVER GCDdpath0/U181:QN
+*CELL NOR2X0
+*C2_R1_C1 1.195e+00 7.820e-07 1.195e+00 
+*LOADS
+*RC GCDdpath0/U180:IN1 1.819e-06
+*END
+
+*R_NET GCDdpath0/n110 1.050e+01
+*DRIVER GCDdpath0/B_reg_reg_4_:QN
+*CELL DFFARX1
+*C2_R1_C1 5.250e+00 4.950e-05 5.250e+00 
+*LOADS
+*RC GCDdpath0/U166:IN1 2.578e-04
+*RC GCDdpath0/U179:IN2 1.886e-04
+*END
+
+*R_NET GCDdpath0/n111 2.230e+00
+*DRIVER GCDdpath0/U179:QN
+*CELL NAND2X0
+*C2_R1_C1 1.115e+00 5.720e-06 1.115e+00 
+*LOADS
+*RC GCDdpath0/U65:IN2 1.011e-05
+*END
+
+*R_NET GCDdpath0/n112 2.002e+00
+*DRIVER GCDdpath0/U180:QN
+*CELL NOR2X0
+*C2_R1_C1 1.001e+00 2.470e-06 1.001e+00 
+*LOADS
+*RC GCDdpath0/U65:IN1 4.436e-06
+*END
+
+*R_NET GCDdpath0/n113 7.727e+00
+*DRIVER GCDdpath0/U90:QN
+*CELL NOR2X1
+*C2_R1_C1 3.863e+00 9.159e-06 3.863e+00 
+*LOADS
+*RC GCDdpath0/U82:INP 2.486e-05
+*RC GCDdpath0/U198:IN2 2.142e-05
+*RC GCDdpath0/U236:IN1 2.675e-05
+*END
+
+*R_NET GCDdpath0/n114 3.034e+00
+*DRIVER GCDdpath0/U236:QN
+*CELL NOR2X0
+*C2_R1_C1 1.517e+00 1.672e-06 1.517e+00 
+*LOADS
+*RC GCDdpath0/U152:IN2 4.846e-06
+*END
+
+*R_NET GCDdpath0/n115 1.070e+01
+*DRIVER GCDdpath0/U153:QN
+*CELL NAND2X1
+*C2_R1_C1 5.352e+00 2.070e-05 5.352e+00 
+*LOADS
+*RC GCDdpath0/U99:IN1 6.153e-05
+*RC GCDdpath0/U152:IN1 1.063e-04
+*RC GCDdpath0/U261:IN2 7.667e-05
+*END
+
+*R_NET GCDdpath0/n116 6.495e+00
+*DRIVER GCDdpath0/U167:QN
+*CELL NAND2X1
+*C2_R1_C1 3.247e+00 5.410e-06 3.247e+00 
+*LOADS
+*RC GCDdpath0/U85:INP 1.339e-05
+*RC GCDdpath0/U120:IN2 3.521e-06
+*RC GCDdpath0/U235:IN2 1.407e-05
+*END
+
+*R_NET GCDdpath0/n117 1.395e+01
+*DRIVER GCDdpath0/U58:QN
+*CELL NOR2X1
+*C2_R1_C1 6.975e+00 3.459e-05 6.975e+00 
+*LOADS
+*RC GCDdpath0/U39:IN2 2.146e-04
+*RC GCDdpath0/U201:IN1 5.897e-05
+*RC GCDdpath0/U235:IN1 1.531e-04
+*RC GCDdpath0/U236:IN2 1.922e-04
+*END
+
+*R_NET GCDdpath0/n118 1.344e+01
+*DRIVER GCDdpath0/U87:QN
+*CELL NOR2X1
+*C2_R1_C1 6.720e+00 3.061e-05 6.720e+00 
+*LOADS
+*RC GCDdpath0/U40:IN2 1.695e-04
+*RC GCDdpath0/U44:IN2 1.734e-04
+*RC GCDdpath0/U201:IN2 6.620e-05
+*RC GCDdpath0/U234:IN2 1.443e-04
+*END
+
+*R_NET GCDdpath0/n119 2.579e+00
+*DRIVER GCDdpath0/U235:QN
+*CELL NOR2X0
+*C2_R1_C1 1.289e+00 2.354e-06 1.289e+00 
+*LOADS
+*RC GCDdpath0/U234:IN1 5.623e-06
+*END
+
+*R_NET GCDdpath0/n120 3.726e+00
+*DRIVER GCDdpath0/U234:QN
+*CELL NOR2X0
+*C2_R1_C1 1.863e+00 7.245e-06 1.863e+00 
+*LOADS
+*RC GCDdpath0/U151:IN2 2.267e-05
+*END
+
+*R_NET GCDdpath0/n121 3.641e+00
+*DRIVER GCDdpath0/U152:QN
+*CELL NAND2X1
+*C2_R1_C1 1.821e+00 7.008e-06 1.821e+00 
+*LOADS
+*RC GCDdpath0/U151:IN1 2.154e-05
+*END
+
+*R_NET GCDdpath0/n122 3.812e+00
+*DRIVER GCDdpath0/U114:QN
+*CELL NAND2X0
+*C2_R1_C1 1.906e+00 3.338e-06 1.906e+00 
+*LOADS
+*RC GCDdpath0/U267:IN2 1.180e-05
+*END
+
+*R_NET GCDdpath0/n123 3.865e+00
+*DRIVER GCDdpath0/U267:Q
+*CELL XOR2X1
+*C2_R1_C1 1.932e+00 1.220e-05 1.932e+00 
+*LOADS
+*RC GCDdpath0/U178:IN2 3.467e-05
+*END
+
+*R_NET GCDdpath0/n124 2.211e+00
+*DRIVER GCDdpath0/U178:QN
+*CELL NOR2X0
+*C2_R1_C1 1.105e+00 4.143e-06 1.105e+00 
+*LOADS
+*RC GCDdpath0/U113:IN1 7.730e-06
+*END
+
+*R_NET GCDdpath0/n125 2.212e+00
+*DRIVER GCDdpath0/U113:QN
+*CELL NAND2X0
+*C2_R1_C1 1.106e+00 5.649e-06 1.106e+00 
+*LOADS
+*RC GCDdpath0/U66:IN2 9.951e-06
+*END
+
+*R_NET GCDdpath0/n126 2.020e+00
+*DRIVER GCDdpath0/U65:QN
+*CELL NAND2X0
+*C2_R1_C1 1.010e+00 2.543e-06 1.010e+00 
+*LOADS
+*RC GCDdpath0/U66:IN1 4.584e-06
+*END
+
+*R_NET GCDdpath0/n127 2.527e+00
+*DRIVER GCDdpath0/U190:QN
+*CELL NOR2X0
+*C2_R1_C1 1.263e+00 1.950e-06 1.263e+00 
+*LOADS
+*RC GCDdpath0/U52:IN1 4.623e-06
+*END
+
+*R_NET GCDdpath0/n128 2.529e+00
+*DRIVER GCDdpath0/B_reg_reg_5_:QN
+*CELL DFFARX1
+*C2_R1_C1 1.265e+00 8.508e-06 1.265e+00 
+*LOADS
+*RC GCDdpath0/U189:IN2 1.589e-05
+*END
+
+*R_NET GCDdpath0/n129 3.934e+00
+*DRIVER GCDdpath0/U189:QN
+*CELL NAND2X0
+*C2_R1_C1 1.967e+00 9.078e-06 1.967e+00 
+*LOADS
+*RC GCDdpath0/U71:IN2 2.904e-05
+*END
+
+*R_NET GCDdpath0/n130 3.429e+00
+*DRIVER GCDdpath0/U52:QN
+*CELL NOR2X0
+*C2_R1_C1 1.714e+00 5.053e-06 1.714e+00 
+*LOADS
+*RC GCDdpath0/U71:IN1 1.518e-05
+*END
+
+*R_NET GCDdpath0/n131 2.100e+00
+*DRIVER GCDdpath0/U117:QN
+*CELL NAND2X0
+*C2_R1_C1 1.050e+00 3.468e-06 1.050e+00 
+*LOADS
+*RC GCDdpath0/U116:IN1 6.343e-06
+*END
+
+*R_NET GCDdpath0/n132 4.000e+00
+*DRIVER GCDdpath0/U188:QN
+*CELL NOR2X0
+*C2_R1_C1 2.000e+00 4.906e-06 2.000e+00 
+*LOADS
+*RC GCDdpath0/U269:IN2 1.765e-05
+*END
+
+*R_NET GCDdpath0/n133 4.246e+00
+*DRIVER GCDdpath0/U116:QN
+*CELL NAND2X0
+*C2_R1_C1 2.123e+00 3.169e-06 2.123e+00 
+*LOADS
+*RC GCDdpath0/U269:IN1 1.261e-05
+*END
+
+*R_NET GCDdpath0/n134 7.393e+00
+*DRIVER GCDdpath0/U269:Q
+*CELL XOR2X1
+*C2_R1_C1 3.697e+00 3.820e-05 3.697e+00 
+*LOADS
+*RC GCDdpath0/U270:IN3 1.590e-04
+*END
+
+*R_NET GCDdpath0/n135 4.093e+00
+*DRIVER GCDdpath0/U270:QN
+*CELL NAND3X0
+*C2_R1_C1 2.047e+00 9.790e-06 2.047e+00 
+*LOADS
+*RC GCDdpath0/U72:IN2 3.184e-05
+*END
+
+*R_NET GCDdpath0/n136 2.957e+00
+*DRIVER GCDdpath0/U71:QN
+*CELL NAND2X1
+*C2_R1_C1 1.478e+00 1.373e-06 1.478e+00 
+*LOADS
+*RC GCDdpath0/U72:IN1 3.909e-06
+*END
+
+*R_NET GCDdpath0/n137 2.391e+00
+*DRIVER GCDdpath0/U195:QN
+*CELL NOR2X0
+*C2_R1_C1 1.195e+00 8.330e-07 1.195e+00 
+*LOADS
+*RC GCDdpath0/U53:IN1 1.937e-06
+*END
+
+*R_NET GCDdpath0/n138 6.839e+00
+*DRIVER GCDdpath0/B_reg_reg_6_:QN
+*CELL DFFARX1
+*C2_R1_C1 3.419e+00 4.251e-05 3.419e+00 
+*LOADS
+*RC GCDdpath0/U194:IN2 1.404e-04
+*END
+
+*R_NET GCDdpath0/n139 2.186e+00
+*DRIVER GCDdpath0/U194:QN
+*CELL NAND2X0
+*C2_R1_C1 1.093e+00 5.581e-06 1.093e+00 
+*LOADS
+*RC GCDdpath0/U73:IN2 9.782e-06
+*END
+
+*R_NET GCDdpath0/n140 1.948e+00
+*DRIVER GCDdpath0/U53:QN
+*CELL NOR2X0
+*C2_R1_C1 9.742e-01 2.136e-06 9.742e-01 
+*LOADS
+*RC GCDdpath0/U73:IN1 3.799e-06
+*END
+
+*R_NET GCDdpath0/n141 6.366e+00
+*DRIVER GCDdpath0/U158:QN
+*CELL NAND2X1
+*C2_R1_C1 3.183e+00 9.086e-06 3.183e+00 
+*LOADS
+*RC GCDdpath0/U322:IN1 1.395e-05
+*RC GCDdpath0/U149:IN2 1.917e-05
+*RC GCDdpath0/U232:INP 2.443e-05
+*END
+
+*R_NET GCDdpath0/n142 8.813e+00
+*DRIVER GCDdpath0/U160:QN
+*CELL NAND2X1
+*C2_R1_C1 4.406e+00 1.563e-05 4.406e+00 
+*LOADS
+*RC GCDdpath0/U32:INP 2.387e-05
+*RC GCDdpath0/U114:IN2 3.400e-05
+*RC GCDdpath0/U117:IN2 3.362e-05
+*RC GCDdpath0/U149:IN1 5.272e-05
+*END
+
+*R_NET GCDdpath0/n143 3.064e+00
+*DRIVER GCDdpath0/U193:ZN
+*CELL INVX0
+*C2_R1_C1 1.532e+00 1.801e-06 1.532e+00 
+*LOADS
+*RC GCDdpath0/U119:IN2 5.239e-06
+*END
+
+*R_NET GCDdpath0/n144 5.439e+00
+*DRIVER GCDdpath0/U232:ZN
+*CELL INVX0
+*C2_R1_C1 2.719e+00 6.950e-06 2.719e+00 
+*LOADS
+*RC GCDdpath0/U188:IN1 6.287e-06
+*RC GCDdpath0/U231:IN2 2.340e-05
+*END
+
+*R_NET GCDdpath0/n145 1.081e+01
+*DRIVER GCDdpath0/U166:QN
+*CELL NAND2X1
+*C2_R1_C1 5.404e+00 1.811e-05 5.404e+00 
+*LOADS
+*RC GCDdpath0/U38:IN1 9.113e-05
+*RC GCDdpath0/U114:IN1 3.102e-05
+*RC GCDdpath0/U116:IN2 2.587e-05
+*RC GCDdpath0/U231:IN1 6.761e-05
+*END
+
+*R_NET GCDdpath0/n146 1.183e+01
+*DRIVER GCDdpath0/U83:QN
+*CELL NOR2X1
+*C2_R1_C1 5.917e+00 2.454e-05 5.917e+00 
+*LOADS
+*RC GCDdpath0/U12:INP 9.974e-05
+*RC GCDdpath0/U33:INP 4.755e-05
+*RC GCDdpath0/U188:IN2 6.781e-05
+*RC GCDdpath0/U230:IN2 6.869e-05
+*END
+
+*R_NET GCDdpath0/n147 2.845e+00
+*DRIVER GCDdpath0/U231:QN
+*CELL NOR2X0
+*C2_R1_C1 1.423e+00 4.293e-06 1.423e+00 
+*LOADS
+*RC GCDdpath0/U230:IN1 1.063e-05
+*END
+
+*R_NET GCDdpath0/n148 2.372e+00
+*DRIVER GCDdpath0/U192:ZN
+*CELL INVX0
+*C2_R1_C1 1.186e+00 6.711e-07 1.186e+00 
+*LOADS
+*RC GCDdpath0/U191:IN1 1.557e-06
+*END
+
+*R_NET GCDdpath0/n149 4.597e+00
+*DRIVER GCDdpath0/U191:QN
+*CELL NOR2X0
+*C2_R1_C1 2.298e+00 1.016e-05 2.298e+00 
+*LOADS
+*RC GCDdpath0/U272:IN2 3.859e-05
+*END
+
+*R_NET GCDdpath0/n150 6.598e+00
+*DRIVER GCDdpath0/U118:QN
+*CELL NAND2X0
+*C2_R1_C1 3.299e+00 2.152e-05 3.299e+00 
+*LOADS
+*RC GCDdpath0/U272:IN1 1.025e-04
+*END
+
+*R_NET GCDdpath0/n151 4.308e+00
+*DRIVER GCDdpath0/U272:Q
+*CELL XOR2X1
+*C2_R1_C1 2.154e+00 1.407e-05 2.154e+00 
+*LOADS
+*RC GCDdpath0/U273:IN3 4.411e-05
+*END
+
+*R_NET GCDdpath0/n152 3.234e+00
+*DRIVER GCDdpath0/U273:QN
+*CELL NAND3X0
+*C2_R1_C1 1.617e+00 3.148e-06 1.617e+00 
+*LOADS
+*RC GCDdpath0/U74:IN2 9.336e-06
+*END
+
+*R_NET GCDdpath0/n153 2.925e+00
+*DRIVER GCDdpath0/U73:QN
+*CELL NAND2X0
+*C2_R1_C1 1.463e+00 1.143e-06 1.463e+00 
+*LOADS
+*RC GCDdpath0/U74:IN1 3.242e-06
+*END
+
+*R_NET GCDdpath0/n154 2.407e+00
+*DRIVER GCDdpath0/U177:QN
+*CELL NOR2X0
+*C2_R1_C1 1.204e+00 9.395e-07 1.204e+00 
+*LOADS
+*RC GCDdpath0/U176:IN1 2.190e-06
+*END
+
+*R_NET GCDdpath0/n155 1.010e+01
+*DRIVER GCDdpath0/B_reg_reg_7_:QN
+*CELL DFFARX1
+*C2_R1_C1 5.048e+00 4.652e-05 5.048e+00 
+*LOADS
+*RC GCDdpath0/U165:IN1 2.431e-04
+*RC GCDdpath0/U175:IN2 1.415e-04
+*END
+
+*R_NET GCDdpath0/n156 3.623e+00
+*DRIVER GCDdpath0/U175:QN
+*CELL NAND2X0
+*C2_R1_C1 1.811e+00 6.390e-06 1.811e+00 
+*LOADS
+*RC GCDdpath0/U63:IN2 1.978e-05
+*END
+
+*R_NET GCDdpath0/n157 3.087e+00
+*DRIVER GCDdpath0/U176:QN
+*CELL NOR2X0
+*C2_R1_C1 1.543e+00 2.491e-06 1.543e+00 
+*LOADS
+*RC GCDdpath0/U63:IN1 7.198e-06
+*END
+
+*R_NET GCDdpath0/n158 3.953e+00
+*DRIVER GCDdpath0/U174:ZN
+*CELL INVX0
+*C2_R1_C1 1.976e+00 1.154e-05 1.976e+00 
+*LOADS
+*RC GCDdpath0/U275:IN1 3.426e-05
+*END
+
+*R_NET GCDdpath0/n159 2.243e+00
+*DRIVER GCDdpath0/U172:ZN
+*CELL INVX0
+*C2_R1_C1 1.122e+00 4.629e-06 1.122e+00 
+*LOADS
+*RC GCDdpath0/U111:IN1 8.688e-06
+*END
+
+*R_NET GCDdpath0/n160 1.083e+01
+*DRIVER GCDdpath0/U112:QN
+*CELL NAND2X0
+*C2_R1_C1 5.417e+00 2.117e-05 5.417e+00 
+*LOADS
+*RC GCDdpath0/U173:INP 9.115e-05
+*RC GCDdpath0/U276:S 1.255e-04
+*RC GCDdpath0/U277:IN4 2.544e-05
+*END
+
+*R_NET GCDdpath0/n161 5.314e+00
+*DRIVER GCDdpath0/U100:ZN
+*CELL INVX0
+*C2_R1_C1 2.657e+00 1.065e-05 2.657e+00 
+*LOADS
+*RC GCDdpath0/U323:IN1 1.188e-05
+*RC GCDdpath0/U277:IN2 2.713e-05
+*END
+
+*R_NET GCDdpath0/n162 7.851e+00
+*DRIVER GCDdpath0/U119:QN
+*CELL NAND2X1
+*C2_R1_C1 3.925e+00 1.507e-05 3.925e+00 
+*LOADS
+*RC GCDdpath0/U118:IN1 2.081e-05
+*RC GCDdpath0/U174:INP 3.893e-05
+*RC GCDdpath0/U277:IN1 3.523e-05
+*END
+
+*R_NET GCDdpath0/n163 6.505e+00
+*DRIVER GCDdpath0/U111:QN
+*CELL NAND2X0
+*C2_R1_C1 3.253e+00 1.821e-05 3.253e+00 
+*LOADS
+*RC GCDdpath0/U171:INP 5.558e-05
+*RC GCDdpath0/U277:IN3 2.463e-05
+*END
+
+*R_NET GCDdpath0/n164 4.574e+00
+*DRIVER GCDdpath0/U173:ZN
+*CELL INVX0
+*C2_R1_C1 2.287e+00 4.016e-06 2.287e+00 
+*LOADS
+*RC GCDdpath0/U110:IN2 3.671e-06
+*RC GCDdpath0/U275:IN2 8.304e-06
+*END
+
+*R_NET GCDdpath0/n165 2.427e+00
+*DRIVER GCDdpath0/U171:ZN
+*CELL INVX0
+*C2_R1_C1 1.213e+00 5.722e-06 1.213e+00 
+*LOADS
+*RC GCDdpath0/U110:IN1 1.109e-05
+*END
+
+*R_NET GCDdpath0/n166 2.357e+00
+*DRIVER GCDdpath0/U110:QN
+*CELL NAND2X0
+*C2_R1_C1 1.179e+00 5.752e-07 1.179e+00 
+*LOADS
+*RC GCDdpath0/U278:IN4 1.328e-06
+*END
+
+*R_NET GCDdpath0/n167 4.637e+00
+*DRIVER GCDdpath0/U277:QN
+*CELL NAND4X0
+*C2_R1_C1 2.319e+00 1.822e-05 2.319e+00 
+*LOADS
+*RC GCDdpath0/U278:IN3 5.619e-05
+*END
+
+*R_NET GCDdpath0/n168 2.906e+00
+*DRIVER GCDdpath0/U276:Q
+*CELL MUX21X1
+*C2_R1_C1 1.453e+00 5.079e-06 1.453e+00 
+*LOADS
+*RC GCDdpath0/U278:IN2 1.273e-05
+*END
+
+*R_NET GCDdpath0/n169 2.653e+00
+*DRIVER GCDdpath0/U275:QN
+*CELL NAND3X0
+*C2_R1_C1 1.327e+00 3.352e-06 1.327e+00 
+*LOADS
+*RC GCDdpath0/U278:IN1 7.960e-06
+*END
+
+*R_NET GCDdpath0/n170 4.050e+00
+*DRIVER GCDdpath0/U278:QN
+*CELL NAND4X0
+*C2_R1_C1 2.025e+00 1.456e-05 2.025e+00 
+*LOADS
+*RC GCDdpath0/U170:IN2 4.229e-05
+*END
+
+*R_NET GCDdpath0/n171 2.301e+00
+*DRIVER GCDdpath0/U170:QN
+*CELL NOR2X0
+*C2_R1_C1 1.150e+00 4.966e-06 1.150e+00 
+*LOADS
+*RC GCDdpath0/U109:IN1 9.414e-06
+*END
+
+*R_NET GCDdpath0/n172 5.665e+00
+*DRIVER GCDdpath0/U109:QN
+*CELL NAND2X0
+*C2_R1_C1 2.832e+00 2.266e-05 2.832e+00 
+*LOADS
+*RC GCDdpath0/U64:IN2 8.557e-05
+*END
+
+*R_NET GCDdpath0/n173 3.078e+00
+*DRIVER GCDdpath0/U63:QN
+*CELL NAND2X1
+*C2_R1_C1 1.539e+00 2.276e-06 1.539e+00 
+*LOADS
+*RC GCDdpath0/U64:IN1 6.570e-06
+*END
+
+*R_NET GCDdpath0/n174 2.568e+00
+*DRIVER GCDdpath0/U185:QN
+*CELL NOR2X0
+*C2_R1_C1 1.284e+00 2.334e-06 1.284e+00 
+*LOADS
+*RC GCDdpath0/U50:IN1 5.565e-06
+*END
+
+*R_NET GCDdpath0/n175 7.977e+00
+*DRIVER GCDdpath0/B_reg_reg_8_:QN
+*CELL DFFARX1
+*C2_R1_C1 3.989e+00 3.097e-05 3.989e+00 
+*LOADS
+*RC GCDdpath0/U157:IN1 1.195e-04
+*RC GCDdpath0/U184:IN2 7.137e-05
+*END
+
+*R_NET GCDdpath0/n176 4.115e+00
+*DRIVER GCDdpath0/U184:QN
+*CELL NAND2X0
+*C2_R1_C1 2.057e+00 1.041e-05 2.057e+00 
+*LOADS
+*RC GCDdpath0/U67:IN2 3.394e-05
+*END
+
+*R_NET GCDdpath0/n177 3.361e+00
+*DRIVER GCDdpath0/U50:QN
+*CELL NOR2X0
+*C2_R1_C1 1.680e+00 4.476e-06 1.680e+00 
+*LOADS
+*RC GCDdpath0/U67:IN1 1.334e-05
+*END
+
+*R_NET GCDdpath0/n178 1.910e+01
+*DRIVER GCDdpath0/U159:QN
+*CELL NAND2X1
+*C2_R1_C1 9.551e+00 4.763e-05 9.551e+00 
+*LOADS
+*RC GCDdpath0/U322:IN2 3.375e-04
+*RC GCDdpath0/U111:IN2 1.958e-04
+*RC GCDdpath0/U150:IN2 1.963e-04
+*RC GCDdpath0/U192:INP 3.482e-05
+*RC GCDdpath0/U275:IN3 7.142e-05
+*RC GCDdpath0/U276:IN2 2.115e-05
+*END
+
+*R_NET GCDdpath0/n179 5.840e+00
+*DRIVER GCDdpath0/U149:QN
+*CELL NAND2X0
+*C2_R1_C1 2.920e+00 1.374e-05 2.920e+00 
+*LOADS
+*RC GCDdpath0/U193:INP 4.418e-05
+*RC GCDdpath0/U233:IN2 3.609e-05
+*END
+
+*R_NET GCDdpath0/n180 3.153e+00
+*DRIVER GCDdpath0/U233:QN
+*CELL NOR2X0
+*C2_R1_C1 1.577e+00 2.608e-06 1.577e+00 
+*LOADS
+*RC GCDdpath0/U148:IN2 7.663e-06
+*END
+
+*R_NET GCDdpath0/n181 1.451e+01
+*DRIVER GCDdpath0/U151:QN
+*CELL NAND2X1
+*C2_R1_C1 7.257e+00 2.486e-05 7.257e+00 
+*LOADS
+*RC GCDdpath0/U117:IN1 1.397e-04
+*RC GCDdpath0/U119:IN1 2.374e-05
+*RC GCDdpath0/U148:IN1 3.899e-05
+*RC GCDdpath0/U267:IN1 1.597e-04
+*END
+
+*R_NET GCDdpath0/n182 5.482e+00
+*DRIVER GCDdpath0/U150:QN
+*CELL NAND2X0
+*C2_R1_C1 2.741e+00 7.114e-06 2.741e+00 
+*LOADS
+*RC GCDdpath0/U229:IN2 1.844e-05
+*RC GCDdpath0/U233:IN1 1.568e-05
+*END
+
+*R_NET GCDdpath0/n183 6.337e+00
+*DRIVER GCDdpath0/U230:QN
+*CELL NOR2X0
+*C2_R1_C1 3.169e+00 4.734e-06 3.169e+00 
+*LOADS
+*RC GCDdpath0/U118:IN2 1.485e-05
+*RC GCDdpath0/U172:INP 1.195e-05
+*RC GCDdpath0/U229:IN1 6.006e-06
+*END
+
+*R_NET GCDdpath0/n184 1.314e+01
+*DRIVER GCDdpath0/U98:QN
+*CELL NOR2X2
+*C2_R1_C1 6.569e+00 2.648e-05 6.569e+00 
+*LOADS
+*RC GCDdpath0/U13:INP 3.074e-05
+*RC GCDdpath0/U93:IN2 1.260e-04
+*RC GCDdpath0/U100:INP 1.298e-04
+*RC GCDdpath0/U191:IN2 2.457e-05
+*END
+
+*R_NET GCDdpath0/n185 1.071e+01
+*DRIVER GCDdpath0/U161:QN
+*CELL NAND2X1
+*C2_R1_C1 5.354e+00 2.430e-05 5.354e+00 
+*LOADS
+*RC GCDdpath0/U37:IN4 4.015e-05
+*RC GCDdpath0/U93:IN1 7.728e-05
+*RC GCDdpath0/U112:IN2 5.847e-05
+*RC GCDdpath0/U150:IN1 4.722e-05
+*END
+
+*R_NET GCDdpath0/n186 1.154e+01
+*DRIVER GCDdpath0/U165:QN
+*CELL NAND2X1
+*C2_R1_C1 5.768e+00 2.710e-05 5.768e+00 
+*LOADS
+*RC GCDdpath0/U323:IN2 1.324e-04
+*RC GCDdpath0/U38:IN2 8.460e-05
+*RC GCDdpath0/U112:IN1 8.658e-05
+*RC GCDdpath0/U147:IN2 9.278e-05
+*END
+
+*R_NET GCDdpath0/n187 1.869e+00
+*DRIVER GCDdpath0/U93:QN
+*CELL NAND2X0
+*C2_R1_C1 9.344e-01 1.402e-06 9.344e-01 
+*LOADS
+*RC GCDdpath0/U147:IN1 2.456e-06
+*END
+
+*R_NET GCDdpath0/n188 3.242e+00
+*DRIVER GCDdpath0/U147:QN
+*CELL NAND2X0
+*C2_R1_C1 1.621e+00 7.573e-06 1.621e+00 
+*LOADS
+*RC GCDdpath0/U228:IN2 1.995e-05
+*END
+
+*R_NET GCDdpath0/n189 3.000e+00
+*DRIVER GCDdpath0/U229:QN
+*CELL NOR2X0
+*C2_R1_C1 1.500e+00 5.883e-06 1.500e+00 
+*LOADS
+*RC GCDdpath0/U228:IN1 1.488e-05
+*END
+
+*R_NET GCDdpath0/n190 3.577e+00
+*DRIVER GCDdpath0/U228:QN
+*CELL NOR2X0
+*C2_R1_C1 1.788e+00 5.824e-06 1.788e+00 
+*LOADS
+*RC GCDdpath0/U146:IN2 1.794e-05
+*END
+
+*R_NET GCDdpath0/n191 4.128e+00
+*DRIVER GCDdpath0/U148:QN
+*CELL NAND2X1
+*C2_R1_C1 2.064e+00 1.056e-05 2.064e+00 
+*LOADS
+*RC GCDdpath0/U146:IN1 3.417e-05
+*END
+
+*R_NET GCDdpath0/n192 5.193e+00
+*DRIVER GCDdpath0/U183:ZN
+*CELL INVX0
+*C2_R1_C1 2.597e+00 4.973e-06 2.597e+00 
+*LOADS
+*RC GCDdpath0/U48:IN1 1.262e-05
+*RC GCDdpath0/U182:IN1 9.262e-06
+*END
+
+*R_NET GCDdpath0/n193 3.945e+00
+*DRIVER GCDdpath0/U182:QN
+*CELL NOR2X0
+*C2_R1_C1 1.972e+00 4.275e-06 1.972e+00 
+*LOADS
+*RC GCDdpath0/U280:IN2 1.530e-05
+*END
+
+*R_NET GCDdpath0/n194 3.462e+00
+*DRIVER GCDdpath0/U280:Q
+*CELL XOR2X1
+*C2_R1_C1 1.731e+00 7.837e-06 1.731e+00 
+*LOADS
+*RC GCDdpath0/U281:IN3 2.236e-05
+*END
+
+*R_NET GCDdpath0/n196 3.836e+00
+*DRIVER GCDdpath0/U281:QN
+*CELL NAND3X0
+*C2_R1_C1 1.918e+00 8.092e-06 1.918e+00 
+*LOADS
+*RC GCDdpath0/U68:IN2 2.562e-05
+*END
+
+*R_NET GCDdpath0/n197 2.967e+00
+*DRIVER GCDdpath0/U67:QN
+*CELL NAND2X1
+*C2_R1_C1 1.484e+00 1.466e-06 1.484e+00 
+*LOADS
+*RC GCDdpath0/U68:IN1 4.178e-06
+*END
+
+*R_NET GCDdpath0/n198 1.026e+01
+*DRIVER GCDdpath0/B_reg_reg_9_:QN
+*CELL DFFARX1
+*C2_R1_C1 5.132e+00 2.731e-05 5.132e+00 
+*LOADS
+*RC GCDdpath0/U86:IN1 1.926e-04
+*RC GCDdpath0/U216:IN2 7.779e-05
+*END
+
+*R_NET GCDdpath0/n199 2.777e+00
+*DRIVER GCDdpath0/U216:QN
+*CELL NAND2X0
+*C2_R1_C1 1.389e+00 1.775e-06 1.389e+00 
+*LOADS
+*RC GCDdpath0/U284:IN3 4.658e-06
+*END
+
+*R_NET GCDdpath0/n200 2.921e+00
+*DRIVER GCDdpath0/U283:Q
+*CELL OR2X1
+*C2_R1_C1 1.461e+00 3.501e-06 1.461e+00 
+*LOADS
+*RC GCDdpath0/U284:IN1 9.186e-06
+*END
+
+*R_NET GCDdpath0/n201 1.126e+01
+*DRIVER GCDdpath0/U164:QN
+*CELL NAND2X1
+*C2_R1_C1 5.631e+00 3.111e-05 5.631e+00 
+*LOADS
+*RC GCDdpath0/U37:IN3 1.547e-04
+*RC GCDdpath0/U134:IN2 3.327e-05
+*RC GCDdpath0/U227:INP 9.368e-06
+*END
+
+*R_NET GCDdpath0/n202 4.262e+00
+*DRIVER GCDdpath0/U134:QN
+*CELL NAND2X1
+*C2_R1_C1 2.131e+00 1.162e-05 2.131e+00 
+*LOADS
+*RC GCDdpath0/U133:IN1 3.814e-05
+*END
+
+*R_NET GCDdpath0/n203 5.395e+00
+*DRIVER GCDdpath0/U215:QN
+*CELL NOR2X0
+*C2_R1_C1 2.697e+00 1.667e-05 2.697e+00 
+*LOADS
+*RC GCDdpath0/U285:IN2 6.772e-05
+*END
+
+*R_NET GCDdpath0/n204 5.773e+00
+*DRIVER GCDdpath0/U133:QN
+*CELL NAND2X1
+*C2_R1_C1 2.886e+00 1.669e-05 2.886e+00 
+*LOADS
+*RC GCDdpath0/U285:IN1 7.488e-05
+*END
+
+*R_NET GCDdpath0/n205 3.823e+00
+*DRIVER GCDdpath0/U285:Q
+*CELL XOR2X1
+*C2_R1_C1 1.912e+00 1.866e-05 1.912e+00 
+*LOADS
+*RC GCDdpath0/U132:IN2 4.289e-05
+*END
+
+*R_NET GCDdpath0/n206 1.847e+00
+*DRIVER GCDdpath0/U132:QN
+*CELL NAND2X0
+*C2_R1_C1 9.234e-01 2.467e-06 9.234e-01 
+*LOADS
+*RC GCDdpath0/U131:IN2 4.045e-06
+*END
+
+*R_NET GCDdpath0/n207 2.008e+00
+*DRIVER GCDdpath0/U284:QN
+*CELL NAND3X0
+*C2_R1_C1 1.004e+00 2.501e-06 1.004e+00 
+*LOADS
+*RC GCDdpath0/U131:IN1 4.498e-06
+*END
+
+*R_NET GCDdpath0/n208 1.094e+01
+*DRIVER GCDdpath0/B_reg_reg_10_:QN
+*CELL DFFARX1
+*C2_R1_C1 5.468e+00 3.205e-05 5.468e+00 
+*LOADS
+*RC GCDdpath0/U88:IN1 2.181e-04
+*RC GCDdpath0/U218:IN2 1.291e-04
+*END
+
+*R_NET GCDdpath0/n209 2.900e+00
+*DRIVER GCDdpath0/U218:QN
+*CELL NAND2X0
+*C2_R1_C1 1.450e+00 2.947e-06 1.450e+00 
+*LOADS
+*RC GCDdpath0/U288:IN3 7.856e-06
+*END
+
+*R_NET GCDdpath0/n210 2.666e+00
+*DRIVER GCDdpath0/U287:Q
+*CELL OR2X1
+*C2_R1_C1 1.333e+00 1.646e-06 1.333e+00 
+*LOADS
+*RC GCDdpath0/U288:IN1 4.179e-06
+*END
+
+*R_NET GCDdpath0/n211 5.002e+00
+*DRIVER GCDdpath0/U227:ZN
+*CELL INVX0
+*C2_R1_C1 2.501e+00 3.250e-06 2.501e+00 
+*LOADS
+*RC GCDdpath0/U182:IN2 6.244e-06
+*RC GCDdpath0/U226:IN1 4.191e-06
+*END
+
+*R_NET GCDdpath0/n212 1.371e+01
+*DRIVER GCDdpath0/U86:QN
+*CELL NOR2X2
+*C2_R1_C1 6.853e+00 2.343e-05 6.853e+00 
+*LOADS
+*RC GCDdpath0/U81:INP 1.239e-04
+*RC GCDdpath0/U215:IN1 8.577e-05
+*RC GCDdpath0/U226:IN2 9.929e-05
+*RC GCDdpath0/U248:IN2 1.372e-04
+*END
+
+*R_NET GCDdpath0/n213 7.850e+00
+*DRIVER GCDdpath0/U157:QN
+*CELL NAND2X1
+*C2_R1_C1 3.925e+00 6.342e-06 3.925e+00 
+*LOADS
+*RC GCDdpath0/U133:IN2 2.631e-05
+*RC GCDdpath0/U183:INP 2.169e-05
+*RC GCDdpath0/U248:IN1 2.214e-05
+*END
+
+*R_NET GCDdpath0/n214 1.061e+01
+*DRIVER GCDdpath0/U61:QN
+*CELL NOR2X1
+*C2_R1_C1 5.303e+00 2.791e-05 5.303e+00 
+*LOADS
+*RC GCDdpath0/U48:IN2 1.420e-04
+*RC GCDdpath0/U215:IN2 9.161e-05
+*RC GCDdpath0/U247:IN2 1.182e-04
+*END
+
+*R_NET GCDdpath0/n215 2.767e+00
+*DRIVER GCDdpath0/U248:QN
+*CELL NOR2X0
+*C2_R1_C1 1.383e+00 3.734e-06 1.383e+00 
+*LOADS
+*RC GCDdpath0/U247:IN1 9.153e-06
+*END
+
+*R_NET GCDdpath0/n216 3.228e+00
+*DRIVER GCDdpath0/U138:QN
+*CELL NAND2X0
+*C2_R1_C1 1.614e+00 3.695e-06 1.614e+00 
+*LOADS
+*RC GCDdpath0/U137:IN1 1.085e-05
+*END
+
+*R_NET GCDdpath0/n217 3.608e+00
+*DRIVER GCDdpath0/U217:QN
+*CELL NOR2X0
+*C2_R1_C1 1.804e+00 1.829e-06 1.804e+00 
+*LOADS
+*RC GCDdpath0/U289:IN2 6.341e-06
+*END
+
+*R_NET GCDdpath0/n218 6.001e+00
+*DRIVER GCDdpath0/U137:QN
+*CELL NAND2X1
+*C2_R1_C1 3.000e+00 1.869e-05 3.000e+00 
+*LOADS
+*RC GCDdpath0/U289:IN1 8.529e-05
+*END
+
+*R_NET GCDdpath0/n219 3.862e+00
+*DRIVER GCDdpath0/U289:Q
+*CELL XOR2X1
+*C2_R1_C1 1.931e+00 8.794e-06 1.931e+00 
+*LOADS
+*RC GCDdpath0/U136:IN2 2.792e-05
+*END
+
+*R_NET GCDdpath0/n220 3.492e+00
+*DRIVER GCDdpath0/U136:QN
+*CELL NAND2X1
+*C2_R1_C1 1.746e+00 5.127e-06 1.746e+00 
+*LOADS
+*RC GCDdpath0/U135:IN2 1.565e-05
+*END
+
+*R_NET GCDdpath0/n221 2.854e+00
+*DRIVER GCDdpath0/U288:QN
+*CELL NAND3X0
+*C2_R1_C1 1.427e+00 5.254e-07 1.427e+00 
+*LOADS
+*RC GCDdpath0/U135:IN1 1.477e-06
+*END
+
+*R_NET GCDdpath0/n222 6.839e+00
+*DRIVER GCDdpath0/B_reg_reg_11_:QN
+*CELL DFFARX1
+*C2_R1_C1 3.420e+00 1.924e-05 3.420e+00 
+*LOADS
+*RC GCDdpath0/U57:IN1 7.896e-05
+*RC GCDdpath0/U222:IN2 2.818e-05
+*END
+
+*R_NET GCDdpath0/n223 3.102e+00
+*DRIVER GCDdpath0/U222:QN
+*CELL NAND2X0
+*C2_R1_C1 1.551e+00 4.562e-06 1.551e+00 
+*LOADS
+*RC GCDdpath0/U292:IN3 1.247e-05
+*END
+
+*R_NET GCDdpath0/n224 2.823e+00
+*DRIVER GCDdpath0/U291:Q
+*CELL OR2X1
+*C2_R1_C1 1.412e+00 2.835e-06 1.412e+00 
+*LOADS
+*RC GCDdpath0/U292:IN1 7.348e-06
+*END
+
+*R_NET GCDdpath0/n225 8.903e+00
+*DRIVER GCDdpath0/U103:ZN
+*CELL INVX1
+*C2_R1_C1 4.452e+00 7.681e-06 4.452e+00 
+*LOADS
+*RC GCDdpath0/U60:IN2 1.899e-05
+*RC GCDdpath0/U293:IN3 2.528e-05
+*END
+
+*R_NET GCDdpath0/n226 2.535e+00
+*DRIVER GCDdpath0/U221:QN
+*CELL NOR2X0
+*C2_R1_C1 1.268e+00 1.918e-06 1.268e+00 
+*LOADS
+*RC GCDdpath0/U220:IN1 4.553e-06
+*END
+
+*R_NET GCDdpath0/n227 3.338e+00
+*DRIVER GCDdpath0/U220:QN
+*CELL NOR2X0
+*C2_R1_C1 1.669e+00 4.177e-06 1.669e+00 
+*LOADS
+*RC GCDdpath0/U141:IN2 1.253e-05
+*END
+
+*R_NET GCDdpath0/n228 2.864e+00
+*DRIVER GCDdpath0/U293:QN
+*CELL NAND3X0
+*C2_R1_C1 1.432e+00 6.269e-07 1.432e+00 
+*LOADS
+*RC GCDdpath0/U141:IN1 1.765e-06
+*END
+
+*R_NET GCDdpath0/n229 3.687e+00
+*DRIVER GCDdpath0/U219:QN
+*CELL NOR2X0
+*C2_R1_C1 1.844e+00 2.302e-06 1.844e+00 
+*LOADS
+*RC GCDdpath0/U294:IN2 8.041e-06
+*END
+
+*R_NET GCDdpath0/n230 5.131e+00
+*DRIVER GCDdpath0/U141:QN
+*CELL NAND2X1
+*C2_R1_C1 2.566e+00 1.106e-05 2.566e+00 
+*LOADS
+*RC GCDdpath0/U294:IN1 4.727e-05
+*END
+
+*R_NET GCDdpath0/n231 3.290e+00
+*DRIVER GCDdpath0/U294:Q
+*CELL XOR2X1
+*C2_R1_C1 1.645e+00 1.485e-05 1.645e+00 
+*LOADS
+*RC GCDdpath0/U140:IN2 3.150e-05
+*END
+
+*R_NET GCDdpath0/n232 3.076e+00
+*DRIVER GCDdpath0/U140:QN
+*CELL NAND2X0
+*C2_R1_C1 1.538e+00 1.991e-06 1.538e+00 
+*LOADS
+*RC GCDdpath0/U139:IN2 5.799e-06
+*END
+
+*R_NET GCDdpath0/n233 3.157e+00
+*DRIVER GCDdpath0/U292:QN
+*CELL NAND3X0
+*C2_R1_C1 1.578e+00 2.845e-06 1.578e+00 
+*LOADS
+*RC GCDdpath0/U139:IN1 8.288e-06
+*END
+
+*R_NET GCDdpath0/n234 8.268e+00
+*DRIVER GCDdpath0/B_reg_reg_12_:QN
+*CELL DFFARX1
+*C2_R1_C1 4.134e+00 2.931e-05 4.134e+00 
+*LOADS
+*RC GCDdpath0/U84:IN1 1.174e-04
+*RC GCDdpath0/U205:IN2 1.019e-04
+*END
+
+*R_NET GCDdpath0/n235 2.822e+00
+*DRIVER GCDdpath0/U205:QN
+*CELL NAND2X0
+*C2_R1_C1 1.411e+00 2.131e-06 1.411e+00 
+*LOADS
+*RC GCDdpath0/U297:IN3 5.625e-06
+*END
+
+*R_NET GCDdpath0/n236 2.678e+00
+*DRIVER GCDdpath0/U296:Q
+*CELL OR2X1
+*C2_R1_C1 1.339e+00 1.646e-06 1.339e+00 
+*LOADS
+*RC GCDdpath0/U297:IN1 4.185e-06
+*END
+
+*R_NET GCDdpath0/n237 1.448e+01
+*DRIVER GCDdpath0/U88:QN
+*CELL NOR2X2
+*C2_R1_C1 7.242e+00 2.879e-05 7.242e+00 
+*LOADS
+*RC GCDdpath0/U103:INP 2.044e-04
+*RC GCDdpath0/U217:IN1 8.364e-05
+*RC GCDdpath0/U221:IN2 1.835e-04
+*RC GCDdpath0/U246:IN2 9.202e-05
+*END
+
+*R_NET GCDdpath0/n238 9.002e+00
+*DRIVER GCDdpath0/U57:QN
+*CELL NOR2X1
+*C2_R1_C1 4.501e+00 6.662e-06 4.501e+00 
+*LOADS
+*RC GCDdpath0/U101:INP 3.563e-05
+*RC GCDdpath0/U219:IN2 2.911e-05
+*RC GCDdpath0/U246:IN1 1.737e-05
+*END
+
+*R_NET GCDdpath0/n239 7.713e+00
+*DRIVER GCDdpath0/U226:QN
+*CELL NOR2X0
+*C2_R1_C1 3.856e+00 1.419e-05 3.856e+00 
+*LOADS
+*RC GCDdpath0/U138:IN2 4.243e-05
+*RC GCDdpath0/U145:IN1 5.197e-05
+*RC GCDdpath0/U293:IN2 3.089e-05
+*END
+
+*R_NET GCDdpath0/n240 5.854e+00
+*DRIVER GCDdpath0/U246:QN
+*CELL NOR2X0
+*C2_R1_C1 2.927e+00 2.035e-05 2.927e+00 
+*LOADS
+*RC GCDdpath0/U145:IN2 2.903e-05
+*RC GCDdpath0/U245:INP 6.552e-05
+*END
+
+*R_NET GCDdpath0/n241 2.480e+00
+*DRIVER GCDdpath0/U245:ZN
+*CELL INVX0
+*C2_R1_C1 1.240e+00 1.176e-06 1.240e+00 
+*LOADS
+*RC GCDdpath0/U244:IN2 2.799e-06
+*END
+
+*R_NET GCDdpath0/n242 9.294e+00
+*DRIVER GCDdpath0/U247:QN
+*CELL NOR2X0
+*C2_R1_C1 4.647e+00 1.366e-05 4.647e+00 
+*LOADS
+*RC GCDdpath0/U137:IN2 6.074e-05
+*RC GCDdpath0/U221:IN1 5.382e-05
+*RC GCDdpath0/U244:IN1 1.750e-05
+*END
+
+*R_NET GCDdpath0/n243 1.320e+01
+*DRIVER GCDdpath0/U252:QN
+*CELL NOR2X1
+*C2_R1_C1 6.599e+00 3.372e-05 6.599e+00 
+*LOADS
+*RC GCDdpath0/U45:IN2 2.007e-04
+*RC GCDdpath0/U94:IN2 9.760e-05
+*RC GCDdpath0/U217:IN2 6.514e-05
+*RC GCDdpath0/U220:IN2 1.730e-04
+*END
+
+*R_NET GCDdpath0/n244 8.705e+00
+*DRIVER GCDdpath0/U101:ZN
+*CELL INVX1
+*C2_R1_C1 4.353e+00 1.365e-05 4.353e+00 
+*LOADS
+*RC GCDdpath0/U30:IN2 4.721e-05
+*RC GCDdpath0/U37:IN2 5.815e-05
+*RC GCDdpath0/U94:IN1 6.323e-06
+*END
+
+*R_NET GCDdpath0/n245 9.755e+00
+*DRIVER GCDdpath0/U253:QN
+*CELL NOR2X0
+*C2_R1_C1 4.877e+00 2.572e-05 4.877e+00 
+*LOADS
+*RC GCDdpath0/U45:IN1 1.212e-04
+*RC GCDdpath0/U219:IN1 3.739e-05
+*RC GCDdpath0/U243:INP 1.064e-04
+*END
+
+*R_NET GCDdpath0/n246 1.918e+00
+*DRIVER GCDdpath0/U243:ZN
+*CELL INVX0
+*C2_R1_C1 9.589e-01 3.099e-06 9.589e-01 
+*LOADS
+*RC GCDdpath0/U155:IN2 5.154e-06
+*END
+
+*R_NET GCDdpath0/n247 3.320e+00
+*DRIVER GCDdpath0/U94:QN
+*CELL NAND2X0
+*C2_R1_C1 1.660e+00 1.401e-05 1.660e+00 
+*LOADS
+*RC GCDdpath0/U155:IN1 3.131e-05
+*END
+
+*R_NET GCDdpath0/n248 2.694e+00
+*DRIVER GCDdpath0/U155:QN
+*CELL NAND2X0
+*C2_R1_C1 1.347e+00 3.032e-06 1.347e+00 
+*LOADS
+*RC GCDdpath0/U242:IN2 7.434e-06
+*END
+
+*R_NET GCDdpath0/n249 2.757e+00
+*DRIVER GCDdpath0/U244:QN
+*CELL NOR2X0
+*C2_R1_C1 1.378e+00 3.671e-06 1.378e+00 
+*LOADS
+*RC GCDdpath0/U242:IN1 8.984e-06
+*END
+
+*R_NET GCDdpath0/n250 4.827e+00
+*DRIVER GCDdpath0/U124:QN
+*CELL NAND2X0
+*C2_R1_C1 2.414e+00 1.717e-05 2.414e+00 
+*LOADS
+*RC GCDdpath0/U123:IN1 5.958e-05
+*END
+
+*R_NET GCDdpath0/n251 4.426e+00
+*DRIVER GCDdpath0/U204:QN
+*CELL NOR2X0
+*C2_R1_C1 2.213e+00 8.623e-06 2.213e+00 
+*LOADS
+*RC GCDdpath0/U298:IN2 3.225e-05
+*END
+
+*R_NET GCDdpath0/n252 5.337e+00
+*DRIVER GCDdpath0/U123:QN
+*CELL NAND2X1
+*C2_R1_C1 2.668e+00 1.258e-05 2.668e+00 
+*LOADS
+*RC GCDdpath0/U298:IN1 5.460e-05
+*END
+
+*R_NET GCDdpath0/n253 3.807e+00
+*DRIVER GCDdpath0/U298:Q
+*CELL XOR2X1
+*C2_R1_C1 1.904e+00 8.137e-06 1.904e+00 
+*LOADS
+*RC GCDdpath0/U122:IN2 2.569e-05
+*END
+
+*R_NET GCDdpath0/n254 3.381e+00
+*DRIVER GCDdpath0/U122:QN
+*CELL NAND2X1
+*C2_R1_C1 1.691e+00 4.665e-06 1.691e+00 
+*LOADS
+*RC GCDdpath0/U121:IN2 1.406e-05
+*END
+
+*R_NET GCDdpath0/n255 3.137e+00
+*DRIVER GCDdpath0/U297:QN
+*CELL NAND3X0
+*C2_R1_C1 1.568e+00 2.792e-06 1.568e+00 
+*LOADS
+*RC GCDdpath0/U121:IN1 8.114e-06
+*END
+
+*R_NET GCDdpath0/n256 1.041e+01
+*DRIVER GCDdpath0/B_reg_reg_13_:QN
+*CELL DFFARX1
+*C2_R1_C1 5.204e+00 2.666e-05 5.204e+00 
+*LOADS
+*RC GCDdpath0/U59:IN1 1.293e-04
+*RC GCDdpath0/U210:IN2 1.198e-04
+*END
+
+*R_NET GCDdpath0/n257 2.625e+00
+*DRIVER GCDdpath0/U210:QN
+*CELL NAND2X0
+*C2_R1_C1 1.313e+00 6.620e-07 1.313e+00 
+*LOADS
+*RC GCDdpath0/U301:IN3 1.704e-06
+*END
+
+*R_NET GCDdpath0/n258 2.738e+00
+*DRIVER GCDdpath0/U300:Q
+*CELL OR2X1
+*C2_R1_C1 1.369e+00 2.231e-06 1.369e+00 
+*LOADS
+*RC GCDdpath0/U301:IN1 5.718e-06
+*END
+
+*R_NET GCDdpath0/n259 2.663e+00
+*DRIVER GCDdpath0/U209:QN
+*CELL NOR2X0
+*C2_R1_C1 1.331e+00 2.967e-06 1.331e+00 
+*LOADS
+*RC GCDdpath0/U208:IN1 7.169e-06
+*END
+
+*R_NET GCDdpath0/n260 1.335e+01
+*DRIVER GCDdpath0/U84:QN
+*CELL NOR2X1
+*C2_R1_C1 6.676e+00 6.253e-06 6.676e+00 
+*LOADS
+*RC GCDdpath0/U95:IN1 4.136e-05
+*RC GCDdpath0/U204:IN2 1.574e-05
+*RC GCDdpath0/U207:IN2 2.840e-05
+*RC GCDdpath0/U209:IN2 2.270e-05
+*END
+
+*R_NET GCDdpath0/n261 3.736e+00
+*DRIVER GCDdpath0/U207:QN
+*CELL NOR2X0
+*C2_R1_C1 1.868e+00 1.841e-05 1.868e+00 
+*LOADS
+*RC GCDdpath0/U128:IN2 4.178e-05
+*END
+
+*R_NET GCDdpath0/n262 4.220e+00
+*DRIVER GCDdpath0/U128:QN
+*CELL NAND2X0
+*C2_R1_C1 2.110e+00 1.196e-05 2.110e+00 
+*LOADS
+*RC GCDdpath0/U127:IN2 3.941e-05
+*END
+
+*R_NET GCDdpath0/n263 3.206e+00
+*DRIVER GCDdpath0/U208:QN
+*CELL NOR2X0
+*C2_R1_C1 1.603e+00 3.342e-06 1.603e+00 
+*LOADS
+*RC GCDdpath0/U127:IN1 9.791e-06
+*END
+
+*R_NET GCDdpath0/n264 4.532e+00
+*DRIVER GCDdpath0/U206:QN
+*CELL NOR2X0
+*C2_R1_C1 2.266e+00 9.602e-06 2.266e+00 
+*LOADS
+*RC GCDdpath0/U302:IN2 3.625e-05
+*END
+
+*R_NET GCDdpath0/n265 5.342e+00
+*DRIVER GCDdpath0/U127:QN
+*CELL NAND2X1
+*C2_R1_C1 2.671e+00 1.293e-05 2.671e+00 
+*LOADS
+*RC GCDdpath0/U302:IN1 5.615e-05
+*END
+
+*R_NET GCDdpath0/n266 5.001e+00
+*DRIVER GCDdpath0/U302:Q
+*CELL XOR2X1
+*C2_R1_C1 2.501e+00 1.756e-05 2.501e+00 
+*LOADS
+*RC GCDdpath0/U126:IN2 6.241e-05
+*END
+
+*R_NET GCDdpath0/n267 3.507e+00
+*DRIVER GCDdpath0/U126:QN
+*CELL NAND2X1
+*C2_R1_C1 1.754e+00 5.561e-06 1.754e+00 
+*LOADS
+*RC GCDdpath0/U125:IN2 1.700e-05
+*END
+
+*R_NET GCDdpath0/n268 3.205e+00
+*DRIVER GCDdpath0/U301:QN
+*CELL NAND3X0
+*C2_R1_C1 1.602e+00 3.552e-06 1.602e+00 
+*LOADS
+*RC GCDdpath0/U125:IN1 1.040e-05
+*END
+
+*R_NET GCDdpath0/n269 9.177e+00
+*DRIVER GCDdpath0/B_reg_reg_14_:QN
+*CELL DFFARX1
+*C2_R1_C1 4.589e+00 3.760e-05 4.589e+00 
+*LOADS
+*RC GCDdpath0/U97:IN1 1.262e-04
+*RC GCDdpath0/U214:IN2 1.424e-04
+*END
+
+*R_NET GCDdpath0/n270 2.833e+00
+*DRIVER GCDdpath0/U214:QN
+*CELL NAND2X0
+*C2_R1_C1 1.416e+00 2.249e-06 1.416e+00 
+*LOADS
+*RC GCDdpath0/U305:IN3 5.945e-06
+*END
+
+*R_NET GCDdpath0/n271 2.664e+00
+*DRIVER GCDdpath0/U304:Q
+*CELL OR2X1
+*C2_R1_C1 1.332e+00 1.603e-06 1.332e+00 
+*LOADS
+*RC GCDdpath0/U305:IN1 4.070e-06
+*END
+
+*R_NET GCDdpath0/n272 4.953e+00
+*DRIVER GCDdpath0/U213:ZN
+*CELL INVX0
+*C2_R1_C1 2.477e+00 6.996e-06 2.477e+00 
+*LOADS
+*RC GCDdpath0/U124:IN2 7.425e-06
+*RC GCDdpath0/U306:IN2 2.344e-05
+*END
+
+*R_NET GCDdpath0/n273 1.145e+01
+*DRIVER GCDdpath0/U250:QN
+*CELL NOR2X1
+*C2_R1_C1 5.723e+00 1.828e-05 5.723e+00 
+*LOADS
+*RC GCDdpath0/U35:IN2 3.276e-05
+*RC GCDdpath0/U204:IN1 6.788e-05
+*RC GCDdpath0/U208:IN2 6.506e-05
+*RC GCDdpath0/U240:INP 4.407e-05
+*END
+
+*R_NET GCDdpath0/n274 1.427e+01
+*DRIVER GCDdpath0/U59:QN
+*CELL NOR2X2
+*C2_R1_C1 7.133e+00 9.319e-06 7.133e+00 
+*LOADS
+*RC GCDdpath0/U25:IN2 3.617e-05
+*RC GCDdpath0/U95:IN2 6.058e-05
+*RC GCDdpath0/U206:IN2 1.642e-05
+*RC GCDdpath0/U239:IN2 2.770e-05
+*END
+
+*R_NET GCDdpath0/n275 3.197e+00
+*DRIVER GCDdpath0/U240:ZN
+*CELL INVX0
+*C2_R1_C1 1.599e+00 7.112e-06 1.599e+00 
+*LOADS
+*RC GCDdpath0/U239:IN1 1.845e-05
+*END
+
+*R_NET GCDdpath0/n276 8.719e+00
+*DRIVER GCDdpath0/U249:QN
+*CELL NOR2X0
+*C2_R1_C1 4.359e+00 1.388e-05 4.359e+00 
+*LOADS
+*RC GCDdpath0/U35:IN1 2.097e-05
+*RC GCDdpath0/U206:IN1 4.176e-05
+*RC GCDdpath0/U238:IN2 4.616e-05
+*END
+
+*R_NET GCDdpath0/n277 2.809e+00
+*DRIVER GCDdpath0/U239:QN
+*CELL NOR2X0
+*C2_R1_C1 1.404e+00 4.235e-06 1.404e+00 
+*LOADS
+*RC GCDdpath0/U238:IN1 1.044e-05
+*END
+
+*R_NET GCDdpath0/n278 2.576e+00
+*DRIVER GCDdpath0/U212:ZN
+*CELL INVX0
+*C2_R1_C1 1.288e+00 7.154e-06 1.288e+00 
+*LOADS
+*RC GCDdpath0/U105:IN1 1.422e-05
+*END
+
+*R_NET GCDdpath0/n279 3.211e+00
+*DRIVER GCDdpath0/U105:QN
+*CELL NAND2X0
+*C2_R1_C1 1.606e+00 5.167e-06 1.606e+00 
+*LOADS
+*RC GCDdpath0/U307:IN3 1.431e-05
+*END
+
+*R_NET GCDdpath0/n280 3.158e+00
+*DRIVER GCDdpath0/U306:QN
+*CELL NAND3X0
+*C2_R1_C1 1.579e+00 5.618e-06 1.579e+00 
+*LOADS
+*RC GCDdpath0/U307:IN1 1.519e-05
+*END
+
+*R_NET GCDdpath0/n281 4.682e+00
+*DRIVER GCDdpath0/U211:QN
+*CELL NOR2X0
+*C2_R1_C1 2.341e+00 1.086e-05 2.341e+00 
+*LOADS
+*RC GCDdpath0/U308:IN2 4.154e-05
+*END
+
+*R_NET GCDdpath0/n282 4.326e+00
+*DRIVER GCDdpath0/U307:QN
+*CELL NAND3X0
+*C2_R1_C1 2.163e+00 4.097e-06 2.163e+00 
+*LOADS
+*RC GCDdpath0/U308:IN1 1.641e-05
+*END
+
+*R_NET GCDdpath0/n283 3.442e+00
+*DRIVER GCDdpath0/U308:Q
+*CELL XOR2X1
+*C2_R1_C1 1.721e+00 5.146e-06 1.721e+00 
+*LOADS
+*RC GCDdpath0/U130:IN2 1.562e-05
+*END
+
+*R_NET GCDdpath0/n284 1.798e+00
+*DRIVER GCDdpath0/U130:QN
+*CELL NAND2X1
+*C2_R1_C1 8.989e-01 2.098e-06 8.989e-01 
+*LOADS
+*RC GCDdpath0/U129:IN2 3.406e-06
+*END
+
+*R_NET GCDdpath0/n285 1.903e+00
+*DRIVER GCDdpath0/U305:QN
+*CELL NAND3X0
+*C2_R1_C1 9.514e-01 1.741e-06 9.514e-01 
+*LOADS
+*RC GCDdpath0/U129:IN1 3.069e-06
+*END
+
+*R_NET GCDdpath0/n286 4.915e+00
+*DRIVER GCDdpath0/U96:ZN
+*CELL INVX0
+*C2_R1_C1 2.457e+00 4.942e-06 2.457e+00 
+*LOADS
+*RC GCDdpath0/U107:IN2 9.120e-06
+*RC GCDdpath0/U162:IN1 5.305e-06
+*END
+
+*R_NET GCDdpath0/n287 1.361e+01
+*DRIVER GCDdpath0/U95:QN
+*CELL NOR2X2
+*C2_R1_C1 6.805e+00 1.966e-05 6.805e+00 
+*LOADS
+*RC GCDdpath0/U30:IN1 1.053e-04
+*RC GCDdpath0/U37:IN1 1.098e-04
+*RC GCDdpath0/U105:IN2 6.251e-05
+*RC GCDdpath0/U107:IN1 1.042e-04
+*RC GCDdpath0/U306:IN3 9.789e-05
+*END
+
+*R_NET GCDdpath0/n288 1.490e+01
+*DRIVER GCDdpath0/U242:QN
+*CELL NOR2X0
+*C2_R1_C1 7.451e+00 4.064e-05 7.451e+00 
+*LOADS
+*RC GCDdpath0/U123:IN2 2.322e-04
+*RC GCDdpath0/U209:IN1 2.640e-04
+*RC GCDdpath0/U212:INP 1.526e-04
+*RC GCDdpath0/U241:IN1 6.407e-05
+*END
+
+*R_NET GCDdpath0/n289 7.121e+00
+*DRIVER GCDdpath0/U97:QN
+*CELL NOR2X1
+*C2_R1_C1 3.561e+00 4.163e-06 3.561e+00 
+*LOADS
+*RC GCDdpath0/U96:INP 6.089e-06
+*RC GCDdpath0/U211:IN2 8.583e-06
+*RC GCDdpath0/U237:IN2 9.737e-06
+*END
+
+*R_NET GCDdpath0/n290 7.792e+00
+*DRIVER GCDdpath0/U238:QN
+*CELL NOR2X0
+*C2_R1_C1 3.896e+00 2.455e-05 3.896e+00 
+*LOADS
+*RC GCDdpath0/U237:IN1 9.681e-05
+*RC GCDdpath0/U307:IN2 7.868e-05
+*END
+
+*R_NET GCDdpath0/n291 6.251e+00
+*DRIVER GCDdpath0/U107:QN
+*CELL NAND2X0
+*C2_R1_C1 3.126e+00 1.276e-05 3.126e+00 
+*LOADS
+*RC GCDdpath0/U225:IN2 3.924e-05
+*RC GCDdpath0/U241:IN2 4.640e-05
+*END
+
+*R_NET GCDdpath0/n292 1.046e+01
+*DRIVER GCDdpath0/U145:QN
+*CELL NAND2X0
+*C2_R1_C1 5.231e+00 3.092e-05 5.231e+00 
+*LOADS
+*RC GCDdpath0/U207:IN1 1.549e-04
+*RC GCDdpath0/U213:INP 7.134e-05
+*RC GCDdpath0/U225:IN1 1.554e-05
+*END
+
+*R_NET GCDdpath0/n293 1.957e+00
+*DRIVER GCDdpath0/U225:QN
+*CELL NOR2X0
+*C2_R1_C1 9.784e-01 3.266e-06 9.784e-01 
+*LOADS
+*RC GCDdpath0/U144:IN2 5.475e-06
+*END
+
+*R_NET GCDdpath0/n294 2.573e+01
+*DRIVER GCDdpath0/U146:QN
+*CELL NAND2X1
+*C2_R1_C1 1.286e+01 4.242e-05 1.286e+01 
+*LOADS
+*RC GCDdpath0/U124:IN1 1.947e-04
+*RC GCDdpath0/U128:IN1 1.331e-04
+*RC GCDdpath0/U134:IN1 3.297e-04
+*RC GCDdpath0/U138:IN1 2.309e-04
+*RC GCDdpath0/U144:IN1 2.160e-04
+*RC GCDdpath0/U280:IN1 3.867e-04
+*RC GCDdpath0/U293:IN1 2.887e-04
+*RC GCDdpath0/U306:IN1 1.616e-04
+*END
+
+*R_NET GCDdpath0/n295 1.261e+01
+*DRIVER GCDdpath0/U163:QN
+*CELL NAND2X1
+*C2_R1_C1 6.303e+00 4.125e-05 6.303e+00 
+*LOADS
+*RC GCDdpath0/U22:IN2 2.252e-04
+*RC GCDdpath0/U92:IN2 1.055e-04
+*RC GCDdpath0/U162:IN2 1.242e-04
+*END
+
+*R_NET GCDdpath0/n296 8.784e+00
+*DRIVER GCDdpath0/U156:QN
+*CELL NAND2X1
+*C2_R1_C1 4.392e+00 3.568e-05 4.392e+00 
+*LOADS
+*RC GCDdpath0/U23:IN2 1.718e-04
+*RC GCDdpath0/U92:IN1 8.369e-05
+*END
+
+*R_NET GCDdpath0/n297 2.574e+00
+*DRIVER GCDdpath0/U310:QN
+*CELL NOR3X0
+*C2_R1_C1 1.287e+00 5.810e-06 1.287e+00 
+*LOADS
+*RC GCDdpath0/U311:IN1 1.217e-05
+*END
+
+*R_NET GCDdpath0/n298 7.405e+00
+*DRIVER GCDdpath0/U92:QN
+*CELL NAND2X0
+*C2_R1_C1 3.702e+00 2.723e-05 3.702e+00 
+*LOADS
+*RC GCDdpath0/U224:INP 1.018e-04
+*RC GCDdpath0/U311:IN3 9.318e-05
+*END
+
+*R_NET GCDdpath0/n299 3.118e+00
+*DRIVER GCDdpath0/U224:ZN
+*CELL INVX0
+*C2_R1_C1 1.559e+00 2.803e-06 1.559e+00 
+*LOADS
+*RC GCDdpath0/U312:IN4 8.090e-06
+*END
+
+*R_NET GCDdpath0/n300 7.479e+00
+*DRIVER GCDdpath0/U237:QN
+*CELL NOR2X0
+*C2_R1_C1 3.739e+00 1.424e-05 3.739e+00 
+*LOADS
+*RC GCDdpath0/U310:IN3 3.826e-05
+*RC GCDdpath0/U312:IN3 6.212e-05
+*END
+
+*R_NET GCDdpath0/n301 1.526e+01
+*DRIVER GCDdpath0/U251:QN
+*CELL NOR2X1
+*C2_R1_C1 7.630e+00 3.633e-05 7.630e+00 
+*LOADS
+*RC GCDdpath0/U34:INP 1.344e-04
+*RC GCDdpath0/U211:IN1 5.406e-05
+*RC GCDdpath0/U310:IN2 1.152e-04
+*RC GCDdpath0/U312:IN2 1.561e-04
+*END
+
+*R_NET GCDdpath0/n302 6.598e+00
+*DRIVER GCDdpath0/U241:QN
+*CELL NOR2X0
+*C2_R1_C1 3.299e+00 6.251e-06 3.299e+00 
+*LOADS
+*RC GCDdpath0/U310:IN1 1.467e-05
+*RC GCDdpath0/U312:IN1 1.289e-05
+*END
+
+*R_NET GCDdpath0/n303 3.703e+00
+*DRIVER GCDdpath0/U144:QN
+*CELL NAND2X0
+*C2_R1_C1 1.852e+00 3.276e-06 1.852e+00 
+*LOADS
+*RC GCDdpath0/U143:IN2 4.277e-06
+*RC GCDdpath0/U311:IN2 4.250e-06
+*END
+
+*R_NET GCDdpath0/n304 2.114e+00
+*DRIVER GCDdpath0/U312:QN
+*CELL NOR4X0
+*C2_R1_C1 1.057e+00 3.634e-06 1.057e+00 
+*LOADS
+*RC GCDdpath0/U143:IN1 6.663e-06
+*END
+
+*R_NET GCDdpath0/n305 5.353e+00
+*DRIVER GCDdpath0/U143:QN
+*CELL NAND2X0
+*C2_R1_C1 2.676e+00 2.398e-05 2.676e+00 
+*LOADS
+*RC GCDdpath0/U313:IN3 8.351e-05
+*END
+
+*R_NET GCDdpath0/n306 5.712e+00
+*DRIVER GCDdpath0/U311:Q
+*CELL AO21X1
+*C2_R1_C1 2.856e+00 2.704e-05 2.856e+00 
+*LOADS
+*RC GCDdpath0/U313:IN2 9.745e-05
+*END
+
+*R_NET GCDdpath0/n307 1.961e+01
+*DRIVER GCDdpath0/U104:QN
+*CELL NOR2X4
+*C2_R1_C1 9.803e+00 1.584e-05 9.803e+00 
+*LOADS
+*RC GCDdpath0/U130:IN1 7.179e-05
+*RC GCDdpath0/U122:IN1 4.345e-05
+*RC GCDdpath0/U126:IN1 4.403e-05
+*RC GCDdpath0/U132:IN1 7.114e-05
+*RC GCDdpath0/U136:IN1 4.938e-05
+*RC GCDdpath0/U140:IN1 4.260e-05
+*RC GCDdpath0/U313:IN1 1.363e-05
+*END
+
+*R_NET GCDdpath0/n308 9.127e+00
+*DRIVER GCDdpath0/B_reg_reg_15_:QN
+*CELL DFFARX1
+*C2_R1_C1 4.564e+00 3.797e-05 4.564e+00 
+*LOADS
+*RC GCDdpath0/U156:IN1 6.474e-05
+*RC GCDdpath0/U223:IN2 1.460e-04
+*END
+
+*R_NET GCDdpath0/n309 3.080e+00
+*DRIVER GCDdpath0/U223:QN
+*CELL NAND2X0
+*C2_R1_C1 1.540e+00 4.203e-06 1.540e+00 
+*LOADS
+*RC GCDdpath0/U315:IN3 1.146e-05
+*END
+
+*R_NET GCDdpath0/n311 2.676e+00
+*DRIVER GCDdpath0/U314:Q
+*CELL OR2X1
+*C2_R1_C1 1.338e+00 1.679e-06 1.338e+00 
+*LOADS
+*RC GCDdpath0/U315:IN1 4.270e-06
+*END
+
+*R_NET GCDdpath0/n312 3.031e+00
+*DRIVER GCDdpath0/U315:QN
+*CELL NAND3X0
+*C2_R1_C1 1.515e+00 1.687e-06 1.515e+00 
+*LOADS
+*RC GCDdpath0/U142:IN2 4.888e-06
+*END
+
+*R_NET GCDdpath0/n313 3.452e+00
+*DRIVER GCDdpath0/U313:QN
+*CELL NAND3X0
+*C2_R1_C1 1.726e+00 5.229e-06 1.726e+00 
+*LOADS
+*RC GCDdpath0/U142:IN1 1.575e-05
+*END
+
+*R_NET GCDdpath0/n314 2.947e+00
+*DRIVER GCDdpath0/U320:QN
+*CELL NOR4X0
+*C2_R1_C1 1.474e+00 1.200e-05 1.474e+00 
+*LOADS
+*RC GCDdpath0/U321:IN4 2.319e-05
+*END
+
+*R_NET GCDdpath0/n315 2.042e+00
+*DRIVER GCDdpath0/U319:QN
+*CELL NOR4X0
+*C2_R1_C1 1.021e+00 3.257e-06 1.021e+00 
+*LOADS
+*RC GCDdpath0/U321:IN3 5.749e-06
+*END
+
+*R_NET GCDdpath0/n316 3.175e+00
+*DRIVER GCDdpath0/U318:QN
+*CELL NOR4X0
+*C2_R1_C1 1.587e+00 1.503e-05 1.587e+00 
+*LOADS
+*RC GCDdpath0/U321:IN2 2.850e-05
+*END
+
+*R_NET GCDdpath0/n317 1.748e+00
+*DRIVER GCDdpath0/U317:QN
+*CELL NOR4X0
+*C2_R1_C1 8.742e-01 2.222e-06 8.742e-01 
+*LOADS
+*RC GCDdpath0/U321:IN1 3.471e-06
+*END
+
+*R_NET GCDdpath0/n319 1.407e+02
+*DRIVER GCDdpath0/U106:ZN
+*CELL INVX1
+*C2_R1_C1 7.036e+01 7.882e-05 7.036e+01 
+*LOADS
+*RC GCDdpath0/B_reg_reg_15_:RSTB 7.048e-04
+*RC GCDdpath0/A_reg_reg_14_:RSTB 1.592e-03
+*RC GCDdpath0/A_reg_reg_4_:RSTB 1.371e-03
+*RC GCDdpath0/A_reg_reg_7_:RSTB 9.072e-04
+*RC GCDdpath0/A_reg_reg_15_:RSTB 1.676e-03
+*RC GCDdpath0/A_reg_reg_11_:RSTB 1.995e-03
+*RC GCDdpath0/A_reg_reg_9_:RSTB 2.250e-03
+*RC GCDdpath0/A_reg_reg_10_:RSTB 1.225e-03
+*RC GCDdpath0/A_reg_reg_12_:RSTB 6.714e-04
+*RC GCDdpath0/A_reg_reg_13_:RSTB 5.256e-04
+*RC GCDdpath0/A_reg_reg_0_:RSTB 1.614e-03
+*RC GCDdpath0/A_reg_reg_1_:RSTB 2.401e-03
+*RC GCDdpath0/A_reg_reg_2_:RSTB 2.640e-03
+*RC GCDdpath0/A_reg_reg_3_:RSTB 7.415e-04
+*RC GCDdpath0/A_reg_reg_5_:RSTB 3.101e-03
+*RC GCDdpath0/A_reg_reg_6_:RSTB 3.010e-03
+*RC GCDdpath0/A_reg_reg_8_:RSTB 3.426e-03
+*RC GCDdpath0/B_reg_reg_0_:RSTB 6.787e-05
+*RC GCDdpath0/B_reg_reg_1_:RSTB 1.760e-03
+*RC GCDdpath0/B_reg_reg_2_:RSTB 2.435e-03
+*RC GCDdpath0/B_reg_reg_3_:RSTB 1.673e-03
+*RC GCDdpath0/B_reg_reg_4_:RSTB 1.497e-03
+*RC GCDdpath0/B_reg_reg_5_:RSTB 2.060e-03
+*RC GCDdpath0/B_reg_reg_6_:RSTB 2.861e-04
+*RC GCDdpath0/B_reg_reg_7_:RSTB 1.337e-03
+*RC GCDdpath0/B_reg_reg_8_:RSTB 2.102e-03
+*RC GCDdpath0/B_reg_reg_9_:RSTB 1.050e-03
+*RC GCDdpath0/B_reg_reg_10_:RSTB 1.626e-04
+*RC GCDdpath0/B_reg_reg_11_:RSTB 1.723e-03
+*RC GCDdpath0/B_reg_reg_12_:RSTB 4.641e-04
+*RC GCDdpath0/B_reg_reg_13_:RSTB 3.151e-04
+*RC GCDdpath0/B_reg_reg_14_:RSTB 1.614e-03
+*END
+
+*R_NET GCDdpath0/n321 6.832e+01
+*DRIVER GCDdpath0/U102:Z
+*CELL NBUFFX2
+*C2_R1_C1 3.416e+01 5.340e-05 3.416e+01 
+*LOADS
+*RC GCDdpath0/U62:INP 6.361e-05
+*RC GCDdpath0/U281:IN2 7.953e-04
+*RC GCDdpath0/U273:IN2 5.937e-04
+*RC GCDdpath0/U270:IN2 6.483e-04
+*RC GCDdpath0/U265:IN2 3.352e-04
+*RC GCDdpath0/U262:IN2 5.771e-04
+*RC GCDdpath0/U259:IN2 5.267e-04
+*RC GCDdpath0/U256:IN2 2.581e-04
+*RC GCDdpath0/U180:IN2 1.545e-04
+*RC GCDdpath0/U176:IN2 3.099e-04
+*RC GCDdpath0/U113:IN2 2.571e-04
+*RC GCDdpath0/U109:IN2 5.327e-04
+*RC GCDdpath0/U56:IN2 4.626e-04
+*RC GCDdpath0/U55:IN2 1.055e-03
+*RC GCDdpath0/U54:IN2 9.693e-05
+*RC GCDdpath0/U53:IN2 6.700e-04
+*RC GCDdpath0/U52:IN2 7.884e-04
+*RC GCDdpath0/U51:IN2 3.823e-04
+*RC GCDdpath0/U50:IN2 7.073e-04
+*END
+
+*R_NET GCDdpath0/n322 3.786e+01
+*DRIVER GCDdpath0/U62:ZN
+*CELL INVX4
+*C2_R1_C1 1.893e+01 5.282e-05 1.893e+01 
+*LOADS
+*RC GCDdpath0/U104:IN1 7.855e-04
+*RC GCDdpath0/U315:IN2 7.016e-04
+*RC GCDdpath0/U305:IN2 4.165e-04
+*RC GCDdpath0/U301:IN2 5.261e-04
+*RC GCDdpath0/U297:IN2 6.140e-04
+*RC GCDdpath0/U292:IN2 5.583e-04
+*RC GCDdpath0/U288:IN2 3.906e-04
+*RC GCDdpath0/U284:IN2 6.066e-04
+*END
+
+*R_NET GCDctrl0/state\[1\] 7.468e+00
+*DRIVER GCDctrl0/state_reg_1_:Q
+*CELL DFFX1
+*C2_R1_C1 3.734e+00 3.629e-05 3.734e+00 
+*LOADS
+*RC GCDctrl0/U13:IN2 6.232e-05
+*RC GCDctrl0/U18:IN1 1.246e-04
+*END
+
+*R_NET GCDctrl0/state\[0\] 9.764e+00
+*DRIVER GCDctrl0/state_reg_0_:Q
+*CELL DFFX1
+*C2_R1_C1 4.882e+00 3.318e-05 4.882e+00 
+*LOADS
+*RC GCDctrl0/U13:IN1 6.899e-05
+*RC GCDctrl0/U17:IN2 1.181e-04
+*RC GCDctrl0/U19:IN2 3.330e-05
+*END
+
+*R_NET GCDctrl0/n13 4.190e+00
+*DRIVER GCDctrl0/U6:QN
+*CELL NAND2X1
+*C2_R1_C1 2.095e+00 1.994e-05 2.095e+00 
+*LOADS
+*RC GCDctrl0/state_reg_1_:D 4.997e-05
+*END
+
+*R_NET GCDctrl0/n14 3.177e+00
+*DRIVER GCDctrl0/U15:QN
+*CELL NOR2X0
+*C2_R1_C1 1.589e+00 1.175e-05 1.589e+00 
+*LOADS
+*RC GCDctrl0/state_reg_0_:D 2.547e-05
+*END
+
+*R_NET GCDctrl0/n1 4.752e+00
+*DRIVER GCDctrl0/state_reg_0_:QN
+*CELL DFFX1
+*C2_R1_C1 2.376e+00 1.674e-05 2.376e+00 
+*LOADS
+*RC GCDctrl0/U4:IN1 5.766e-05
+*END
+
+*R_NET GCDctrl0/n2 3.954e+00
+*DRIVER GCDctrl0/U8:QN
+*CELL NAND2X1
+*C2_R1_C1 1.977e+00 8.947e-06 1.977e+00 
+*LOADS
+*RC GCDctrl0/U7:IN2 2.868e-05
+*END
+
+*R_NET GCDctrl0/n4 6.668e+00
+*DRIVER GCDctrl0/U22:QN
+*CELL NOR2X0
+*C2_R1_C1 3.334e+00 1.690e-05 3.334e+00 
+*LOADS
+*RC GCDctrl0/U21:INP 4.919e-05
+*RC GCDctrl0/U23:IN2 5.262e-05
+*END
+
+*R_NET GCDctrl0/n5 3.617e+00
+*DRIVER GCDctrl0/U21:ZN
+*CELL INVX0
+*C2_R1_C1 1.808e+00 1.016e-05 1.808e+00 
+*LOADS
+*RC GCDctrl0/U10:IN2 2.803e-05
+*END
+
+*R_NET GCDctrl0/n6 3.536e+00
+*DRIVER GCDctrl0/U13:QN
+*CELL NAND2X0
+*C2_R1_C1 1.768e+00 1.266e-05 1.768e+00 
+*LOADS
+*RC GCDctrl0/U12:INP 3.099e-05
+*END
+
+*R_NET GCDctrl0/n7 1.338e+01
+*DRIVER GCDctrl0/U4:QN
+*CELL NAND2X1
+*C2_R1_C1 6.688e+00 2.364e-05 6.688e+00 
+*LOADS
+*RC GCDctrl0/U9:IN2 1.995e-04
+*RC GCDctrl0/U14:INP 1.054e-04
+*RC GCDctrl0/U22:IN2 1.268e-04
+*END
+
+*R_NET GCDctrl0/n8 2.746e+00
+*DRIVER GCDctrl0/U14:ZN
+*CELL INVX0
+*C2_R1_C1 1.373e+00 1.553e-06 1.373e+00 
+*LOADS
+*RC GCDctrl0/U24:IN2 4.061e-06
+*END
+
+*R_NET GCDctrl0/n9 8.497e+00
+*DRIVER GCDctrl0/U5:ZN
+*CELL INVX2
+*C2_R1_C1 4.249e+00 4.300e-06 4.249e+00 
+*LOADS
+*RC GCDctrl0/U9:IN1 2.534e-05
+*RC GCDctrl0/U24:IN1 8.048e-06
+*END
+
+*R_NET GCDctrl0/n10 3.065e+00
+*DRIVER GCDctrl0/U11:QN
+*CELL NOR2X0
+*C2_R1_C1 1.532e+00 1.442e-06 1.532e+00 
+*LOADS
+*RC GCDctrl0/U25:IN2 4.259e-06
+*END
+
+*R_NET GCDctrl0/n11 3.540e+00
+*DRIVER GCDctrl0/U25:QN
+*CELL NOR3X0
+*C2_R1_C1 1.770e+00 5.776e-06 1.770e+00 
+*LOADS
+*RC GCDctrl0/U6:IN2 1.772e-05
+*END
+
+*R_NET GCDctrl0/n12 5.495e+00
+*DRIVER GCDctrl0/U24:QN
+*CELL NAND3X0
+*C2_R1_C1 2.748e+00 2.343e-05 2.748e+00 
+*LOADS
+*RC GCDctrl0/U6:IN1 8.651e-05
+*END
+
+*R_NET GCDctrl0/n15 1.448e+01
+*DRIVER GCDctrl0/state_reg_1_:QN
+*CELL DFFX1
+*C2_R1_C1 7.241e+00 3.930e-05 7.241e+00 
+*LOADS
+*RC GCDctrl0/U3:IN2 1.917e-04
+*RC GCDctrl0/U4:IN2 1.197e-04
+*RC GCDctrl0/U11:IN1 1.329e-04
+*RC GCDctrl0/U19:IN1 7.313e-05
+*END
+
+*R_NET GCDctrl0/n16 3.522e+00
+*DRIVER GCDctrl0/U18:QN
+*CELL NAND2X0
+*C2_R1_C1 1.761e+00 1.493e-05 1.761e+00 
+*LOADS
+*RC GCDctrl0/U17:IN1 3.438e-05
+*END
+
+*R_NET GCDctrl0/n17 2.316e+00
+*DRIVER GCDctrl0/U17:QN
+*CELL NAND2X0
+*C2_R1_C1 1.158e+00 7.424e-06 1.158e+00 
+*LOADS
+*RC GCDctrl0/U16:IN3 1.246e-05
+*END
+
+*R_NET GCDctrl0/n18 2.665e+00
+*DRIVER GCDctrl0/U3:QN
+*CELL NAND2X0
+*C2_R1_C1 1.333e+00 9.141e-06 1.333e+00 
+*LOADS
+*RC GCDctrl0/U16:IN1 1.789e-05
+*END
+
+*R_NET GCDctrl0/n19 5.902e+00
+*DRIVER GCDctrl0/U16:Q
+*CELL OA21X1
+*C2_R1_C1 2.951e+00 3.119e-05 2.951e+00 
+*LOADS
+*RC GCDctrl0/U15:IN1 1.090e-04
+*END

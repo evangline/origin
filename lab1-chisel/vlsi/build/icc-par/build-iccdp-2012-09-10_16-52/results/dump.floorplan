@@ -1,0 +1,16 @@
+###################################################################
+
+# Created by write_floorplan on Mon Sep 10 16:53:13 2012
+
+###################################################################
+undo_config -disable
+
+remove_die_area 
+
+create_die_area  \
+	-poly {	{0.000 0.000} {134.880 0.000} {134.880 134.880} {0.000 134.880} {0.000 0.000}} 
+set oldSnapState [set_object_snap_type -enabled false]
+
+
+set_object_snap_type -enabled $oldSnapState
+undo_config -enable

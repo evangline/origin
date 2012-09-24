@@ -1,0 +1,131 @@
+8        
+0 vcTest.v
+0 ../../src/vcTest.v
+0 vcTest.v
+0 ../../src/vcTest.v
+0 vcTest.v
+0 ../../src/vcTest.v
+0 ../icc-par/current-icc/results/gcdGCDUnit_rtl.output.corrected.sdf_c
+0 ../icc-par/current-icc/results/gcdGCDUnit_rtl.output.corrected.sdf_c.gz
+55
++cli+4
++define+CLOCK_PERIOD=0.5
++incdir+../../src
++incdir+/home/ff/cs250/install/vclib
++itf+/home/ff/cs250/tools/synopsys/vcs/current/amd64/lib/vcsdp.tab
++lint=all,noVCDE,noTFIPC,noIWU,noOUDPE
++memcbk
++neg_tchk
++sdf=typ:gcdGCDUnit_rtl:../icc-par/current-icc/results/gcdGCDUnit_rtl.output.corrected.sdf
++sdf=typ:gcdGCDUnit_rtl:../icc-par/current-icc/results/gcdGCDUnit_rtl.output.corrected.sdf
++sdfverbose
++v2k
++vcsd
++vpi
+-Mamsrun=
+-Masflags=
+-Mcc=gcc
+-Mcfl= -pipe -O -I/home/ff/cs250/tools/synopsys/vcs/current/include
+-Mcmodrun=
+-Mcplusplus=g++
+-Mcrt0=
+-Mcrtn=
+-Mcsrc=
+-Mldflags=
+-Mobjects= /home/ff/cs250/tools/synopsys/vcs/current/amd64/lib/libvirsim.so /home/ff/cs250/tools/synopsys/vcs/current/amd64/lib/liberrorinf.so /home/ff/cs250/tools/synopsys/vcs/current/amd64/lib/libsnpsmalloc.so
+-Mout=simv
+-Msaverestoreobj=/home/ff/cs250/tools/synopsys/vcs/current/amd64/lib/vcs_save_restore_new.o
+-Msyslibs=-ldl -lm
+-Mvcsaceobjs=
+-P
+-Xcbug=0x1
+-Xnotice
+-cm_xmldb
+-debug=4
+-full64
+-gen_obj
+-line
+-o simv
+-pp_used
+-timescale=1ns/1ps
+-v
+-v
+-v
+-v
+-v
+../../src/gcdTestHarness_rtl.v
+../icc-par/current-icc/access.tab
+../icc-par/current-icc/results/gcdGCDUnit_rtl.output.v
+/home/ff/cs250/install/vclib/vcQueues.v
+/home/ff/cs250/install/vclib/vcStateElements.v
+/home/ff/cs250/install/vclib/vcTest.v
+/home/ff/cs250/install/vclib/vcTestSink.v
+/home/ff/cs250/install/vclib/vcTestSource.v
+/home/ff/cs250/stdcells/synopsys-90nm/default/verilog/cells.v
+/home/ff/cs250/tools/synopsys/vcs/current/amd64/bin/vcs1
+51
+XDG_CURRENT_DESKTOP=GNOME
+VMR_MODE_FLAG=64
+VIRSIMHOME=/home/ff/cs250/tools/synopsys/vcs/current/gui/virsim
+VCS_PATH=/home/ff/cs250/tools/synopsys/vcs/current/bin
+VCS_MX_HOME_INTERNAL=1
+VCS_MODE_FLAG=64
+VCS_HOME=/home/ff/cs250/tools/synopsys/vcs/current
+VCS_ARG_ADDED_FOR_TMP=1
+VCS_ARCH_OVERRIDE=linux
+VCS_ARCH=amd64
+UNAME=/bin/uname
+UCB_VLSI_HOME=/home/ff/cs250
+TOOL_HOME=/home/ff/cs250/tools/synopsys/vcs/current/amd64
+SYNOPSYS_ROOT=/home/ff/cs250/tools/synopsys
+STARTUP=gnome-session --session gnome-fallback
+SSH_CONNECTION=127.0.0.1 45754 127.0.0.1 22
+SSH_CLIENT=127.0.0.1 45754 22
+SSH_AUTH_SOCK=/tmp/keyring-yuQ1IN/ssh
+SLAVE_PID=28728
+SHADOW_XAUTHORITY=/home/cc/cs250/fa12/class/cs250-af/.nx/C-bcom16.EECS.Berkeley.EDU-2006-775DCFFFB58E47E49A03A1124769EFBC/authority
+SESSION_MANAGER=local/bcom16.EECS.Berkeley.EDU:@/tmp/.ICE-unix/29362,unix/bcom16.EECS.Berkeley.EDU:/tmp/.ICE-unix/29362
+SCRNAME=vcs
+SCRIPT_NAME=vcs
+RUNAS=/share/b/runas/x86_64
+PT_PATH=/home/ff/cs250/tools/synopsys/pt/current/bin
+PT_HOME=/home/ff/cs250/tools/synopsys/pt/current
+OVA_UUM=0
+OS=Linux
+NXSESSIONID=bcom16.EECS.Berkeley.EDU-2006-775DCFFFB58E47E49A03A1124769EFBC
+NNTPSERVER=news.Berkeley.EDU
+MW_PATH=/home/ff/cs250/tools/synopsys/mw/current/bin/IA.32
+MW_HOME=/home/ff/cs250/tools/synopsys/mw/current
+MFLAGS=
+MAKELEVEL=1
+MAKEFLAGS=
+INSTMANPATH=/usr/local/man:/usr/sww/man:/usr/man:/usr/java/man:/share/b/grading/man:/home/aa/projects/scheme/lib/man:/usr/share/man
+INSTALLER_PATH=/home/ff/cs250/tools/synopsys/installer/current
+ICC_PATH=/home/ff/cs250/tools/synopsys/icc/current/bin
+ICC_HOME=/home/ff/cs250/tools/synopsys/icc/current
+GPG_AGENT_INFO=/tmp/keyring-yuQ1IN/gpg:0:1
+GNOME_KEYRING_CONTROL=/tmp/keyring-yuQ1IN
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+FORMALITY_HOME=/home/ff/cs250/tools/synopsys/fm/current
+FORMALITY_BIN=/home/ff/cs250/tools/synopsys/fm/current/bin
+DC_PATH=/home/ff/cs250/tools/synopsys/dc/current/bin
+DC_HOME=/home/ff/cs250/tools/synopsys/dc/current
+DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-lbmqPqZL3Z,guid=f6b497da4ed434e007bd613a00162305
+CUPS_SERVER=/home/cc/cs250/fa12/class/cs250-af/.nx/C-bcom16.EECS.Berkeley.EDU-2006-775DCFFFB58E47E49A03A1124769EFBC/cups/cups.sock
+COLORTERM=gnome-terminal
+CHISEL=/home/ff/cs250/install/chisel
+ARCH=x86_64
+0
+11
+1347307270 ../icc-par/current-icc/results/gcdGCDUnit_rtl.output.corrected.sdf
+1347207253 ../../src/gcdTestHarness_rtl.v
+1347307263 ../icc-par/current-icc/results/gcdGCDUnit_rtl.output.v
+1283407132 /home/ff/cs250/stdcells/synopsys-90nm/default/verilog/cells.v
+1314722064 /home/ff/cs250/install/vclib/vcTestSink.v
+1314722064 /home/ff/cs250/install/vclib/vcTestSource.v
+1314722064 /home/ff/cs250/install/vclib/vcTest.v
+1314722064 /home/ff/cs250/install/vclib/vcStateElements.v
+1314722064 /home/ff/cs250/install/vclib/vcQueues.v
+1347307268 ../icc-par/current-icc/access.tab
+1274760690 /home/ff/cs250/tools/synopsys/vcs/current/amd64/lib/vcsdp.tab
+1347307319 simv.daidir

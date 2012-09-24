@@ -1,0 +1,49 @@
+****************************************
+Report : Time Based Power
+	-hierarchy
+	-verbose
+	-nosplit
+Design : gcdGCDUnit_rtl
+Version: D-2010.06-SP1
+Date   : Mon Sep 10 12:32:38 2012
+****************************************
+
+Simulation Periods: 0 ns - 1546.5 ns
+
+Sampling Interval: 0.001 ns
+
+Library(s) Used:
+
+    saed90nm_typ (File: /home/ff/cs250/stdcells/synopsys-90nm/default/db/cells.db)
+    saed90nm_typ_cg (File: /home/ff/cs250/stdcells/synopsys-90nm/default/db/cells_cg.db)
+
+
+Operating Conditions: TYPICAL   Library: saed90nm_typ
+Wire Load Model Mode: enclosed
+
+Cell               Design       Wire_model  Library       Selection_type
+--------------------------------------------------------------------------------
+                   gcdGCDUnit_rtl 8000      saed90nm_typ  automatic-by-area
+GCDctrl0           gcdGCDUnitCtrl 8000      saed90nm_typ  automatic-by-area
+GCDdpath0          gcdGCDUnitDpath_W16 8000 saed90nm_typ  automatic-by-area
+GCDdpath0/clk_gate_B_reg_reg SNPS_CLOCK_GATE_HIGH_gcdGCDUnitDpath_W16_0 ForQA saed90nm_typ automatic-by-area
+GCDdpath0/clk_gate_A_reg_reg SNPS_CLOCK_GATE_HIGH_gcdGCDUnitDpath_W16_1 ForQA saed90nm_typ automatic-by-area
+
+Power-specific unit information :
+    Voltage Units = 1 V
+    Capacitance Units = 1 pf
+    Time Units = 1 ns
+    Dynamic Power Units = 1 W
+    Leakage Power Units = 1 W
+
+
+
+                                      Switch   Int      Leak      Peak     Peak            Glitch   X-tran   Total
+Hierarchy                             Power    Power    Power     Power    Time            Power    Power    Power    %
+---------------------------------------------------------------------------------------------------------------------------
+gcdGCDUnit_rtl                        7.26e-05 9.54e-05 1.00e-05  2.04e-02   2.000-2.001   2.53e-08 5.11e-05 1.78e-04 100.0
+  GCDctrl0 (gcdGCDUnitCtrl)           2.03e-05 7.52e-05 9.03e-07  1.46e-02  23.999-24.000     0.000 1.56e-07 9.64e-05  54.2
+  GCDdpath0 (gcdGCDUnitDpath_W16)     5.22e-05 2.01e-05 8.89e-06  1.26e-02  24.278-24.279  2.53e-08 5.09e-05 8.12e-05  45.6
+    clk_gate_B_reg_reg (SNPS_CLOCK_GATE_HIGH_gcdGCDUnitDpath_W16_0) 2.61e-05 8.96e-06 1.04e-07 5.05e-04   0.999-1.000      0.000 2.51e-05 3.51e-05  19.7
+    clk_gate_A_reg_reg (SNPS_CLOCK_GATE_HIGH_gcdGCDUnitDpath_W16_1) 2.45e-05 9.72e-06 1.04e-07 7.30e-04   0.999-1.000      0.000 2.43e-05 3.44e-05  19.3
+1

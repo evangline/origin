@@ -1,0 +1,43 @@
+ 
+****************************************
+Report : area
+Design : GCD
+Version: F-2011.09-ICC-SP4
+Date   : Tue Sep 11 00:03:36 2012
+****************************************
+
+Library(s) Used:
+
+    saed90nm_typ (File: /home/ff/cs250/stdcells/synopsys-90nm/default/db/cells.db)
+    saed90nm_typ_cg (File: /home/ff/cs250/stdcells/synopsys-90nm/default/db/cells_cg.db)
+
+Number of ports:                           56
+Number of nets:                           661
+Number of cells:                          591
+Number of combinational cells:            555
+Number of sequential cells:                34
+Number of buf/inv:                        153
+Number of references:                      33
+
+Combinational area:       4175.769628
+Noncombinational area:     957.542799
+Net Interconnect area:     202.605830  
+
+Total cell area:          5133.312427
+Total area:               5335.918256
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area          Local cell area
+                                  ------------------  ---------------------------- 
+Hierarchical cell                 Absolute   Percent  Combi-     Noncombi-  Black
+                                  Total      Total    national   national   boxes   Design
+--------------------------------  ---------  -------  ---------  ---------  ------  --------------------------
+GCD                               5133.3124    100.0  4175.7696   915.1488  0.0000  GCD
+clk_gate_A_reg                      21.1970      0.4     0.0000    21.1970  0.0000  SNPS_CLOCK_GATE_HIGH_GCD_0
+clk_gate_B_reg                      21.1970      0.4     0.0000    21.1970  0.0000  SNPS_CLOCK_GATE_HIGH_GCD_1
+--------------------------------  ---------  -------  ---------  ---------  ------  --------------------------
+Total                                                 4175.7696   957.5428  0.0000
+
+1

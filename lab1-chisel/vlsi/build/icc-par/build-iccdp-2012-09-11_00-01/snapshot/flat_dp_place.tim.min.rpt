@@ -1,0 +1,183 @@
+ 
+****************************************
+Report : timing
+        -path full_clock
+        -delay min
+        -physical
+        -derate
+        -input_pins
+        -nets
+        -max_paths 1
+        -transition_time
+        -crosstalk_delta
+        -capacitance
+Design : GCD
+Version: F-2011.09-ICC-SP4
+Date   : Tue Sep 11 00:01:35 2012
+****************************************
+
+ * Some/all delay information is back-annotated.
+
+Operating Conditions: TYPICAL   Library: saed90nm_typ
+
+  Startpoint: io_result_rdy
+              (input port clocked by ideal_clock1)
+  Endpoint: io_result_val
+            (output port clocked by ideal_clock1)
+  Path Group: FEEDTHROUGH
+  Path Type: min
+
+Attributes:
+    d - dont_touch
+    u - dont_use
+   mo - map_only
+   so - size_only
+    i - ideal_net or ideal_network
+
+  Point                        Fanout       Cap     DTran     Trans     Delta    Derate      Incr       Path      Location / Load        Attributes
+  -------------------------------------------------------------------------------------------------------------------------------------------------
+  clock ideal_clock1 (rise edge)                                                            0.000      0.000
+  clock network delay (ideal)                                                               0.000      0.000
+  input external delay                                                                      0.200      0.200 f
+  io_result_rdy (in)                                          0.030               0.990     0.012      0.212 f    (132.80, 0.00)
+  io_result_rdy (net)            1        9.916                                   0.990     0.000      0.212 f    [8.01,9.92]
+  U291/INP (INVX0)                                  0.000     0.030     0.000     0.990     0.000 *    0.212 f    (102.87,31.29)
+  U291/ZN (INVX0)                                             0.034               0.990     0.022      0.234 r    (103.34,31.27)
+  n35 (net)                      1        2.765                                   0.990     0.000      0.234 r    [0.47,2.77]
+  U114/IN1 (NOR2X0)                                 0.000     0.034     0.000     0.990     0.000 *    0.234 r    (103.43,34.89)
+  U114/QN (NOR2X0)                                            0.117               0.990     0.075      0.309 f    (103.75,34.53)
+  io_result_val (net)            3       17.058                                   0.990     0.000      0.309 f    [8.79,17.06]
+  io_result_val (out)                               0.000     0.117     0.000     0.990     0.000 *    0.309 f    (120.96, 0.00)
+  data arrival time                                                                                    0.309
+
+  clock ideal_clock1 (rise edge)                                                            0.000      0.000
+  clock network delay (ideal)                                                               0.000      0.000
+  output external delay                                                                    -0.200     -0.200
+  data required time                                                                                  -0.200
+  -------------------------------------------------------------------------------------------------------------------------------------------------
+  data required time                                                                                  -0.200
+  data arrival time                                                                                   -0.309
+  -------------------------------------------------------------------------------------------------------------------------------------------------
+  slack (MET)                                                                                          0.509
+
+
+  Startpoint: io_operands_bits_B[11]
+              (input port clocked by ideal_clock1)
+  Endpoint: B_reg_11_ (rising edge-triggered flip-flop clocked by ideal_clock1)
+  Path Group: REGIN
+  Path Type: min
+
+Attributes:
+    d - dont_touch
+    u - dont_use
+   mo - map_only
+   so - size_only
+    i - ideal_net or ideal_network
+
+  Point                        Fanout       Cap     DTran     Trans     Delta    Derate      Incr       Path      Location / Load        Attributes
+  -------------------------------------------------------------------------------------------------------------------------------------------------
+  clock ideal_clock1 (rise edge)                                                            0.000      0.000
+  clock network delay (ideal)                                                               0.000      0.000
+  input external delay                                                                      0.200      0.200 f
+  io_operands_bits_B[11] (in)                                 0.023               0.990     0.008      0.208 f    (82.56,134.72)
+  io_operands_bits_B[11] (net)
+                                 1        7.309                                   0.990     0.000      0.208 f    [5.14,7.31]
+  B_reg_11_/RSTB (DFFSSRX1)                         0.000     0.023     0.000     0.990     0.000 *    0.208 f    (93.13,99.53)          so 
+  data arrival time                                                                                    0.208
+
+  clock ideal_clock1 (rise edge)                                                            0.000      0.000
+  clock network delay (ideal)                                                               0.000      0.000
+  B_reg_11_/CLK (DFFSSRX1)                                                                  0.000      0.000 r
+  library hold time                                                                        -0.054     -0.054
+  data required time                                                                                  -0.054
+  -------------------------------------------------------------------------------------------------------------------------------------------------
+  data required time                                                                                  -0.054
+  data arrival time                                                                                   -0.208
+  -------------------------------------------------------------------------------------------------------------------------------------------------
+  slack (MET)                                                                                          0.262
+
+
+  Startpoint: A_reg_3_ (rising edge-triggered flip-flop clocked by ideal_clock1)
+  Endpoint: io_result_bits_data[3]
+            (output port clocked by ideal_clock1)
+  Path Group: REGOUT
+  Path Type: min
+
+Attributes:
+    d - dont_touch
+    u - dont_use
+   mo - map_only
+   so - size_only
+    i - ideal_net or ideal_network
+
+  Point                        Fanout       Cap     DTran     Trans     Delta    Derate      Incr       Path      Location / Load        Attributes
+  -------------------------------------------------------------------------------------------------------------------------------------------------
+  clock ideal_clock1 (rise edge)                                                            0.000      0.000
+  clock network delay (ideal)                                                               0.000      0.000
+  A_reg_3_/CLK (DFFX1)                              0.000     0.000     0.000     0.990     0.000      0.000 r    (62.47,37.39)          so i 
+  A_reg_3_/QN (DFFX1)                                         0.061               0.990     0.126      0.126 f    (68.17,37.77)          so 
+  sub_x_10_n141 (net)            3        8.617                                   0.990     0.000      0.126 f    [1.60,8.62]
+  U378/IN2 (NOR2X0)                                 0.000     0.061     0.000     0.990     0.000 *    0.126 f    (72.27,33.29)
+  U378/QN (NOR2X0)                                            0.067               0.990     0.041      0.167 r    (72.07,34.53)
+  io_result_bits_data[3] (net)
+                                 1        4.325                                   0.990     0.000      0.167 r    [4.32,4.32]
+  io_result_bits_data[3] (out)                      0.000     0.067     0.000     0.990     0.000 *    0.167 r    (73.28, 0.00)
+  data arrival time                                                                                    0.167
+
+  clock ideal_clock1 (rise edge)                                                            0.000      0.000
+  clock network delay (ideal)                                                               0.000      0.000
+  output external delay                                                                    -0.200     -0.200
+  data required time                                                                                  -0.200
+  -------------------------------------------------------------------------------------------------------------------------------------------------
+  data required time                                                                                  -0.200
+  data arrival time                                                                                   -0.167
+  -------------------------------------------------------------------------------------------------------------------------------------------------
+  slack (MET)                                                                                          0.367
+
+
+  Startpoint: state_reg_0_
+              (rising edge-triggered flip-flop clocked by ideal_clock1)
+  Endpoint: state_reg_0_
+            (rising edge-triggered flip-flop clocked by ideal_clock1)
+  Path Group: ideal_clock1
+  Path Type: min
+
+Attributes:
+    d - dont_touch
+    u - dont_use
+   mo - map_only
+   so - size_only
+    i - ideal_net or ideal_network
+
+  Point                        Fanout       Cap     DTran     Trans     Delta    Derate      Incr       Path      Location / Load        Attributes
+  -------------------------------------------------------------------------------------------------------------------------------------------------
+  clock ideal_clock1 (rise edge)                                                            0.000      0.000
+  clock network delay (ideal)                                                               0.000      0.000
+  state_reg_0_/CLK (DFFX1)                          0.000     0.000     0.000     0.990     0.000      0.000 r    (81.99,34.13)          so i 
+  state_reg_0_/QN (DFFX1)                                     0.047               0.990     0.125      0.125 r    (87.68,33.75)          so 
+  n343 (net)                     1        3.076                                   0.990     0.000      0.125 r    [0.75,3.08]
+  U294/IN2 (NOR2X0)                                 0.000     0.047     0.000     0.990     0.000 *    0.125 r    (82.19,32.47)
+  U294/QN (NOR2X0)                                            0.050               0.990     0.039      0.165 f    (81.99,31.23)
+  n344 (net)                     1        2.824                                   0.990     0.000      0.165 f    [0.49,2.82]
+  U293/IN2 (NOR2X0)                                 0.000     0.050     0.000     0.990     0.000 *    0.165 f    (78.99,32.47)
+  U293/QN (NOR2X0)                                            0.054               0.990     0.034      0.199 r    (78.79,31.23)
+  n346 (net)                     1        2.742                                   0.990     0.000      0.199 r    [0.45,2.74]
+  U292/IN1 (NOR2X0)                                 0.000     0.054     0.000     0.990     0.000 *    0.199 r    (78.79,34.89)
+  U292/QN (NOR2X0)                                            0.036               0.990     0.031      0.230 f    (79.11,34.53)
+  n26 (net)                      1        1.969                                   0.990     0.000      0.230 f    [0.30,1.97]
+  state_reg_0_/D (DFFX1)                            0.000     0.036     0.000     0.990     0.000 *    0.230 f    (81.35,34.13)          so 
+  data arrival time                                                                                    0.230
+
+  clock ideal_clock1 (rise edge)                                                            0.000      0.000
+  clock network delay (ideal)                                                               0.000      0.000
+  state_reg_0_/CLK (DFFX1)                                                                  0.000      0.000 r
+  library hold time                                                                        -0.008     -0.008
+  data required time                                                                                  -0.008
+  -------------------------------------------------------------------------------------------------------------------------------------------------
+  data required time                                                                                  -0.008
+  data arrival time                                                                                   -0.230
+  -------------------------------------------------------------------------------------------------------------------------------------------------
+  slack (MET)                                                                                          0.238
+
+
+1

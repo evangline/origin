@@ -1,0 +1,56 @@
+ 
+****************************************
+Report : resources
+Design : GCD
+Version: F-2011.09-SP4
+Date   : Mon Sep 10 16:40:31 2012
+****************************************
+
+
+Resource Report for this hierarchy in file ../../../generated-src/GCD.v
+=============================================================================
+| Cell           | Module         | Parameters | Contained Operations       |
+=============================================================================
+| gt_x_2         | DW_cmp         | width=16   | gt_48                      |
+| lt_x_3         | DW_cmp         | width=16   | lt_51                      |
+| eq_x_4         | DW_cmp         | width=16   | eq_59                      |
+| sub_x_10       | DW01_sub       | width=16   | sub_70                     |
+| sub_x_5        | DW01_sub       | width=16   | sub_61 sub_73              |
+=============================================================================
+
+
+Implementation Report
+===============================================================================
+|                    |                  | Current            | Set            |
+| Cell               | Module           | Implementation     | Implementation |
+===============================================================================
+| gt_x_2             | DW_cmp           | apparch (area)     |                |
+| lt_x_3             | DW_cmp           | apparch (area)     |                |
+| eq_x_4             | DW_cmp           | apparch (area)     |                |
+| sub_x_10           | DW01_sub         | pparch (area,speed)                 |
+| sub_x_5            | DW01_sub         | pparch (area,speed)                 |
+===============================================================================
+
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_GCD_1
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_GCD_0
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+1

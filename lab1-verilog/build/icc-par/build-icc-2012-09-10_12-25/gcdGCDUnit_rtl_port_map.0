@@ -1,0 +1,5 @@
+set_user_match   -inverted   $svf_ref/gcdGCDUnit_rtl/GCDdpath0/B_mux_sel   $svf_impl/gcdGCDUnit_rtl/GCDdpath0/B_mux_sel
+set_user_match   -inverted   $svf_ref/gcdGCDUnit_rtl/GCDctrl0/A_mux_sel_0__hfs_netlink_0   $svf_impl/gcdGCDUnit_rtl/GCDctrl0/A_mux_sel_0__hfs_netlink_0
+
+#-------------------------------------------------------------------
+

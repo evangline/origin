@@ -1,0 +1,107 @@
+6        
+0 vcTest.v
+0 ../../generated-src/vcTest.v
+0 vcTest.v
+0 ../../generated-src/vcTest.v
+0 vcTest.v
+0 ../../generated-src/vcTest.v
+51
++cli+4
++define+CLOCK_PERIOD=0.5
++incdir+../../generated-src
++incdir+/home/ff/cs250/install/vclib
++itf+/home/ff/cs250/tools/synopsys/vcs/current/amd64/lib/vcsdp.tab
++lint=all,noVCDE,noTFIPC,noIWU,noOUDPE
++memcbk
++v2k
++vcsd
++vpi
+-Mamsrun=
+-Masflags=
+-Mcc=gcc
+-Mcfl= -pipe -O -I/home/ff/cs250/tools/synopsys/vcs/current/include
+-Mcmodrun=
+-Mcplusplus=g++
+-Mcrt0=
+-Mcrtn=
+-Mcsrc=
+-Mldflags=
+-Mobjects= /home/ff/cs250/tools/synopsys/vcs/current/amd64/lib/libvirsim.so /home/ff/cs250/tools/synopsys/vcs/current/amd64/lib/liberrorinf.so /home/ff/cs250/tools/synopsys/vcs/current/amd64/lib/libsnpsmalloc.so
+-Mout=simv
+-Msaverestoreobj=/home/ff/cs250/tools/synopsys/vcs/current/amd64/lib/vcs_save_restore_new.o
+-Msyslibs=-ldl -lm
+-Mvcsaceobjs=
+-P
+-Xcbug=0x1
+-Xnotice
+-cm_xmldb
+-debug=4
+-full64
+-gen_obj
+-line
+-o simv
+-pp_used
+-timescale=1ns/1ps
+-v
+-v
+-v
+-v
+-v
+../../generated-src/../testbench/gcdTestHarness_rtl.v
+../dc-syn/current-dc/access.tab
+../dc-syn/current-dc/results/GCD.mapped.v
+/home/ff/cs250/install/vclib/vcQueues.v
+/home/ff/cs250/install/vclib/vcStateElements.v
+/home/ff/cs250/install/vclib/vcTest.v
+/home/ff/cs250/install/vclib/vcTestSink.v
+/home/ff/cs250/install/vclib/vcTestSource.v
+/home/ff/cs250/stdcells/synopsys-90nm/default/verilog/cells.v
+/home/ff/cs250/tools/synopsys/vcs/current/amd64/bin/vcs1
+34
+VMR_MODE_FLAG=64
+VIRSIMHOME=/home/ff/cs250/tools/synopsys/vcs/current/gui/virsim
+VCS_PATH=/home/ff/cs250/tools/synopsys/vcs/current/bin
+VCS_MX_HOME_INTERNAL=1
+VCS_MODE_FLAG=64
+VCS_HOME=/home/ff/cs250/tools/synopsys/vcs/current
+VCS_ARG_ADDED_FOR_TMP=1
+VCS_ARCH_OVERRIDE=linux
+VCS_ARCH=amd64
+UNAME=/bin/uname
+UCB_VLSI_HOME=/home/ff/cs250
+TOOL_HOME=/home/ff/cs250/tools/synopsys/vcs/current/amd64
+SYNOPSYS_ROOT=/home/ff/cs250/tools/synopsys
+SSH_TTY=/dev/pts/16
+SSH_CONNECTION=108.205.50.208 62617 128.32.134.204 22
+SSH_CLIENT=108.205.50.208 62617 22
+SCRNAME=vcs
+SCRIPT_NAME=vcs
+PT_PATH=/home/ff/cs250/tools/synopsys/pt/current/bin
+PT_HOME=/home/ff/cs250/tools/synopsys/pt/current
+OVA_UUM=0
+MW_PATH=/home/ff/cs250/tools/synopsys/mw/current/bin/IA.32
+MW_HOME=/home/ff/cs250/tools/synopsys/mw/current
+MFLAGS=
+MAKELEVEL=1
+MAKEFLAGS=
+INSTALLER_PATH=/home/ff/cs250/tools/synopsys/installer/current
+ICC_PATH=/home/ff/cs250/tools/synopsys/icc/current/bin
+ICC_HOME=/home/ff/cs250/tools/synopsys/icc/current
+FORMALITY_HOME=/home/ff/cs250/tools/synopsys/fm/current
+FORMALITY_BIN=/home/ff/cs250/tools/synopsys/fm/current/bin
+DC_PATH=/home/ff/cs250/tools/synopsys/dc/current/bin
+DC_HOME=/home/ff/cs250/tools/synopsys/dc/current
+CHISEL=/home/ff/cs250/install/chisel
+0
+10
+1347207253 ../../generated-src/../testbench/gcdTestHarness_rtl.v
+1347346791 ../dc-syn/current-dc/results/GCD.mapped.v
+1283407132 /home/ff/cs250/stdcells/synopsys-90nm/default/verilog/cells.v
+1314722064 /home/ff/cs250/install/vclib/vcTestSink.v
+1314722064 /home/ff/cs250/install/vclib/vcTestSource.v
+1314722064 /home/ff/cs250/install/vclib/vcTest.v
+1314722064 /home/ff/cs250/install/vclib/vcStateElements.v
+1314722064 /home/ff/cs250/install/vclib/vcQueues.v
+1347346793 ../dc-syn/current-dc/access.tab
+1274760690 /home/ff/cs250/tools/synopsys/vcs/current/amd64/lib/vcsdp.tab
+1347346861 simv.daidir
