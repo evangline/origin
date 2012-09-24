@@ -16,25 +16,42 @@ class windowBuf(xdim: Integer, w: Integer) extends Component {
     val w32 = UFix(OUTPUT, w)
     val w33 = UFix(OUTPUT, w)
   }
-  val rowbuf1 = Mem(xdim){UFix(width=w-3)}
-  val rowbuf2 = Mem(xdim){UFix(width=w-3)}
+  val rowbuf  = Mem(xdim){UFix(width=2*w)}
+  val count   = Reg(resetVal = UFix(0,log2Up(xdim)))
   val Reg33   = Reg(data=io.din, resetVal = UFix(0,w))
   val Reg32   = Reg(data=Reg33,  resetVal = UFix(0,w))
   val Reg31   = Reg(data=Reg32,  resetVal = UFix(0,w))
-  val Reg23   = Reg(data=rowbuf1(UFix(xdim-1,8)), resetVal = UFix(0,w))
+  val Reg23   = Reg(resetVal = UFix(0,w))
   val Reg22   = Reg(data=Reg23,  resetVal = UFix(0,w))
   val Reg21   = Reg(data=Reg22,  resetVal = UFix(0,w))
-  val Reg13   = Reg(data=rowbuf2(UFix(xdim-1,8)), resetVal = UFix(0,w))
+  val Reg13   = Reg(resetVal = UFix(0,w))
   val Reg12   = Reg(data=Reg13,  resetVal = UFix(0,w))
   val Reg11   = Reg(data=Reg12,  resetVal = UFix(0,w))
  
-  rowbuf1(UFix(0)) := Reg31
-  rowbuf2(UFix(0)) := Reg21
-  for (i <- 0 until xdim-1){
-    rowbuf1(UFix(i)):= rowbuf1(UFix(i-1))
-    rowbuf2(UFix(i)):= rowbuf2(UFix(i-1))}
+  // Assign register output
+  io.w33 := Reg33
+  io.w32 := Reg32
+  io.w31 := Reg31
+  io.w23 := Reg23
+  io.w22 := Reg22
+  io.w21 := Reg21
+  io.w13 := Reg13
+  io.w12 := Reg12
+  io.w11 := Reg11
+  
+  //counter count from 0 to 124 (125 + 3 register)
+  when (count != UFix(xdim-4)){
+    count := count + UFix(1)}
+  when (count === UFix(xdim-4)){
+    count := UFix(0)}
 
-  //TODO: addr-1 => addr
-  //io.w22 := Reg(io.din)
+  //pointer to SRAM, Reg31,21->rowbuf, rowbuf->Reg23,13
+  rowbuf(count) := Cat(Reg21,Reg31).toUFix()
+  Reg23 := rowbuf(count)(w-1,0)
+  Reg13 := rowbuf(count)(2*w-1,w)
+
+  /////////////////////////
+  //io.w22 := Reg(io.din)//
+  /////////////////////////
 }
 }
