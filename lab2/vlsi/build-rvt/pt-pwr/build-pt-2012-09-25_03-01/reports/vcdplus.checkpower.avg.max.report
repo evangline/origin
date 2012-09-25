@@ -1,0 +1,6 @@
+Information: Checking 'out_of_table_range'.
+Warning: There are 273 out_of_range ramps.
+Warning: There are 19 out_of_range loads.
+Information: Checking 'missing_table'.
+Information: Checking 'missing_function'.
+0

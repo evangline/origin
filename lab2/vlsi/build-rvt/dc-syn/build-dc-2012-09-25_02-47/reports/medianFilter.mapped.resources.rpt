@@ -1,0 +1,1417 @@
+ 
+****************************************
+Report : resources
+Design : medianFilter
+Version: F-2011.09-SP4
+Date   : Tue Sep 25 02:48:49 2012
+****************************************
+
+
+Resource Report for this hierarchy in file
+        ../../../generated-src/medianFilter.v
+=============================================================================
+| Cell           | Module         | Parameters | Contained Operations       |
+=============================================================================
+| eq_x_4         | DW_cmp         | width=7    | control/eq_63              |
+| sub_x_5        | DW01_sub       | width=14   | control/sub_65             |
+| eq_x_15        | DW_cmp         | width=7    | control/eq_102             |
+| eq_x_16        | DW_cmp         | width=7    | control/eq_105             |
+| eq_x_17        | DW_cmp         | width=7    | control/eq_107             |
+| add_x_14       | DW01_inc       | width=14   | control/add_95             |
+|                |                |            | control/add_97             |
+|                |                |            | control/add_99             |
+=============================================================================
+
+
+Implementation Report
+===============================================================================
+|                    |                  | Current            | Set            |
+| Cell               | Module           | Implementation     | Implementation |
+===============================================================================
+| eq_x_4             | DW_cmp           | apparch (area)     |                |
+| sub_x_5            | DW01_sub         | apparch (area)     |                |
+| eq_x_15            | DW_cmp           | apparch (area)     |                |
+| eq_x_16            | DW_cmp           | apparch (area)     |                |
+| eq_x_17            | DW_cmp           | apparch (area)     |                |
+| add_x_14           | DW01_inc         | apparch (area)     |                |
+===============================================================================
+
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_control
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : median9
+****************************************
+
+Resource Report for this hierarchy in file
+        ../../../generated-src/medianFilter.v
+=============================================================================
+| Cell           | Module         | Parameters | Contained Operations       |
+=============================================================================
+| gt_x_2         | DW_cmp         | width=8    | srt0/comp0/gt_221          |
+| gt_x_5         | DW_cmp         | width=8    | srt0/comp1/gt_221          |
+| gt_x_8         | DW_cmp         | width=8    | srt0/comp2/gt_221          |
+| gt_x_11        | DW_cmp         | width=8    | srt1/comp0/gt_221          |
+| gt_x_14        | DW_cmp         | width=8    | srt1/comp1/gt_221          |
+| gt_x_17        | DW_cmp         | width=8    | srt1/comp2/gt_221          |
+| gt_x_20        | DW_cmp         | width=8    | srt2/comp0/gt_221          |
+| gt_x_23        | DW_cmp         | width=8    | srt2/comp1/gt_221          |
+| gt_x_26        | DW_cmp         | width=8    | srt2/comp2/gt_221          |
+| gt_x_29        | DW_cmp         | width=8    | srt3/comp0/gt_221          |
+| gt_x_32        | DW_cmp         | width=8    | srt3/comp1/gt_272          |
+| gt_x_34        | DW_cmp         | width=8    | srt3/comp2/gt_272          |
+| gt_x_36        | DW_cmp         | width=8    | srt4/comp0/gt_318          |
+| gt_x_39        | DW_cmp         | width=8    | srt4/comp1/gt_272          |
+| gt_x_41        | DW_cmp         | width=8    | srt4/comp2/gt_334          |
+| gt_x_43        | DW_cmp         | width=8    | srt5/comp0/gt_334          |
+| gt_x_45        | DW_cmp         | width=8    | srt5/comp1/gt_334          |
+| gt_x_47        | DW_cmp         | width=8    | srt6/comp0/gt_318          |
+| gt_x_50        | DW_cmp         | width=8    | srt6/comp1/gt_272          |
+| gt_x_52        | DW_cmp         | width=8    | srt6/comp2/gt_334          |
+=============================================================================
+
+
+Implementation Report
+===============================================================================
+|                    |                  | Current            | Set            |
+| Cell               | Module           | Implementation     | Implementation |
+===============================================================================
+| gt_x_2             | DW_cmp           | apparch (area)     |                |
+| gt_x_5             | DW_cmp           | apparch (area)     |                |
+| gt_x_8             | DW_cmp           | apparch (area)     |                |
+| gt_x_11            | DW_cmp           | apparch (area)     |                |
+| gt_x_14            | DW_cmp           | apparch (area)     |                |
+| gt_x_17            | DW_cmp           | apparch (area)     |                |
+| gt_x_20            | DW_cmp           | apparch (area)     |                |
+| gt_x_23            | DW_cmp           | apparch (area)     |                |
+| gt_x_26            | DW_cmp           | apparch (area)     |                |
+| gt_x_29            | DW_cmp           | apparch (area)     |                |
+| gt_x_32            | DW_cmp           | apparch (area)     |                |
+| gt_x_34            | DW_cmp           | apparch (area)     |                |
+| gt_x_36            | DW_cmp           | apparch (area)     |                |
+| gt_x_39            | DW_cmp           | apparch (area)     |                |
+| gt_x_41            | DW_cmp           | apparch (area)     |                |
+| gt_x_43            | DW_cmp           | apparch (area)     |                |
+| gt_x_45            | DW_cmp           | apparch (area)     |                |
+| gt_x_47            | DW_cmp           | apparch (area)     |                |
+| gt_x_50            | DW_cmp           | apparch (area)     |                |
+| gt_x_52            | DW_cmp           | apparch (area)     |                |
+===============================================================================
+
+
+No multiplexors to report
+ 
+****************************************
+Design : windowBuf
+****************************************
+
+Resource Report for this hierarchy in file
+        ../../../generated-src/medianFilter.v
+=============================================================================
+| Cell           | Module         | Parameters | Contained Operations       |
+=============================================================================
+| add_x_3        | DW01_inc       | width=7    | add_173                    |
+=============================================================================
+
+
+Implementation Report
+===============================================================================
+|                    |                  | Current            | Set            |
+| Cell               | Module           | Implementation     | Implementation |
+===============================================================================
+| add_x_3            | DW01_inc         | apparch (area)     |                |
+===============================================================================
+
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_1
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_2
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_3
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_4
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_5
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_6
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_7
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_8
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_9
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_10
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_11
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_12
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_13
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_14
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_15
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_16
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_17
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_18
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_19
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_20
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_21
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_22
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_23
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_24
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_25
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_26
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_27
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_28
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_29
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_30
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_31
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_32
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_33
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_34
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_35
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_36
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_37
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_38
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_39
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_40
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_41
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_42
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_43
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_44
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_45
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_46
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_47
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_48
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_49
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_50
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_51
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_52
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_53
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_54
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_55
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_56
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_57
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_58
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_59
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_60
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_61
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_62
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_63
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_64
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_65
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_66
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_67
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_68
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_69
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_70
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_71
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_72
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_73
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_74
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_75
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_76
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_77
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_78
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_79
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_80
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_81
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_82
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_83
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_84
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_85
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_86
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_87
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_88
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_89
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_90
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_91
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_92
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_93
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_94
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_95
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_96
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_97
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_98
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_99
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_100
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_101
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_102
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_103
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_104
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_105
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_106
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_107
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_108
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_109
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_110
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_111
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_112
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_113
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_114
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_115
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_116
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_117
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_118
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_119
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_120
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_121
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_122
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_123
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_124
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_125
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_126
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_127
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_windowBuf_128
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+1

@@ -1,0 +1,95 @@
+ 
+****************************************
+Report : qor
+Design : medianFilter
+Version: F-2011.09-ICC-SP4
+Date   : Tue Sep 25 03:16:41 2012
+****************************************
+
+
+  Timing Path Group 'REGIN'
+  -----------------------------------
+  Levels of Logic:               5.00
+  Critical Path Length:          0.58
+  Critical Path Slack:           2.40
+  Critical Path Clk Period:      4.00
+  Total Negative Slack:          0.00
+  No. of Violating Paths:        0.00
+  Worst Hold Violation:          0.00
+  Total Hold Violation:          0.00
+  No. of Hold Violations:        0.00
+  -----------------------------------
+
+  Timing Path Group 'REGOUT'
+  -----------------------------------
+  Levels of Logic:               1.00
+  Critical Path Length:          0.31
+  Critical Path Slack:           2.43
+  Critical Path Clk Period:      4.00
+  Total Negative Slack:          0.00
+  No. of Violating Paths:        0.00
+  Worst Hold Violation:          0.00
+  Total Hold Violation:          0.00
+  No. of Hold Violations:        0.00
+  -----------------------------------
+
+  Timing Path Group 'ideal_clock1'
+  -----------------------------------
+  Levels of Logic:              54.00
+  Critical Path Length:          3.77
+  Critical Path Slack:           0.00
+  Critical Path Clk Period:      4.00
+  Total Negative Slack:          0.00
+  No. of Violating Paths:        0.00
+  Worst Hold Violation:          0.00
+  Total Hold Violation:          0.00
+  No. of Hold Violations:        0.00
+  -----------------------------------
+
+
+  Cell Count
+  -----------------------------------
+  Hierarchical Cell Count:        131
+  Hierarchical Port Count:        952
+  Leaf Cell Count:               6216
+  Buf/Inv Cell Count:            1439
+  CT Buf/Inv Cell Count:          291
+  Combinational Cell Count:      3935
+  Sequential Cell Count:         2281
+  -----------------------------------
+
+
+  Area
+  -----------------------------------
+  Combinational Area:     9172.057053
+  Noncombinational Area: 15057.778316
+  Net Area:               4544.848504
+  Net XLength        :       76422.31
+  Net YLength        :       83554.09
+  -----------------------------------
+  Cell Area:             24229.835370
+  Design Area:           28774.683874
+  Net Length        :       159976.41
+
+
+  Design Rules
+  -----------------------------------
+  Total Number of Nets:          6444
+  Nets With Violations:            22
+  Max Trans Violations:             0
+  Max Cap Violations:              22
+  -----------------------------------
+
+
+  Hostname: icluster14.EECS.Berkeley.EDU
+
+  Compile CPU Statistics
+  -----------------------------------------
+  Resource Sharing:                    5.85
+  Logic Optimization:                 60.82
+  Mapping Optimization:              155.35
+  -----------------------------------------
+  Overall Compile Time:              266.88
+  Overall Compile Wall Clock Time:   274.54
+
+1

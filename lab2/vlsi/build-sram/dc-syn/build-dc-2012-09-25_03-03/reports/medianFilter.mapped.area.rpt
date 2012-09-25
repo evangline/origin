@@ -1,0 +1,47 @@
+ 
+****************************************
+Report : area
+Design : medianFilter
+Version: F-2011.09-SP4
+Date   : Tue Sep 25 03:06:06 2012
+****************************************
+
+Library(s) Used:
+
+    saed32hvt_tt1p05v25c (File: /home/ff/cs250/stdcells/synopsys-32nm/multi_vt/db/saed32hvt_tt1p05v25c.db)
+    saed32rvt_tt1p05v25c (File: /home/ff/cs250/stdcells/synopsys-32nm/multi_vt/db/saed32rvt_tt1p05v25c.db)
+    saed32lvt_tt1p05v25c (File: /home/ff/cs250/stdcells/synopsys-32nm/multi_vt/db/saed32lvt_tt1p05v25c.db)
+    SRAM2RW128x16 (File: /scratch/cs250-af/lab2/ref/SRAM2RW128x16.db)
+
+Number of ports:                           20
+Number of nets:                           203
+Number of cells:                          103
+Number of combinational cells:             75
+Number of sequential cells:                25
+Number of macros:                           0
+Number of buf/inv:                         22
+Number of references:                      28
+
+Combinational area:       2895.716781
+Noncombinational area:    4000.273249
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:          6895.990030
+Total area:                 undefined
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area            Local cell area
+                                  ------------------  ------------------------------- 
+Hierarchical cell                 Absolute   Percent  Combi-     Noncombi-  Black
+                                  Total      Total    national   national   boxes      Design
+--------------------------------  ---------  -------  ---------  ---------  ---------  ----------------------------
+medianFilter                      6895.9900    100.0   152.9947   190.0997     0.0000  medianFilter
+control_clk_gate_count_reg           5.8453      0.1     0.0000     5.8453     0.0000  SNPS_CLOCK_GATE_HIGH_control
+medianSorter                      2610.8214     37.9  2610.8214     0.0000     0.0000  median9
+winBuf                            3936.2290     57.1   131.9007   471.4371  3332.8911  windowBuf
+--------------------------------  ---------  -------  ---------  ---------  ---------  ----------------------------
+Total                                                 2895.7168   667.3821  3332.8911
+
+1

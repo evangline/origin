@@ -1,0 +1,172 @@
+ 
+****************************************
+Report : area
+Design : medianFilter
+Version: F-2011.09-SP4
+Date   : Tue Sep 25 02:48:48 2012
+****************************************
+
+Library(s) Used:
+
+    saed32rvt_tt1p05v25c (File: /home/ff/cs250/stdcells/synopsys-32nm/multi_vt/db/saed32rvt_tt1p05v25c.db)
+
+Number of ports:                           20
+Number of nets:                           216
+Number of cells:                          118
+Number of combinational cells:             90
+Number of sequential cells:                25
+Number of macros:                           0
+Number of buf/inv:                         34
+Number of references:                      25
+
+Combinational area:       7675.148899
+Noncombinational area:    15023.723033
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:          22698.871932
+Total area:                 undefined
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area            Local cell area
+                                  -------------------  ----------------------------- 
+Hierarchical cell                 Absolute    Percent  Combi-     Noncombi-   Black
+                                  Total       Total    national   national    boxes   Design
+--------------------------------  ----------  -------  ---------  ----------  ------  ----------------------------------
+medianFilter                      22698.8719    100.0   192.6412    176.3759  0.0000  medianFilter
+control_clk_gate_count_reg            5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_control
+medianSorter                       1806.7097      8.0  1806.7097      0.0000  0.0000  median9
+winBuf                            20517.2998     90.4  5675.7980  14093.3018  0.0000  windowBuf
+winBuf/clk_gate_rowbuf_reg_0_         5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_1
+winBuf/clk_gate_rowbuf_reg_100_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_101
+winBuf/clk_gate_rowbuf_reg_101_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_102
+winBuf/clk_gate_rowbuf_reg_102_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_103
+winBuf/clk_gate_rowbuf_reg_103_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_104
+winBuf/clk_gate_rowbuf_reg_104_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_105
+winBuf/clk_gate_rowbuf_reg_105_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_106
+winBuf/clk_gate_rowbuf_reg_106_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_107
+winBuf/clk_gate_rowbuf_reg_107_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_108
+winBuf/clk_gate_rowbuf_reg_108_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_109
+winBuf/clk_gate_rowbuf_reg_109_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_110
+winBuf/clk_gate_rowbuf_reg_10_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_11
+winBuf/clk_gate_rowbuf_reg_110_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_111
+winBuf/clk_gate_rowbuf_reg_111_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_112
+winBuf/clk_gate_rowbuf_reg_112_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_113
+winBuf/clk_gate_rowbuf_reg_113_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_114
+winBuf/clk_gate_rowbuf_reg_114_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_115
+winBuf/clk_gate_rowbuf_reg_115_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_116
+winBuf/clk_gate_rowbuf_reg_116_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_117
+winBuf/clk_gate_rowbuf_reg_117_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_118
+winBuf/clk_gate_rowbuf_reg_118_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_119
+winBuf/clk_gate_rowbuf_reg_119_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_120
+winBuf/clk_gate_rowbuf_reg_11_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_12
+winBuf/clk_gate_rowbuf_reg_120_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_121
+winBuf/clk_gate_rowbuf_reg_121_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_122
+winBuf/clk_gate_rowbuf_reg_122_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_123
+winBuf/clk_gate_rowbuf_reg_123_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_124
+winBuf/clk_gate_rowbuf_reg_124_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_125
+winBuf/clk_gate_rowbuf_reg_125_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_126
+winBuf/clk_gate_rowbuf_reg_126_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_127
+winBuf/clk_gate_rowbuf_reg_127_       5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_128
+winBuf/clk_gate_rowbuf_reg_12_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_13
+winBuf/clk_gate_rowbuf_reg_13_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_14
+winBuf/clk_gate_rowbuf_reg_14_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_15
+winBuf/clk_gate_rowbuf_reg_15_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_16
+winBuf/clk_gate_rowbuf_reg_16_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_17
+winBuf/clk_gate_rowbuf_reg_17_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_18
+winBuf/clk_gate_rowbuf_reg_18_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_19
+winBuf/clk_gate_rowbuf_reg_19_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_20
+winBuf/clk_gate_rowbuf_reg_1_         5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_2
+winBuf/clk_gate_rowbuf_reg_20_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_21
+winBuf/clk_gate_rowbuf_reg_21_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_22
+winBuf/clk_gate_rowbuf_reg_22_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_23
+winBuf/clk_gate_rowbuf_reg_23_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_24
+winBuf/clk_gate_rowbuf_reg_24_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_25
+winBuf/clk_gate_rowbuf_reg_25_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_26
+winBuf/clk_gate_rowbuf_reg_26_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_27
+winBuf/clk_gate_rowbuf_reg_27_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_28
+winBuf/clk_gate_rowbuf_reg_28_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_29
+winBuf/clk_gate_rowbuf_reg_29_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_30
+winBuf/clk_gate_rowbuf_reg_2_         5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_3
+winBuf/clk_gate_rowbuf_reg_30_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_31
+winBuf/clk_gate_rowbuf_reg_31_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_32
+winBuf/clk_gate_rowbuf_reg_32_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_33
+winBuf/clk_gate_rowbuf_reg_33_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_34
+winBuf/clk_gate_rowbuf_reg_34_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_35
+winBuf/clk_gate_rowbuf_reg_35_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_36
+winBuf/clk_gate_rowbuf_reg_36_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_37
+winBuf/clk_gate_rowbuf_reg_37_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_38
+winBuf/clk_gate_rowbuf_reg_38_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_39
+winBuf/clk_gate_rowbuf_reg_39_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_40
+winBuf/clk_gate_rowbuf_reg_3_         5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_4
+winBuf/clk_gate_rowbuf_reg_40_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_41
+winBuf/clk_gate_rowbuf_reg_41_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_42
+winBuf/clk_gate_rowbuf_reg_42_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_43
+winBuf/clk_gate_rowbuf_reg_43_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_44
+winBuf/clk_gate_rowbuf_reg_44_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_45
+winBuf/clk_gate_rowbuf_reg_45_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_46
+winBuf/clk_gate_rowbuf_reg_46_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_47
+winBuf/clk_gate_rowbuf_reg_47_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_48
+winBuf/clk_gate_rowbuf_reg_48_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_49
+winBuf/clk_gate_rowbuf_reg_49_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_50
+winBuf/clk_gate_rowbuf_reg_4_         5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_5
+winBuf/clk_gate_rowbuf_reg_50_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_51
+winBuf/clk_gate_rowbuf_reg_51_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_52
+winBuf/clk_gate_rowbuf_reg_52_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_53
+winBuf/clk_gate_rowbuf_reg_53_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_54
+winBuf/clk_gate_rowbuf_reg_54_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_55
+winBuf/clk_gate_rowbuf_reg_55_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_56
+winBuf/clk_gate_rowbuf_reg_56_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_57
+winBuf/clk_gate_rowbuf_reg_57_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_58
+winBuf/clk_gate_rowbuf_reg_58_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_59
+winBuf/clk_gate_rowbuf_reg_59_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_60
+winBuf/clk_gate_rowbuf_reg_5_         5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_6
+winBuf/clk_gate_rowbuf_reg_60_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_61
+winBuf/clk_gate_rowbuf_reg_61_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_62
+winBuf/clk_gate_rowbuf_reg_62_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_63
+winBuf/clk_gate_rowbuf_reg_63_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_64
+winBuf/clk_gate_rowbuf_reg_64_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_65
+winBuf/clk_gate_rowbuf_reg_65_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_66
+winBuf/clk_gate_rowbuf_reg_66_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_67
+winBuf/clk_gate_rowbuf_reg_67_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_68
+winBuf/clk_gate_rowbuf_reg_68_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_69
+winBuf/clk_gate_rowbuf_reg_69_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_70
+winBuf/clk_gate_rowbuf_reg_6_         5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_7
+winBuf/clk_gate_rowbuf_reg_70_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_71
+winBuf/clk_gate_rowbuf_reg_71_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_72
+winBuf/clk_gate_rowbuf_reg_72_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_73
+winBuf/clk_gate_rowbuf_reg_73_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_74
+winBuf/clk_gate_rowbuf_reg_74_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_75
+winBuf/clk_gate_rowbuf_reg_75_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_76
+winBuf/clk_gate_rowbuf_reg_76_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_77
+winBuf/clk_gate_rowbuf_reg_77_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_78
+winBuf/clk_gate_rowbuf_reg_78_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_79
+winBuf/clk_gate_rowbuf_reg_79_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_80
+winBuf/clk_gate_rowbuf_reg_7_         5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_8
+winBuf/clk_gate_rowbuf_reg_80_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_81
+winBuf/clk_gate_rowbuf_reg_81_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_82
+winBuf/clk_gate_rowbuf_reg_82_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_83
+winBuf/clk_gate_rowbuf_reg_83_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_84
+winBuf/clk_gate_rowbuf_reg_84_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_85
+winBuf/clk_gate_rowbuf_reg_85_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_86
+winBuf/clk_gate_rowbuf_reg_86_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_87
+winBuf/clk_gate_rowbuf_reg_87_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_88
+winBuf/clk_gate_rowbuf_reg_88_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_89
+winBuf/clk_gate_rowbuf_reg_89_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_90
+winBuf/clk_gate_rowbuf_reg_8_         5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_9
+winBuf/clk_gate_rowbuf_reg_90_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_91
+winBuf/clk_gate_rowbuf_reg_91_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_92
+winBuf/clk_gate_rowbuf_reg_92_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_93
+winBuf/clk_gate_rowbuf_reg_93_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_94
+winBuf/clk_gate_rowbuf_reg_94_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_95
+winBuf/clk_gate_rowbuf_reg_95_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_96
+winBuf/clk_gate_rowbuf_reg_96_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_97
+winBuf/clk_gate_rowbuf_reg_97_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_98
+winBuf/clk_gate_rowbuf_reg_98_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_99
+winBuf/clk_gate_rowbuf_reg_99_        5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_100
+winBuf/clk_gate_rowbuf_reg_9_         5.8453      0.0     0.0000      5.8453  0.0000  SNPS_CLOCK_GATE_HIGH_windowBuf_10
+--------------------------------  ----------  -------  ---------  ----------  ------  ----------------------------------
+Total                                                  7675.1489  15023.7230  0.0000
+
+1

@@ -1,0 +1,19 @@
+ 
+****************************************
+Report : clock timing
+        -type skew
+        -nworst 1
+        -setup
+Design : medianFilter
+Version: F-2011.09-ICC-SP4
+Date   : Tue Sep 25 02:53:15 2012
+****************************************
+
+  Clock: ideal_clock1
+  Clock Pin                              Latency    CRP      Skew
+----------------------------------------------------------------------------
+  winBuf/rowbuf_reg_58__1_/CLK           0.31                          wrp-+
+  winBuf/readOut_reg_1_/CLK              0.29      -0.00     0.02      wrp-+
+----------------------------------------------------------------------------
+
+1

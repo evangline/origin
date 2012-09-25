@@ -1,0 +1,137 @@
+ 
+****************************************
+Report : resources
+Design : medianFilter
+Version: F-2011.09-SP4
+Date   : Tue Sep 25 03:06:06 2012
+****************************************
+
+
+Resource Report for this hierarchy in file
+        ../../../generated-src-sram/medianFilter.v
+=============================================================================
+| Cell           | Module         | Parameters | Contained Operations       |
+=============================================================================
+| eq_x_4         | DW_cmp         | width=7    | control/eq_63              |
+| sub_x_5        | DW01_sub       | width=14   | control/sub_65             |
+| eq_x_15        | DW_cmp         | width=7    | control/eq_102             |
+| eq_x_16        | DW_cmp         | width=7    | control/eq_105             |
+| eq_x_17        | DW_cmp         | width=7    | control/eq_107             |
+| add_x_14       | DW01_inc       | width=14   | control/add_95             |
+|                |                |            | control/add_97             |
+|                |                |            | control/add_99             |
+=============================================================================
+
+
+Implementation Report
+===============================================================================
+|                    |                  | Current            | Set            |
+| Cell               | Module           | Implementation     | Implementation |
+===============================================================================
+| eq_x_4             | DW_cmp           | apparch (area)     |                |
+| sub_x_5            | DW01_sub         | apparch (area)     |                |
+| eq_x_15            | DW_cmp           | apparch (area)     |                |
+| eq_x_16            | DW_cmp           | apparch (area)     |                |
+| eq_x_17            | DW_cmp           | apparch (area)     |                |
+| add_x_14           | DW01_inc         | apparch (area)     |                |
+===============================================================================
+
+
+No multiplexors to report
+ 
+****************************************
+Design : SNPS_CLOCK_GATE_HIGH_control
+****************************************
+
+No resource sharing information to report.
+
+No implementations to report
+
+No multiplexors to report
+ 
+****************************************
+Design : median9
+****************************************
+
+Resource Report for this hierarchy in file
+        ../../../generated-src-sram/medianFilter.v
+=============================================================================
+| Cell           | Module         | Parameters | Contained Operations       |
+=============================================================================
+| gt_x_2         | DW_cmp         | width=8    | srt0/comp0/gt_227          |
+| gt_x_5         | DW_cmp         | width=8    | srt0/comp1/gt_227          |
+| gt_x_8         | DW_cmp         | width=8    | srt0/comp2/gt_227          |
+| gt_x_11        | DW_cmp         | width=8    | srt1/comp0/gt_227          |
+| gt_x_14        | DW_cmp         | width=8    | srt1/comp1/gt_227          |
+| gt_x_17        | DW_cmp         | width=8    | srt1/comp2/gt_227          |
+| gt_x_20        | DW_cmp         | width=8    | srt2/comp0/gt_227          |
+| gt_x_23        | DW_cmp         | width=8    | srt2/comp1/gt_227          |
+| gt_x_26        | DW_cmp         | width=8    | srt2/comp2/gt_227          |
+| gt_x_29        | DW_cmp         | width=8    | srt3/comp0/gt_227          |
+| gt_x_32        | DW_cmp         | width=8    | srt3/comp1/gt_278          |
+| gt_x_34        | DW_cmp         | width=8    | srt3/comp2/gt_278          |
+| gt_x_36        | DW_cmp         | width=8    | srt4/comp0/gt_324          |
+| gt_x_39        | DW_cmp         | width=8    | srt4/comp1/gt_278          |
+| gt_x_41        | DW_cmp         | width=8    | srt4/comp2/gt_340          |
+| gt_x_43        | DW_cmp         | width=8    | srt5/comp0/gt_340          |
+| gt_x_45        | DW_cmp         | width=8    | srt5/comp1/gt_340          |
+| gt_x_47        | DW_cmp         | width=8    | srt6/comp0/gt_324          |
+| gt_x_50        | DW_cmp         | width=8    | srt6/comp1/gt_278          |
+| gt_x_52        | DW_cmp         | width=8    | srt6/comp2/gt_340          |
+=============================================================================
+
+
+Implementation Report
+===============================================================================
+|                    |                  | Current            | Set            |
+| Cell               | Module           | Implementation     | Implementation |
+===============================================================================
+| gt_x_2             | DW_cmp           | apparch (area)     |                |
+| gt_x_5             | DW_cmp           | apparch (area)     |                |
+| gt_x_8             | DW_cmp           | apparch (area)     |                |
+| gt_x_11            | DW_cmp           | apparch (area)     |                |
+| gt_x_14            | DW_cmp           | apparch (area)     |                |
+| gt_x_17            | DW_cmp           | apparch (area)     |                |
+| gt_x_20            | DW_cmp           | apparch (area)     |                |
+| gt_x_23            | DW_cmp           | apparch (area)     |                |
+| gt_x_26            | DW_cmp           | apparch (area)     |                |
+| gt_x_29            | DW_cmp           | apparch (area)     |                |
+| gt_x_32            | DW_cmp           | apparch (area)     |                |
+| gt_x_34            | DW_cmp           | apparch (area)     |                |
+| gt_x_36            | DW_cmp           | apparch (area)     |                |
+| gt_x_39            | DW_cmp           | apparch (area)     |                |
+| gt_x_41            | DW_cmp           | apparch (area)     |                |
+| gt_x_43            | DW_cmp           | apparch (area)     |                |
+| gt_x_45            | DW_cmp           | apparch (area)     |                |
+| gt_x_47            | DW_cmp           | apparch (area)     |                |
+| gt_x_50            | DW_cmp           | apparch (area)     |                |
+| gt_x_52            | DW_cmp           | apparch (area)     |                |
+===============================================================================
+
+
+No multiplexors to report
+ 
+****************************************
+Design : windowBuf
+****************************************
+
+Resource Report for this hierarchy in file
+        ../../../generated-src-sram/medianFilter.v
+=============================================================================
+| Cell           | Module         | Parameters | Contained Operations       |
+=============================================================================
+| add_x_2        | DW01_inc       | width=7    | add_182                    |
+=============================================================================
+
+
+Implementation Report
+===============================================================================
+|                    |                  | Current            | Set            |
+| Cell               | Module           | Implementation     | Implementation |
+===============================================================================
+| add_x_2            | DW01_inc         | apparch (area)     |                |
+===============================================================================
+
+
+No multiplexors to report
+1

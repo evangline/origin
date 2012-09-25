@@ -1,0 +1,46 @@
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -hier
+        -analysis_effort low
+Design : medianFilter
+Version: F-2011.09-ICC-SP4
+Date   : Tue Sep 25 03:16:42 2012
+****************************************
+
+
+Library(s) Used:
+
+    saed32hvt_tt1p05v25c (File: /home/ff/cs250/stdcells/synopsys-32nm/multi_vt/db/saed32hvt_tt1p05v25c.db)
+    saed32rvt_tt1p05v25c (File: /home/ff/cs250/stdcells/synopsys-32nm/multi_vt/db/saed32rvt_tt1p05v25c.db)
+    saed32lvt_tt1p05v25c (File: /home/ff/cs250/stdcells/synopsys-32nm/multi_vt/db/saed32lvt_tt1p05v25c.db)
+
+
+Operating Conditions: tt1p05v25c   Library: saed32hvt_tt1p05v25c
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+medianFilter           ForQA             saed32hvt_tt1p05v25c
+
+
+Global Operating Voltage = 1.05 
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1pW
+
+
+--------------------------------------------------------------------------------
+                                       Switch   Int      Leak     Total
+Hierarchy                              Power    Power    Power    Power    %
+--------------------------------------------------------------------------------
+medianFilter                            238.501  582.014 7.10e+08 1.53e+03 100.0
+  winBuf (windowBuf)                    122.973  435.748 5.68e+08 1.13e+03  73.6
+  medianSorter (median9)                 29.497   32.999 4.70e+07  109.523   7.2
+1

@@ -1,0 +1,30 @@
+****************************************
+Report : clock_skew
+Design : medianFilter
+Version: G-2012.06
+Date   : Tue Sep 25 03:01:56 2012
+****************************************
+
+              Min Rise  Min Fall  Max Rise  Max Fall     Hold          Setup        Related
+Object          Delay     Delay     Delay     Delay   Uncertainty   Uncertainty      Clock
+----------------------------------------------------------------------------------
+ideal_clock1   0.0000    0.0000    0.0000    0.0000    0.2000        0.2000           -- 
+
+****************************************
+Report : clock
+Design : medianFilter
+Version: G-2012.06
+Date   : Tue Sep 25 03:01:56 2012
+****************************************
+
+
+Attributes:
+    p - Propagated clock
+    G - Generated  clock
+    I - Inactive   clock
+
+Clock          Period   Waveform            Attrs     Sources
+-------------------------------------------------------------------------------
+ideal_clock1   4.0000   {0 2}                         {clk}
+
+1

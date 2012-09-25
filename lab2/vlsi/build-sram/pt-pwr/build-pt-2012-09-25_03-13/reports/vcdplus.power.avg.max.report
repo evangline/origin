@@ -1,0 +1,45 @@
+****************************************
+Report : Averaged Power
+	-hierarchy
+	-verbose
+	-nosplit
+Design : medianFilter
+Version: G-2012.06
+Date   : Tue Sep 25 03:13:32 2012
+****************************************
+
+Library(s) Used:
+
+    saed32hvt_tt1p05v25c (File: /home/ff/cs250/stdcells/synopsys-32nm/multi_vt/db/saed32hvt_tt1p05v25c.db)
+    saed32rvt_tt1p05v25c (File: /home/ff/cs250/stdcells/synopsys-32nm/multi_vt/db/saed32rvt_tt1p05v25c.db)
+    saed32lvt_tt1p05v25c (File: /home/ff/cs250/stdcells/synopsys-32nm/multi_vt/db/saed32lvt_tt1p05v25c.db)
+    SRAM2RW128x16 (File: /scratch/cs250-af/lab2/ref/SRAM2RW128x16.db)
+
+
+Operating Conditions: tt1p05v25c   Library: saed32hvt_tt1p05v25c
+Wire Load Model Mode: enclosed
+
+Cell               Design       Wire_model  Library       Selection_type
+--------------------------------------------------------------------------------
+                   medianFilter 8000        saed32hvt_tt1p05v25c automatic-by-area
+control_clk_gate_count_reg SNPS_CLOCK_GATE_HIGH_control ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf             windowBuf    8000        saed32hvt_tt1p05v25c automatic-by-area
+medianSorter       median9      8000        saed32hvt_tt1p05v25c automatic-by-area
+
+Power-specific unit information :
+    Voltage Units = 1 V
+    Capacitance Units = 1 pf
+    Time Units = 1 ns
+    Dynamic Power Units = 1 W
+    Leakage Power Units = 1 W
+
+
+
+                                      Switch   Int      Leak      Total
+Hierarchy                             Power    Power    Power     Power    %
+--------------------------------------------------------------------------------
+medianFilter                          5.65e-04 1.44e-03 1.91e-04  2.20e-03 100.0
+  control_clk_gate_count_reg (SNPS_CLOCK_GATE_HIGH_control) 1.19e-06 2.56e-06 1.26e-07 3.88e-06   0.2
+  winBuf (windowBuf)                  6.87e-05 8.58e-04 1.65e-05  9.43e-04  42.8
+  medianSorter (median9)              4.46e-04 4.61e-04 2.01e-05  9.27e-04  42.1
+1

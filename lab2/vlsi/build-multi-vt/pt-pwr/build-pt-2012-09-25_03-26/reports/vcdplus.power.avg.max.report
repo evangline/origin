@@ -1,0 +1,300 @@
+****************************************
+Report : Averaged Power
+	-hierarchy
+	-verbose
+	-nosplit
+Design : medianFilter
+Version: G-2012.06
+Date   : Tue Sep 25 03:26:15 2012
+****************************************
+
+Library(s) Used:
+
+    saed32hvt_tt1p05v25c (File: /home/ff/cs250/stdcells/synopsys-32nm/multi_vt/db/saed32hvt_tt1p05v25c.db)
+    saed32rvt_tt1p05v25c (File: /home/ff/cs250/stdcells/synopsys-32nm/multi_vt/db/saed32rvt_tt1p05v25c.db)
+    saed32lvt_tt1p05v25c (File: /home/ff/cs250/stdcells/synopsys-32nm/multi_vt/db/saed32lvt_tt1p05v25c.db)
+
+
+Operating Conditions: tt1p05v25c   Library: saed32hvt_tt1p05v25c
+Wire Load Model Mode: enclosed
+
+Cell               Design       Wire_model  Library       Selection_type
+--------------------------------------------------------------------------------
+                   medianFilter 35000       saed32hvt_tt1p05v25c automatic-by-area
+control_clk_gate_count_reg SNPS_CLOCK_GATE_HIGH_control ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf             windowBuf    35000       saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_60_ SNPS_CLOCK_GATE_HIGH_windowBuf_61 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_61_ SNPS_CLOCK_GATE_HIGH_windowBuf_62 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_62_ SNPS_CLOCK_GATE_HIGH_windowBuf_63 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_63_ SNPS_CLOCK_GATE_HIGH_windowBuf_64 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_64_ SNPS_CLOCK_GATE_HIGH_windowBuf_65 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_65_ SNPS_CLOCK_GATE_HIGH_windowBuf_66 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_66_ SNPS_CLOCK_GATE_HIGH_windowBuf_67 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_67_ SNPS_CLOCK_GATE_HIGH_windowBuf_68 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_10_ SNPS_CLOCK_GATE_HIGH_windowBuf_11 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_68_ SNPS_CLOCK_GATE_HIGH_windowBuf_69 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_11_ SNPS_CLOCK_GATE_HIGH_windowBuf_12 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_69_ SNPS_CLOCK_GATE_HIGH_windowBuf_70 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_12_ SNPS_CLOCK_GATE_HIGH_windowBuf_13 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_13_ SNPS_CLOCK_GATE_HIGH_windowBuf_14 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_14_ SNPS_CLOCK_GATE_HIGH_windowBuf_15 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_15_ SNPS_CLOCK_GATE_HIGH_windowBuf_16 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_16_ SNPS_CLOCK_GATE_HIGH_windowBuf_17 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_17_ SNPS_CLOCK_GATE_HIGH_windowBuf_18 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_18_ SNPS_CLOCK_GATE_HIGH_windowBuf_19 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_19_ SNPS_CLOCK_GATE_HIGH_windowBuf_20 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_70_ SNPS_CLOCK_GATE_HIGH_windowBuf_71 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_71_ SNPS_CLOCK_GATE_HIGH_windowBuf_72 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_72_ SNPS_CLOCK_GATE_HIGH_windowBuf_73 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_73_ SNPS_CLOCK_GATE_HIGH_windowBuf_74 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_74_ SNPS_CLOCK_GATE_HIGH_windowBuf_75 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_75_ SNPS_CLOCK_GATE_HIGH_windowBuf_76 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_76_ SNPS_CLOCK_GATE_HIGH_windowBuf_77 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_77_ SNPS_CLOCK_GATE_HIGH_windowBuf_78 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_20_ SNPS_CLOCK_GATE_HIGH_windowBuf_21 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_78_ SNPS_CLOCK_GATE_HIGH_windowBuf_79 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_21_ SNPS_CLOCK_GATE_HIGH_windowBuf_22 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_79_ SNPS_CLOCK_GATE_HIGH_windowBuf_80 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_22_ SNPS_CLOCK_GATE_HIGH_windowBuf_23 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_23_ SNPS_CLOCK_GATE_HIGH_windowBuf_24 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_24_ SNPS_CLOCK_GATE_HIGH_windowBuf_25 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_25_ SNPS_CLOCK_GATE_HIGH_windowBuf_26 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_26_ SNPS_CLOCK_GATE_HIGH_windowBuf_27 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_27_ SNPS_CLOCK_GATE_HIGH_windowBuf_28 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_28_ SNPS_CLOCK_GATE_HIGH_windowBuf_29 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_29_ SNPS_CLOCK_GATE_HIGH_windowBuf_30 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_0_ SNPS_CLOCK_GATE_HIGH_windowBuf_1 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_1_ SNPS_CLOCK_GATE_HIGH_windowBuf_2 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_2_ SNPS_CLOCK_GATE_HIGH_windowBuf_3 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_3_ SNPS_CLOCK_GATE_HIGH_windowBuf_4 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_4_ SNPS_CLOCK_GATE_HIGH_windowBuf_5 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_5_ SNPS_CLOCK_GATE_HIGH_windowBuf_6 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_6_ SNPS_CLOCK_GATE_HIGH_windowBuf_7 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_7_ SNPS_CLOCK_GATE_HIGH_windowBuf_8 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_8_ SNPS_CLOCK_GATE_HIGH_windowBuf_9 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_80_ SNPS_CLOCK_GATE_HIGH_windowBuf_81 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_9_ SNPS_CLOCK_GATE_HIGH_windowBuf_10 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_81_ SNPS_CLOCK_GATE_HIGH_windowBuf_82 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_82_ SNPS_CLOCK_GATE_HIGH_windowBuf_83 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_83_ SNPS_CLOCK_GATE_HIGH_windowBuf_84 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_84_ SNPS_CLOCK_GATE_HIGH_windowBuf_85 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_85_ SNPS_CLOCK_GATE_HIGH_windowBuf_86 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_86_ SNPS_CLOCK_GATE_HIGH_windowBuf_87 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_87_ SNPS_CLOCK_GATE_HIGH_windowBuf_88 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_30_ SNPS_CLOCK_GATE_HIGH_windowBuf_31 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_88_ SNPS_CLOCK_GATE_HIGH_windowBuf_89 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_31_ SNPS_CLOCK_GATE_HIGH_windowBuf_32 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_89_ SNPS_CLOCK_GATE_HIGH_windowBuf_90 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_32_ SNPS_CLOCK_GATE_HIGH_windowBuf_33 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_33_ SNPS_CLOCK_GATE_HIGH_windowBuf_34 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_34_ SNPS_CLOCK_GATE_HIGH_windowBuf_35 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_100_ SNPS_CLOCK_GATE_HIGH_windowBuf_101 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_35_ SNPS_CLOCK_GATE_HIGH_windowBuf_36 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_101_ SNPS_CLOCK_GATE_HIGH_windowBuf_102 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_36_ SNPS_CLOCK_GATE_HIGH_windowBuf_37 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_102_ SNPS_CLOCK_GATE_HIGH_windowBuf_103 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_37_ SNPS_CLOCK_GATE_HIGH_windowBuf_38 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_103_ SNPS_CLOCK_GATE_HIGH_windowBuf_104 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_38_ SNPS_CLOCK_GATE_HIGH_windowBuf_39 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_104_ SNPS_CLOCK_GATE_HIGH_windowBuf_105 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_39_ SNPS_CLOCK_GATE_HIGH_windowBuf_40 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_105_ SNPS_CLOCK_GATE_HIGH_windowBuf_106 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_106_ SNPS_CLOCK_GATE_HIGH_windowBuf_107 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_107_ SNPS_CLOCK_GATE_HIGH_windowBuf_108 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_108_ SNPS_CLOCK_GATE_HIGH_windowBuf_109 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_109_ SNPS_CLOCK_GATE_HIGH_windowBuf_110 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_90_ SNPS_CLOCK_GATE_HIGH_windowBuf_91 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_91_ SNPS_CLOCK_GATE_HIGH_windowBuf_92 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_92_ SNPS_CLOCK_GATE_HIGH_windowBuf_93 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_93_ SNPS_CLOCK_GATE_HIGH_windowBuf_94 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_94_ SNPS_CLOCK_GATE_HIGH_windowBuf_95 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_95_ SNPS_CLOCK_GATE_HIGH_windowBuf_96 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_96_ SNPS_CLOCK_GATE_HIGH_windowBuf_97 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_97_ SNPS_CLOCK_GATE_HIGH_windowBuf_98 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_40_ SNPS_CLOCK_GATE_HIGH_windowBuf_41 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_98_ SNPS_CLOCK_GATE_HIGH_windowBuf_99 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_41_ SNPS_CLOCK_GATE_HIGH_windowBuf_42 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_99_ SNPS_CLOCK_GATE_HIGH_windowBuf_100 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_42_ SNPS_CLOCK_GATE_HIGH_windowBuf_43 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_43_ SNPS_CLOCK_GATE_HIGH_windowBuf_44 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_44_ SNPS_CLOCK_GATE_HIGH_windowBuf_45 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_110_ SNPS_CLOCK_GATE_HIGH_windowBuf_111 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_45_ SNPS_CLOCK_GATE_HIGH_windowBuf_46 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_111_ SNPS_CLOCK_GATE_HIGH_windowBuf_112 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_46_ SNPS_CLOCK_GATE_HIGH_windowBuf_47 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_112_ SNPS_CLOCK_GATE_HIGH_windowBuf_113 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_47_ SNPS_CLOCK_GATE_HIGH_windowBuf_48 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_113_ SNPS_CLOCK_GATE_HIGH_windowBuf_114 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_48_ SNPS_CLOCK_GATE_HIGH_windowBuf_49 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_114_ SNPS_CLOCK_GATE_HIGH_windowBuf_115 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_49_ SNPS_CLOCK_GATE_HIGH_windowBuf_50 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_115_ SNPS_CLOCK_GATE_HIGH_windowBuf_116 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_116_ SNPS_CLOCK_GATE_HIGH_windowBuf_117 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_117_ SNPS_CLOCK_GATE_HIGH_windowBuf_118 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_118_ SNPS_CLOCK_GATE_HIGH_windowBuf_119 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_119_ SNPS_CLOCK_GATE_HIGH_windowBuf_120 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_50_ SNPS_CLOCK_GATE_HIGH_windowBuf_51 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_51_ SNPS_CLOCK_GATE_HIGH_windowBuf_52 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_52_ SNPS_CLOCK_GATE_HIGH_windowBuf_53 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_53_ SNPS_CLOCK_GATE_HIGH_windowBuf_54 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_54_ SNPS_CLOCK_GATE_HIGH_windowBuf_55 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_120_ SNPS_CLOCK_GATE_HIGH_windowBuf_121 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_55_ SNPS_CLOCK_GATE_HIGH_windowBuf_56 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_121_ SNPS_CLOCK_GATE_HIGH_windowBuf_122 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_56_ SNPS_CLOCK_GATE_HIGH_windowBuf_57 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_122_ SNPS_CLOCK_GATE_HIGH_windowBuf_123 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_57_ SNPS_CLOCK_GATE_HIGH_windowBuf_58 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_123_ SNPS_CLOCK_GATE_HIGH_windowBuf_124 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_58_ SNPS_CLOCK_GATE_HIGH_windowBuf_59 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_124_ SNPS_CLOCK_GATE_HIGH_windowBuf_125 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_59_ SNPS_CLOCK_GATE_HIGH_windowBuf_60 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_125_ SNPS_CLOCK_GATE_HIGH_windowBuf_126 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_126_ SNPS_CLOCK_GATE_HIGH_windowBuf_127 ForQA saed32hvt_tt1p05v25c automatic-by-area
+winBuf/clk_gate_rowbuf_reg_127_ SNPS_CLOCK_GATE_HIGH_windowBuf_128 ForQA saed32hvt_tt1p05v25c automatic-by-area
+medianSorter       median9      8000        saed32hvt_tt1p05v25c automatic-by-area
+
+Power-specific unit information :
+    Voltage Units = 1 V
+    Capacitance Units = 1 pf
+    Time Units = 1 ns
+    Dynamic Power Units = 1 W
+    Leakage Power Units = 1 W
+
+
+
+                                      Switch   Int      Leak      Total
+Hierarchy                             Power    Power    Power     Power    %
+--------------------------------------------------------------------------------
+medianFilter                          9.37e-04 1.48e-03 7.06e-04  3.12e-03 100.0
+  control_clk_gate_count_reg (SNPS_CLOCK_GATE_HIGH_control) 6.30e-07 2.54e-06 1.26e-07 3.29e-06   0.1
+  winBuf (windowBuf)                  4.70e-04 9.82e-04 5.67e-04  2.02e-03  64.7
+    clk_gate_rowbuf_reg_60_ (SNPS_CLOCK_GATE_HIGH_windowBuf_61) 3.65e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_61_ (SNPS_CLOCK_GATE_HIGH_windowBuf_62) 3.89e-09 1.19e-06 1.34e-07 1.33e-06   0.0
+    clk_gate_rowbuf_reg_62_ (SNPS_CLOCK_GATE_HIGH_windowBuf_63) 3.61e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_63_ (SNPS_CLOCK_GATE_HIGH_windowBuf_64) 3.71e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_64_ (SNPS_CLOCK_GATE_HIGH_windowBuf_65) 2.23e-08 1.18e-06 1.34e-07 1.34e-06   0.0
+    clk_gate_rowbuf_reg_65_ (SNPS_CLOCK_GATE_HIGH_windowBuf_66) 3.55e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_66_ (SNPS_CLOCK_GATE_HIGH_windowBuf_67) 3.97e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_67_ (SNPS_CLOCK_GATE_HIGH_windowBuf_68) 1.01e-08 1.18e-06 1.34e-07 1.33e-06   0.0
+    clk_gate_rowbuf_reg_10_ (SNPS_CLOCK_GATE_HIGH_windowBuf_11) 5.57e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_68_ (SNPS_CLOCK_GATE_HIGH_windowBuf_69) 8.02e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_11_ (SNPS_CLOCK_GATE_HIGH_windowBuf_12) 1.14e-08 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_69_ (SNPS_CLOCK_GATE_HIGH_windowBuf_70) 2.92e-08 1.18e-06 1.34e-07 1.34e-06   0.0
+    clk_gate_rowbuf_reg_12_ (SNPS_CLOCK_GATE_HIGH_windowBuf_13) 9.58e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_13_ (SNPS_CLOCK_GATE_HIGH_windowBuf_14) 6.66e-09 1.16e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_14_ (SNPS_CLOCK_GATE_HIGH_windowBuf_15) 3.60e-09 1.17e-06 1.34e-07 1.30e-06   0.0
+    clk_gate_rowbuf_reg_15_ (SNPS_CLOCK_GATE_HIGH_windowBuf_16) 1.13e-08 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_16_ (SNPS_CLOCK_GATE_HIGH_windowBuf_17) 1.06e-08 1.18e-06 1.34e-07 1.33e-06   0.0
+    clk_gate_rowbuf_reg_17_ (SNPS_CLOCK_GATE_HIGH_windowBuf_18) 1.26e-08 1.18e-06 1.34e-07 1.33e-06   0.0
+    clk_gate_rowbuf_reg_18_ (SNPS_CLOCK_GATE_HIGH_windowBuf_19) 3.36e-08 1.18e-06 1.34e-07 1.35e-06   0.0
+    clk_gate_rowbuf_reg_19_ (SNPS_CLOCK_GATE_HIGH_windowBuf_20) 4.96e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_70_ (SNPS_CLOCK_GATE_HIGH_windowBuf_71) 1.29e-08 1.18e-06 1.34e-07 1.33e-06   0.0
+    clk_gate_rowbuf_reg_71_ (SNPS_CLOCK_GATE_HIGH_windowBuf_72) 1.48e-08 1.18e-06 1.34e-07 1.33e-06   0.0
+    clk_gate_rowbuf_reg_72_ (SNPS_CLOCK_GATE_HIGH_windowBuf_73) 2.17e-08 1.17e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_73_ (SNPS_CLOCK_GATE_HIGH_windowBuf_74) 3.74e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_74_ (SNPS_CLOCK_GATE_HIGH_windowBuf_75) 3.71e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_75_ (SNPS_CLOCK_GATE_HIGH_windowBuf_76) 3.63e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_76_ (SNPS_CLOCK_GATE_HIGH_windowBuf_77) 3.79e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_77_ (SNPS_CLOCK_GATE_HIGH_windowBuf_78) 3.82e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_20_ (SNPS_CLOCK_GATE_HIGH_windowBuf_21) 9.61e-09 1.18e-06 1.34e-07 1.33e-06   0.0
+    clk_gate_rowbuf_reg_78_ (SNPS_CLOCK_GATE_HIGH_windowBuf_79) 3.75e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_21_ (SNPS_CLOCK_GATE_HIGH_windowBuf_22) 7.27e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_79_ (SNPS_CLOCK_GATE_HIGH_windowBuf_80) 6.55e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_22_ (SNPS_CLOCK_GATE_HIGH_windowBuf_23) 6.21e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_23_ (SNPS_CLOCK_GATE_HIGH_windowBuf_24) 2.37e-08 1.18e-06 1.34e-07 1.34e-06   0.0
+    clk_gate_rowbuf_reg_24_ (SNPS_CLOCK_GATE_HIGH_windowBuf_25) 3.73e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_25_ (SNPS_CLOCK_GATE_HIGH_windowBuf_26) 4.27e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_26_ (SNPS_CLOCK_GATE_HIGH_windowBuf_27) 7.41e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_27_ (SNPS_CLOCK_GATE_HIGH_windowBuf_28) 6.61e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_28_ (SNPS_CLOCK_GATE_HIGH_windowBuf_29) 6.51e-09 1.16e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_29_ (SNPS_CLOCK_GATE_HIGH_windowBuf_30) 3.71e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_0_ (SNPS_CLOCK_GATE_HIGH_windowBuf_1) 3.69e-09 1.16e-06 1.34e-07 1.30e-06   0.0
+    clk_gate_rowbuf_reg_1_ (SNPS_CLOCK_GATE_HIGH_windowBuf_2) 6.79e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_2_ (SNPS_CLOCK_GATE_HIGH_windowBuf_3) 3.73e-09 1.17e-06 1.34e-07 1.30e-06   0.0
+    clk_gate_rowbuf_reg_3_ (SNPS_CLOCK_GATE_HIGH_windowBuf_4) 6.72e-09 1.16e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_4_ (SNPS_CLOCK_GATE_HIGH_windowBuf_5) 1.20e-08 1.18e-06 1.34e-07 1.33e-06   0.0
+    clk_gate_rowbuf_reg_5_ (SNPS_CLOCK_GATE_HIGH_windowBuf_6) 9.15e-09 1.16e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_6_ (SNPS_CLOCK_GATE_HIGH_windowBuf_7) 1.10e-08 1.16e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_7_ (SNPS_CLOCK_GATE_HIGH_windowBuf_8) 1.09e-08 1.18e-06 1.34e-07 1.33e-06   0.0
+    clk_gate_rowbuf_reg_8_ (SNPS_CLOCK_GATE_HIGH_windowBuf_9) 6.49e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_80_ (SNPS_CLOCK_GATE_HIGH_windowBuf_81) 3.73e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_9_ (SNPS_CLOCK_GATE_HIGH_windowBuf_10) 1.01e-08 1.16e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_81_ (SNPS_CLOCK_GATE_HIGH_windowBuf_82) 3.78e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_82_ (SNPS_CLOCK_GATE_HIGH_windowBuf_83) 3.67e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_83_ (SNPS_CLOCK_GATE_HIGH_windowBuf_84) 3.57e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_84_ (SNPS_CLOCK_GATE_HIGH_windowBuf_85) 3.81e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_85_ (SNPS_CLOCK_GATE_HIGH_windowBuf_86) 3.80e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_86_ (SNPS_CLOCK_GATE_HIGH_windowBuf_87) 4.15e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_87_ (SNPS_CLOCK_GATE_HIGH_windowBuf_88) 3.71e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_30_ (SNPS_CLOCK_GATE_HIGH_windowBuf_31) 3.78e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_88_ (SNPS_CLOCK_GATE_HIGH_windowBuf_89) 1.06e-08 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_31_ (SNPS_CLOCK_GATE_HIGH_windowBuf_32) 9.04e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_89_ (SNPS_CLOCK_GATE_HIGH_windowBuf_90) 3.63e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_32_ (SNPS_CLOCK_GATE_HIGH_windowBuf_33) 6.16e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_33_ (SNPS_CLOCK_GATE_HIGH_windowBuf_34) 6.37e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_34_ (SNPS_CLOCK_GATE_HIGH_windowBuf_35) 7.67e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_100_ (SNPS_CLOCK_GATE_HIGH_windowBuf_101) 9.72e-09 1.18e-06 1.34e-07 1.33e-06   0.0
+    clk_gate_rowbuf_reg_35_ (SNPS_CLOCK_GATE_HIGH_windowBuf_36) 6.10e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_101_ (SNPS_CLOCK_GATE_HIGH_windowBuf_102) 1.17e-08 1.18e-06 1.34e-07 1.33e-06   0.0
+    clk_gate_rowbuf_reg_36_ (SNPS_CLOCK_GATE_HIGH_windowBuf_37) 4.36e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_102_ (SNPS_CLOCK_GATE_HIGH_windowBuf_103) 6.90e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_37_ (SNPS_CLOCK_GATE_HIGH_windowBuf_38) 5.28e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_103_ (SNPS_CLOCK_GATE_HIGH_windowBuf_104) 1.23e-08 1.18e-06 1.34e-07 1.33e-06   0.0
+    clk_gate_rowbuf_reg_38_ (SNPS_CLOCK_GATE_HIGH_windowBuf_39) 3.99e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_104_ (SNPS_CLOCK_GATE_HIGH_windowBuf_105) 1.32e-08 1.17e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_39_ (SNPS_CLOCK_GATE_HIGH_windowBuf_40) 4.73e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_105_ (SNPS_CLOCK_GATE_HIGH_windowBuf_106) 1.41e-08 1.17e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_106_ (SNPS_CLOCK_GATE_HIGH_windowBuf_107) 6.65e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_107_ (SNPS_CLOCK_GATE_HIGH_windowBuf_108) 5.07e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_108_ (SNPS_CLOCK_GATE_HIGH_windowBuf_109) 6.16e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_109_ (SNPS_CLOCK_GATE_HIGH_windowBuf_110) 6.69e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_90_ (SNPS_CLOCK_GATE_HIGH_windowBuf_91) 9.77e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_91_ (SNPS_CLOCK_GATE_HIGH_windowBuf_92) 1.31e-08 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_92_ (SNPS_CLOCK_GATE_HIGH_windowBuf_93) 8.08e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_93_ (SNPS_CLOCK_GATE_HIGH_windowBuf_94) 1.41e-08 1.17e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_94_ (SNPS_CLOCK_GATE_HIGH_windowBuf_95) 4.44e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_95_ (SNPS_CLOCK_GATE_HIGH_windowBuf_96) 1.44e-08 1.17e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_96_ (SNPS_CLOCK_GATE_HIGH_windowBuf_97) 6.32e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_97_ (SNPS_CLOCK_GATE_HIGH_windowBuf_98) 7.06e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_40_ (SNPS_CLOCK_GATE_HIGH_windowBuf_41) 3.75e-09 1.17e-06 1.34e-07 1.30e-06   0.0
+    clk_gate_rowbuf_reg_98_ (SNPS_CLOCK_GATE_HIGH_windowBuf_99) 6.23e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_41_ (SNPS_CLOCK_GATE_HIGH_windowBuf_42) 6.84e-09 1.16e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_99_ (SNPS_CLOCK_GATE_HIGH_windowBuf_100) 6.75e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_42_ (SNPS_CLOCK_GATE_HIGH_windowBuf_43) 6.74e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_43_ (SNPS_CLOCK_GATE_HIGH_windowBuf_44) 6.62e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_44_ (SNPS_CLOCK_GATE_HIGH_windowBuf_45) 3.67e-09 1.16e-06 1.34e-07 1.30e-06   0.0
+    clk_gate_rowbuf_reg_110_ (SNPS_CLOCK_GATE_HIGH_windowBuf_111) 1.01e-08 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_45_ (SNPS_CLOCK_GATE_HIGH_windowBuf_46) 3.84e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_111_ (SNPS_CLOCK_GATE_HIGH_windowBuf_112) 3.59e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_46_ (SNPS_CLOCK_GATE_HIGH_windowBuf_47) 3.73e-09 1.16e-06 1.34e-07 1.30e-06   0.0
+    clk_gate_rowbuf_reg_112_ (SNPS_CLOCK_GATE_HIGH_windowBuf_113) 3.70e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_47_ (SNPS_CLOCK_GATE_HIGH_windowBuf_48) 3.62e-09 1.16e-06 1.34e-07 1.30e-06   0.0
+    clk_gate_rowbuf_reg_113_ (SNPS_CLOCK_GATE_HIGH_windowBuf_114) 8.16e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_48_ (SNPS_CLOCK_GATE_HIGH_windowBuf_49) 6.04e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_114_ (SNPS_CLOCK_GATE_HIGH_windowBuf_115) 1.10e-08 1.18e-06 1.34e-07 1.33e-06   0.0
+    clk_gate_rowbuf_reg_49_ (SNPS_CLOCK_GATE_HIGH_windowBuf_50) 5.97e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_115_ (SNPS_CLOCK_GATE_HIGH_windowBuf_116) 9.82e-09 1.18e-06 1.34e-07 1.33e-06   0.0
+    clk_gate_rowbuf_reg_116_ (SNPS_CLOCK_GATE_HIGH_windowBuf_117) 4.39e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_117_ (SNPS_CLOCK_GATE_HIGH_windowBuf_118) 1.04e-08 1.18e-06 1.34e-07 1.33e-06   0.0
+    clk_gate_rowbuf_reg_118_ (SNPS_CLOCK_GATE_HIGH_windowBuf_119) 2.21e-08 1.17e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_119_ (SNPS_CLOCK_GATE_HIGH_windowBuf_120) 1.04e-08 1.18e-06 1.34e-07 1.33e-06   0.0
+    clk_gate_rowbuf_reg_50_ (SNPS_CLOCK_GATE_HIGH_windowBuf_51) 8.83e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_51_ (SNPS_CLOCK_GATE_HIGH_windowBuf_52) 2.74e-08 1.18e-06 1.34e-07 1.34e-06   0.0
+    clk_gate_rowbuf_reg_52_ (SNPS_CLOCK_GATE_HIGH_windowBuf_53) 6.77e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_53_ (SNPS_CLOCK_GATE_HIGH_windowBuf_54) 2.68e-08 1.18e-06 1.34e-07 1.34e-06   0.0
+    clk_gate_rowbuf_reg_54_ (SNPS_CLOCK_GATE_HIGH_windowBuf_55) 6.53e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_120_ (SNPS_CLOCK_GATE_HIGH_windowBuf_121) 9.55e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_55_ (SNPS_CLOCK_GATE_HIGH_windowBuf_56) 7.64e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_121_ (SNPS_CLOCK_GATE_HIGH_windowBuf_122) 1.31e-08 1.18e-06 1.34e-07 1.33e-06   0.0
+    clk_gate_rowbuf_reg_56_ (SNPS_CLOCK_GATE_HIGH_windowBuf_57) 9.08e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_122_ (SNPS_CLOCK_GATE_HIGH_windowBuf_123) 7.88e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_57_ (SNPS_CLOCK_GATE_HIGH_windowBuf_58) 6.85e-09 1.17e-06 1.34e-07 1.31e-06   0.0
+    clk_gate_rowbuf_reg_123_ (SNPS_CLOCK_GATE_HIGH_windowBuf_124) 8.10e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_58_ (SNPS_CLOCK_GATE_HIGH_windowBuf_59) 5.98e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_124_ (SNPS_CLOCK_GATE_HIGH_windowBuf_125) 3.51e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_59_ (SNPS_CLOCK_GATE_HIGH_windowBuf_60) 3.72e-09 1.18e-06 1.34e-07 1.32e-06   0.0
+    clk_gate_rowbuf_reg_125_ (SNPS_CLOCK_GATE_HIGH_windowBuf_126)    0.000 1.17e-06 1.34e-07 1.30e-06   0.0
+    clk_gate_rowbuf_reg_126_ (SNPS_CLOCK_GATE_HIGH_windowBuf_127)    0.000 1.16e-06 1.34e-07 1.30e-06   0.0
+    clk_gate_rowbuf_reg_127_ (SNPS_CLOCK_GATE_HIGH_windowBuf_128)    0.000 1.16e-06 1.34e-07 1.30e-06   0.0
+  medianSorter (median9)              3.56e-04 3.65e-04 4.43e-05  7.66e-04  24.5
+1

@@ -1,0 +1,1409 @@
+ 
+****************************************
+Report : reference
+Design : medianFilter
+Version: F-2011.09-ICC-SP4
+Date   : Tue Sep 25 02:53:16 2012
+****************************************
+
+Attributes:
+    b - black box (unknown)
+   bo - allows boundary optimization
+    d - dont_touch
+   mo - map_only
+    h - hierarchical
+    n - noncombinational
+    r - removable
+    s - synthetic operator
+    u - contains unmapped logic
+
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+AND2X1_RVT         saed32rvt_tt1p05v25c     2.033152       1     2.033152
+AND4X1_RVT         saed32rvt_tt1p05v25c     2.541440       1     2.541440
+AO21X1_RVT         saed32rvt_tt1p05v25c     2.541440       1     2.541440
+AO22X1_RVT         saed32rvt_tt1p05v25c     2.541440       3     7.624320
+DELLN1X2_RVT       saed32rvt_tt1p05v25c     5.082880      35   177.900801
+DFFSSRX1_RVT       saed32rvt_tt1p05v25c     7.116032      14    99.624450 n
+DFFX1_RVT          saed32rvt_tt1p05v25c     6.607744       3    19.823233 n
+DFFX2_RVT          saed32rvt_tt1p05v25c     7.116032       8    56.928257 n
+HADDX1_RVT         saed32rvt_tt1p05v25c     3.303872       2     6.607744 r
+IBUFFX2_RVT        saed32rvt_tt1p05v25c     2.541440      11    27.955840
+INVX0_RVT          saed32rvt_tt1p05v25c     1.270720      23    29.226560
+INVX1_RVT          saed32rvt_tt1p05v25c     1.270720       2     2.541440
+INVX2_RVT          saed32rvt_tt1p05v25c     1.524864       4     6.099456
+INVX4_RVT          saed32rvt_tt1p05v25c     2.033152       1     2.033152
+INVX8_RVT          saed32rvt_tt1p05v25c     3.049728       1     3.049728
+INVX16_RVT         saed32rvt_tt1p05v25c     5.082880       2    10.165760
+INVX32_RVT         saed32rvt_tt1p05v25c     9.149184       2    18.298368
+MUX21X1_RVT        saed32rvt_tt1p05v25c     3.303872       7    23.127105
+NAND2X0_RVT        saed32rvt_tt1p05v25c     1.524864      11    16.773504
+NAND3X0_RVT        saed32rvt_tt1p05v25c     1.779008       5     8.895040
+NAND4X0_RVT        saed32rvt_tt1p05v25c     2.033152       3     6.099456
+NBUFFX2_RVT        saed32rvt_tt1p05v25c     2.033152       7    14.232065
+NBUFFX32_RVT       saed32rvt_tt1p05v25c    10.674048       1    10.674048
+NOR4X0_RVT         saed32rvt_tt1p05v25c     3.049728       3     9.149184
+OA21X1_RVT         saed32rvt_tt1p05v25c     2.541440      10    25.414400
+OA221X1_RVT        saed32rvt_tt1p05v25c     3.049728       2     6.099456
+OAI22X1_RVT        saed32rvt_tt1p05v25c     3.049728       1     3.049728
+OR2X1_RVT          saed32rvt_tt1p05v25c     2.033152       2     4.066304
+OR3X1_RVT          saed32rvt_tt1p05v25c     2.541440       3     7.624320
+SNPS_CLOCK_GATE_HIGH_control      5.845312       1      5.845312  b, h
+XNOR2X1_RVT        saed32rvt_tt1p05v25c     4.320448       1     4.320448
+median9                        1858.809240       1   1858.809240  h
+windowBuf                     23306.021863       1  23306.021863  b, h, n
+-----------------------------------------------------------------------------
+Total 33 references                                 25785.196614
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_control 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: median9 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+AND2X1_RVT         saed32rvt_tt1p05v25c     2.033152      24    48.795650
+AO21X1_RVT         saed32rvt_tt1p05v25c     2.541440      10    25.414400
+AO22X1_RVT         saed32rvt_tt1p05v25c     2.541440      39    99.116160
+AO22X2_RVT         saed32rvt_tt1p05v25c     2.795584       2     5.591168
+AOI22X1_RVT        saed32rvt_tt1p05v25c     3.049728       3     9.149184
+AOI222X1_RVT       saed32rvt_tt1p05v25c     3.812160       1     3.812160
+DELLN1X2_RVT       saed32rvt_tt1p05v25c     5.082880      10    50.828800
+FADDX1_RVT         saed32rvt_tt1p05v25c     4.828736      33   159.348282 r
+FADDX2_RVT         saed32rvt_tt1p05v25c     5.337024       5    26.685121 r
+INVX0_RVT          saed32rvt_tt1p05v25c     1.270720     263   334.199361
+MUX21X1_RVT        saed32rvt_tt1p05v25c     3.303872     223   736.763480
+NAND2X0_RVT        saed32rvt_tt1p05v25c     1.524864      93   141.812348
+NAND3X0_RVT        saed32rvt_tt1p05v25c     1.779008      25    44.475201
+NAND4X0_RVT        saed32rvt_tt1p05v25c     2.033152       3     6.099456
+NBUFFX2_RVT        saed32rvt_tt1p05v25c     2.033152      10    20.331521
+NBUFFX8_RVT        saed32rvt_tt1p05v25c     3.812160       1     3.812160
+OA21X1_RVT         saed32rvt_tt1p05v25c     2.541440       6    15.248640
+OA22X1_RVT         saed32rvt_tt1p05v25c     2.541440      41   104.199040
+OA22X2_RVT         saed32rvt_tt1p05v25c     2.795584       1     2.795584
+OR2X1_RVT          saed32rvt_tt1p05v25c     2.033152      10    20.331521
+-----------------------------------------------------------------------------
+Total 20 references                                  1858.809240
+
+****************************************
+Design: windowBuf 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+AND2X1_RVT         saed32rvt_tt1p05v25c     2.033152     130   264.309773
+AND3X1_RVT         saed32rvt_tt1p05v25c     2.287296       7    16.011072
+AND4X1_RVT         saed32rvt_tt1p05v25c     2.541440       7    17.790080
+AND4X2_RVT         saed32rvt_tt1p05v25c     3.812160       2     7.624320
+AND4X4_RVT         saed32rvt_tt1p05v25c     4.320448       1     4.320448
+AO21X1_RVT         saed32rvt_tt1p05v25c     2.541440      64   162.652161
+AO22X1_RVT         saed32rvt_tt1p05v25c     2.541440    1024  2602.434570
+DELLN1X2_RVT       saed32rvt_tt1p05v25c     5.082880     678  3446.192654
+DFFSSRX1_RVT       saed32rvt_tt1p05v25c     7.116032      57   405.613831 n
+DFFSSRX2_RVT       saed32rvt_tt1p05v25c     7.624320       6    45.745920 n
+DFFX1_RVT          saed32rvt_tt1p05v25c     6.607744    2064 13638.384064 n
+HADDX1_RVT         saed32rvt_tt1p05v25c     3.303872       6    19.823233 r
+IBUFFX2_RVT        saed32rvt_tt1p05v25c     2.541440       1     2.541440
+INVX0_RVT          saed32rvt_tt1p05v25c     1.270720      51    64.806720
+INVX1_RVT          saed32rvt_tt1p05v25c     1.270720       4     5.082880
+INVX2_RVT          saed32rvt_tt1p05v25c     1.524864      60    91.491838
+INVX4_RVT          saed32rvt_tt1p05v25c     2.033152      89   180.950537
+INVX8_RVT          saed32rvt_tt1p05v25c     3.049728     123   375.116534
+INVX16_RVT         saed32rvt_tt1p05v25c     5.082880       7    35.580160
+INVX32_RVT         saed32rvt_tt1p05v25c     9.149184       4    36.596737
+NAND3X0_RVT        saed32rvt_tt1p05v25c     1.779008       4     7.116032
+NAND3X2_RVT        saed32rvt_tt1p05v25c     3.049728       3     9.149184
+NAND4X0_RVT        saed32rvt_tt1p05v25c     2.033152      16    32.530434
+NBUFFX2_RVT        saed32rvt_tt1p05v25c     2.033152      53   107.757061
+NOR4X0_RVT         saed32rvt_tt1p05v25c     3.049728     256   780.730347
+OA221X1_RVT        saed32rvt_tt1p05v25c     3.049728      64   195.182587
+OR2X2_RVT          saed32rvt_tt1p05v25c     2.287296       1     2.287296
+SNPS_CLOCK_GATE_HIGH_windowBuf_1     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_2     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_3     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_4     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_5     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_6     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_7     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_8     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_9     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_10     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_11     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_12     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_13     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_14     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_15     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_16     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_17     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_18     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_19     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_20     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_21     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_22     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_23     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_24     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_25     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_26     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_27     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_28     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_29     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_30     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_31     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_32     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_33     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_34     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_35     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_36     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_37     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_38     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_39     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_40     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_41     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_42     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_43     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_44     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_45     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_46     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_47     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_48     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_49     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_50     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_51     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_52     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_53     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_54     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_55     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_56     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_57     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_58     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_59     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_60     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_61     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_62     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_63     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_64     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_65     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_66     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_67     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_68     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_69     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_70     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_71     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_72     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_73     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_74     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_75     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_76     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_77     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_78     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_79     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_80     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_81     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_82     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_83     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_84     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_85     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_86     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_87     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_88     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_89     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_90     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_91     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_92     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_93     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_94     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_95     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_96     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_97     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_98     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_99     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_100     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_101     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_102     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_103     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_104     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_105     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_106     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_107     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_108     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_109     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_110     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_111     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_112     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_113     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_114     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_115     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_116     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_117     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_118     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_119     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_120     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_121     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_122     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_123     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_124     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_125     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_126     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_127     5.845312       1     5.845312 b, h
+SNPS_CLOCK_GATE_HIGH_windowBuf_128     5.845312       1     5.845312 b, h
+-----------------------------------------------------------------------------
+Total 155 references                                23306.021863
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_1 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_2 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_3 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_4 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_5 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_6 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_7 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_8 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_9 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_10 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_11 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_12 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_13 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_14 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_15 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_16 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_17 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_18 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_19 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_20 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_21 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_22 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_23 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_24 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_25 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_26 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_27 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_28 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_29 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_30 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_31 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_32 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_33 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_34 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_35 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_36 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_37 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_38 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_39 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_40 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_41 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_42 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_43 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_44 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_45 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_46 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_47 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_48 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_49 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_50 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_51 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_52 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_53 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_54 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_55 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_56 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_57 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_58 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_59 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_60 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_61 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_62 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_63 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_64 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_65 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_66 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_67 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_68 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_69 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_70 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_71 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_72 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_73 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_74 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_75 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_76 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_77 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_78 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_79 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_80 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_81 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_82 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_83 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_84 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_85 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_86 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_87 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_88 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_89 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_90 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_91 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_92 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_93 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_94 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_95 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_96 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_97 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_98 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_99 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_100 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_101 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_102 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_103 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_104 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_105 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_106 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_107 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_108 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_109 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_110 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_111 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_112 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_113 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_114 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_115 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_116 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_117 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_118 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_119 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_120 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_121 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_122 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_123 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_124 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_125 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_126 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_127 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+
+****************************************
+Design: SNPS_CLOCK_GATE_HIGH_windowBuf_128 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+CGLPPRX2_RVT       saed32rvt_tt1p05v25c     5.845312       1     5.845312 b, d
+-----------------------------------------------------------------------------
+Total 1 references                                      5.845312
+1

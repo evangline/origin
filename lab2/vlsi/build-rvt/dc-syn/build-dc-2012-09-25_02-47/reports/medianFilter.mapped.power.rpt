@@ -1,0 +1,40 @@
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -hier
+        -analysis_effort low
+Design : medianFilter
+Version: F-2011.09-SP4
+Date   : Tue Sep 25 02:48:49 2012
+****************************************
+
+
+Library(s) Used:
+
+    saed32rvt_tt1p05v25c (File: /home/ff/cs250/stdcells/synopsys-32nm/multi_vt/db/saed32rvt_tt1p05v25c.db)
+
+
+Operating Conditions: tt1p05v25c   Library: saed32rvt_tt1p05v25c
+Wire Load Model Mode: Inactive.
+
+
+Global Operating Voltage = 1.05 
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1pW
+
+
+--------------------------------------------------------------------------------
+                                       Switch   Int      Leak     Total
+Hierarchy                              Power    Power    Power    Power    %
+--------------------------------------------------------------------------------
+medianFilter                            112.750  670.144 3.30e+09 4.09e+03 100.0
+  medianSorter (median9)                 17.840   26.428 1.14e+08  158.722   3.9
+  winBuf (windowBuf)                     87.909  588.142 3.14e+09 3.82e+03  93.5
+1
