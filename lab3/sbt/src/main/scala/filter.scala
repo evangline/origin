@@ -35,7 +35,9 @@ class convolutionFilter(maxImageWidth: Integer, maxImageHeight: Integer, dataWid
 
   val convolver = new convolution_wrapper(windowSize, dataWidth, coeffWidth, coeffFract, pipeStages)
   convolver.io.din := winBuf.io.dout
-  convolver.io.coeff := control.io.coeff_out.toUFix()
+  for (i <- 0 until windowSize) {
+    convolver.io.coeff(i) := control.io.coeff_out(i).toUFix()
+  }
 
   // NOTE: you will need to delay the frame_sync_out, data select signal and
   // the output of the window buffer appropriately to account for the number of
