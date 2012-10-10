@@ -11,12 +11,12 @@ UCB_STDCELLS = synopsys-32nm/multi_vt
 vlsidir = vlsi
 include $(basedir)/../Makefrag
 
-ifndef PIPE_OVERHEAD
-PIPE_OVERHEAD = 0.2
-endif
+#ifndef PIPE_OVERHEAD
+#PIPE_OVERHEAD = 0.2
+#endif
 
 ifndef CLOCK_PERIOD
-CLOCK_PERIOD=2.0
+CLOCK_PERIOD=1.0
 endif
 
 ifndef VOLTAGE
@@ -34,26 +34,17 @@ $(basedir)/generated-src/${TARGET}.v: $(basedir)/../src/*.scala
 	sh ${TARGET}.conf
 
 clock_period = ${CLOCK_PERIOD}
+clock_uncertainty = 0.04
+
 vcs_clock_period = 0$(shell echo "scale=4; ${clock_period}*0.5" | bc)
 dc_clock_period = 0$(shell echo "scale=4; ${clock_period}*1.0" | bc)
-
-#clock_uncertainty = 0$(shell echo "scale=4; ${clock_period}*0.02" | bc)
-clock_uncertainty = 0.05
-
-#input_delay = 0$(shell echo "scale=4; ${clock_period}*0.1" | bc)
-#output_delay = 0$(shell echo "scale=4; ${clock_period}*0.1" | bc)
 
 input_delay  = 0.1
 output_delay = 0.1
 
-input_delay_vcs  = ${input_delay}
-output_delay_vcs  = ${output_delay}
-
-#input_delay_vcs  = 0$(shell echo "scale=4; ${input_delay}*0.5" | bc)
-#output_delay_vcs = 0$(shell echo "scale=4; ${output_delay}*0.5" | bc)
-
 # standard voltage operation (VDD = 1.05V)
 ifeq (${VOLTAGE}, STANDARD)
+  PIPE_OVERHEAD = 0.12
   ss_corner_stdcells = ss0p95v125c
   tt_corner_stdcells = tt1p05v25c
   ff_corner_stdcells = ff1p16vn40c
@@ -61,6 +52,7 @@ endif
 
 # middle voltage operation (VOLTAGE = 0.85V)
 ifeq (${VOLTAGE}, MIDDLE)
+  PIPE_OVERHEAD = 0.15
   ss_corner_stdcells = ss0p75v125c
   tt_corner_stdcells = tt0p85v25c
   ff_corner_stdcells = ff0p95vn40c
@@ -68,6 +60,7 @@ endif
 
 # low voltage operation (VOLTAGE = 0.78V)
 ifeq (${VOLTAGE}, LOW)
+  PIPE_OVERHEAD = 0.16
   ss_corner_stdcells = ss0p7v125c
   tt_corner_stdcells = tt0p78v25c
   ff_corner_stdcells = ff0p85vn40c
@@ -75,31 +68,17 @@ endif
 
 filler_cells = SHFILL128_RVT SHFILL64_RVT SHFILL3_RVT SHFILL2_RVT SHFILL1_RVT
 
-# use multiple vt libraries
+# use multiple vt stdcell libraries
 mw_ref_libs = \
   cells_hvt.mw \
   cells_rvt.mw \
   cells_lvt.mw \
 
+# using typical corner only
 target_library_files = \
-  saed32hvt_$(ss_corner_stdcells).db \
-  saed32rvt_$(ss_corner_stdcells).db \
-  saed32lvt_$(ss_corner_stdcells).db \
-
-min_library = \
-  saed32hvt_$(ss_corner_stdcells).db saed32hvt_$(ff_corner_stdcells).db \
-  saed32rvt_$(ss_corner_stdcells).db saed32rvt_$(ff_corner_stdcells).db \
-  saed32lvt_$(ss_corner_stdcells).db saed32lvt_$(ff_corner_stdcells).db \
-
-min_libraries = \
-  saed32hvt_$(ff_corner_stdcells).db \
-  saed32rvt_$(ff_corner_stdcells).db \
-  saed32lvt_$(ff_corner_stdcells).db \
-
-max_libraries = \
-  saed32hvt_$(ss_corner_stdcells).db \
-  saed32rvt_$(ss_corner_stdcells).db \
-  saed32lvt_$(ss_corner_stdcells).db \
+  saed32hvt_$(tt_corner_stdcells).db \
+  saed32rvt_$(tt_corner_stdcells).db \
+  saed32lvt_$(tt_corner_stdcells).db \
 
 # SRAM libraries
 mw_sram_libs = ../$(refdir)/SRAM1R1W1024x32.mw

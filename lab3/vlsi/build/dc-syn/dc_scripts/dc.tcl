@@ -18,27 +18,6 @@ write -hierarchy -format ddc -output ${RESULTS_DIR}/${DCRM_ELABORATED_DESIGN_DDC
 
 link
 
-# RIMAS:
-# label multi-vt libs
-set dbfile [lindex $TARGET_LIBRARY_FILES 0] 
-set len [string length $dbfile]
-set HVT_lib [string range $dbfile 0 [expr "$len - 4"]]
-echo HVT_lib = $HVT_lib
-
-set dbfile [lindex $TARGET_LIBRARY_FILES 1] 
-set len [string length $dbfile]
-set RVT_lib [string range $dbfile 0 [expr "$len - 4"]]
-echo RVT_lib = $RVT_lib
-
-set dbfile [lindex $TARGET_LIBRARY_FILES 2] 
-set len [string length $dbfile]
-set LVT_lib [string range $dbfile 0 [expr "$len - 4"]]
-echo LVT_lib = $LVT_lib
-
-set_attribute [get_libs $LVT_lib] default_threshold_voltage_group LVt -type string
-set_attribute [get_libs $RVT_lib] default_threshold_voltage_group RVt -type string
-set_attribute [get_libs $HVT_lib] default_threshold_voltage_group HVt -type string
-
 #################################################################################
 # Apply Logical Design Constraints
 #################################################################################
@@ -95,27 +74,39 @@ set_fix_multiple_port_nets -all -buffer_constants
 check_design
 
 if { ${PIPE_STAGES} == 1} {
-#  compile_ultra -gate_clock -no_autoungroup -timing_high_effort_script
   set_dont_retime convolver/dout_reg*
-#  compile_ultra -gate_clock -timing_high_effort_script
-  compile_ultra -gate_clock 
+  compile_ultra -gate_clock -timing_high_effort_script
 } else {
   # recommended in DC-RRT manual for pipelined designs
   set hdlin_ff_always_sync_set_reset true
-  # calculate target clock period, pre retiming
+
+# MULTICYCLE PATH METHOD
+#  set_multicycle_path ${PIPE_STAGES} -to convolver/result_reg*
+#  set_dont_retime convolver true
+
+# MAX DELAY METHOD
+# calculate target clock period, pre retiming
+
   set max_del [expr "(${CLOCK_PERIOD} * ${PIPE_STAGES}) - (${PIPE_OVERHEAD}*${PIPE_STAGES})"]
   echo "pre-retiming synthesis target clock period for convolver : $max_del"
   set_max_delay $max_del -to convolver/result_reg*
+  set_dont_retime convolver/dout_reg*
+  set_dont_retime convolver/result_reg*
 
-#  compile_ultra -timing_high_effort_script
-  compile_ultra 
+# do initial compilation
+  compile_ultra -no_autoungroup -timing_high_effort_script
+
+  # undo retiming related constraints
   reset_path -to convolver/result_reg*
+  set_dont_retime convolver/result_reg* false
   set_dont_retime convolver/dout_reg*
 
+  # perform register retiming
   set_optimize_registers true -design convolution_wrapper -check_design \
     -sync_transform multiclass -async_transform multiclass
   optimize_registers -only_attributed_designs -check_design -print_critical_loop
 
+  # incremental compile
   compile_ultra -incr -gate_clock -timing_high_effort_script
 } 
 
