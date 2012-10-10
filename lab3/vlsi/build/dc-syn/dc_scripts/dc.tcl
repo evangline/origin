@@ -15,7 +15,6 @@ analyze -format verilog ${RTL_SOURCE_FILES}
 elaborate ${DESIGN_NAME}
 analyze_datapath_extraction > ${REPORTS_DIR}/${DESIGN_NAME}.datapath.rpt
 write -hierarchy -format ddc -output ${RESULTS_DIR}/${DCRM_ELABORATED_DESIGN_DDC_OUTPUT_FILE}
-
 link
 
 #################################################################################
@@ -23,16 +22,6 @@ link
 #################################################################################
 
 source -echo ${DCRM_CONSTRAINTS_INPUT_FILE}
-
-#################################################################################
-# Apply The Operating Conditions
-#################################################################################
-
-# Set operating condition on top level
-#set_operating_conditions \
-  -analysis_type bc_wc \
-  -max ss0p95v125c -max_library saed32rvt_ss0p95v125c \
-  -min ff1p16vn40c -min_library saed32rvt_ff1p16vn40c
 
 #################################################################################
 # Create Default Path Groups
@@ -74,38 +63,35 @@ set_fix_multiple_port_nets -all -buffer_constants
 check_design
 
 if { ${PIPE_STAGES} == 1} {
+  set_dont_retime convolver/din_reg*
+  set_dont_retime convolver/coeff_reg*
   set_dont_retime convolver/dout_reg*
   compile_ultra -gate_clock -timing_high_effort_script
 } else {
-  # recommended in DC-RRT manual for pipelined designs
+# recommended in DC-RRT manual for pipelined designs
   set hdlin_ff_always_sync_set_reset true
-
-# MULTICYCLE PATH METHOD
-#  set_multicycle_path ${PIPE_STAGES} -to convolver/result_reg*
-#  set_dont_retime convolver true
-
-# MAX DELAY METHOD
-# calculate target clock period, pre retiming
-
+# set loose constraints for initial synthesis of convolver module
   set max_del [expr "(${CLOCK_PERIOD} * ${PIPE_STAGES}) - (${PIPE_OVERHEAD}*${PIPE_STAGES})"]
-  echo "pre-retiming synthesis target clock period for convolver : $max_del"
+  echo "Pre-retiming max_delay constraint value for combinational convolver module : $max_del"
   set_max_delay $max_del -to convolver/result_reg*
-  set_dont_retime convolver/dout_reg*
+# keep input/output and pipeline registers from moving
   set_dont_retime convolver/result_reg*
-
-# do initial compilation
+  set_dont_retime convolver/din_reg*
+  set_dont_retime convolver/coeff_reg*
+  set_dont_retime convolver/dout_reg*
+# do initial compile
   compile_ultra -no_autoungroup -timing_high_effort_script
-
-  # undo retiming related constraints
+# undo retiming related constraints
   reset_path -to convolver/result_reg*
   set_dont_retime convolver/result_reg* false
+# make sure input/output registers stay in place
+  set_dont_retime convolver/din_reg*
+  set_dont_retime convolver/coeff_reg*
   set_dont_retime convolver/dout_reg*
-
   # perform register retiming
   set_optimize_registers true -design convolution_wrapper -check_design \
     -sync_transform multiclass -async_transform multiclass
   optimize_registers -only_attributed_designs -check_design -print_critical_loop
-
   # incremental compile
   compile_ultra -incr -gate_clock -timing_high_effort_script
 } 

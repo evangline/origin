@@ -11,10 +11,6 @@ UCB_STDCELLS = synopsys-32nm/multi_vt
 vlsidir = vlsi
 include $(basedir)/../Makefrag
 
-#ifndef PIPE_OVERHEAD
-#PIPE_OVERHEAD = 0.2
-#endif
-
 ifndef CLOCK_PERIOD
 CLOCK_PERIOD=1.0
 endif
@@ -44,7 +40,10 @@ output_delay = 0.1
 
 # standard voltage operation (VDD = 1.05V)
 ifeq (${VOLTAGE}, STANDARD)
-  PIPE_OVERHEAD = 0.12
+  ifndef PIPE_OVERHEAD
+    PIPE_OVERHEAD = 0.125
+  endif
+
   ss_corner_stdcells = ss0p95v125c
   tt_corner_stdcells = tt1p05v25c
   ff_corner_stdcells = ff1p16vn40c
@@ -52,7 +51,9 @@ endif
 
 # middle voltage operation (VOLTAGE = 0.85V)
 ifeq (${VOLTAGE}, MIDDLE)
-  PIPE_OVERHEAD = 0.15
+  ifndef PIPE_OVERHEAD
+    PIPE_OVERHEAD = 0.15
+  endif
   ss_corner_stdcells = ss0p75v125c
   tt_corner_stdcells = tt0p85v25c
   ff_corner_stdcells = ff0p95vn40c
@@ -60,7 +61,9 @@ endif
 
 # low voltage operation (VOLTAGE = 0.78V)
 ifeq (${VOLTAGE}, LOW)
-  PIPE_OVERHEAD = 0.16
+  ifndef PIPE_OVERHEAD
+    PIPE_OVERHEAD = 0.175
+  endif
   ss_corner_stdcells = ss0p7v125c
   tt_corner_stdcells = tt0p78v25c
   ff_corner_stdcells = ff0p85vn40c
