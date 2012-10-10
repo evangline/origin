@@ -3,9 +3,6 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#define DEFAULT_IMAGE_HEIGHT (128)
-#define DEFAULT_IMAGE_WIDTH (128)
-
 #define WINDOW_SIZE (25)
 #define COEFF_WIDTH (16)
 #define COEFF_FRACT (12)
