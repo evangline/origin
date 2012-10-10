@@ -1,0 +1,7 @@
+*~
+*.o
+medianFilter-emulator
+*.vcd
+*.vpd
+DVEfiles
+generated-src

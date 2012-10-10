@@ -1,0 +1,120 @@
+#!/usr/bin/env python
+import sys
+import math
+
+def gen_mem(name, width, depth, ports):
+  addr_width = math.ceil(math.log(depth)/math.log(2))
+  port_spec = ['input CLK', 'input RST']
+  creadports = []
+  sreadports = []
+  writeports = []
+  decl = []
+  combinational = []
+  sequential = []
+  mwriteports = {}
+  for pid in range(len(ports)):
+    ptype = ports[pid]
+    if depth > 1:
+        port_spec.append('input [%d:0] A%d' % (addr_width-1, pid))
+    else:
+        port_spec.append('input A%d' % (pid))
+    port_spec.append('input CS%d' % pid)
+    if ptype == 'cread':
+      port_spec.append('output [%d:0] O%d' % (width-1, pid))
+      creadports.append(pid)
+    if ptype == 'read' or ptype == 'rw' or ptype == 'mrw':
+      port_spec.append('output [%d:0] O%d' % (width-1, pid))
+      sreadports.append(pid)
+    if ptype == 'write' or ptype == 'rw' or ptype == 'mwrite' or ptype == 'mrw':
+      port_spec.append('input WE%d' % pid)
+      port_spec.append('input [%d:0] I%d' % (width-1, pid))
+      if ptype[0] == 'm':
+        port_spec.append('input [%d:0] WBM%d' % (width-1, pid))
+        mwriteports[pid] = 1
+      writeports.append(pid)
+  
+  for pid in creadports:
+    decl.append('reg [%d:0] rdata%d;' % (width-1, pid))
+    combinational.append('always @(*) rdata%d = ram[A%d];' % (pid, pid))
+  
+  for pid in sreadports:
+    decl.append('reg [%d:0] rdata%d;' % (width-1, pid))
+    sequential.append('rdata%d <= ram[A%d];' % (pid, pid))
+  
+  for pid in creadports + sreadports:
+    combinational.append('assign O%d = rdata%d;' % (pid, pid))
+  
+  decl.append('reg [%d:0] ram [%d:0];' % (width-1, depth-1))
+  
+  if (len(mwriteports) > 0):
+    combinational.append("generate")
+    combinational.append("  genvar i;")
+    combinational.append("  for (i = 0; i < %d; i=i+1) begin : %s_w%d" % (width, name, mwriteports[0]))
+    combinational.append("    always @(posedge CLK) begin")
+  for pid in writeports:
+    if pid in mwriteports:
+      combinational.append("      if (CS%d && WE%d && WBM%d[i]) ram[A%d][i] <= I%d[i];" % (pid, pid, pid, pid, pid))
+    else:
+      sequential.append("if (CS%d && WE%d) ram[A%d] <= I%d;" % (pid, pid, pid, pid))
+  if (len(mwriteports) > 0):
+    combinational.append("    end")
+    combinational.append("  end")
+    combinational.append("endgenerate")
+  
+  s = "module %s(\n\
+  %s);\n\
+  %s\n\
+  always @(posedge CLK) begin\n\
+    %s\n\
+  end\n\
+  %s\n\
+endmodule\n" % (name, ',\n  '.join(port_spec), '\n  '.join(decl),
+                '\n    '.join(sequential), '\n  '.join(combinational))
+
+  if depth == 1024 and width == 32 and (ports[0] == 'write' and ports[1] == 'read'):
+    s = "module %s(\n\
+    %s\n\
+  );\n\
+  SRAM1R1W1024x32 sram (\n\
+    .CE1(CLK),\n\
+    .OEB1(~CS1),\n\
+    .CSB1(~CS1),\n\
+    .A1(A1),\n\
+    .O1(O1),\n\
+    .CE2(CLK),\n\
+    .WEB2(~WE0),\n\
+    .CSB2(~CS0),\n\
+    .A2(A0),\n\
+    .I2(I0)\n\
+  );\n\
+  endmodule\n" % (name, ',\n  '.join(port_spec))
+
+  return s
+
+name = ''
+width = 0
+depth = 0
+ports = ''
+
+tokens = sys.argv[1:len(sys.argv)]
+i = 0
+while i < len(tokens):
+  a = tokens[i]
+  if a == 'name':
+    name = tokens[i+1]
+    i += 1
+  elif a == 'width':
+    width = int(tokens[i+1])
+    i += 1
+  elif a == 'depth':
+    depth = int(tokens[i+1])
+    i += 1
+  elif a == 'ports':
+    ports = tokens[i+1].split(',')
+    i += 1
+  else:
+    sys.exit('%s: unknown argument %s' % (sys.argv[0], a))
+  i += 1
+
+print gen_mem(name, width, depth, ports)
+
