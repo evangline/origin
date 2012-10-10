@@ -1,3 +1,4 @@
+extern void initialize_image_buffers(input reg [31:0] width, input reg [31:0] height);
 extern void generate_input_image();
 extern void generate_output_image();
 extern void get_input_pixel  (input reg [31:0] offset, output reg [31:0] dout);
@@ -79,6 +80,9 @@ module convolutionFilterTestHarness_rtl;
     if ($value$plusargs("vcdpluson=%d", vcdpluson))
       if (vcdpluson != 0) 
         $vcdpluson(0);
+
+    // initialize testbench
+    initialize_image_buffers(`IMAGE_WIDTH, `IMAGE_HEIGHT);
 
     // enable warnings about comparisons with X's or Z's
     $xzcheckon;

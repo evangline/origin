@@ -8,17 +8,33 @@
 #include <stdlib.h>
 
 #include "convolution.h"
-#define IMAGE_HEIGHT (128)
-#define IMAGE_WIDTH (128)
 
 extern "C" {
+  extern float* filterKernels[];
+  extern float  filterScales[];
+  extern int filterCount;
+  
+  extern float floatKernel[WINDOW_SIZE];
+  extern int32_t intKernel[WINDOW_SIZE];
+  
+  extern uint8_t *inputImageBuffer, *outputImageBuffer;
+  extern int imageWidth, imageHeight, imageBufferSize;
 
-static uint8_t inputImage[IMAGE_HEIGHT * IMAGE_WIDTH];
-static uint8_t outputImage[IMAGE_HEIGHT * IMAGE_WIDTH];
-static int imageSize = 0;
+  static int kernelCount = 0;
+
+  void initialize_image_buffers(const vec32* width, const vec32* height)
+  {
+    assert((width->c == 0) && (height->c == 0));
+    imageWidth = width->d;
+    imageHeight = height->d;
+    allocateImageBuffers(imageWidth, imageHeight);
+    generateFilterKernel(filterKernels[kernelCount], filterScales[kernelCount], floatKernel, intKernel);
+    kernelCount++;
+  }
 
   void get_conv_mask(const vec32* offset, /* OUTPUT*/ vec32 *dout)
   {
+    assert(imageBufferSize > 0);
     if (offset->c != 0) // x's or z's on the input signal
     {
       dout->c = 0xFFFFFFFF;
@@ -28,30 +44,20 @@ static int imageSize = 0;
     {
       assert(offset->d < WINDOW_SIZE);
       dout->c = 0;
-      dout->d = (gaussianKernel5x5[offset->d]/KERNEL_SCALE_FACTOR) * COEFF_SCALE;
+      dout->d = intKernel[offset->d];
     }
   }
 
   void generate_input_image()
   {
-    imageSize = IMAGE_HEIGHT*IMAGE_WIDTH;
-    for (int i=0;i<imageSize;i++)
-      inputImage[i] = (uint8_t) rand();
+    assert(imageBufferSize > 0);
+    generateRandomImage(inputImageBuffer, imageBufferSize);
   }
 
   void generate_output_image()
   {
-    assert(imageSize > 0);
-    float floatKernel[WINDOW_SIZE];
-    int32_t kernel[WINDOW_SIZE];
-    for (int i=0;i<25;i++)
-    {
-      floatKernel[i] = gaussianKernel5x5[i] / KERNEL_SCALE_FACTOR;
-      kernel[i] = floatKernel[i] * COEFF_SCALE;
-      floatKernel[i] = ((float)kernel[i]) / COEFF_SCALE;
-    }
-
-    convolutionFilter(floatKernel, 2, inputImage, outputImage, IMAGE_WIDTH, IMAGE_HEIGHT);
+    assert(imageBufferSize > 0);
+    convolutionFilter(floatKernel, 2, inputImageBuffer, outputImageBuffer, imageWidth, imageHeight);
   }
 
   void get_input_pixel(const vec32* offset, /* OUTPUT*/ vec32 *dout)
@@ -63,9 +69,9 @@ static int imageSize = 0;
     }
     else
     {
-      assert(offset->d < imageSize);
+      assert(offset->d < imageBufferSize);
       dout->c = 0;
-      dout->d = inputImage[offset->d];
+      dout->d = inputImageBuffer[offset->d];
     }
   }
 
@@ -78,9 +84,9 @@ static int imageSize = 0;
     }
     else
     {
-      assert(offset->d < imageSize);
+      assert(offset->d < imageBufferSize);
       dout->c = 0;
-      dout->d = outputImage[offset->d];
+      dout->d = outputImageBuffer[offset->d];
     }
   }
 

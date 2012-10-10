@@ -10,15 +10,17 @@
 #include <unistd.h>
 #include <errno.h>
 
-#define DEFAULT_IMAGEHEIGHT (128)
-#define DEFAULT_IMAGEWIDTH (128)
-#define DEFAULT_NUM_IMAGES (2)
+#define DEFAULT_IMAGE_HEIGHT (128)
+#define DEFAULT_IMAGE_WIDTH (128)
+#define DEFAULT_NUM_IMAGES (4)
 
-void generateInputImage(uint8_t *buf, int len)
-{
-  for (int i=0;i<len;i++)
-    buf[i] = (uint8_t) rand();
-}
+extern float* filterKernels[];
+extern float  filterScales[];
+extern int filterCount;
+extern uint8_t *inputImageBuffer, *outputImageBuffer;
+extern int imageWidth, imageHeight, imageBufferSize;
+extern float floatKernel[WINDOW_SIZE];
+extern int32_t intKernel[WINDOW_SIZE];
 
 int main (int argc, char* argv[]) {
   int cycle;
@@ -26,25 +28,12 @@ int main (int argc, char* argv[]) {
   int done = 0;
   int fail = 0;
   int imageFailed = 0;
-  int inputOffset = -1;
-  int outputOffset = -1;
-  int imageCount = 0;
   uint8_t dout_expected = 0;
-  int dout_mismatch = 0;
-  float floatKernel[WINDOW_SIZE];
-  int32_t kernel[WINDOW_SIZE];
-  for (int i=0;i<WINDOW_SIZE;i++)
-  {
-    floatKernel[i] = FILTER_KERNEL[i] / KERNEL_SCALE_FACTOR;
-    kernel[i] = floatKernel[i] * COEFF_SCALE;
-//    printf("kernel[%d] = %0.4f = %d = 0x%04x\n", i, floatKernel[i],kernel[i],kernel[i] );
-    floatKernel[i] = ((float)kernel[i]) / COEFF_SCALE;
-//    printf("floatKernel[%d] = %0.4f\n", i, floatKernel[i]);
-  }
+  int  dout_mismatch = 0;
 
   // set default values
-  int imageHeight = DEFAULT_IMAGEHEIGHT;
-  int imageWidth = DEFAULT_IMAGEWIDTH;
+  imageHeight = DEFAULT_IMAGE_HEIGHT;
+  imageWidth  = DEFAULT_IMAGE_WIDTH;
   int numImages = DEFAULT_NUM_IMAGES;
   int print_trace = 0;
   int generate_vcd = 0;
@@ -118,26 +107,32 @@ int main (int argc, char* argv[]) {
     }
   }
 
-  int imageBufferSize = imageHeight*imageWidth;
+  // for loading of filter kernels
+  int loadKernel = 1;
+  int loadKernelOffset = 0;
+  int loadKernelCount = 0;
+
+  // for loading of input images
+  int loadImage = 0;
+  int loadImageOffset = 0;
+  int loadImageCount = 0;
+
+  // for checking of output images 
+  int checkOutput = 0;
+  int checkOutputOffset = 0;
+  int checkOutputCount = 0;
 
   // number of clock cycles to simulate before exiting
   // if not specified on command line, set based on number
   // of images in simulation
   if (lim == 0)
-    lim = (numImages*imageBufferSize) + (imageWidth*3);
+    lim = numImages*((imageWidth+72)*(imageHeight-28)+WINDOW_SIZE+imageWidth*3);
  
-  // allocate input/output image buffers
-  uint8_t *inputBuffer = (uint8_t*) malloc(imageBufferSize);
-  assert(inputBuffer);
-  uint8_t *outputBuffer = (uint8_t*) malloc(imageBufferSize);
-  assert(outputBuffer);
-
   // Instantiate and initialize top level Chisel module
   convolutionFilter_t* dut = new convolutionFilter_t();
   dut->init();
 
-  printf("Image dimensions : %d x %d\n", imageWidth, imageHeight);
-  printf("Number of images to be simulated: %d\n", numImages);
+  printf("Number of images to simulate: %d\n", numImages);
   printf("Simulation will timeout after %d clock cycles.\n", lim);
   if (generate_vcd)
     printf("VCD generation enabled, output filename = %s\n", vcdFileName);
@@ -166,39 +161,67 @@ int main (int argc, char* argv[]) {
       fprintf(vcdFile, "$upscope $end\n");
     }
 
-    // Set input ports to test vector values
+    // Set input port values
+    // handle input image loading
+    uint32_t io_frame_sync_in = 0;
+    uint8_t  io_data_in = 0;
+    if (loadImage)
+    {
+      if (loadImageOffset == 0)
+      { 
+        generateRandomImage(inputImageBuffer, imageBufferSize);
+        printf("[STATUS] Loading image %d, dimensions : %d x %d\n", loadImageCount+1, imageWidth, imageHeight);
+        io_frame_sync_in = 1;
+      }
+      io_data_in = inputImageBuffer[loadImageOffset++];
+      if (loadImageOffset == imageBufferSize)
+      {
+        loadImageCount++;
+        loadImageOffset = 0;
+        // load new filter kernel for second set of images
+        if ((loadImageCount == numImages/2) || (loadImageCount == numImages))
+          loadImage = 0;
+        else
+          loadImage = 1;
+      }
+    }
+
+    dut->convolutionFilter__io_data_in   = LIT<8>(io_data_in);
+    dut->convolutionFilter__io_frame_sync_in = LIT<1>(io_frame_sync_in);
+
+    // handle configuration (filter coefficient + image dimension setup)
+    uint32_t io_config_load = 0;
+    int32_t  io_coeff_in = 0;
+    if (loadKernel) {
+      if (loadKernelOffset == 0) {
+        printf("[STATUS] Loading filter coefficients...\n");
+        assert(loadKernelCount < filterCount);
+        // generate coefficient values
+        generateFilterKernel(filterKernels[loadKernelCount], filterScales[loadKernelCount], floatKernel, intKernel);
+      } 
+      io_config_load = 1;
+      io_coeff_in = intKernel[loadKernelOffset++];
+      if (loadKernelOffset == WINDOW_SIZE) {
+        loadKernel = 0;
+        loadKernelOffset = 0;
+        loadKernelCount++;
+        // change size for second set of images
+        if (loadKernelCount == 2) {
+          // will set to 200 x 100 for default image size (128x128)
+          imageWidth  += 72;
+          imageHeight -= 28;
+        }
+        // start streaming in an image once coefficients are set
+        allocateImageBuffers(imageWidth, imageHeight);
+        loadImage = 1;
+        loadImageOffset = 0;
+      }
+    }
+
     dut->convolutionFilter__io_image_width = LIT<10>(imageWidth-1);
     dut->convolutionFilter__io_image_height = LIT<10>(imageHeight-1);
-   
-    // load coefficient values before starting to process images
-    int32_t coeff = (cycle > 0 && cycle <= 25) ? kernel[cycle-1] : 0;
-    dut->convolutionFilter__io_config_load = LIT<1>(cycle > 0 && cycle <= 25);
-    dut->convolutionFilter__io_coeff_in = LIT<COEFF_WIDTH>(coeff);
-
-    if (cycle <= 25)
-    {
-      dut->convolutionFilter__io_data_in   = LIT<8>(0);
-      dut->convolutionFilter__io_frame_sync_in = LIT<1>(0);
-      inputOffset = 0;
-    }
-    else
-    {
-      if (inputOffset == 0)
-      {
-        // generate new input image, assert frame_sync_in
-        generateInputImage(inputBuffer, imageBufferSize);
-        dut->convolutionFilter__io_frame_sync_in = LIT<1>(1);
-      }
-      else
-        dut->convolutionFilter__io_frame_sync_in = LIT<1>(0);
-        
-      dut->convolutionFilter__io_data_in  = LIT<8>(inputBuffer[inputOffset]);
-
-      if (inputOffset == imageBufferSize-1)
-        inputOffset = 0;
-      else
-        inputOffset++;
-    }
+    dut->convolutionFilter__io_config_load = LIT<1>(io_config_load);
+    dut->convolutionFilter__io_coeff_in = LIT<COEFF_WIDTH>(io_coeff_in);
 
     // advance simulation
     dut->clock_lo(reset);
@@ -208,39 +231,49 @@ int main (int argc, char* argv[]) {
     if (dut->convolutionFilter__io_frame_sync_out.lo_word())
     {
       // generated expected output image for current input
-      convolutionFilter(floatKernel, 2, inputBuffer, outputBuffer, imageWidth, imageHeight);
-      outputOffset = 0;
+      convolutionFilter(floatKernel, 2, inputImageBuffer, outputImageBuffer, imageWidth, imageHeight);
+      checkOutput = 1;
+      checkOutputOffset = 0;
     }
 
-    if (outputOffset >= 0 && outputOffset < imageBufferSize)
+    if (checkOutput)
     {
       uint8_t dout = (uint8_t) dut->convolutionFilter__io_data_out.lo_word();
-      dout_expected = outputBuffer[outputOffset];
+      dout_expected = outputImageBuffer[checkOutputOffset];
       dout_mismatch = 0;
       if (dout != dout_expected)
       {
-        printf("Verification failed at cycle %6d! pixel at offset %5d expected: %02x actual: %02x \n", cycle, outputOffset, dout_expected, dout);
+        printf("Verification failed at cycle %6d! pixel at offset %5d expected: %02x actual: %02x \n", cycle, checkOutputOffset, dout_expected, dout);
         fail = 1;
         imageFailed = 1;
         dout_mismatch = 1;
       }
 
       // end of image
-      if(outputOffset == imageBufferSize-1)
+      if(checkOutputOffset == imageBufferSize-1)
       {
-        imageCount++;
+        checkOutputCount++;
         if (!imageFailed)
-          printf("[PASSED] Image %d processed succesfully.\n", imageCount);
+          printf("[PASSED] Image %d processed succesfully.\n", checkOutputCount);
         else
-          printf("[FAILED] Filter output for input image %d was incorrect!\n", imageCount);
+          printf("[FAILED] Filter output for input image %d was incorrect!\n", checkOutputCount);
   
         imageFailed = 0;
-        outputOffset = 0;
-        if (imageCount == numImages)
+        checkOutputOffset = 0;
+        checkOutput = 1;
+        
+        if (checkOutputCount == numImages/2)
+        {
+          checkOutput = 0;
+          loadKernel = 1;
+          loadKernelOffset = 0;
+        }
+        else if (checkOutputCount == numImages)
           done=1;
+
       }
       else
-        outputOffset++;
+        checkOutputOffset++;
     }
 
     if (print_trace) {
@@ -274,11 +307,11 @@ int main (int argc, char* argv[]) {
     dut->clock_hi(reset);
   }
 
-  free(inputBuffer);
-  free(outputBuffer);
-
   if (generate_vcd)
     fclose(vcdFile);
+
+  free(inputImageBuffer);
+  free(outputImageBuffer);
 
   if(fail)
   {
