@@ -12,12 +12,17 @@ class convolution_wrapper(windowSize : Integer, dataWidth: Integer, coeffWidth: 
 
   // register inputs (won't be moved during retiming)
   val din_regs = Reg(io.din);
-  val coeff_regs = Reg(io.coeff);
+  //modified-pfchiu
+  val coeff_regs = Vec(windowSize){Reg(resetVal = UFix(0,coeffWidth))}
+  for(i<-0 until windowSize){
+    coeff_regs(i) := io.coeff(i)}
 
   // instantiate combinational convolution module
   val conv = new convolution(windowSize, dataWidth, coeffWidth, coeffFract)
   conv.io.din := din_regs
-  conv.io.coeff := coeff_regs
+  //modified-pfchiu
+  for(i<-0 until windowSize){
+    conv.io.coeff(i) := coeff_regs(i)}
 
   // register convolution module's output
   val result_reg  = Reg(conv.io.dout)
@@ -52,8 +57,22 @@ class convolution(windowSize: Integer, dataWidth: Integer, coeffWidth: Integer, 
     val coeff = Vec(windowSize) { UFix(dir = INPUT, width = coeffWidth) }
     val dout = UFix(OUTPUT, dataWidth)
   }
-
-  // your code goes here
+  val product = Vec(windowSize){UFix(width=coeffWidth)}
+  val add0  = Vec((windowSize-1)/2){UFix(width=coeffWidth)}
+  val add1  = Vec((windowSize-1)/4){UFix(width=coeffWidth)}
+  val add2  = Vec((windowSize-1)/8){UFix(width=coeffWidth)}
+  val add3  = Vec(2){UFix(width=coeffWidth)}
+  for (i<-0 until windowSize){
+    product(i) := io.coeff(i)*io.din(i)}
+  for (i<-0 until (windowSize-1)/2){
+    add0(i) := product(2*i) + product(2*i+1)}
+  for (i<-0 until (windowSize-1)/4){
+    add1(i) := add0(2*i)+add0(2*i+1)}
+  for (i<-0 until (windowSize-1)/8){
+    add2(i) := add1(2*i)+add1(2*i+1)}
+  add3(0) := add2(0)+add2(1)
+  add3(1) := add2(2)+product(windowSize-1)
+  io.dout := add3(0)+add3(1)
 }
 
 }
