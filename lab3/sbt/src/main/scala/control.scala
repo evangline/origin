@@ -22,19 +22,18 @@ class control(windowSize: Integer, maxImageWidth: Integer, maxImageHeight: Integ
   val BUF     = UFix(1,2)
   val CALC    = UFix(2,2)
   io.frame_sync_out := UFix(0,1)
-  io.dout_select := UFix(0,1)
+  io.dout_select := UFix(1,1)
   val coeff_reg = Vec(windowSize) {Reg(resetVal = Fix(0,coeffWidth))}
   val width_reg = Reg(resetVal = UFix(0,dimWidth))    //parametrize by maxImagesize
   val height_reg = Reg(resetVal = UFix(0,dimWidth))
-  val count   = Reg(resetVal = Bits(0,log2Up(maxImageWidth)*log2Up(maxImageHeight)))
-  val coor = count - width_reg +UFix(1)
-  val x = coor >> width_reg
-  val top = coor < width_reg
-  val bot = coor > width_reg*height_reg
-  val left = coor < height_reg
-  val right = coor > height_reg
-  val isedge = top || bot || left || right
+  val count_x   = Reg(resetVal = UFix(0,log2Up(maxImageWidth)))
+  val coor_x    = count_x - UFix(2) 
+  val count_y   = Reg(resetVal = UFix(0,log2Up(maxImageHeight)))
+  val coor_y   = Reg(resetVal = UFix(0,log2Up(maxImageHeight)))
+  val isedge = coor_x ===UFix(1023) ||coor_x ===width_reg-UFix(0) || coor_y ===UFix(0) || coor_y ===height_reg
+
   io.coeff_out := coeff_reg
+
   //coefficient input
   when (state === COEFFIN){
     when (io.config_load === UFix(1)){
@@ -48,20 +47,21 @@ class control(windowSize: Integer, maxImageWidth: Integer, maxImageHeight: Integ
       state := BUF}
   }
   when (state === BUF){
-    io.dout_select := Mux(isedge, UFix(1), UFix(0))
-    when(count != width_reg+UFix(1)){
-      count := count+UFix(1)}
-    when(count === width_reg+UFix(1)){
+    count_x := Mux(count_x === width_reg, UFix(0),count_x + UFix(1))
+    count_y := Mux(count_x === width_reg, count_y + UFix(1),count_y)
+    io.dout_select := Mux(isedge, UFix(0), UFix(1))
+    when(count_x === UFix(3) && count_y === UFix(2)){
       state := CALC
-      count := count + UFix(1)
       io.frame_sync_out := UFix(1)}
   }
   when (state === CALC){    //single cycle
-    io.dout_select := Mux(isedge, UFix(1), UFix(0))
+    count_x := Mux(count_x === width_reg, UFix(0),count_x + UFix(1))
+    count_y := Mux(count_x === width_reg, count_y + UFix(1),count_y)
+    coor_y := Mux(coor_x === UFix(1023), coor_y + UFix(1),coor_y)
+    io.dout_select := Mux(isedge, UFix(0), UFix(1))
     io.frame_sync_out := UFix(0)
-    count := count + UFix(1)
-    when (count === width_reg*height_reg-UFix(1)){
-      count := UFix(0,14)
+    when (count_x === width_reg && count_y === height_reg){
+      count_y := UFix(0)
       state := BUF}
   }
 }
