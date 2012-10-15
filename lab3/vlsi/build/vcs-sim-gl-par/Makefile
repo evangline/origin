@@ -46,8 +46,8 @@ vcs_sim = simv
 $(vcs_sim) : Makefile $(vsrcs) $(csrcs)
 	$(VCS) $(VCS_OPTS) +incdir+$(srcdir) -o $(vcs_sim) \
 	+define+CLOCK_PERIOD=$(vcs_clock_period) \
-	+define+INPUT_DELAY=$(input_delay_vcs) \
-	+define+OUTPUT_DELAY=$(output_delay_vcs) \
+	+define+INPUT_DELAY=$(input_delay) \
+	+define+OUTPUT_DELAY=$(output_delay) \
 	-v $(verilog_cells_dir)/cells_lvt.v \
 	-v $(verilog_cells_dir)/cells_rvt.v \
 	-v $(verilog_cells_dir)/cells_hvt.v \
