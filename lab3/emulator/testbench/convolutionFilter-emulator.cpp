@@ -192,7 +192,7 @@ int main (int argc, char* argv[]) {
     // handle configuration (filter coefficient + image dimension setup)
     uint32_t io_config_load = 0;
     int32_t  io_coeff_in = 0;
-    if (loadKernel) {
+    if (loadKernel && cycle > 0) {
       if (loadKernelOffset == 0) {
         printf("[STATUS] Loading filter coefficients...\n");
         assert(loadKernelCount < filterCount);
