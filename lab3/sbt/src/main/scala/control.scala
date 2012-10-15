@@ -22,16 +22,17 @@ class control(windowSize: Integer, maxImageWidth: Integer, maxImageHeight: Integ
   val BUF     = UFix(1,2)
   val CALC    = UFix(2,2)
   io.frame_sync_out := UFix(0,1)
-  io.dout_select := UFix(1,1)
-  val coeff_reg = Vec(windowSize) {Reg(resetVal = Fix(0,coeffWidth))}
+  io.dout_select :=Bits(1,1)
+  val coeff_reg = Vec(windowSize) {Reg(resetVal = Fix(coeffWidth))}
   val width_reg = Reg(resetVal = UFix(0,dimWidth))    //parametrize by maxImagesize
   val height_reg = Reg(resetVal = UFix(0,dimWidth))
   val count_x   = Reg(resetVal = UFix(0,log2Up(maxImageWidth)))
   val coor_x    = count_x - UFix(2) 
   val count_y   = Reg(resetVal = UFix(0,log2Up(maxImageHeight)))
   val coor_y   = Reg(resetVal = UFix(0,log2Up(maxImageHeight)))
-  val isedge = coor_x ===UFix(1023) ||coor_x ===width_reg-UFix(0) || coor_y ===UFix(0) || coor_y ===height_reg
+  val isedge = coor_x ===UFix(0) ||coor_x === UFix(1)||coor_x===UFix(2)||coor_x ===UFix(maxImageWidth-1) || coor_y ===UFix(0) || coor_y===height_reg ||coor_y === UFix(1) || coor_y ===height_reg-UFix(1)
 
+  io.dout_select := ~isedge //Mux(isedge, UFix(0), UFix(1))
   io.coeff_out := coeff_reg
 
   //coefficient input
@@ -44,25 +45,34 @@ class control(windowSize: Integer, maxImageWidth: Integer, maxImageHeight: Integ
       height_reg := io.image_height
       } //shift register
     when (io.frame_sync_in === UFix(1)){
-      state := BUF}
+      state := BUF
+      count_x := UFix(0)
+      count_y := UFix(0)}      
+    when (io.frame_sync_in != UFix(1) && io.config_load != UFix(1)){
+      count_x := Mux(count_x === width_reg, UFix(0),count_x + UFix(1))
+      count_y := Mux(count_x === width_reg, count_y + UFix(1),count_y)
+      coor_y := Mux(coor_x === UFix(maxImageWidth-1), coor_y + UFix(1),coor_y)
+      }
   }
   when (state === BUF){
     count_x := Mux(count_x === width_reg, UFix(0),count_x + UFix(1))
     count_y := Mux(count_x === width_reg, count_y + UFix(1),count_y)
-    io.dout_select := Mux(isedge, UFix(0), UFix(1))
+    coor_y := Mux(coor_x === UFix(maxImageWidth-1), coor_y + UFix(1),coor_y)
+//    io.dout_select := ~isedge //Mux(isedge, UFix(0), UFix(1))
     when(count_x === UFix(3) && count_y === UFix(2)){
       state := CALC
+      coor_y := UFix(0)
       io.frame_sync_out := UFix(1)}
   }
   when (state === CALC){    //single cycle
     count_x := Mux(count_x === width_reg, UFix(0),count_x + UFix(1))
     count_y := Mux(count_x === width_reg, count_y + UFix(1),count_y)
-    coor_y := Mux(coor_x === UFix(1023), coor_y + UFix(1),coor_y)
-    io.dout_select := Mux(isedge, UFix(0), UFix(1))
+    coor_y := Mux(coor_x === UFix(maxImageWidth-1), coor_y + UFix(1),coor_y)
+  //  io.dout_select := ~isedge  //Mux(isedge, UFix(0), UFix(1))
     io.frame_sync_out := UFix(0)
     when (count_x === width_reg && count_y === height_reg){
-      count_y := UFix(0)
-      state := BUF}
+      state := Mux(io.frame_sync_in === UFix(1),BUF,COEFFIN)
+      count_y := UFix(0)}
   }
 }
 }

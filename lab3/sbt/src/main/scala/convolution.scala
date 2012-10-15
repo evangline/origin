@@ -11,7 +11,7 @@ class convolution_wrapper(windowSize : Integer, dataWidth: Integer, coeffWidth: 
   }
 
   // register inputs (won't be moved during retiming)
-  val din_regs = Reg(io.din);
+//  val din_regs = Reg(io.din);
   //modified-pfchiu
   val coeff_regs = Vec(windowSize){Reg(resetVal = UFix(0,coeffWidth))}
   for(i<-0 until windowSize){
@@ -19,7 +19,7 @@ class convolution_wrapper(windowSize : Integer, dataWidth: Integer, coeffWidth: 
 
   // instantiate combinational convolution module
   val conv = new convolution(windowSize, dataWidth, coeffWidth, coeffFract)
-  conv.io.din := din_regs
+  conv.io.din := io.din //din_regs
   //modified-pfchiu
   for(i<-0 until windowSize){
     conv.io.coeff(i) := coeff_regs(i)}
@@ -56,23 +56,35 @@ class convolution(windowSize: Integer, dataWidth: Integer, coeffWidth: Integer, 
     val din   = Vec(windowSize) { UFix(dir = INPUT, width = dataWidth) }
     val coeff = Vec(windowSize) { UFix(dir = INPUT, width = coeffWidth) }
     val dout = UFix(OUTPUT, dataWidth)
+    
   }
-  val product = Vec(windowSize){UFix(width=coeffWidth)}
-  val add0  = Vec((windowSize-1)/2){UFix(width=coeffWidth)}
-  val add1  = Vec((windowSize-1)/4){UFix(width=coeffWidth)}
-  val add2  = Vec((windowSize-1)/8){UFix(width=coeffWidth)}
-  val add3  = Vec(2){UFix(width=coeffWidth)}
+  val p = Vec(windowSize){UFix(width=coeffWidth+dataWidth)}
+  val product = Vec(windowSize){UFix(width=coeffWidth+dataWidth+1)}
+  val add0  = Vec((windowSize-1)/2){UFix(width=coeffWidth+dataWidth+1)}
+  //val add0_o  = Vec((windowSize-1)/2){UFix(width=coeffWidth+dataWidth+2)}
+  val add1  = Vec((windowSize-1)/4){UFix(width=coeffWidth+dataWidth+2)}
+  //val add1_o  = Vec((windowSize-1)/4){UFix(width=coeffWidth+dataWidth+3)}
+  val add2  = Vec((windowSize-1)/8){UFix(width=coeffWidth+dataWidth+3)}
+  //val add2_o  = Vec((windowSize-1)/8){UFix(width=coeffWidth+dataWidth+4)}
+  val add3  = Vec(2){UFix(width=coeffWidth+dataWidth+4)}
+  //val add3_o  = Vec(2){UFix(width=coeffWidth+dataWidth+5)}
   for (i<-0 until windowSize){
-    product(i) := io.coeff(i)*io.din(i)}
+    p(i) := io.coeff(i)*io.din(i)
+    product(i) = Cat(p(i)(coeffWidth+dataWidth-1),p(i)(coeffWidth+dataWidth-1),p(i)(coeffWidth+dataWidth-2,0))}
   for (i<-0 until (windowSize-1)/2){
     add0(i) := product(2*i) + product(2*i+1)}
+    //add0_o(i) := Cat(add0(coeffWidth+dataWidth),add0(coeffWidth+dataWidth),)
   for (i<-0 until (windowSize-1)/4){
     add1(i) := add0(2*i)+add0(2*i+1)}
   for (i<-0 until (windowSize-1)/8){
     add2(i) := add1(2*i)+add1(2*i+1)}
   add3(0) := add2(0)+add2(1)
   add3(1) := add2(2)+product(windowSize-1)
-  io.dout := add3(0)+add3(1)
-}
+  val temp = add3(0)+add3(1) + UFix(1<<(coeffFract-1))
+  val overflow = temp(coeffWidth+dataWidth,coeffFract+dataWidth)
+  val saturation = Mux(temp(coeffWidth+dataWidth)===UFix(1),UFix(0,dataWidth),UFix(255,dataWidth))
+  io.dout := Mux(overflow === UFix(0),temp(coeffFract+dataWidth-1,coeffFract),saturation)
+  }
+
 
 }
