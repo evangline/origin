@@ -50,13 +50,10 @@ vars_tcl        := setup/common_setup.tcl setup/pt_setup.tcl
 makegen_tcl     := make_generated_vars.tcl
 
 pt_avg_tcl      := pt_scripts/pt.avg.tcl
-pt_time_tcl     := pt_scripts/pt.time.tcl
 
 vcs_vpd = vcdplus
 pt_avg_min_rpt = $(addprefix $(cur_build_pt_dir)/$(reports_dir)/, $(addsuffix .power.avg.min.report, $(vcs_vpd)))
 pt_avg_max_rpt = $(addprefix $(cur_build_pt_dir)/$(reports_dir)/, $(addsuffix .power.avg.max.report, $(vcs_vpd)))
-pt_time_min_rpt = $(addprefix $(cur_build_pt_dir)/$(reports_dir)/, $(addsuffix .power.time.min.report, $(vcs_vpd)))
-pt_time_max_rpt = $(addprefix $(cur_build_pt_dir)/$(reports_dir)/, $(addsuffix .power.time.max.report, $(vcs_vpd)))
 
 vars = \
 	set DESIGN_NAME                 "$(toplevel)";\n \
@@ -71,23 +68,19 @@ vars_avg = \
 	set STRIP_PATH                  "$(testharness)/$(toplevelinst)";\n \
 	set PT_METHOD                   "avg";\n \
 
-vars_time = \
-	set STRIP_PATH                  "$(testharness)/$(toplevelinst)";\n \
-	set PT_METHOD                   "time";\n \
-
 vars_min = \
-	set TARGET_LIBRARY_FILES        "$(min_libraries) $(db_sram_libs)";\n \
+	set TARGET_LIBRARY_FILES        "$(target_library_files) $(db_sram_libs)";\n \
 	set PARASITIC_PATHS             "$(toplevel)";\n \
 	set PARASITIC_FILES             "../$(icc_min_sbpf)";\n \
 	set PT_PARASITIC                "min";\n \
 
 vars_max = \
-	set TARGET_LIBRARY_FILES        "$(max_libraries) $(db_sram_libs)";\n \
+	set TARGET_LIBRARY_FILES        "$(target_library_files) $(db_sram_libs)";\n \
 	set PARASITIC_PATHS             "$(toplevel)";\n \
 	set PARASITIC_FILES             "../$(icc_max_sbpf)";\n \
 	set PT_PARASITIC                "max";\n \
 
-$(pt_timestamp): $(vcs_timestamp) $(icc_timestamp) $(vars_tcl) $(constraints_tcl) $(pt_avg_tcl) $(pt_time_tcl)
+$(pt_timestamp): $(vcs_timestamp) $(icc_timestamp) $(vars_tcl) $(constraints_tcl) $(pt_avg_tcl)
 	mkdir $(build_pt_dir)
 	rm -f $(cur_build_pt_dir)
 	ln -s $(build_pt_dir) $(cur_build_pt_dir)
@@ -119,31 +112,7 @@ $(pt_avg_max_rpt): $(cur_build_pt_dir)/$(reports_dir)/%.power.avg.max.report: $(
 	$(pt_exec) -f $(notdir $(pt_avg_tcl)) | tee $(log_dir)/$(notdir $(patsubst %.saif, %, $<)).pt.avg.max.log; \
 	cd ..
 
-$(pt_time_min_rpt): $(cur_build_pt_dir)/$(reports_dir)/%.power.time.min.report: $(vcs_dir)/%.vcd $(pt_timestamp)
-	cp $(pt_time_tcl) $(constraints_tcl) $(vars_tcl) $(cur_build_pt_dir)
-	echo -e '$(vars)' > $(cur_build_pt_dir)/$(makegen_tcl)
-	echo -e '$(vars_time)' >> $(cur_build_pt_dir)/$(makegen_tcl)
-	echo -e '$(vars_min)' >> $(cur_build_pt_dir)/$(makegen_tcl)
-	echo -e 'set ACTIVITY_FILE "../$<";\n' >> $(cur_build_pt_dir)/$(makegen_tcl)
-	echo -e 'set PT_EXEC "$(notdir $(patsubst %.vcd, %, $<))";\n' >> $(cur_build_pt_dir)/$(makegen_tcl)
-	cd $(cur_build_pt_dir); \
-	mkdir -p $(log_dir); \
-	$(pt_exec) -f $(notdir $(pt_time_tcl)) | tee $(log_dir)/$(notdir $(patsubst %.vcd, %, $<)).pt.time.min.log; \
-	cd ..
-
-$(pt_time_max_rpt): $(cur_build_pt_dir)/$(reports_dir)/%.power.time.max.report: $(vcs_dir)/%.vcd $(pt_timestamp)
-	cp $(pt_time_tcl) $(constraints_tcl) $(vars_tcl) $(cur_build_pt_dir)
-	echo -e '$(vars)' > $(cur_build_pt_dir)/$(makegen_tcl)
-	echo -e '$(vars_time)' >> $(cur_build_pt_dir)/$(makegen_tcl)
-	echo -e '$(vars_max)' >> $(cur_build_pt_dir)/$(makegen_tcl)
-	echo -e 'set ACTIVITY_FILE "../$<";\n' >> $(cur_build_pt_dir)/$(makegen_tcl)
-	echo -e 'set PT_EXEC "$(notdir $(patsubst %.vcd, %, $<))";\n' >> $(cur_build_pt_dir)/$(makegen_tcl)
-	cd $(cur_build_pt_dir); \
-	mkdir -p $(log_dir); \
-	$(pt_exec) -f $(notdir $(pt_time_tcl)) | tee $(log_dir)/$(notdir $(patsubst %.vcd, %, $<)).pt.time.max.log; \
-	cd ..
-
-pt: $(pt_avg_max_rpt) $(pt_avg_min_rpt) $(pt_time_min_rpt) $(pt_time_max_rpt)
+pt: $(pt_avg_max_rpt) $(pt_avg_min_rpt)
 
 #--------------------------------------------------------------------
 # Default make target
