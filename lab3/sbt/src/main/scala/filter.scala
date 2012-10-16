@@ -54,7 +54,7 @@ class convolutionFilter(maxImageWidth: Integer, maxImageHeight: Integer, dataWid
     dsel_out := dsel_reg
   } else {
     val wbuf_pipe = Vec(pipeStages-2) { Reg() {UFix(width = dataWidth)}}
-    val dsel_pipe = Vec(pipeStages-2) { Reg() {UFix(width =1)}}
+    val dsel_pipe = Vec(pipeStages-2) { Reg() {Bits(width =1)}}
     wbuf_pipe(0) := wbuf_reg
     dsel_pipe(0) := dsel_reg
     for (i <- 1 until pipeStages-2){
