@@ -41,19 +41,3 @@ class windowBuf5x5(maxImageWidth: Integer, dataWidth: Integer) extends Component
 }
 }
 
-//class windowBuf5x5test(c:windowBuf5x5) extends Tester(c, Array(c.io)){
-//  defTests{
-//    var allGood = true
-//    val vars    = new HashMap[Node,Node]()
-//    val rnd     = new Random()
-//    
-//    val din = UFix(INPUT, dataWidth)
-//    val dout = Vec(windowSize) { UFix(dir = OUTPUT, width = dataWidth) }
-//    val load = Bits(INPUT, 1)
-//    val image_width = UFix(INPUT, log2Up(maxImageWidth))
-//    vars()=
-//    vars()=
-//    allGood = step(vars) && allGood
-//    allGood
-//    }
-//}

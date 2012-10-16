@@ -11,18 +11,13 @@ class convolution_wrapper(windowSize : Integer, dataWidth: Integer, coeffWidth: 
   }
 
   // register inputs (won't be moved during retiming)
-//  val din_regs = Reg(io.din);
-  //modified-pfchiu
-  val coeff_regs = Vec(windowSize){Reg(resetVal = UFix(0,coeffWidth))}
-  for(i<-0 until windowSize){
-    coeff_regs(i) := io.coeff(i)}
+  val din_regs = Reg(io.din);
+  val coeff_regs = Reg(io.coeff);
 
   // instantiate combinational convolution module
   val conv = new convolution(windowSize, dataWidth, coeffWidth, coeffFract)
   conv.io.din := io.din //din_regs
-  //modified-pfchiu
-  for(i<-0 until windowSize){
-    conv.io.coeff(i) := coeff_regs(i)}
+  conv.io.coeff := coeff_regs
 
   // register convolution module's output
   val result_reg  = Reg(conv.io.dout)
@@ -61,19 +56,14 @@ class convolution(windowSize: Integer, dataWidth: Integer, coeffWidth: Integer, 
   val p = Vec(windowSize){UFix(width=coeffWidth+dataWidth)}
   val product = Vec(windowSize){UFix(width=coeffWidth+dataWidth+1)}
   val add0  = Vec((windowSize-1)/2){UFix(width=coeffWidth+dataWidth+1)}
-  //val add0_o  = Vec((windowSize-1)/2){UFix(width=coeffWidth+dataWidth+2)}
-  val add1  = Vec((windowSize-1)/4){UFix(width=coeffWidth+dataWidth+2)}
-  //val add1_o  = Vec((windowSize-1)/4){UFix(width=coeffWidth+dataWidth+3)}
-  val add2  = Vec((windowSize-1)/8){UFix(width=coeffWidth+dataWidth+3)}
-  //val add2_o  = Vec((windowSize-1)/8){UFix(width=coeffWidth+dataWidth+4)}
-  val add3  = Vec(2){UFix(width=coeffWidth+dataWidth+4)}
-  //val add3_o  = Vec(2){UFix(width=coeffWidth+dataWidth+5)}
+  val add1  = Vec((windowSize-1)/4){UFix(width=coeffWidth+dataWidth+1)}
+  val add2  = Vec((windowSize-1)/8){UFix(width=coeffWidth+dataWidth+1)}
+  val add3  = Vec(2){UFix(width=coeffWidth+dataWidth+1)}
   for (i<-0 until windowSize){
     p(i) := io.coeff(i)*io.din(i)
-    product(i) = Cat(p(i)(coeffWidth+dataWidth-1),p(i)(coeffWidth+dataWidth-1),p(i)(coeffWidth+dataWidth-2,0))}
+    product(i) = Cat(p(i)(coeffWidth+dataWidth-1),p(i)(coeffWidth+dataWidth-1,0))}
   for (i<-0 until (windowSize-1)/2){
     add0(i) := product(2*i) + product(2*i+1)}
-    //add0_o(i) := Cat(add0(coeffWidth+dataWidth),add0(coeffWidth+dataWidth),)
   for (i<-0 until (windowSize-1)/4){
     add1(i) := add0(2*i)+add0(2*i+1)}
   for (i<-0 until (windowSize-1)/8){

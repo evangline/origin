@@ -19,7 +19,7 @@ class control(imageWidth: Integer, imageHeight: Integer) extends Component {
   val coor = count - UFix(imageWidth+1)  //w22
   val x = coor(6,0)
   val y = coor(13,7)
-  val isedge = x ===UFix(0) || x ===UFix(imageWidth-1) || y ===UFix(0) || y ===UFix(imageWidth-1)
+  val isedge = x ===UFix(0) ||x===UFix(1)||x===UFix(2)|| x ===UFix(imageWidth-1) || y ===UFix(0) || y ===UFix(imageWidth-1)
 
   //INITIAL STATE
   when (state===INITIAL){

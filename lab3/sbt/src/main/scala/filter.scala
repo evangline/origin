@@ -42,8 +42,30 @@ class convolutionFilter(maxImageWidth: Integer, maxImageHeight: Integer, dataWid
   // NOTE: you will need to delay the frame_sync_out, data select signal and
   // the output of the window buffer appropriately to account for the number of
   // pipeline stages in your desgin
-  
-  io.data_out       := Reg(Mux(control.io.dout_select, convolver.io.dout, Reg(winBuf.io.dout(12)))).toUFix
+  val wbuf_out = Reg(UFix(width = dataWidth))
+  val wbuf_reg = Reg(winBuf.io.dout(12))
+  val dsel_out = Reg(Bits(width = 1))
+  val dsel_reg = Reg(control.io.dout_select)
+  if (pipeStages == 1){
+    wbuf_out := winBuf.io.dout(12)
+    dsel_out := control.io.dout_select
+  } else if (pipeStages == 2){
+    wbuf_out := wbuf_reg
+    dsel_out := dsel_reg
+  } else {
+    val wbuf_pipe = Vec(pipeStages-2) { Reg() {UFix(width = dataWidth)}}
+    val dsel_pipe = Vec(pipeStages-2) { Reg() {UFix(width =1)}}
+    wbuf_pipe(0) := wbuf_reg
+    dsel_pipe(0) := dsel_reg
+    for (i <- 1 until pipeStages-2){
+      wbuf_pipe(i) := wbuf_pipe(i-1)
+      dsel_pipe(i) := dsel_pipe(i-1)
+    }
+    wbuf_out := wbuf_pipe(pipeStages-3)
+    dsel_out := dsel_pipe(pipeStages-3)
+  }  
+
+  io.data_out       := Reg(Mux(dsel_out, convolver.io.dout, wbuf_out)).toUFix
   io.frame_sync_out := Reg(control.io.frame_sync_out)
 }
 

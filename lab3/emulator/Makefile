@@ -12,6 +12,9 @@ default : all
 convolution-test: $(basedir)/src/convolution.scala
 	cd $(basedir)/sbt ; $(SBT) "project work" "run convolution5x5test --backend c --compile --targetDir ../emulator/generated-src --genHarness --test"
 
+window-test: $(basedir)/src/window.scala
+	cd $(basedir)/sbt ; $(SBT) "project work" "run windowBuf5x5test --backend c --compile --targetDir ../emulator/generated-src --genHarness --test"
+
 generated-src/$(MODEL).cpp: $(basedir)/src/*.scala
 	cd $(basedir)/sbt && $(SBT) "project work" "run filter ${PIPE_STAGES} --backend c --targetDir ../emulator/generated-src --debug --vcd --Wall"
 
