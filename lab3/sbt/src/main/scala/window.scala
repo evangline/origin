@@ -23,9 +23,9 @@ class windowBuf5x5(maxImageWidth: Integer, dataWidth: Integer) extends Component
   out_reg(0) := io.din
   io.dout := out_reg
   //counter
-  when (count != width_reg-UFix(6)){
+  when (count != width_reg-UFix(5)){
     count := count + UFix(1)}
-  when (count === width_reg-UFix(6)){
+  when (count === width_reg-UFix(5)){
     count := UFix(0)}
   //shift register
   for (i <- 1 until windowSize){
@@ -35,9 +35,11 @@ class windowBuf5x5(maxImageWidth: Integer, dataWidth: Integer) extends Component
   out_reg(10) := readOut(2*dataWidth-1,dataWidth)
   out_reg(15) := readOut(3*dataWidth-1,2*dataWidth)
   out_reg(20) := readOut(4*dataWidth-1,3*dataWidth)
-      //write memory and read memory  
+      //write memory and read memory
+  val readAddr = Mux(count===width_reg-UFix(5),UFix(0),count+UFix(1))
   rowbuf(count) := Cat(out_reg(19),out_reg(14),out_reg(9),out_reg(4)).toUFix()
-  readOut := rowbuf(count) 
+  readOut := rowbuf(readAddr) 
+
 }
 }
 
