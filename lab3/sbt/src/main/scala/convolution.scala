@@ -16,7 +16,7 @@ class convolution_wrapper(windowSize : Integer, dataWidth: Integer, coeffWidth: 
 
   // instantiate combinational convolution module
   val conv = new convolution(windowSize, dataWidth, coeffWidth, coeffFract)
-  conv.io.din := io.din //din_regs
+  conv.io.din := din_regs  //io.din
   conv.io.coeff := coeff_regs
 
   // register convolution module's output

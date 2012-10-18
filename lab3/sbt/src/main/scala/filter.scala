@@ -42,13 +42,17 @@ class convolutionFilter(maxImageWidth: Integer, maxImageHeight: Integer, dataWid
   // NOTE: you will need to delay the frame_sync_out, data select signal and
   // the output of the window buffer appropriately to account for the number of
   // pipeline stages in your desgin
+  //
+  // delay winbuf output and data_select
   val wbuf_out = Reg(UFix(width = dataWidth))
-  val wbuf_reg = Reg(winBuf.io.dout(12))
+  val wbuf_reg_0 = Reg(winBuf.io.dout(12))
+  val wbuf_reg = Reg(wbuf_reg_0)
   val dsel_out = Reg(Bits(width = 1))
-  val dsel_reg = Reg(control.io.dout_select)
+  val dsel_reg_0 = Reg(control.io.dout_select)
+  val dsel_reg = Reg(dsel_reg_0)
   if (pipeStages == 1){
-    wbuf_out := winBuf.io.dout(12)
-    dsel_out := control.io.dout_select
+    wbuf_out := wbuf_reg_0
+    dsel_out := dsel_reg_0
   } else if (pipeStages == 2){
     wbuf_out := wbuf_reg
     dsel_out := dsel_reg

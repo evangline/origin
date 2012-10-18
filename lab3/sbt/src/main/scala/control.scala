@@ -73,10 +73,11 @@ class control(windowSize: Integer, maxImageWidth: Integer, maxImageHeight: Integ
       count_y := UFix(0)}
   }
 
-  val sync_out_reg = Reg(sync_out)
+  val sync_out_1   = Reg(sync_out)
+  val sync_out_reg = Reg(sync_out_1)
   val sync_out_out = Reg(Bits(width=1))
   if (pipeStages == 1) {
-    sync_out_out := sync_out
+    sync_out_out := sync_out_1
   } else if (pipeStages == 2) {
     sync_out_out := sync_out_reg
   } else {
